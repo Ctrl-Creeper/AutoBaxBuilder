@@ -64,59 +64,59 @@ class CWE(Enum):
     }
     OBSERVABLE_RESPONSE_DISCREPANCY = {
         "num": 204,
-        "desc": "The product provides different responses to sensitive requests depending on whether the requested resource exists.",
+        "desc": "The product provides different responses to incoming requests in a way that reveals internal state information to an unauthorized actor outside of the intended control sphere.",
     }
     AUTHENTICATION_BYPASS_BY_CAPTURE_REPLAY = {
         "num": 294,
-        "desc": "The product's authentication can be bypassed by capturing and replaying an authentication exchange.",
+        "desc": "A capture-replay flaw exists when the design of the product makes it possible for a malicious user to sniff network traffic and bypass authentication by replaying it to the server in question to the same effect as the original message (or with minor changes).",
     }
     INSUFFICIENT_VERIFICATION_OF_DATA_AUTHENTICITY = {
         "num": 345,
-        "desc": "The product does not sufficiently verify that data is authentic before using it.",
+        "desc": "The product does not sufficiently verify the origin or authenticity of data, in a way that causes it to accept invalid data.",
     }
     CROSS_SITE_REQUEST_FORGERY = {
         "num": 352,
-        "desc": "The web application does not sufficiently verify whether a request was intentionally sent by the user.",
+        "desc": "The web application does not, or can not, sufficiently verify whether a well-formed, valid, consistent request was intentionally provided by the user who submitted the request.",
     }
     CONCURRENT_EXECUTION_WITH_IMPROPER_SYNCHRONIZATION = {
         "num": 362,
-        "desc": "The product uses a shared resource concurrently without properly synchronizing access.",
+        "desc": "The product contains a concurrent code sequence that requires temporary, exclusive access to a shared resource, but a timing window exists in which the shared resource can be modified by another code sequence operating concurrently.",
     }
     SESSION_FIXATION = {
         "num": 384,
-        "desc": "The product does not invalidate or sufficiently change an existing session identifier after authentication.",
+        "desc": "Authenticating a user, or otherwise establishing a new user session, without invalidating any existing session identifier gives an attacker the opportunity to steal authenticated sessions.",
     }
     IMPROPER_HANDLING_OF_HIGHLY_COMPRESSED_DATA = {
         "num": 409,
-        "desc": "The product does not properly limit or handle highly compressed data that expands excessively during decompression.",
+        "desc": "The product does not handle or incorrectly handles a compressed input with a very high compression ratio that produces a large output.",
     }
     DESERIALIZATION_OF_UNTRUSTED_DATA = {
         "num": 502,
-        "desc": "The product deserializes untrusted data without sufficiently verifying its structure or content.",
+        "desc": "The product deserializes untrusted data without sufficiently ensuring that the resulting data will be valid.",
     }
     URL_REDIRECTION_TO_UNTRUSTED_SITE = {
         "num": 601,
-        "desc": "The product redirects a user to an untrusted site using externally controlled input.",
+        "desc": "The web application accepts a user-controlled input that specifies a link to an external site, and uses that link in a redirect.",
     }
     INSUFFICIENT_SESSION_EXPIRATION = {
         "num": 613,
-        "desc": "The product does not sufficiently enforce session expiration or invalidate sessions when they should expire.",
+        "desc": "According to WASC, \"Insufficient Session Expiration is when a web site permits an attacker to reuse old session credentials or session IDs for authorization.\"",
     }
     AUTHORIZATION_BYPASS_THROUGH_USER_CONTROLLED_KEY = {
         "num": 639,
-        "desc": "The product uses a user-controlled key to access a resource without properly verifying authorization.",
+        "desc": "The system's authorization functionality does not prevent one user from gaining access to another user's data or record by modifying the key value identifying the data.",
     }
     WEAK_PASSWORD_RECOVERY_MECHANISM_FORGOTTEN_PASSWORD = {
         "num": 640,
-        "desc": "The product uses a weak mechanism to recover or reset a forgotten password.",
+        "desc": "The product contains a mechanism for users to recover or change their passwords without knowing the original password, but the mechanism is weak.",
     }
     IMPROPERLY_CONTROLLED_MODIFICATION_OF_DYNAMICALLY_DETERMINED_OBJECT_ATTRIBUTES = {
         "num": 915,
-        "desc": "The product allows an actor to modify dynamically determined object attributes without adequately controlling the modification.",
+        "desc": "The product receives input from an upstream component that specifies multiple attributes, properties, or fields that are to be initialized or updated in an object, but it does not properly control which attributes can be modified.",
     }
     SERVER_SIDE_REQUEST_FORGERY = {
         "num": 918,
-        "desc": "The web application fetches a remote resource based on user-supplied input without validating the destination.",
+        "desc": "The web server receives a URL or similar request from an upstream component and retrieves the contents of this URL, but it does not sufficiently ensure that the request is being sent to the expected destination.",
     }
 
 
