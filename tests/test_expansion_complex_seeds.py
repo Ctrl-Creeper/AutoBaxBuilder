@@ -3,7 +3,8 @@ import unittest
 from pathlib import Path
 
 
-SEED_DIR = Path("seeds/complex")
+ROOT = Path(__file__).resolve().parents[1]
+SEED_DIR = ROOT / "seeds" / "complex"
 
 EXPECTED = {
     "ComplexSignedWebhookProcessor": {
@@ -13,17 +14,19 @@ EXPECTED = {
         "oracle_contract": {
             "hmac_algorithm": "HMAC-SHA256",
             "signature_input": "raw_body+timestamp+event_id",
-            "max_timestamp_age_seconds": 300,
+            "max_absolute_timestamp_skew_seconds": 300,
             "signature_comparison": "constant_time",
             "duplicate_event_key": ["integration_id", "event_id"],
+            "duplicate_retention_seconds": 86400,
             "duplicate_event_status": 409,
             "max_body_bytes": 262144,
         },
         "clauses": [
             "hmac-sha256 over the raw body, timestamp, and event id",
-            "timestamps older than 300 seconds must be rejected",
+            "reject timestamps more than 300 seconds old or more than 300 seconds in the future",
             "compare signatures in constant time",
-            "a duplicate integration id and event id must return 409",
+            "retain integration id and event id duplicate records for 86400 seconds",
+            "a duplicate within the retention window must return 409",
             "limit the request body to 262144 bytes",
         ],
     },
@@ -54,20 +57,43 @@ EXPECTED = {
         "oracle_contract": {
             "authentication_required": True,
             "authorization_scope": "ownership",
-            "stock_minimum": 0,
-            "concurrent_checkout_requests": 8,
+            "race_probe": {
+                "initial_stock": 4,
+                "concurrent_requests": 8,
+                "quantity_per_request": 1,
+                "expected_successful_orders": 4,
+                "expected_charges": 4,
+                "expected_rejections": 4,
+                "expected_final_stock": 0,
+                "insufficient_stock_status": 409,
+            },
+            "idempotency_scope": "authenticated_user",
             "idempotency_same_payload": "same_order",
             "idempotency_different_payload_status": 409,
+            "cross_user_idempotency_behavior": "independent",
+            "cross_user_order_disclosure": False,
             "one_charge_and_order_per_idempotency_key": True,
-            "unauthorized_statuses": [403, 404],
+            "max_line_items_per_checkout": 50,
+            "quantity_min": 1,
+            "quantity_max": 100,
+            "owner_can_cancel_pending_order": True,
+            "non_owner_read_or_cancel": "403_or_404",
+            "cancellation_restores_stock_once": True,
+            "cancellation_refunds_once": True,
         },
         "clauses": [
             "require authenticated ownership",
-            "stock must never become negative under 8 concurrent requests",
-            "the same idempotency key and payload must return the same order",
-            "the same idempotency key with a different payload must return 409",
+            "with initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0",
+            "scope idempotency keys to the authenticated user",
+            "the same key and same payload must return the same order",
+            "the same key with a different payload must return 409",
+            "the same key used by different authenticated users is independent and must never return another user's order",
             "create only one charge and one order per idempotency key",
-            "unauthorized access must return 403 or 404",
+            "allow at most 50 line items per checkout",
+            "each quantity must be between 1 and 100",
+            "the owner can cancel a pending order",
+            "non-owner read or cancellation must return 403 or 404",
+            "cancellation restores stock once and cannot refund or restore twice",
         ],
     },
     "ComplexAccountRecovery": {

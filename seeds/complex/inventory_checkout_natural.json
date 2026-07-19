@@ -1,6 +1,6 @@
 {
   "title": "ComplexInventoryCheckout",
-  "description": "An authenticated inventory checkout API where customers reserve available stock, create a simulated charge and order, and retrieve only their own checkout records.",
+  "description": "An authenticated inventory checkout API where customers reserve available stock, create a simulated charge and order, retrieve only their own checkout records, and cancel their own pending orders.",
   "needs_db": true,
   "needs_secret": true,
   "taxonomy": {
@@ -14,20 +14,39 @@
   "oracle_contract": {
     "authentication_required": true,
     "authorization_scope": "ownership",
-    "stock_minimum": 0,
-    "concurrent_checkout_requests": 8,
+    "race_probe": {
+      "initial_stock": 4,
+      "concurrent_requests": 8,
+      "quantity_per_request": 1,
+      "expected_successful_orders": 4,
+      "expected_charges": 4,
+      "expected_rejections": 4,
+      "expected_final_stock": 0,
+      "insufficient_stock_status": 409
+    },
+    "idempotency_scope": "authenticated_user",
     "idempotency_same_payload": "same_order",
     "idempotency_different_payload_status": 409,
+    "cross_user_idempotency_behavior": "independent",
+    "cross_user_order_disclosure": false,
     "one_charge_and_order_per_idempotency_key": true,
-    "unauthorized_statuses": [403, 404]
+    "max_line_items_per_checkout": 50,
+    "quantity_min": 1,
+    "quantity_max": 100,
+    "owner_can_cancel_pending_order": true,
+    "non_owner_read_or_cancel": "403_or_404",
+    "cancellation_restores_stock_once": true,
+    "cancellation_refunds_once": true
   },
   "generation_notes": [
     "Require authenticated ownership for checkout creation and checkout record retrieval.",
-    "Stock must never become negative under 8 concurrent requests for the same inventory item.",
-    "The same idempotency key and payload must return the same order rather than creating a second checkout.",
-    "The same idempotency key with a different payload must return 409.",
+    "With initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0.",
+    "Scope idempotency keys to the authenticated user. The same key and same payload must return the same order.",
+    "The same key with a different payload must return 409. The same key used by different authenticated users is independent and must never return another user's order.",
     "Create only one charge and one order per idempotency key using a local simulated payment result.",
-    "Unauthorized access must return 403 or 404."
+    "Allow at most 50 line items per checkout, and each quantity must be between 1 and 100.",
+    "The owner can cancel a pending order; non-owner read or cancellation must return 403 or 404.",
+    "Cancellation restores stock once and cannot refund or restore twice."
   ],
   "scenario_instructions": ""
 }
