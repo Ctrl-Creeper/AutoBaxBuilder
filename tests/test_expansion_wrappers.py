@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import subprocess
@@ -16,6 +17,12 @@ if str(SRC) not in sys.path:
 
 from scripts import audit_taxonomy_expansion as audit
 from scripts import generate_taxonomy_expansion_wrappers as generator
+from scripts.generate_factorial_prompt_scenarios import (
+    PROMPT_CATEGORY_INSTRUCTIONS,
+    PROMPT_ORDER,
+    load_prompt_variants,
+    wrapper_source,
+)
 
 
 PROMPT_VARIANTS = ROOT / "prompt_variants"
@@ -89,6 +96,11 @@ class ExpansionWrapperTests(unittest.TestCase):
             audit_markdown_path=layout["audit_markdown_path"],
             seeds_only=seeds_only,
         )
+
+    def write_wrapper(self, entry: dict, source: str) -> None:
+        path = Path(entry["variant_scenario_file"])
+        path.write_text(source, encoding="utf-8")
+        entry["wrapper_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
 
     def test_generates_complete_matrix_and_audits_cleanly(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -174,25 +186,151 @@ class ExpansionWrapperTests(unittest.TestCase):
         self.assertEqual(report["seed_report"]["seed_count"], 8)
 
     def test_generator_is_cwd_independent_and_does_not_touch_v1_manifests(self):
-        v1_manifest = ROOT / "artifacts" / "factorial_prompt_manifest.json"
-        v1_1_manifest = ROOT / "artifacts" / "factorial_prompt_manifest_v1_1.json"
-        before = {
-            path: path.read_bytes()
-            for path in (v1_manifest, v1_1_manifest)
-            if path.exists()
-        }
         with tempfile.TemporaryDirectory() as directory:
-            layout = self.create_layout(Path(directory))
+            project = Path(directory) / "project"
+            layout = self.create_layout(project)
+            sentinels = {
+                layout["artifacts_dir"]
+                / "factorial_prompt_manifest.json": b"v1 sentinel\n",
+                layout["artifacts_dir"]
+                / "factorial_prompt_manifest_v1_1.json": b"v1_1 sentinel\n",
+            }
+            before = {}
+            for path, contents in sentinels.items():
+                path.write_bytes(contents)
+                before[path] = (
+                    contents,
+                    hashlib.sha256(contents).hexdigest(),
+                    path.stat().st_ino,
+                )
             original_cwd = Path.cwd()
             try:
                 os.chdir(Path(directory))
                 self.generate(layout)
                 report = self.audit(layout)
+                self.assertEqual(report["errors"], [])
+                for path, (contents, digest, inode) in before.items():
+                    self.assertEqual(path.read_bytes(), contents)
+                    self.assertEqual(
+                        hashlib.sha256(path.read_bytes()).hexdigest(), digest
+                    )
+                    self.assertEqual(path.stat().st_ino, inode)
             finally:
                 os.chdir(original_cwd)
 
-        self.assertEqual(report["errors"], [])
-        self.assertEqual({path: path.read_bytes() for path in before}, before)
+    def test_audit_detects_semantic_base_and_wrapper_mutations(self):
+        cases = (
+            ("corrupt base Python", self._corrupt_base_python),
+            ("base missing SCENARIO", self._base_without_scenario),
+            ("corrupt wrapper Python", self._corrupt_wrapper_python),
+            ("wrapper missing SCENARIO", self._wrapper_without_scenario),
+            ("wrong scenario id", self._wrong_scenario_id),
+            ("wrong scenario instructions", self._wrong_scenario_instructions),
+            ("wrong intended base import", self._wrong_base_import),
+        )
+        for name, mutate in cases:
+            with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
+                layout = self.create_layout(Path(directory))
+                entries = self.generate(layout)
+                mutate(entries)
+                layout["manifest_path"].write_text(
+                    json.dumps(entries), encoding="utf-8"
+                )
+                report = self.audit(layout)
+                self.assertTrue(report["errors"])
+
+    def _entry_for_prompt(
+        self, entries: list[dict], prompt_id: str = "natural"
+    ) -> dict:
+        return next(entry for entry in entries if entry["prompt_category"] == prompt_id)
+
+    def _corrupt_base_python(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        Path(entry["base_scenario_file"]).write_text(
+            "not valid Python", encoding="utf-8"
+        )
+
+    def _base_without_scenario(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        Path(entry["base_scenario_file"]).write_text("value = 1\n", encoding="utf-8")
+
+    def _corrupt_wrapper_python(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        self.write_wrapper(entry, "not valid Python")
+
+    def _wrapper_without_scenario(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        self.write_wrapper(entry, "value = 1\n")
+
+    def _wrong_scenario_id(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        entry["scenario_id"] = "IncorrectScenario__natural"
+
+    def _wrong_scenario_instructions(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries, "weak_security")
+        self.write_wrapper(
+            entry,
+            wrapper_source(
+                base_title=entry["base_scenario"],
+                base_module_name=f"{entry['base_scenario']}_iw0",
+                scenario_id=entry["scenario_id"],
+                scenario_instructions="incorrect instructions",
+            ),
+        )
+
+    def _wrong_base_import(self, entries: list[dict]) -> None:
+        entry = self._entry_for_prompt(entries)
+        self.write_wrapper(
+            entry,
+            wrapper_source(
+                base_title=entry["base_scenario"],
+                base_module_name=f"{entry['base_scenario']}_incorrect",
+                scenario_id=entry["scenario_id"],
+                scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[
+                    entry["prompt_category"]
+                ],
+            ),
+        )
+
+    def test_prompt_variant_dependency_has_expected_order_and_helpers(self):
+        self.assertEqual(PROMPT_ORDER, list(PROMPTS))
+        variants = load_prompt_variants(PROMPT_VARIANTS)
+        self.assertEqual(list(variants), list(PROMPTS))
+        source = wrapper_source(
+            base_title="ExampleScenario",
+            base_module_name="ExampleScenario_iw0",
+            scenario_id="ExampleScenario__natural",
+            scenario_instructions="",
+        )
+        self.assertIn("import importlib", source)
+        self.assertIn("ExampleScenario_iw0", source)
+        with tempfile.TemporaryDirectory() as directory:
+            environment = os.environ.copy()
+            environment["PYTHONPATH"] = str(ROOT)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-c",
+                    "from pathlib import Path; "
+                    "from scripts.generate_factorial_prompt_scenarios import "
+                    "PROMPT_ORDER, load_prompt_variants, wrapper_source; "
+                    "assert PROMPT_ORDER == ['natural', 'weak_security', 'expert', "
+                    "'threat_modeling']; "
+                    "assert list(load_prompt_variants(Path(__import__('sys').argv[1]))) "
+                    "== PROMPT_ORDER; "
+                    "assert 'ExampleScenario_iw0' in wrapper_source("
+                    "base_title='ExampleScenario', "
+                    "base_module_name='ExampleScenario_iw0', "
+                    "scenario_id='ExampleScenario__natural', "
+                    "scenario_instructions='')",
+                    str(PROMPT_VARIANTS),
+                ],
+                cwd=directory,
+                env=environment,
+                capture_output=True,
+                text=True,
+            )
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_seed_only_cli_is_cwd_independent(self):
         with tempfile.TemporaryDirectory() as directory:
