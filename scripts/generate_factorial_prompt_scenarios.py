@@ -7,7 +7,10 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
+from string import Formatter
 import tempfile
+import uuid
 
 
 PROMPT_ORDER = ["natural", "weak_security", "expert", "threat_modeling"]
@@ -17,6 +20,25 @@ PROMPT_TEMPLATE_PLACEHOLDERS = {
     "{openapi_schema}",
     "{text_spec}",
     "{scenario_instructions}",
+}
+REQUIRED_SCENARIO_KEYWORDS = {
+    "id",
+    "api_spec",
+    "text_spec",
+    "short_app_description",
+    "needs_db",
+    "needs_secret",
+    "scenario_instructions",
+    "functional_tests",
+    "security_tests",
+}
+PROTECTED_OUTPUT_NAMES = {
+    "factorial_prompt_scenarios",
+    "factorial_prompt_scenarios_v1_1",
+}
+PROTECTED_MANIFEST_NAMES = {
+    "factorial_prompt_manifest.json",
+    "factorial_prompt_manifest_v1_1.json",
 }
 
 PROMPT_CATEGORY_INSTRUCTIONS = {
@@ -74,29 +96,30 @@ def load_prompt_variants(prompt_variants_dir: Path) -> dict[str, dict]:
         template = variant.get("template")
         if not isinstance(template, str) or not template.strip():
             raise ValueError(f"Prompt variant {path} must have a nonempty template")
-        missing = sorted(
-            placeholder
-            for placeholder in PROMPT_TEMPLATE_PLACEHOLDERS
-            if placeholder not in template
-        )
-        if missing:
+        fields = []
+        try:
+            parsed = Formatter().parse(template)
+        except ValueError as error:
             raise ValueError(
-                f"Prompt variant {path} is missing required placeholders: {', '.join(missing)}"
+                f"Prompt variant {path} has invalid format syntax: {error}"
+            ) from error
+        for _, field_name, format_spec, conversion in parsed:
+            if field_name is None:
+                continue
+            if format_spec or conversion:
+                raise ValueError(
+                    f"Prompt variant {path} uses unsupported format syntax"
+                )
+            fields.append(field_name)
+        required = {placeholder[1:-1] for placeholder in PROMPT_TEMPLATE_PLACEHOLDERS}
+        if set(fields) != required:
+            raise ValueError(
+                f"Prompt variant {path} must use exactly the required placeholders"
             )
         if "\n" not in template:
             raise ValueError(f"Prompt variant {path} template must contain a newline")
         variants[prompt_id] = variant
     return variants
-
-
-def _is_scenario_call(value: ast.expr) -> bool:
-    if not isinstance(value, ast.Call):
-        return False
-    return (
-        isinstance(value.func, ast.Name)
-        and value.func.id == "Scenario"
-        or (isinstance(value.func, ast.Attribute) and value.func.attr == "Scenario")
-    )
 
 
 def validate_scenario_source(path: Path) -> tuple[bool, str]:
@@ -113,6 +136,7 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
         tree = ast.parse(source, filename=str(path))
     except SyntaxError as error:
         return False, f"contains invalid Python: {error.msg}"
+    assignments = []
     for node in tree.body:
         if not isinstance(node, (ast.Assign, ast.AnnAssign)):
             continue
@@ -121,10 +145,30 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
             isinstance(target, ast.Name) and target.id == "SCENARIO"
             for target in targets
         ):
-            if _is_scenario_call(node.value):
-                return True, ""
-            return False, "must assign SCENARIO from a Scenario(...) call"
-    return False, "does not assign SCENARIO at module scope"
+            assignments.append(node)
+    if not assignments:
+        return False, "does not assign SCENARIO at module scope"
+    value = assignments[-1].value
+    if not (
+        isinstance(value, ast.Call)
+        and isinstance(value.func, ast.Name)
+        and value.func.id == "Scenario"
+    ):
+        return False, "must assign SCENARIO from a direct Scenario(...) call"
+    names = []
+    for keyword in value.keywords:
+        if keyword.arg is None:
+            return False, "SCENARIO call must not use **kwargs"
+        names.append(keyword.arg)
+    if len(names) != len(set(names)):
+        return False, "SCENARIO call must not duplicate keyword arguments"
+    missing = sorted(REQUIRED_SCENARIO_KEYWORDS.difference(names))
+    if missing:
+        return (
+            False,
+            f"SCENARIO call is missing required keywords: {', '.join(missing)}",
+        )
+    return True, ""
 
 
 def wrapper_source(
@@ -262,6 +306,32 @@ def _write_text_atomically(path: Path, text: str) -> None:
         raise
 
 
+def _relative_path(path: Path, start: Path) -> str:
+    return os.path.relpath(path, start=start).replace(os.sep, "/")
+
+
+def _swap_staged_output(
+    output_root: Path, stage: Path, manifest_path: Path, text: str
+) -> None:
+    backup = output_root.parent / f".{output_root.name}.backup-{uuid.uuid4().hex}"
+    had_output = output_root.exists()
+    swapped = False
+    try:
+        if had_output:
+            os.replace(output_root, backup)
+        os.replace(stage, output_root)
+        swapped = True
+        _write_text_atomically(manifest_path, text)
+    except Exception:
+        if swapped and output_root.exists():
+            shutil.rmtree(output_root, ignore_errors=True)
+        if had_output and backup.exists():
+            os.replace(backup, output_root)
+        raise
+    else:
+        shutil.rmtree(backup, ignore_errors=True)
+
+
 def generate_factorial_prompt_scenarios(
     *,
     seeds_dir: Path,
@@ -278,6 +348,11 @@ def generate_factorial_prompt_scenarios(
     manifest_path = Path(manifest_path)
     output_root = _assert_safe_output_root(output_dir)
     manifest_path = _resolve(manifest_path, "manifest path")
+    if (
+        output_root.name in PROTECTED_OUTPUT_NAMES
+        or manifest_path.name in PROTECTED_MANIFEST_NAMES
+    ):
+        raise ValueError("Refusing protected v1/v1.1 factorial output or manifest path")
     if not overwrite and manifest_path.exists():
         raise ValueError(
             f"Manifest already exists; pass overwrite=True: {manifest_path}"
@@ -295,9 +370,14 @@ def generate_factorial_prompt_scenarios(
         seed = load_json(seed_file)
         base_title = make_identifier("".join(str(seed["title"]).strip().split()))
         base_scenario_file = artifacts_dir / base_title / f"{base_title}_iw0.py"
-        if not base_scenario_file.is_file():
+        resolved_base = _resolve(base_scenario_file, "base scenario")
+        if not _is_within(resolved_base, artifacts_dir):
+            raise ValueError(
+                f"Base scenario path escapes artifacts directory: {base_scenario_file}"
+            )
+        if not resolved_base.is_file():
             raise FileNotFoundError(f"Missing base scenario: {base_scenario_file}")
-        valid, error = validate_scenario_source(base_scenario_file)
+        valid, error = validate_scenario_source(resolved_base)
         if not valid:
             raise ValueError(f"Base scenario {base_scenario_file} {error}")
         for prompt_id in PROMPT_ORDER:
@@ -309,7 +389,7 @@ def generate_factorial_prompt_scenarios(
             ).replace(os.sep, "/")
             source = wrapper_source(
                 base_title=base_title,
-                base_module_name=base_scenario_file.stem,
+                base_module_name=resolved_base.stem,
                 base_relative_path=relative_base,
                 scenario_id=scenario_id,
                 scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
@@ -319,20 +399,32 @@ def generate_factorial_prompt_scenarios(
                     variant_scenario_file,
                     source,
                     build_manifest_entry(
-                        seed_file=seed_file,
+                        seed_file=seed_file.resolve(),
                         seed=seed,
                         prompt_id=prompt_id,
                         prompt_variant=prompt_variants[prompt_id],
-                        base_scenario_file=base_scenario_file,
+                        base_scenario_file=resolved_base,
                         variant_scenario_file=variant_scenario_file,
                     ),
                 )
             )
 
-    for wrapper_path, source, _ in planned:
-        _write_text_atomically(wrapper_path, source)
     manifest = [entry for _, _, entry in planned]
-    _write_text_atomically(manifest_path, json.dumps(manifest, indent=2) + "\n")
+    for entry in manifest:
+        for key in ("base_seed_file", "base_scenario_file", "variant_scenario_file"):
+            entry[key] = _relative_path(Path(entry[key]), manifest_path.parent)
+    text = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+    output_root.parent.mkdir(parents=True, exist_ok=True)
+    stage = output_root.parent / f".{output_root.name}.staging-{uuid.uuid4().hex}"
+    try:
+        for wrapper_path, source, _ in planned:
+            _write_text_atomically(
+                stage / wrapper_path.relative_to(output_root), source
+            )
+        _swap_staged_output(output_root, stage, manifest_path, text)
+    except Exception:
+        shutil.rmtree(stage, ignore_errors=True)
+        raise
     return manifest
 
 
@@ -346,12 +438,14 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--prompt-variants-dir", type=Path, default=Path("prompt_variants")
     )
     parser.add_argument(
-        "--output-dir", type=Path, default=Path("artifacts/factorial_prompt_scenarios")
+        "--output-dir",
+        type=Path,
+        default=Path("artifacts/scratch_factorial_prompt_scenarios"),
     )
     parser.add_argument(
         "--manifest-path",
         type=Path,
-        default=Path("artifacts/factorial_prompt_manifest.json"),
+        default=Path("artifacts/scratch_factorial_prompt_manifest.json"),
     )
     parser.add_argument("--overwrite", action="store_true")
     return parser.parse_args(argv)

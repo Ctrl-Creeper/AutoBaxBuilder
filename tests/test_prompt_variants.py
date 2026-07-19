@@ -26,6 +26,13 @@ PLACEHOLDERS = {
 
 
 class PromptVariantTests(unittest.TestCase):
+    SCENARIO_SOURCE = """SCENARIO = Scenario(
+    id='example', api_spec=None, text_spec='', short_app_description='',
+    needs_db=False, needs_secret=False, scenario_instructions='',
+    functional_tests=[], security_tests=[]
+)
+"""
+
     def test_tracked_prompt_templates_have_required_placeholders_and_newlines(self):
         variants = generator.load_prompt_variants(ROOT / "prompt_variants")
 
@@ -61,6 +68,42 @@ class PromptVariantTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "nonempty template"):
                 generator.load_prompt_variants(variants_dir)
 
+    def test_loader_rejects_non_substituting_or_extended_format_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            variants_dir = Path(directory)
+            template = "\n".join(sorted(PLACEHOLDERS))
+            for prompt_id in PROMPTS:
+                (variants_dir / f"{prompt_id}.json").write_text(
+                    json.dumps({"id": prompt_id, "template": template}),
+                    encoding="utf-8",
+                )
+            for invalid in (
+                template + "\n{unknown}",
+                template.replace("{text_spec}", "{{text_spec}}"),
+                template.replace("{text_spec}", "{text_spec!r}"),
+                template.replace("{text_spec}", "{text_spec:20}"),
+            ):
+                (variants_dir / "natural.json").write_text(
+                    json.dumps({"id": "natural", "template": invalid}),
+                    encoding="utf-8",
+                )
+                with self.assertRaises(ValueError):
+                    generator.load_prompt_variants(variants_dir)
+
+    def test_strict_scenario_ast_uses_last_direct_assignment_with_all_keywords(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "scenario.py"
+            for invalid in (
+                "SCENARIO = Scenario()\n",
+                self.SCENARIO_SOURCE + "SCENARIO = None\n",
+                self.SCENARIO_SOURCE.replace("Scenario(", "attacker.Scenario("),
+                self.SCENARIO_SOURCE.replace("security_tests=[]", ""),
+            ):
+                path.write_text(invalid, encoding="utf-8")
+                self.assertFalse(generator.validate_scenario_source(path)[0])
+            path.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
+            self.assertTrue(generator.validate_scenario_source(path)[0])
+
     def test_generic_generator_refuses_protected_output_and_manifest_by_default(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -73,7 +116,7 @@ class PromptVariantTests(unittest.TestCase):
             artifacts_dir = root / "artifacts"
             base = artifacts_dir / "ExampleScenario" / "ExampleScenario_iw0.py"
             base.parent.mkdir(parents=True)
-            base.write_text("SCENARIO = Scenario()\n", encoding="utf-8")
+            base.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
             output_dir = artifacts_dir / "factorial_prompt_scenarios"
             output_dir.mkdir()
             output_sentinel = output_dir / "keep.txt"
@@ -81,7 +124,7 @@ class PromptVariantTests(unittest.TestCase):
             manifest_path = artifacts_dir / "factorial_prompt_manifest.json"
             manifest_path.write_bytes(b"protected manifest\n")
 
-            with self.assertRaisesRegex(ValueError, "overwrite"):
+            with self.assertRaisesRegex(ValueError, "protected"):
                 generator.generate_factorial_prompt_scenarios(
                     seeds_dir=seeds_dir,
                     artifacts_dir=artifacts_dir,
@@ -92,6 +135,32 @@ class PromptVariantTests(unittest.TestCase):
 
             self.assertEqual(output_sentinel.read_bytes(), b"protected output\n")
             self.assertEqual(manifest_path.read_bytes(), b"protected manifest\n")
+
+    def test_generic_defaults_are_scratch_and_protected_paths_refuse_overwrite(self):
+        args = generator.parse_args([])
+        self.assertIn("scratch", str(args.output_dir))
+        self.assertIn("scratch", str(args.manifest_path))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds_dir = root / "seeds"
+            seed_file = seeds_dir / "beginner" / "example.json"
+            seed_file.parent.mkdir(parents=True)
+            seed_file.write_text(
+                json.dumps({"title": "ExampleScenario"}), encoding="utf-8"
+            )
+            artifacts_dir = root / "artifacts"
+            base = artifacts_dir / "ExampleScenario" / "ExampleScenario_iw0.py"
+            base.parent.mkdir(parents=True)
+            base.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "protected"):
+                generator.generate_factorial_prompt_scenarios(
+                    seeds_dir=seeds_dir,
+                    artifacts_dir=artifacts_dir,
+                    prompt_variants_dir=ROOT / "prompt_variants",
+                    output_dir=artifacts_dir / "factorial_prompt_scenarios",
+                    manifest_path=artifacts_dir / "factorial_prompt_manifest.json",
+                    overwrite=True,
+                )
 
     def test_generic_generator_rejects_output_child_symlink_even_with_overwrite(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -105,7 +174,7 @@ class PromptVariantTests(unittest.TestCase):
             artifacts_dir = root / "artifacts"
             base = artifacts_dir / "ExampleScenario" / "ExampleScenario_iw0.py"
             base.parent.mkdir(parents=True)
-            base.write_text("SCENARIO = Scenario()\n", encoding="utf-8")
+            base.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
             output_dir = artifacts_dir / "factorial_prompt_scenarios"
             output_dir.mkdir()
             outside = root / "outside"
