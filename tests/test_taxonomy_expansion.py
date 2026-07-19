@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from copy import deepcopy
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,9 +68,21 @@ NEW_CWES = {
     "CWE-915",
     "CWE-918",
 }
+V1_2_EMPTY_COUNT_ERRORS = [
+    "batch 'v1_2' must contain exactly 8 seeds; found 1",
+    "batch 'v1_2' must contain 4 beginner seeds; found 0",
+    "batch 'v1_2' must contain 4 complex seeds; found 0",
+    "batch 'v1_2' must contain 8 natural seeds; found 0",
+]
 
 
 class TaxonomyExpansionTests(unittest.TestCase):
+    def empty_seeds_dir(self, temporary_directory):
+        seeds_dir = Path(temporary_directory) / "seeds"
+        for level in ("beginner", "complex"):
+            (seeds_dir / level).mkdir(parents=True)
+        return seeds_dir
+
     def copied_seeds_dir(self, temporary_directory):
         destination = Path(temporary_directory) / "seeds"
         shutil.copytree(SEEDS_DIR, destination)
@@ -86,7 +99,10 @@ class TaxonomyExpansionTests(unittest.TestCase):
         seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
         report = validate_expansion_seeds(seeds, BATCH)
 
-        self.assertEqual([path.parent.name for path, _ in seeds], sorted(path.parent.name for path, _ in seeds))
+        self.assertEqual(
+            [path.parent.name for path, _ in seeds],
+            sorted(path.parent.name for path, _ in seeds),
+        )
         self.assertEqual(report["batch"], BATCH)
         self.assertEqual(report["seed_count"], 8)
         self.assertEqual(report["level_counts"], {"beginner": 4, "complex": 4})
@@ -96,10 +112,114 @@ class TaxonomyExpansionTests(unittest.TestCase):
         self.assertTrue(NEW_CWES.issubset(report["cwes"]))
         self.assertEqual(report["errors"], [])
 
+    def test_discovery_reports_invalid_json_without_throwing(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            path = seeds_dir / "beginner" / "broken.json"
+            path.write_text("{", encoding="utf-8")
+            error = (
+                f"{path}: invalid JSON at line 1 column 2: "
+                "Expecting property name enclosed in double quotes"
+            )
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual(seeds, [(path, {"__discovery_errors__": [error]})])
+        self.assertEqual(report["errors"], sorted([error] + V1_2_EMPTY_COUNT_ERRORS))
+
+    def test_discovery_reports_array_and_null_roots(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            array_path = seeds_dir / "beginner" / "array.json"
+            null_path = seeds_dir / "complex" / "null.json"
+            array_path.write_text("[]", encoding="utf-8")
+            null_path.write_text("null", encoding="utf-8")
+            root_errors = [
+                f"{array_path}: JSON root must be an object; found array",
+                f"{null_path}: JSON root must be an object; found null",
+            ]
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual([path for path, _ in seeds], [array_path, null_path])
+        self.assertEqual(
+            [seed["__discovery_errors__"] for _, seed in seeds],
+            [[root_errors[0]], [root_errors[1]]],
+        )
+        self.assertEqual(
+            report["errors"],
+            sorted(
+                root_errors
+                + [
+                    "batch 'v1_2' must contain exactly 8 seeds; found 2",
+                    "batch 'v1_2' must contain 4 beginner seeds; found 0",
+                    "batch 'v1_2' must contain 4 complex seeds; found 0",
+                    "batch 'v1_2' must contain 8 natural seeds; found 0",
+                ]
+            ),
+        )
+
+    def test_discovery_rejects_symlink_that_escapes_seeds_dir(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            external_path = Path(temporary_directory) / "external.json"
+            external_path.write_text("{", encoding="utf-8")
+            link_path = seeds_dir / "beginner" / "escape.json"
+            try:
+                link_path.symlink_to(external_path)
+            except (NotImplementedError, OSError) as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            discovery_error = f"{link_path}: symlink target resolves outside seeds_dir"
+
+            with patch.object(
+                Path,
+                "read_text",
+                side_effect=AssertionError("escaping symlink content was read"),
+            ):
+                seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual(
+            seeds,
+            [(link_path, {"__discovery_errors__": [discovery_error]})],
+        )
+        self.assertIn(discovery_error, report["errors"])
+
+    def test_discovery_sorts_by_full_relative_posix_path(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            relative_paths = [
+                Path("complex/z.json"),
+                Path("beginner/z.json"),
+                Path("complex/a.json"),
+                Path("beginner/a.json"),
+            ]
+            for relative_path in relative_paths:
+                self.write_seed(
+                    seeds_dir / relative_path,
+                    {"taxonomy": {"expansion_batch": BATCH}},
+                )
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+
+        self.assertEqual(
+            [path.relative_to(seeds_dir).as_posix() for path, _ in seeds],
+            [
+                "beginner/a.json",
+                "beginner/z.json",
+                "complex/a.json",
+                "complex/z.json",
+            ],
+        )
+
     def test_duplicate_title_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "complex", "account_recovery_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "complex", "account_recovery_natural.json"
+            )
             seed["title"] = "ComplexInventoryCheckout"
             self.write_seed(path, seed)
 
@@ -112,7 +232,9 @@ class TaxonomyExpansionTests(unittest.TestCase):
     def test_duplicate_description_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "complex", "account_recovery_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "complex", "account_recovery_natural.json"
+            )
             _, source_seed = self.read_seed(
                 seeds_dir, "complex", "inventory_checkout_natural.json"
             )
@@ -124,13 +246,17 @@ class TaxonomyExpansionTests(unittest.TestCase):
             )
 
         self.assertTrue(
-            any(error.startswith("duplicate description ") for error in report["errors"])
+            any(
+                error.startswith("duplicate description ") for error in report["errors"]
+            )
         )
 
     def test_level_mismatch_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "beginner", "json_settings_import_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "beginner", "json_settings_import_natural.json"
+            )
             seed["taxonomy"]["scenario_level"] = "complex"
             self.write_seed(path, seed)
 
@@ -146,7 +272,9 @@ class TaxonomyExpansionTests(unittest.TestCase):
     def test_unsupported_and_malformed_cwes_are_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "beginner", "json_settings_import_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "beginner", "json_settings_import_natural.json"
+            )
             seed["target_cwes"] = ["CWE-000", "CWE-999999"]
             self.write_seed(path, seed)
 
@@ -154,13 +282,20 @@ class TaxonomyExpansionTests(unittest.TestCase):
                 discover_expansion_seeds(seeds_dir, BATCH), BATCH
             )
 
-        self.assertIn(f"{path}: target_cwes contains malformed CWE 'CWE-000'", report["errors"])
-        self.assertIn(f"{path}: target_cwes contains unsupported CWE 'CWE-999999'", report["errors"])
+        self.assertIn(
+            f"{path}: target_cwes contains malformed CWE 'CWE-000'", report["errors"]
+        )
+        self.assertIn(
+            f"{path}: target_cwes contains unsupported CWE 'CWE-999999'",
+            report["errors"],
+        )
 
     def test_missing_oracle_contract_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "beginner", "json_settings_import_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "beginner", "json_settings_import_natural.json"
+            )
             del seed["oracle_contract"]
             self.write_seed(path, seed)
 
@@ -168,12 +303,16 @@ class TaxonomyExpansionTests(unittest.TestCase):
                 discover_expansion_seeds(seeds_dir, BATCH), BATCH
             )
 
-        self.assertIn(f"{path}: missing required field 'oracle_contract'", report["errors"])
+        self.assertIn(
+            f"{path}: missing required field 'oracle_contract'", report["errors"]
+        )
 
     def test_wrong_prompt_category_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)
-            path, seed = self.read_seed(seeds_dir, "beginner", "json_settings_import_natural.json")
+            path, seed = self.read_seed(
+                seeds_dir, "beginner", "json_settings_import_natural.json"
+            )
             seed["taxonomy"]["prompt_category"] = "expert"
             self.write_seed(path, seed)
 
@@ -181,15 +320,23 @@ class TaxonomyExpansionTests(unittest.TestCase):
                 discover_expansion_seeds(seeds_dir, BATCH), BATCH
             )
 
-        self.assertIn(f"{path}: taxonomy.prompt_category must be 'natural'", report["errors"])
+        self.assertIn(
+            f"{path}: taxonomy.prompt_category must be 'natural'", report["errors"]
+        )
 
     def test_wrong_v1_2_count_is_reported(self):
         seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)[:-1]
         report = validate_expansion_seeds(seeds, BATCH)
 
-        self.assertIn("batch 'v1_2' must contain exactly 8 seeds; found 7", report["errors"])
-        self.assertIn("batch 'v1_2' must contain 4 complex seeds; found 3", report["errors"])
-        self.assertIn("batch 'v1_2' must contain 8 natural seeds; found 7", report["errors"])
+        self.assertIn(
+            "batch 'v1_2' must contain exactly 8 seeds; found 7", report["errors"]
+        )
+        self.assertIn(
+            "batch 'v1_2' must contain 4 complex seeds; found 3", report["errors"]
+        )
+        self.assertIn(
+            "batch 'v1_2' must contain 8 natural seeds; found 7", report["errors"]
+        )
 
     def test_duplicate_seed_path_is_reported(self):
         seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
@@ -198,6 +345,96 @@ class TaxonomyExpansionTests(unittest.TestCase):
         report = validate_expansion_seeds(duplicated, BATCH)
 
         self.assertIn(f"duplicate seed path '{seeds[0][0]}'", report["errors"])
+
+    def test_cyclic_oracle_contract_is_rejected_without_recursion_error(self):
+        seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
+        path, seed = seeds[0]
+        cycle = []
+        cycle.append(cycle)
+        seed["oracle_contract"] = {"cycle": cycle}
+
+        report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertIn(
+            f"{path}: oracle_contract must contain only JSON-compatible values",
+            report["errors"],
+        )
+
+    def test_oracle_contract_over_depth_64_is_rejected(self):
+        seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
+        path, seed = seeds[0]
+        contract = {}
+        cursor = contract
+        for _ in range(65):
+            child = {}
+            cursor["next"] = child
+            cursor = child
+        seed["oracle_contract"] = contract
+
+        report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertIn(
+            f"{path}: oracle_contract must contain only JSON-compatible values",
+            report["errors"],
+        )
+
+    def test_oracle_contract_at_depth_64_is_accepted(self):
+        seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
+        path, seed = seeds[0]
+        contract = {}
+        cursor = contract
+        for _ in range(64):
+            child = {}
+            cursor["next"] = child
+            cursor = child
+        seed["oracle_contract"] = contract
+
+        report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertNotIn(
+            f"{path}: oracle_contract must contain only JSON-compatible values",
+            report["errors"],
+        )
+
+    def test_oracle_contract_accepts_all_supported_json_values(self):
+        seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
+        path, seed = seeds[0]
+        seed["oracle_contract"] = {
+            "null": None,
+            "bool": True,
+            "string": "value",
+            "integer": 1,
+            "float": 1.5,
+            "list": [None, False, "value", 2, 2.5],
+            "object": {"key": "value"},
+        }
+
+        report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertNotIn(
+            f"{path}: oracle_contract must contain only JSON-compatible values",
+            report["errors"],
+        )
+
+    def test_oracle_contract_rejects_nonfinite_float_and_non_string_key(self):
+        invalid_contracts = (
+            {"value": float("nan")},
+            {"value": float("inf")},
+            {"value": float("-inf")},
+            {1: "value"},
+        )
+        for invalid_contract in invalid_contracts:
+            with self.subTest(invalid_contract=invalid_contract):
+                seeds = discover_expansion_seeds(SEEDS_DIR, BATCH)
+                path, seed = seeds[0]
+                seed["oracle_contract"] = invalid_contract
+
+                report = validate_expansion_seeds(seeds, BATCH)
+
+                self.assertIn(
+                    f"{path}: oracle_contract must contain only JSON-compatible values",
+                    report["errors"],
+                )
 
 
 if __name__ == "__main__":

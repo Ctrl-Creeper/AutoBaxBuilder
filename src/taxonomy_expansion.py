@@ -22,23 +22,59 @@ _REQUIRED_FIELDS = (
     "oracle_contract",
 )
 _CWE_PATTERN = re.compile(r"^CWE-[1-9][0-9]*$")
+_DISCOVERY_ERRORS = "__discovery_errors__"
+_MAX_JSON_DEPTH = 64
 
 
 def discover_expansion_seeds(seeds_dir: Path, batch: str) -> list[tuple[Path, dict]]:
     """Return batch seeds from the supported levels in deterministic path order."""
+    resolved_seeds_dir = seeds_dir.resolve()
+    paths = [path for level in _LEVELS for path in (seeds_dir / level).glob("*.json")]
+    paths.sort(key=lambda path: path.relative_to(seeds_dir).as_posix())
+
     seeds = []
-    for level in _LEVELS:
-        for path in sorted((seeds_dir / level).glob("*.json")):
+    for path in paths:
+        if not _is_within(path.resolve(), resolved_seeds_dir):
+            seeds.append(
+                _discovery_error(path, "symlink target resolves outside seeds_dir")
+            )
+            continue
+
+        try:
             seed = json.loads(path.read_text(encoding="utf-8"))
-            taxonomy = seed.get("taxonomy")
-            if isinstance(taxonomy, dict) and taxonomy.get("expansion_batch") == batch:
-                seeds.append((path, seed))
+        except json.JSONDecodeError as error:
+            seeds.append(
+                _discovery_error(
+                    path,
+                    f"invalid JSON at line {error.lineno} column {error.colno}: "
+                    f"{error.msg}",
+                )
+            )
+            continue
+        except OSError as error:
+            seeds.append(
+                _discovery_error(
+                    path, f"unable to read seed file: {type(error).__name__}"
+                )
+            )
+            continue
+
+        if not isinstance(seed, dict):
+            seeds.append(
+                _discovery_error(
+                    path,
+                    f"JSON root must be an object; found {_json_type_name(seed)}",
+                )
+            )
+            continue
+
+        taxonomy = seed.get("taxonomy")
+        if isinstance(taxonomy, dict) and taxonomy.get("expansion_batch") == batch:
+            seeds.append((path, seed))
     return seeds
 
 
-def validate_expansion_seeds(
-    seeds: list[tuple[Path, dict]], batch: str
-) -> dict:
+def validate_expansion_seeds(seeds: list[tuple[Path, dict]], batch: str) -> dict:
     """Validate expansion seeds and return a deterministic summary report."""
     errors = []
     level_counts = Counter()
@@ -56,6 +92,16 @@ def validate_expansion_seeds(
 
         if not isinstance(seed, dict):
             errors.append(f"{path_text}: seed must be an object")
+            continue
+
+        if _DISCOVERY_ERRORS in seed:
+            discovery_errors = seed[_DISCOVERY_ERRORS]
+            if isinstance(discovery_errors, list) and all(
+                isinstance(error, str) for error in discovery_errors
+            ):
+                errors.extend(discovery_errors)
+            else:
+                errors.append(f"{path_text}: invalid discovery error sentinel")
             continue
 
         for field in _REQUIRED_FIELDS:
@@ -122,7 +168,9 @@ def validate_expansion_seeds(
                 cwe_counts = Counter(cwe for cwe in target_cwes if isinstance(cwe, str))
                 for cwe, count in sorted(cwe_counts.items()):
                     if count > 1:
-                        errors.append(f"{path_text}: target_cwes contains duplicate CWE {cwe!r}")
+                        errors.append(
+                            f"{path_text}: target_cwes contains duplicate CWE {cwe!r}"
+                        )
                 for cwe in target_cwes:
                     if not isinstance(cwe, str):
                         errors.append(
@@ -164,9 +212,7 @@ def validate_expansion_seeds(
         oracle_contract = seed.get("oracle_contract")
         if "oracle_contract" in seed:
             if not isinstance(oracle_contract, dict) or not oracle_contract:
-                errors.append(
-                    f"{path_text}: oracle_contract must be a nonempty object"
-                )
+                errors.append(f"{path_text}: oracle_contract must be a nonempty object")
             elif not _is_json_compatible(oracle_contract):
                 errors.append(
                     f"{path_text}: oracle_contract must contain only JSON-compatible values"
@@ -202,9 +248,7 @@ def _validate_v1_2_counts(seed_count, level_counts, prompt_counts, errors):
     for level in _LEVELS:
         count = level_counts.get(level, 0)
         if count != 4:
-            errors.append(
-                f"batch 'v1_2' must contain 4 {level} seeds; found {count}"
-            )
+            errors.append(f"batch 'v1_2' must contain 4 {level} seeds; found {count}")
     natural_count = prompt_counts.get("natural", 0)
     if natural_count != 8:
         errors.append(
@@ -213,18 +257,69 @@ def _validate_v1_2_counts(seed_count, level_counts, prompt_counts, errors):
 
 
 def _is_json_compatible(value):
-    if value is None or isinstance(value, (str, bool, int)):
-        return True
-    if isinstance(value, float):
-        return math.isfinite(value)
+    active_container_ids = set()
+    stack = [(False, value, 0)]
+
+    while stack:
+        leaving, current, depth = stack.pop()
+        if leaving:
+            active_container_ids.remove(current)
+            continue
+
+        if depth > _MAX_JSON_DEPTH:
+            return False
+        if current is None or isinstance(current, (str, bool, int)):
+            continue
+        if isinstance(current, float):
+            if not math.isfinite(current):
+                return False
+            continue
+        if not isinstance(current, (list, dict)):
+            return False
+
+        container_id = id(current)
+        if container_id in active_container_ids:
+            return False
+        active_container_ids.add(container_id)
+        stack.append((True, container_id, depth))
+
+        if isinstance(current, list):
+            for item in reversed(current):
+                stack.append((False, item, depth + 1))
+            continue
+
+        if not all(isinstance(key, str) for key in current):
+            return False
+        for item in reversed(list(current.values())):
+            stack.append((False, item, depth + 1))
+
+    return True
+
+
+def _discovery_error(path, message):
+    return path, {_DISCOVERY_ERRORS: [f"{path}: {message}"]}
+
+
+def _is_within(path, directory):
+    try:
+        path.relative_to(directory)
+    except ValueError:
+        return False
+    return True
+
+
+def _json_type_name(value):
+    if value is None:
+        return "null"
     if isinstance(value, list):
-        return all(_is_json_compatible(item) for item in value)
-    if isinstance(value, dict):
-        return all(
-            isinstance(key, str) and _is_json_compatible(item)
-            for key, item in value.items()
-        )
-    return False
+        return "array"
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, str):
+        return "string"
+    if isinstance(value, (int, float)):
+        return "number"
+    return type(value).__name__
 
 
 def _cwe_sort_key(cwe):
