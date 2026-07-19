@@ -1,10 +1,23 @@
+#!/usr/bin/env python3
+"""Generate controlled prompt wrappers without overwriting protected outputs."""
+
 import argparse
+import ast
 import json
-import re
+import os
 from pathlib import Path
+import re
+import tempfile
 
 
 PROMPT_ORDER = ["natural", "weak_security", "expert", "threat_modeling"]
+PROMPT_TEMPLATE_PLACEHOLDERS = {
+    "{scenario_title}",
+    "{scenario_description}",
+    "{openapi_schema}",
+    "{text_spec}",
+    "{scenario_instructions}",
+}
 
 PROMPT_CATEGORY_INSTRUCTIONS = {
     "natural": "",
@@ -58,14 +71,67 @@ def load_prompt_variants(prompt_variants_dir: Path) -> dict[str, dict]:
         variant = load_json(path)
         if variant.get("id") != prompt_id:
             raise ValueError(f"Prompt variant id mismatch in {path}")
+        template = variant.get("template")
+        if not isinstance(template, str) or not template.strip():
+            raise ValueError(f"Prompt variant {path} must have a nonempty template")
+        missing = sorted(
+            placeholder
+            for placeholder in PROMPT_TEMPLATE_PLACEHOLDERS
+            if placeholder not in template
+        )
+        if missing:
+            raise ValueError(
+                f"Prompt variant {path} is missing required placeholders: {', '.join(missing)}"
+            )
+        if "\n" not in template:
+            raise ValueError(f"Prompt variant {path} template must contain a newline")
         variants[prompt_id] = variant
     return variants
+
+
+def _is_scenario_call(value: ast.expr) -> bool:
+    if not isinstance(value, ast.Call):
+        return False
+    return (
+        isinstance(value.func, ast.Name)
+        and value.func.id == "Scenario"
+        or (isinstance(value.func, ast.Attribute) and value.func.attr == "Scenario")
+    )
+
+
+def validate_scenario_source(path: Path) -> tuple[bool, str]:
+    """Statically require a top-level ``SCENARIO = Scenario(...)`` assignment."""
+    try:
+        source = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return False, "is not valid UTF-8"
+    except OSError as error:
+        return False, f"cannot be read: {error}"
+    if not source.strip():
+        return False, "is empty"
+    try:
+        tree = ast.parse(source, filename=str(path))
+    except SyntaxError as error:
+        return False, f"contains invalid Python: {error.msg}"
+    for node in tree.body:
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+        if any(
+            isinstance(target, ast.Name) and target.id == "SCENARIO"
+            for target in targets
+        ):
+            if _is_scenario_call(node.value):
+                return True, ""
+            return False, "must assign SCENARIO from a Scenario(...) call"
+    return False, "does not assign SCENARIO at module scope"
 
 
 def wrapper_source(
     *,
     base_title: str,
     base_module_name: str,
+    base_relative_path: str,
     scenario_id: str,
     scenario_instructions: str,
 ) -> str:
@@ -83,7 +149,7 @@ from pathlib import Path
 from scenarios.base import Scenario
 
 
-_BASE_SCENARIO_DIR = Path(__file__).resolve().parents[2] / {base_title!r}
+_BASE_SCENARIO_DIR = (Path(__file__).resolve().parent / {base_relative_path!r}).resolve()
 if str(_BASE_SCENARIO_DIR) not in sys.path:
     sys.path.insert(0, str(_BASE_SCENARIO_DIR))
 
@@ -144,6 +210,58 @@ def build_manifest_entry(
     }
 
 
+def _is_within(path: Path, parent: Path) -> bool:
+    try:
+        path.relative_to(parent)
+    except ValueError:
+        return False
+    return True
+
+
+def _resolve(path: Path, label: str) -> Path:
+    try:
+        return path.resolve()
+    except (OSError, RuntimeError) as error:
+        raise ValueError(f"{label} cannot be resolved safely: {error}") from error
+
+
+def _assert_safe_output_root(output_dir: Path) -> Path:
+    if output_dir.is_symlink():
+        raise ValueError(f"Output directory must not be a symlink: {output_dir}")
+    root = _resolve(output_dir, "output directory")
+    if output_dir.exists() and not output_dir.is_dir():
+        raise ValueError(f"Output path is not a directory: {output_dir}")
+    if output_dir.exists():
+        for child in output_dir.rglob("*"):
+            if child.is_symlink():
+                raise ValueError(f"Output directory contains a symlink: {child}")
+    return root
+
+
+def _assert_writable_target(path: Path, output_root: Path) -> None:
+    if path.parent.is_symlink():
+        raise ValueError(f"Wrapper output parent is a symlink: {path.parent}")
+    resolved = _resolve(path, "wrapper output path")
+    if not _is_within(resolved, output_root):
+        raise ValueError(f"Wrapper output path escapes output directory: {path}")
+
+
+def _write_text_atomically(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        "w", encoding="utf-8", dir=path.parent, delete=False
+    ) as temporary_file:
+        temporary_file.write(text)
+        temporary_file.flush()
+        os.fsync(temporary_file.fileno())
+        temporary_path = Path(temporary_file.name)
+    try:
+        os.replace(temporary_path, path)
+    except Exception:
+        temporary_path.unlink(missing_ok=True)
+        raise
+
+
 def generate_factorial_prompt_scenarios(
     *,
     seeds_dir: Path,
@@ -151,53 +269,76 @@ def generate_factorial_prompt_scenarios(
     prompt_variants_dir: Path,
     output_dir: Path,
     manifest_path: Path,
+    overwrite: bool = False,
 ) -> list[dict]:
-    prompt_variants = load_prompt_variants(prompt_variants_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    manifest = []
+    """Generate a scratch prompt matrix only when protected paths are available."""
+    seeds_dir = _resolve(Path(seeds_dir), "seeds directory")
+    artifacts_dir = _resolve(Path(artifacts_dir), "artifacts directory")
+    output_dir = Path(output_dir)
+    manifest_path = Path(manifest_path)
+    output_root = _assert_safe_output_root(output_dir)
+    manifest_path = _resolve(manifest_path, "manifest path")
+    if not overwrite and manifest_path.exists():
+        raise ValueError(
+            f"Manifest already exists; pass overwrite=True: {manifest_path}"
+        )
+    if not overwrite and output_dir.exists() and any(output_dir.iterdir()):
+        raise ValueError(
+            f"Output directory is nonempty; pass overwrite=True: {output_dir}"
+        )
 
+    prompt_variants = load_prompt_variants(
+        _resolve(Path(prompt_variants_dir), "prompt variants directory")
+    )
+    planned: list[tuple[Path, str, dict]] = []
     for seed_file in discover_seed_files(seeds_dir):
         seed = load_json(seed_file)
         base_title = make_identifier("".join(str(seed["title"]).strip().split()))
         base_scenario_file = artifacts_dir / base_title / f"{base_title}_iw0.py"
-        if not base_scenario_file.exists():
+        if not base_scenario_file.is_file():
             raise FileNotFoundError(f"Missing base scenario: {base_scenario_file}")
-
-        base_module_name = base_scenario_file.stem
-        scenario_output_dir = output_dir / base_title
-        scenario_output_dir.mkdir(parents=True, exist_ok=True)
-
+        valid, error = validate_scenario_source(base_scenario_file)
+        if not valid:
+            raise ValueError(f"Base scenario {base_scenario_file} {error}")
         for prompt_id in PROMPT_ORDER:
             scenario_id = f"{base_title}__{prompt_id}"
-            variant_scenario_file = scenario_output_dir / f"{scenario_id}.py"
-            variant_scenario_file.write_text(
-                wrapper_source(
-                    base_title=base_title,
-                    base_module_name=base_module_name,
-                    scenario_id=scenario_id,
-                    scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
-                ),
-                encoding="utf-8",
+            variant_scenario_file = output_root / base_title / f"{scenario_id}.py"
+            _assert_writable_target(variant_scenario_file, output_root)
+            relative_base = os.path.relpath(
+                base_scenario_file.parent, start=variant_scenario_file.parent
+            ).replace(os.sep, "/")
+            source = wrapper_source(
+                base_title=base_title,
+                base_module_name=base_scenario_file.stem,
+                base_relative_path=relative_base,
+                scenario_id=scenario_id,
+                scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
             )
-            manifest.append(
-                build_manifest_entry(
-                    seed_file=seed_file,
-                    seed=seed,
-                    prompt_id=prompt_id,
-                    prompt_variant=prompt_variants[prompt_id],
-                    base_scenario_file=base_scenario_file,
-                    variant_scenario_file=variant_scenario_file,
+            planned.append(
+                (
+                    variant_scenario_file,
+                    source,
+                    build_manifest_entry(
+                        seed_file=seed_file,
+                        seed=seed,
+                        prompt_id=prompt_id,
+                        prompt_variant=prompt_variants[prompt_id],
+                        base_scenario_file=base_scenario_file,
+                        variant_scenario_file=variant_scenario_file,
+                    ),
                 )
             )
 
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    for wrapper_path, source, _ in planned:
+        _write_text_atomically(wrapper_path, source)
+    manifest = [entry for _, _, entry in planned]
+    _write_text_atomically(manifest_path, json.dumps(manifest, indent=2) + "\n")
     return manifest
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate a controlled base_task x prompt_category scenario matrix."
+        description="Generate a scratch controlled base_task x prompt_category matrix."
     )
     parser.add_argument("--seeds-dir", type=Path, default=Path("seeds"))
     parser.add_argument("--artifacts-dir", type=Path, default=Path("artifacts"))
@@ -205,16 +346,15 @@ def parse_args() -> argparse.Namespace:
         "--prompt-variants-dir", type=Path, default=Path("prompt_variants")
     )
     parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=Path("artifacts/factorial_prompt_scenarios"),
+        "--output-dir", type=Path, default=Path("artifacts/factorial_prompt_scenarios")
     )
     parser.add_argument(
         "--manifest-path",
         type=Path,
         default=Path("artifacts/factorial_prompt_manifest.json"),
     )
-    return parser.parse_args()
+    parser.add_argument("--overwrite", action="store_true")
+    return parser.parse_args(argv)
 
 
 def main() -> None:
@@ -225,6 +365,7 @@ def main() -> None:
         prompt_variants_dir=args.prompt_variants_dir,
         output_dir=args.output_dir,
         manifest_path=args.manifest_path,
+        overwrite=args.overwrite,
     )
     print(f"generated {len(manifest)} factorial prompt scenario variants")
     print(args.manifest_path)

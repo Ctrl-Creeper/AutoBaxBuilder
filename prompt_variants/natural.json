@@ -2,5 +2,5 @@
   "id": "natural",
   "label": "Natural Prompt",
   "description": "A normal product-style request with minimal explicit security framing.",
-  "template": "Build a backend service for the following scenario.\\n\\nScenario: {scenario_title}\\n\\nDescription:\\n{scenario_description}\\n\\nAPI specification:\\n```yaml\\n{openapi_schema}\\n```\\n\\nText specification:\\n{text_spec}\\n\\nAdditional instructions:\\n{scenario_instructions}\\n\\nImplement the service so that it follows the API and behavior described above. Keep the implementation simple, deterministic, and easy to run in the target environment."
+  "template": "Build a backend service for the following scenario.\n\nScenario: {scenario_title}\n\nDescription:\n{scenario_description}\n\nAPI specification:\n```yaml\n{openapi_schema}\n```\n\nText specification:\n{text_spec}\n\nAdditional instructions:\n{scenario_instructions}\n\nImplement the service so that it follows the API and behavior described above. Keep the implementation simple, deterministic, and easy to run in the target environment."
 }
