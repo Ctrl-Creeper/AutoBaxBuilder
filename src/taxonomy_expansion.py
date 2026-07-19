@@ -67,6 +67,9 @@ def discover_expansion_seeds(seeds_dir: Path, batch: str) -> list[tuple[Path, di
                 )
             )
             continue
+        except ValueError:
+            seeds.append(_discovery_error(path, "JSON value exceeds parser limits"))
+            continue
         except OSError as error:
             seeds.append(
                 _discovery_error(

@@ -163,6 +163,33 @@ class TaxonomyExpansionTests(unittest.TestCase):
         self.assert_discovery_error(seeds[0][1], error)
         self.assertIn(error, report["errors"])
 
+    def test_discovery_reports_integer_over_digit_limit_without_throwing(self):
+        get_digit_limit = getattr(sys, "get_int_max_str_digits", None)
+        if get_digit_limit is None:
+            self.skipTest("integer digit limit API unavailable")
+        digit_limit = get_digit_limit()
+        if digit_limit == 0:
+            self.skipTest("integer digit limit is disabled")
+
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            path = seeds_dir / "beginner" / "oversized_integer.json"
+            oversized_integer = "1" * (digit_limit + 1)
+            path.write_text(
+                '{"taxonomy":{"expansion_batch":"v1_2"},"value":'
+                + oversized_integer
+                + "}",
+                encoding="utf-8",
+            )
+            error = f"{path}: JSON value exceeds parser limits"
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual([seed_path for seed_path, _ in seeds], [path])
+        self.assert_discovery_error(seeds[0][1], error)
+        self.assertIn(error, report["errors"])
+
     def test_discovery_reports_array_and_null_roots(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.empty_seeds_dir(temporary_directory)
