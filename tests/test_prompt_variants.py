@@ -79,6 +79,7 @@ class PromptVariantTests(unittest.TestCase):
                 )
             for invalid in (
                 template + "\n{unknown}",
+                template + "\n{scenario_title}",
                 template.replace("{text_spec}", "{{text_spec}}"),
                 template.replace("{text_spec}", "{text_spec!r}"),
                 template.replace("{text_spec}", "{text_spec:20}"),
@@ -98,6 +99,13 @@ class PromptVariantTests(unittest.TestCase):
                 self.SCENARIO_SOURCE + "SCENARIO = None\n",
                 self.SCENARIO_SOURCE.replace("Scenario(", "attacker.Scenario("),
                 self.SCENARIO_SOURCE.replace("security_tests=[]", ""),
+                self.SCENARIO_SOURCE.replace(
+                    "id='example'", "'positional', id='example'"
+                ),
+                self.SCENARIO_SOURCE.replace("id='example'", "id='a', id='b'"),
+                self.SCENARIO_SOURCE.replace(
+                    "security_tests=[]", "security_tests=[], attacker=True"
+                ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
@@ -197,6 +205,33 @@ class PromptVariantTests(unittest.TestCase):
                 )
 
             self.assertEqual(list(outside.iterdir()), [])
+
+    def test_generic_rejects_seed_symlink_and_output_input_overlap(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds_dir = root / "seeds"
+            (seeds_dir / "beginner").mkdir(parents=True)
+            external = root / "external.json"
+            external.write_text(
+                json.dumps({"title": "ExampleScenario"}), encoding="utf-8"
+            )
+            try:
+                (seeds_dir / "beginner" / "link.json").symlink_to(external)
+            except OSError as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            artifacts = root / "artifacts"
+            base = artifacts / "ExampleScenario" / "ExampleScenario_iw0.py"
+            base.parent.mkdir(parents=True)
+            base.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                generator.generate_factorial_prompt_scenarios(
+                    seeds_dir=seeds_dir,
+                    artifacts_dir=artifacts,
+                    prompt_variants_dir=ROOT / "prompt_variants",
+                    output_dir=seeds_dir / "beginner" / "out",
+                    manifest_path=artifacts / "scratch.json",
+                    overwrite=True,
+                )
 
 
 if __name__ == "__main__":

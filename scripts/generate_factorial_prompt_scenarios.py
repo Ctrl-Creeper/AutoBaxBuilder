@@ -11,6 +11,7 @@ import shutil
 from string import Formatter
 import tempfile
 import uuid
+from collections import Counter
 
 
 PROMPT_ORDER = ["natural", "weak_security", "expert", "threat_modeling"]
@@ -112,7 +113,9 @@ def load_prompt_variants(prompt_variants_dir: Path) -> dict[str, dict]:
                 )
             fields.append(field_name)
         required = {placeholder[1:-1] for placeholder in PROMPT_TEMPLATE_PLACEHOLDERS}
-        if set(fields) != required:
+        if set(fields) != required or any(
+            count != 1 for count in Counter(fields).values()
+        ):
             raise ValueError(
                 f"Prompt variant {path} must use exactly the required placeholders"
             )
@@ -155,6 +158,8 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
         and value.func.id == "Scenario"
     ):
         return False, "must assign SCENARIO from a direct Scenario(...) call"
+    if value.args:
+        return False, "SCENARIO call must not use positional arguments"
     names = []
     for keyword in value.keywords:
         if keyword.arg is None:
@@ -162,6 +167,9 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
         names.append(keyword.arg)
     if len(names) != len(set(names)):
         return False, "SCENARIO call must not duplicate keyword arguments"
+    allowed = REQUIRED_SCENARIO_KEYWORDS | {"needed_packages"}
+    if set(names).difference(allowed):
+        return False, "SCENARIO call has unexpected keyword arguments"
     missing = sorted(REQUIRED_SCENARIO_KEYWORDS.difference(names))
     if missing:
         return (
@@ -332,6 +340,34 @@ def _swap_staged_output(
         shutil.rmtree(backup, ignore_errors=True)
 
 
+def _validate_generic_topology(
+    output_root: Path,
+    artifacts_dir: Path,
+    seeds_dir: Path,
+    prompt_variants_dir: Path,
+    manifest_path: Path,
+    base_directories: list[Path],
+) -> None:
+    for root in (seeds_dir, prompt_variants_dir):
+        if (
+            output_root == root
+            or _is_within(output_root, root)
+            or _is_within(root, output_root)
+        ):
+            raise ValueError(f"Output directory overlaps protected input root: {root}")
+    if output_root == artifacts_dir or _is_within(artifacts_dir, output_root):
+        raise ValueError(
+            "Output directory must not equal or contain artifacts directory"
+        )
+    if _is_within(manifest_path, output_root):
+        raise ValueError("Manifest path must be outside output directory")
+    for base_directory in base_directories:
+        if output_root == base_directory or _is_within(output_root, base_directory):
+            raise ValueError(
+                f"Output directory overlaps base scenario directory: {base_directory}"
+            )
+
+
 def generate_factorial_prompt_scenarios(
     *,
     seeds_dir: Path,
@@ -365,8 +401,24 @@ def generate_factorial_prompt_scenarios(
     prompt_variants = load_prompt_variants(
         _resolve(Path(prompt_variants_dir), "prompt variants directory")
     )
-    planned: list[tuple[Path, str, dict]] = []
+    seed_files = []
     for seed_file in discover_seed_files(seeds_dir):
+        if seed_file.is_symlink():
+            raise ValueError(f"Seed file must not be a symlink: {seed_file}")
+        resolved_seed = _resolve(seed_file, "seed file")
+        if not _is_within(resolved_seed, seeds_dir) or not resolved_seed.is_file():
+            raise ValueError(f"Seed file escapes seeds directory: {seed_file}")
+        seed_files.append(resolved_seed)
+    _validate_generic_topology(
+        output_root,
+        artifacts_dir,
+        seeds_dir,
+        _resolve(Path(prompt_variants_dir), "prompt variants directory"),
+        manifest_path,
+        [artifacts_dir / load_json(seed_file)["title"] for seed_file in seed_files],
+    )
+    planned: list[tuple[Path, str, dict]] = []
+    for seed_file in seed_files:
         seed = load_json(seed_file)
         base_title = make_identifier("".join(str(seed["title"]).strip().split()))
         base_scenario_file = artifacts_dir / base_title / f"{base_title}_iw0.py"
@@ -383,6 +435,8 @@ def generate_factorial_prompt_scenarios(
         for prompt_id in PROMPT_ORDER:
             scenario_id = f"{base_title}__{prompt_id}"
             variant_scenario_file = output_root / base_title / f"{scenario_id}.py"
+            if variant_scenario_file == manifest_path:
+                raise ValueError("Manifest path must not collide with a wrapper target")
             _assert_writable_target(variant_scenario_file, output_root)
             relative_base = os.path.relpath(
                 base_scenario_file.parent, start=variant_scenario_file.parent

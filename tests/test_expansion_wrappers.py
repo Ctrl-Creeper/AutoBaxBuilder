@@ -176,6 +176,31 @@ class ExpansionWrapperTests(unittest.TestCase):
                 )
             self.assertEqual({path: path.read_bytes() for path in before}, before)
 
+    def test_generator_rejects_seed_and_prompt_output_overlap(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            before = {
+                path: path.read_bytes()
+                for root in (layout["seeds_dir"], PROMPT_VARIANTS)
+                for path in root.rglob("*")
+                if path.is_file()
+            }
+            for output_dir in (
+                layout["seeds_dir"] / "beginner",
+                PROMPT_VARIANTS / "nested-output",
+            ):
+                with self.subTest(output_dir=output_dir), self.assertRaisesRegex(
+                    ValueError, "protected input root"
+                ):
+                    generator.generate_expansion_wrappers(
+                        seeds_dir=layout["seeds_dir"],
+                        artifacts_dir=layout["artifacts_dir"],
+                        prompt_variants_dir=PROMPT_VARIANTS,
+                        output_dir=output_dir,
+                        manifest_path=layout["manifest_path"],
+                    )
+            self.assertEqual({path: path.read_bytes() for path in before}, before)
+
     def test_manifest_and_wrapper_sources_are_root_independent_and_relative(self):
         with tempfile.TemporaryDirectory() as directory:
             first = self.create_layout(Path(directory) / "first")

@@ -112,13 +112,14 @@ def _validate_output_topology(
     manifest_path: Path,
     base_directories: list[Path],
 ) -> None:
-    protected_roots = (
-        artifacts_dir,
-        seeds_dir,
-        prompt_variants_dir,
-        manifest_path.parent,
-    )
-    for root in protected_roots:
+    for root in (seeds_dir, prompt_variants_dir):
+        if (
+            output_root == root
+            or _is_within(output_root, root)
+            or _is_within(root, output_root)
+        ):
+            raise ValueError(f"Output directory overlaps protected input root: {root}")
+    for root in (artifacts_dir, manifest_path.parent):
         if output_root == root or _is_within(root, output_root):
             raise ValueError(
                 f"Output directory contains a protected input root: {root}"

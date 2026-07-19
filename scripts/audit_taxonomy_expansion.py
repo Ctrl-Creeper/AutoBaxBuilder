@@ -50,12 +50,12 @@ def _is_within(path: Path, parent: Path) -> bool:
     return True
 
 
-def _resolve_root_or_record(path: Path, label: str, errors: list[str]) -> Path:
+def _resolve_root_or_record(path: Path, label: str, errors: list[str]) -> Path | None:
     try:
         return Path(path).resolve()
     except (OSError, RuntimeError) as error:
         errors.append(f"{label} cannot be resolved safely: {error}")
-        return Path(path).absolute()
+        return None
 
 
 def _write_text_atomically(path: Path, text: str) -> None:
@@ -198,7 +198,7 @@ def audit_taxonomy_expansion(
     )
     output_dir = _resolve_root_or_record(output_dir, "output directory", root_errors)
     manifest_path = _resolve_root_or_record(manifest_path, "manifest path", root_errors)
-    manifest_parent = manifest_path.parent
+    manifest_parent = manifest_path.parent if manifest_path is not None else None
     audit_json_path = _resolve_root_or_record(
         audit_json_path, "audit JSON path", root_errors
     )
@@ -206,8 +206,20 @@ def audit_taxonomy_expansion(
         audit_markdown_path, "audit Markdown path", root_errors
     )
 
-    seeds = discover_expansion_seeds(seeds_dir, batch)
-    seed_report = validate_expansion_seeds(seeds, batch)
+    if None in (seeds_dir, artifacts_dir, output_dir, manifest_path, manifest_parent):
+        seeds = []
+        seed_report = {
+            "batch": batch,
+            "seed_count": 0,
+            "level_counts": {},
+            "prompt_counts": {},
+            "titles": [],
+            "cwes": [],
+            "errors": [],
+        }
+    else:
+        seeds = discover_expansion_seeds(seeds_dir, batch)
+        seed_report = validate_expansion_seeds(seeds, batch)
     errors = root_errors + list(seed_report["errors"])
     report = {
         "batch": batch,
@@ -220,7 +232,7 @@ def audit_taxonomy_expansion(
         "errors": [],
     }
 
-    if not seeds_only and not seed_report["errors"]:
+    if not seeds_only and not seed_report["errors"] and not root_errors:
         try:
             prompt_variants = load_prompt_variants(Path(prompt_variants_dir).resolve())
         except Exception as error:
@@ -440,10 +452,12 @@ def audit_taxonomy_expansion(
         )
 
     report["errors"] = sorted(set(errors))
-    _write_text_atomically(
-        audit_json_path, json.dumps(report, indent=2, sort_keys=True) + "\n"
-    )
-    _write_text_atomically(audit_markdown_path, _render_markdown(report))
+    if audit_json_path is not None:
+        _write_text_atomically(
+            audit_json_path, json.dumps(report, indent=2, sort_keys=True) + "\n"
+        )
+    if audit_markdown_path is not None:
+        _write_text_atomically(audit_markdown_path, _render_markdown(report))
     return report
 
 
