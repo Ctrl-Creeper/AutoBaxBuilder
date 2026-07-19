@@ -99,21 +99,21 @@ SCENARIO = Scenario(
             for invalid in (
                 "SCENARIO = Scenario()\n",
                 self.SCENARIO_SOURCE + "SCENARIO = None\n",
-                self.SCENARIO_SOURCE.replace("Scenario(", "attacker.Scenario("),
+                self.SCENARIO_SOURCE.replace("Scenario(", "alternate.Scenario("),
                 self.SCENARIO_SOURCE.replace("security_tests=[]", ""),
                 self.SCENARIO_SOURCE.replace(
                     "id='example'", "'positional', id='example'"
                 ),
                 self.SCENARIO_SOURCE.replace("id='example'", "id='a', id='b'"),
                 self.SCENARIO_SOURCE.replace(
-                    "security_tests=[]", "security_tests=[], attacker=True"
+                    "security_tests=[]", "security_tests=[], unexpected_keyword=True"
                 ),
                 self.SCENARIO_SOURCE.replace(
                     "from scenarios.base import Scenario\n\n", ""
                 ),
                 self.SCENARIO_SOURCE.replace(
                     "from scenarios.base import Scenario",
-                    "from attacker import Scenario",
+                    "from alternate_module import Scenario",
                 ),
                 self.SCENARIO_SOURCE.replace(
                     "from scenarios.base import Scenario\n\n", ""
