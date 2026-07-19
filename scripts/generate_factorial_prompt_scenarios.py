@@ -88,9 +88,19 @@ def discover_seed_files(seeds_dir: Path) -> list[Path]:
 
 
 def load_prompt_variants(prompt_variants_dir: Path) -> dict[str, dict]:
-    variants = {}
+    resolved_dir = _resolve(prompt_variants_dir, "prompt variants directory")
+    paths = {}
     for prompt_id in PROMPT_ORDER:
         path = prompt_variants_dir / f"{prompt_id}.json"
+        if path.is_symlink():
+            raise ValueError(f"Prompt variant must not be a symlink: {path}")
+        resolved_path = _resolve(path, "prompt variant")
+        if not _is_within(resolved_path, resolved_dir) or not resolved_path.is_file():
+            raise ValueError(f"Prompt variant must be a contained regular file: {path}")
+        paths[prompt_id] = resolved_path
+    variants = {}
+    for prompt_id in PROMPT_ORDER:
+        path = paths[prompt_id]
         variant = load_json(path)
         if variant.get("id") != prompt_id:
             raise ValueError(f"Prompt variant id mismatch in {path}")
@@ -139,6 +149,17 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
         tree = ast.parse(source, filename=str(path))
     except SyntaxError as error:
         return False, f"contains invalid Python: {error.msg}"
+    has_scenario_import = any(
+        isinstance(node, ast.ImportFrom)
+        and node.module == "scenarios.base"
+        and any(
+            alias.name == "Scenario" and alias.asname in (None, "Scenario")
+            for alias in node.names
+        )
+        for node in tree.body
+    )
+    if not has_scenario_import:
+        return False, "must import Scenario from scenarios.base"
     assignments = []
     for node in tree.body:
         if not isinstance(node, (ast.Assign, ast.AnnAssign)):

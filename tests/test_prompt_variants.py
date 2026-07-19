@@ -26,7 +26,9 @@ PLACEHOLDERS = {
 
 
 class PromptVariantTests(unittest.TestCase):
-    SCENARIO_SOURCE = """SCENARIO = Scenario(
+    SCENARIO_SOURCE = """from scenarios.base import Scenario
+
+SCENARIO = Scenario(
     id='example', api_spec=None, text_spec='', short_app_description='',
     needs_db=False, needs_secret=False, scenario_instructions='',
     functional_tests=[], security_tests=[]
@@ -106,11 +108,36 @@ class PromptVariantTests(unittest.TestCase):
                 self.SCENARIO_SOURCE.replace(
                     "security_tests=[]", "security_tests=[], attacker=True"
                 ),
+                self.SCENARIO_SOURCE.replace(
+                    "from scenarios.base import Scenario\n\n", ""
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "from scenarios.base import Scenario",
+                    "from attacker import Scenario",
+                ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
             path.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
             self.assertTrue(generator.validate_scenario_source(path)[0])
+
+    def test_loader_rejects_all_prompt_variant_symlinks(self):
+        with tempfile.TemporaryDirectory() as directory:
+            variants_dir = Path(directory) / "variants"
+            variants_dir.mkdir()
+            external = Path(directory) / "external.json"
+            external.write_text(
+                json.dumps(
+                    {"id": "natural", "template": "\n".join(sorted(PLACEHOLDERS))}
+                ),
+                encoding="utf-8",
+            )
+            try:
+                (variants_dir / "natural.json").symlink_to(external)
+            except OSError as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                generator.load_prompt_variants(variants_dir)
 
     def test_generic_generator_refuses_protected_output_and_manifest_by_default(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -22,6 +22,8 @@ if str(SRC_ROOT) not in sys.path:
 from scripts.generate_factorial_prompt_scenarios import (
     PROMPT_CATEGORY_INSTRUCTIONS,
     PROMPT_ORDER,
+    PROTECTED_MANIFEST_NAMES,
+    PROTECTED_OUTPUT_NAMES,
     build_manifest_entry,
     load_prompt_variants,
     validate_scenario_source,
@@ -181,6 +183,11 @@ def generate_expansion_wrappers(
     output_dir = Path(output_dir)
     output_root = _assert_safe_existing_output(output_dir)
     manifest_path = _resolve(Path(manifest_path), "manifest path")
+    if (
+        output_root.name in PROTECTED_OUTPUT_NAMES
+        or manifest_path.name in PROTECTED_MANIFEST_NAMES
+    ):
+        raise ValueError("Refusing protected v1/v1.1 factorial output or manifest path")
     manifest_parent = manifest_path.parent
 
     seeds = discover_expansion_seeds(seeds_dir, batch)

@@ -68,6 +68,7 @@ class ExpansionWrapperTests(unittest.TestCase):
                     base_path = artifacts_dir / title / f"{title}_iw0.py"
                     base_path.parent.mkdir(parents=True, exist_ok=True)
                     base_path.write_text(
+                        "from scenarios.base import Scenario\n"
                         "SCENARIO = Scenario(id='x', api_spec=None, text_spec='', "
                         "short_app_description='', needs_db=False, needs_secret=False, "
                         "scenario_instructions='', functional_tests=[], security_tests=[])\n",
@@ -411,6 +412,36 @@ class ExpansionWrapperTests(unittest.TestCase):
                     self.assertEqual(path.stat().st_ino, inode)
             finally:
                 os.chdir(original_cwd)
+
+    def test_expansion_generator_rejects_protected_v1_targets_without_mutation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            for output_dir, manifest_path in (
+                (
+                    layout["artifacts_dir"] / "factorial_prompt_scenarios",
+                    layout["artifacts_dir"] / "factorial_prompt_manifest.json",
+                ),
+                (
+                    layout["artifacts_dir"] / "factorial_prompt_scenarios_v1_1",
+                    layout["artifacts_dir"] / "factorial_prompt_manifest_v1_1.json",
+                ),
+            ):
+                output_dir.mkdir()
+                sentinel = output_dir / "sentinel.txt"
+                sentinel.write_bytes(b"protected output\n")
+                manifest_path.write_bytes(b"protected manifest\n")
+                with self.subTest(output_dir=output_dir), self.assertRaisesRegex(
+                    ValueError, "protected"
+                ):
+                    generator.generate_expansion_wrappers(
+                        seeds_dir=layout["seeds_dir"],
+                        artifacts_dir=layout["artifacts_dir"],
+                        prompt_variants_dir=PROMPT_VARIANTS,
+                        output_dir=output_dir,
+                        manifest_path=manifest_path,
+                    )
+                self.assertEqual(sentinel.read_bytes(), b"protected output\n")
+                self.assertEqual(manifest_path.read_bytes(), b"protected manifest\n")
 
     def test_audit_detects_semantic_base_and_wrapper_mutations(self):
         cases = (
