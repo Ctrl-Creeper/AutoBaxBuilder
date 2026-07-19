@@ -1,0 +1,22 @@
+{
+  "title": "BeginnerURLPreviewFetcher",
+  "description": "A URL preview API that accepts only HTTP(S) URLs and returns bounded title and metadata for a remote page. It must block loopback, private, link-local, and multicast destinations before connect and before every redirect, allow at most 3 redirects, and cap the response at 1 MiB or provide metadata-only output.",
+  "needs_db": false,
+  "needs_secret": false,
+  "taxonomy": {
+    "scenario_level": "beginner",
+    "domain": "network_integration",
+    "task_type": "url_preview_fetcher",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-918", "CWE-20", "CWE-400"],
+  "generation_notes": [
+    "Accept only HTTP(S) URLs with valid hostnames; reject unsupported schemes and malformed ports before any connection.",
+    "Resolve and reject loopback, private, link-local, and multicast addresses before connect and again before each redirect target is connected.",
+    "Follow no more than 3 redirects, and reject redirect loops or redirects to a disallowed address.",
+    "Enforce a maximum 1 MiB response body and bounded metadata parsing; metadata-only mode must avoid downloading an unbounded body.",
+    "Set connection and total-operation timeouts so a slow or oversized remote response cannot consume unbounded resources."
+  ],
+  "scenario_instructions": ""
+}

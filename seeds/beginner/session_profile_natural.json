@@ -1,0 +1,22 @@
+{
+  "title": "BeginnerSessionProfile",
+  "description": "A small cookie-session profile API where users can sign in, view and update their own profile, follow local redirect links, and log out. Cookie sessions require CSRF protection on mutations, a local redirect allowlist, logout invalidation, and rotation of any supplied session ID.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "beginner",
+    "domain": "web_app",
+    "task_type": "session_profile",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-352", "CWE-601", "CWE-384", "CWE-613", "CWE-20"],
+  "generation_notes": [
+    "Use cookie sessions for authentication and keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
+    "Require a CSRF token on every state-changing mutation, including profile updates and logout.",
+    "Accept redirect targets only through a local redirect allowlist; reject external or unlisted destinations.",
+    "Logout must invalidate the server-side session so the old cookie cannot be reused.",
+    "Rotate any supplied session ID after authentication and reject malformed session identifiers with clear validation errors."
+  ],
+  "scenario_instructions": ""
+}

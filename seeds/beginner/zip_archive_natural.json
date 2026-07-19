@@ -1,0 +1,22 @@
+{
+  "title": "BeginnerZipArchiveExtractor",
+  "description": "A ZIP upload API that extracts a small archive into an application-owned directory and lists the extracted files. It rejects absolute paths, parent traversal, symlinks, and duplicate entries, and limits archives to 100 members and 20 MiB expanded.",
+  "needs_db": false,
+  "needs_secret": false,
+  "taxonomy": {
+    "scenario_level": "beginner",
+    "domain": "file_processing",
+    "task_type": "zip_archive_extractor",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-22", "CWE-409", "CWE-434", "CWE-20"],
+  "generation_notes": [
+    "Reject absolute archive member paths and any parent traversal before joining a member name to the extraction directory.",
+    "Reject symlink entries and duplicate member names; do not let archive metadata overwrite an existing extracted file.",
+    "Limit each upload to 100 members and 20 MiB expanded, counting decompressed bytes while extracting.",
+    "Write only beneath an application-owned extraction directory and verify the resolved destination remains inside it.",
+    "Treat malformed ZIP files, unsupported member types, and limit violations as validation errors without partially publishing output."
+  ],
+  "scenario_instructions": ""
+}

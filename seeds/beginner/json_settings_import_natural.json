@@ -1,0 +1,22 @@
+{
+  "title": "BeginnerJSONSettingsImport",
+  "description": "A JSON settings import API that validates a user configuration against an explicit typed allowlist before applying it. It rejects privileged unknown fields, enforces max depth 8 and arrays 100, caps the document at 256 KiB, and performs no native object deserialization.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "beginner",
+    "domain": "configuration",
+    "task_type": "json_settings_import",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-502", "CWE-915", "CWE-20", "CWE-400"],
+  "generation_notes": [
+    "Parse JSON data into ordinary primitives and validate it against an explicit typed allowlist of supported settings fields.",
+    "Reject privileged unknown fields, including fields that could alter roles, commands, file paths, or server behavior.",
+    "Enforce max depth 8 and max arrays 100 before recursively applying settings; reject deeper or larger structures.",
+    "Reject any document larger than 256 KiB and bound parsing work for deeply nested or oversized input.",
+    "Use no native object deserialization or class reconstruction; apply only validated values through the settings update API."
+  ],
+  "scenario_instructions": ""
+}
