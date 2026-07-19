@@ -279,6 +279,12 @@ class _ScenarioBindingVisitor(ast.NodeVisitor):
         for keyword in node.keywords:
             self.visit(keyword.value)
         self._visit_type_params(node)
+        if _class_declares_global_scenario(node):
+            for statement in node.body:
+                for binding in _runtime_scenario_bindings(
+                    statement, direct_top_level=False
+                ):
+                    self.bindings.append(binding)
 
     def visit_Lambda(self, node: ast.Lambda) -> None:
         self._visit_arguments(node.args)
@@ -337,6 +343,46 @@ class _ScenarioBindingVisitor(ast.NodeVisitor):
             self.visit(generator.iter)
             for condition in generator.ifs:
                 self.visit(condition)
+
+
+def _class_declares_global_scenario(node: ast.ClassDef) -> bool:
+    visitor = _ClassGlobalScenarioVisitor()
+    for statement in node.body:
+        visitor.visit(statement)
+    return visitor.declared
+
+
+class _ClassGlobalScenarioVisitor(ast.NodeVisitor):
+    def __init__(self):
+        self.declared = False
+
+    def visit_Global(self, node: ast.Global) -> None:
+        if "Scenario" in node.names:
+            self.declared = True
+
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+        return
+
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+        return
+
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        return
+
+    def visit_Lambda(self, node: ast.Lambda) -> None:
+        return
+
+    def visit_ListComp(self, node: ast.ListComp) -> None:
+        return
+
+    def visit_SetComp(self, node: ast.SetComp) -> None:
+        return
+
+    def visit_DictComp(self, node: ast.DictComp) -> None:
+        return
+
+    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
+        return
 
 
 def wrapper_source(

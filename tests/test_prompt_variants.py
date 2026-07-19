@@ -162,12 +162,28 @@ SCENARIO = Scenario(
                 ),
                 self.SCENARIO_SOURCE.replace(
                     "\n\nSCENARIO",
+                    "\nclass Helper:\n    global Scenario\n    Scenario = None\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nclass Helper:\n    global Scenario\n    del Scenario\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
                     "\n[(Scenario := None) for item in []]\n\nSCENARIO",
                 ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
             path.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
+            self.assertTrue(generator.validate_scenario_source(path)[0])
+            path.write_text(
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nclass Helper:\n    Scenario = None\n    del Scenario\n\nSCENARIO",
+                ),
+                encoding="utf-8",
+            )
             self.assertTrue(generator.validate_scenario_source(path)[0])
             path.write_text(
                 self.SCENARIO_SOURCE.replace(
