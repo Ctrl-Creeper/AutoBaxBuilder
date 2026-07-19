@@ -262,29 +262,81 @@ class _ScenarioBindingVisitor(ast.NodeVisitor):
     def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
         if node.name == "Scenario":
             self.bindings.append("rebound")
+        self._visit_function_header(node)
 
     def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
         if node.name == "Scenario":
             self.bindings.append("rebound")
+        self._visit_function_header(node)
 
     def visit_ClassDef(self, node: ast.ClassDef) -> None:
         if node.name == "Scenario":
             self.bindings.append("rebound")
+        for decorator in node.decorator_list:
+            self.visit(decorator)
+        for base in node.bases:
+            self.visit(base)
+        for keyword in node.keywords:
+            self.visit(keyword.value)
+        self._visit_type_params(node)
 
     def visit_Lambda(self, node: ast.Lambda) -> None:
-        return
+        self._visit_arguments(node.args)
 
     def visit_ListComp(self, node: ast.ListComp) -> None:
-        return
+        self._visit_comprehension(node.generators)
+        self.visit(node.elt)
 
     def visit_SetComp(self, node: ast.SetComp) -> None:
-        return
+        self._visit_comprehension(node.generators)
+        self.visit(node.elt)
 
     def visit_DictComp(self, node: ast.DictComp) -> None:
-        return
+        self._visit_comprehension(node.generators)
+        self.visit(node.key)
+        self.visit(node.value)
 
     def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
-        return
+        self._visit_comprehension(node.generators)
+        self.visit(node.elt)
+
+    def _visit_function_header(
+        self, node: ast.FunctionDef | ast.AsyncFunctionDef
+    ) -> None:
+        for decorator in node.decorator_list:
+            self.visit(decorator)
+        self._visit_arguments(node.args)
+        if node.returns is not None:
+            self.visit(node.returns)
+        self._visit_type_params(node)
+
+    def _visit_arguments(self, arguments: ast.arguments) -> None:
+        for argument in (
+            list(arguments.posonlyargs)
+            + list(arguments.args)
+            + list(arguments.kwonlyargs)
+            + ([arguments.vararg] if arguments.vararg else [])
+            + ([arguments.kwarg] if arguments.kwarg else [])
+        ):
+            if argument.annotation is not None:
+                self.visit(argument.annotation)
+        for default in list(arguments.defaults) + [
+            default for default in arguments.kw_defaults if default is not None
+        ]:
+            self.visit(default)
+
+    def _visit_type_params(self, node: ast.AST) -> None:
+        for parameter in getattr(node, "type_params", []):
+            for attribute in ("bound", "default_value"):
+                value = getattr(parameter, attribute, None)
+                if value is not None:
+                    self.visit(value)
+
+    def _visit_comprehension(self, generators: list[ast.comprehension]) -> None:
+        for generator in generators:
+            self.visit(generator.iter)
+            for condition in generator.ifs:
+                self.visit(condition)
 
 
 def wrapper_source(

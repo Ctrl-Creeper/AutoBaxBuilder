@@ -148,6 +148,22 @@ SCENARIO = Scenario(
                     "\n\nSCENARIO",
                     "\ntry:\n    pass\nexcept Exception as Scenario:\n    pass\n\nSCENARIO",
                 ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\n@((Scenario := object()))\ndef helper():\n    pass\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\ndef helper(value=(Scenario := None)):\n    pass\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nclass Helper((Scenario := object())):\n    pass\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\n[(Scenario := None) for item in []]\n\nSCENARIO",
+                ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
@@ -157,6 +173,14 @@ SCENARIO = Scenario(
                 self.SCENARIO_SOURCE.replace(
                     "\n\nSCENARIO",
                     "\ndef helper():\n    Scenario = None\n    return [Scenario for Scenario in []]\n\nSCENARIO",
+                ),
+                encoding="utf-8",
+            )
+            self.assertTrue(generator.validate_scenario_source(path)[0])
+            path.write_text(
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nvalues = [Scenario for Scenario in []]\n\nSCENARIO",
                 ),
                 encoding="utf-8",
             )
