@@ -1,0 +1,31 @@
+{
+  "title": "ComplexSignedWebhookProcessor",
+  "description": "A webhook processing API where integrations submit signed event payloads, the service verifies the delivery before recording it, and clients can inspect accepted events for their own integrations.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "api_integration",
+    "task_type": "signed_webhook",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-345", "CWE-294", "CWE-20", "CWE-400"],
+  "oracle_contract": {
+    "hmac_algorithm": "HMAC-SHA256",
+    "signature_input": "raw_body+timestamp+event_id",
+    "max_timestamp_age_seconds": 300,
+    "signature_comparison": "constant_time",
+    "duplicate_event_key": ["integration_id", "event_id"],
+    "duplicate_event_status": 409,
+    "max_body_bytes": 262144
+  },
+  "generation_notes": [
+    "Verify HMAC-SHA256 over the raw body, timestamp, and event ID before parsing or persisting an event.",
+    "Timestamps older than 300 seconds must be rejected; compare signatures in constant time.",
+    "A duplicate integration ID and event ID must return 409 without recording another event.",
+    "Limit the request body to 262144 bytes before buffering or processing it.",
+    "Keep webhook delivery simulation local; do not require an external webhook provider."
+  ],
+  "scenario_instructions": ""
+}

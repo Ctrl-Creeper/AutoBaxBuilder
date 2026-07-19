@@ -1,0 +1,30 @@
+{
+  "title": "ComplexMultiTenantDocumentExport",
+  "description": "A multi-tenant document service where members and admins search, retrieve, batch-select, and export documents that belong to their tenant while preserving document-level authorization.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "database",
+    "task_type": "multi_tenant_export",
+    "prompt_category": "natural",
+    "expansion_batch": "v1_2"
+  },
+  "target_cwes": ["CWE-284", "CWE-863", "CWE-639", "CWE-89", "CWE-20"],
+  "oracle_contract": {
+    "roles": ["member", "admin"],
+    "authorized_operations": ["search", "get", "batch", "export"],
+    "authorization_scope": "tenant_and_object",
+    "unauthorized_statuses": [403, 404],
+    "max_batch_size": 100,
+    "sql_query_mode": "parameters_only"
+  },
+  "generation_notes": [
+    "Roles are member and admin, and every request derives tenant identity from the authenticated principal.",
+    "Enforce tenant and object authorization on search, get, batch, and export operations.",
+    "Unauthorized access must return 403 or 404 and must not expose another tenant's document contents or metadata.",
+    "Limit batches to 100 documents, rejecting larger selections before export work begins.",
+    "Use SQL parameters only for searches, retrievals, batch selection, and export queries."
+  ],
+  "scenario_instructions": ""
+}
