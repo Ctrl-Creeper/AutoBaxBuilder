@@ -91,6 +91,31 @@ def _python_source(path: Path) -> tuple[str | None, str | None]:
     return None, "does not assign SCENARIO at module scope"
 
 
+def _wrapper_scenario_id(source: str) -> str | None:
+    """Read SCENARIO.id without importing the generated wrapper module."""
+    tree = ast.parse(source)
+    for node in tree.body:
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+        if not any(
+            isinstance(target, ast.Name) and target.id == "SCENARIO"
+            for target in targets
+        ):
+            continue
+        if not isinstance(node.value, ast.Call):
+            return None
+        for keyword in node.value.keywords:
+            if (
+                keyword.arg == "id"
+                and isinstance(keyword.value, ast.Constant)
+                and isinstance(keyword.value.value, str)
+            ):
+                return keyword.value.value
+        return None
+    return None
+
+
 def _manifest_file_path(value: object) -> Path | None:
     if not isinstance(value, str) or not value:
         return None
@@ -309,7 +334,11 @@ def audit_taxonomy_expansion(
                         scenario_id=expected_id,
                         scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
                     )
-                    if wrapper_text != expected_source:
+                    if _wrapper_scenario_id(wrapper_text) != expected_id:
+                        errors.append(
+                            f"{prefix} wrapper SCENARIO id does not match expected id"
+                        )
+                    elif wrapper_text != expected_source:
                         errors.append(
                             f"{prefix} wrapper source does not import the intended base"
                         )

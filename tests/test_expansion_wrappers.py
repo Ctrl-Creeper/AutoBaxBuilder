@@ -239,6 +239,30 @@ class ExpansionWrapperTests(unittest.TestCase):
                 report = self.audit(layout)
                 self.assertTrue(report["errors"])
 
+    def test_audit_reports_wrapper_source_scenario_id_drift(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            entries = self.generate(layout)
+            entry = self._entry_for_prompt(entries)
+            self.write_wrapper(
+                entry,
+                wrapper_source(
+                    base_title=entry["base_scenario"],
+                    base_module_name=f"{entry['base_scenario']}_iw0",
+                    scenario_id="IncorrectScenario__natural",
+                    scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[
+                        entry["prompt_category"]
+                    ],
+                ),
+            )
+            layout["manifest_path"].write_text(json.dumps(entries), encoding="utf-8")
+            report = self.audit(layout)
+
+        self.assertIn(
+            "manifest row 0 wrapper SCENARIO id does not match expected id",
+            report["errors"],
+        )
+
     def _entry_for_prompt(
         self, entries: list[dict], prompt_id: str = "natural"
     ) -> dict:
