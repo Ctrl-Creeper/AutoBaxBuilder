@@ -15,7 +15,9 @@
     "request_response_status": 202,
     "uniform_request_outcomes": ["existing_account", "missing_account"],
     "token_ttl_seconds": 900,
-    "token_random": true,
+    "token_generator": "cryptographically_secure",
+    "min_token_entropy_bits": 256,
+    "token_encoding": "url_safe",
     "token_storage": "digest",
     "token_single_use": true,
     "token_reuse": "invalid",
@@ -24,7 +26,8 @@
   "generation_notes": [
     "Return the same 202 response for existing and missing accounts when a password reset is requested.",
     "Reset tokens expire after 900 seconds and must be checked against their expiration before reset completion.",
-    "Generate random single-use reset tokens and store them as a digest rather than storing the raw token.",
+    "Use a CSPRNG to generate at least 32 random bytes before URL-safe encoding each reset token.",
+    "Store reset tokens as digests and make them single-use; never store the raw token.",
     "Reused reset tokens are invalid, including after a successful reset attempt.",
     "A successful password reset revokes all sessions for that account.",
     "Keep reset delivery local and testable; do not require production email delivery."

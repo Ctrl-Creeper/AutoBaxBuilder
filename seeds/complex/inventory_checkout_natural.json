@@ -17,6 +17,9 @@
     "race_probe": {
       "initial_stock": 4,
       "concurrent_requests": 8,
+      "authenticated_users": 1,
+      "unique_idempotency_keys": 8,
+      "same_sku": true,
       "quantity_per_request": 1,
       "expected_successful_orders": 4,
       "expected_charges": 4,
@@ -40,6 +43,7 @@
   },
   "generation_notes": [
     "Require authenticated ownership for checkout creation and checkout record retrieval.",
+    "All 8 concurrent requests are by the same authenticated user, target the same SKU, and each uses a unique idempotency key.",
     "With initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0.",
     "Scope idempotency keys to the authenticated user. The same key and same payload must return the same order.",
     "The same key with a different payload must return 409. The same key used by different authenticated users is independent and must never return another user's order.",

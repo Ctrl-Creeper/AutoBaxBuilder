@@ -20,6 +20,9 @@ EXPECTED = {
             "duplicate_retention_seconds": 86400,
             "duplicate_event_status": 409,
             "max_body_bytes": 262144,
+            "inspection_requires_auth": True,
+            "inspection_scope": "integration_owner",
+            "unauthorized_inspection_status": "403_or_404",
         },
         "clauses": [
             "hmac-sha256 over the raw body, timestamp, and event id",
@@ -28,6 +31,9 @@ EXPECTED = {
             "retain integration id and event id duplicate records for 86400 seconds",
             "a duplicate within the retention window must return 409",
             "limit the request body to 262144 bytes",
+            "event inspection requires authentication",
+            "only the integration owner can inspect accepted events",
+            "non-owner event inspection must return 403 or 404",
         ],
     },
     "ComplexMultiTenantDocumentExport": {
@@ -60,6 +66,9 @@ EXPECTED = {
             "race_probe": {
                 "initial_stock": 4,
                 "concurrent_requests": 8,
+                "authenticated_users": 1,
+                "unique_idempotency_keys": 8,
+                "same_sku": True,
                 "quantity_per_request": 1,
                 "expected_successful_orders": 4,
                 "expected_charges": 4,
@@ -83,6 +92,7 @@ EXPECTED = {
         },
         "clauses": [
             "require authenticated ownership",
+            "all 8 concurrent requests are by the same authenticated user, target the same sku, and each uses a unique idempotency key",
             "with initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0",
             "scope idempotency keys to the authenticated user",
             "the same key and same payload must return the same order",
@@ -104,7 +114,9 @@ EXPECTED = {
             "request_response_status": 202,
             "uniform_request_outcomes": ["existing_account", "missing_account"],
             "token_ttl_seconds": 900,
-            "token_random": True,
+            "token_generator": "cryptographically_secure",
+            "min_token_entropy_bits": 256,
+            "token_encoding": "url_safe",
             "token_storage": "digest",
             "token_single_use": True,
             "token_reuse": "invalid",
@@ -113,7 +125,8 @@ EXPECTED = {
         "clauses": [
             "return the same 202 response for existing and missing accounts",
             "reset tokens expire after 900 seconds",
-            "generate random single-use reset tokens and store them as a digest",
+            "use a csprng to generate at least 32 random bytes before url-safe encoding each reset token",
+            "store reset tokens as digests and make them single-use",
             "reused reset tokens are invalid",
             "a successful password reset revokes all sessions",
         ],
