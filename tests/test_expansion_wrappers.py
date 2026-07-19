@@ -67,7 +67,12 @@ class ExpansionWrapperTests(unittest.TestCase):
                 if write_bases:
                     base_path = artifacts_dir / title / f"{title}_iw0.py"
                     base_path.parent.mkdir(parents=True, exist_ok=True)
-                    base_path.write_text("SCENARIO = Scenario()\n", encoding="utf-8")
+                    base_path.write_text(
+                        "SCENARIO = Scenario(id='x', api_spec=None, text_spec='', "
+                        "short_app_description='', needs_db=False, needs_secret=False, "
+                        "scenario_instructions='', functional_tests=[], security_tests=[])\n",
+                        encoding="utf-8",
+                    )
 
         return {
             "seeds_dir": seeds_dir,
@@ -153,6 +158,23 @@ class ExpansionWrapperTests(unittest.TestCase):
                 base.write_text(invalid_source, encoding="utf-8")
                 with self.assertRaisesRegex(ValueError, "Scenario"):
                     self.generate(layout)
+
+    def test_generator_rejects_output_that_contains_artifacts_and_preserves_bases(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            before = {
+                path: path.read_bytes()
+                for path in layout["artifacts_dir"].glob("*/*_iw0.py")
+            }
+            with self.assertRaisesRegex(ValueError, "protected input root"):
+                generator.generate_expansion_wrappers(
+                    seeds_dir=layout["seeds_dir"],
+                    artifacts_dir=layout["artifacts_dir"],
+                    prompt_variants_dir=PROMPT_VARIANTS,
+                    output_dir=layout["artifacts_dir"],
+                    manifest_path=layout["manifest_path"],
+                )
+            self.assertEqual({path: path.read_bytes() for path in before}, before)
 
     def test_manifest_and_wrapper_sources_are_root_independent_and_relative(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -50,6 +50,14 @@ def _is_within(path: Path, parent: Path) -> bool:
     return True
 
 
+def _resolve_root_or_record(path: Path, label: str, errors: list[str]) -> Path:
+    try:
+        return Path(path).resolve()
+    except (OSError, RuntimeError) as error:
+        errors.append(f"{label} cannot be resolved safely: {error}")
+        return Path(path).absolute()
+
+
 def _write_text_atomically(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
@@ -183,17 +191,24 @@ def audit_taxonomy_expansion(
     seeds_only: bool = False,
 ) -> dict:
     """Audit seeds and, unless requested otherwise, their generated wrappers."""
-    seeds_dir = Path(seeds_dir).resolve()
-    artifacts_dir = Path(artifacts_dir).resolve()
-    output_dir = Path(output_dir).resolve()
-    manifest_path = Path(manifest_path).resolve()
+    root_errors: list[str] = []
+    seeds_dir = _resolve_root_or_record(seeds_dir, "seeds directory", root_errors)
+    artifacts_dir = _resolve_root_or_record(
+        artifacts_dir, "artifacts directory", root_errors
+    )
+    output_dir = _resolve_root_or_record(output_dir, "output directory", root_errors)
+    manifest_path = _resolve_root_or_record(manifest_path, "manifest path", root_errors)
     manifest_parent = manifest_path.parent
-    audit_json_path = Path(audit_json_path).resolve()
-    audit_markdown_path = Path(audit_markdown_path).resolve()
+    audit_json_path = _resolve_root_or_record(
+        audit_json_path, "audit JSON path", root_errors
+    )
+    audit_markdown_path = _resolve_root_or_record(
+        audit_markdown_path, "audit Markdown path", root_errors
+    )
 
     seeds = discover_expansion_seeds(seeds_dir, batch)
     seed_report = validate_expansion_seeds(seeds, batch)
-    errors = list(seed_report["errors"])
+    errors = root_errors + list(seed_report["errors"])
     report = {
         "batch": batch,
         "benchmark_version": BENCHMARK_VERSION,
@@ -205,7 +220,7 @@ def audit_taxonomy_expansion(
         "errors": [],
     }
 
-    if not seeds_only and not errors:
+    if not seeds_only and not seed_report["errors"]:
         try:
             prompt_variants = load_prompt_variants(Path(prompt_variants_dir).resolve())
         except Exception as error:
@@ -390,10 +405,15 @@ def audit_taxonomy_expansion(
             for prompt_id in PROMPT_ORDER
         }
         try:
+            output_entries = list(output_dir.rglob("*"))
             actual_wrapper_files = set(output_dir.rglob("*.py"))
         except OSError as error:
             errors.append(f"unable to enumerate wrapper output: {error}")
+            output_entries = []
             actual_wrapper_files = set()
+        for path in output_entries:
+            if path.is_symlink():
+                errors.append(f"wrapper output contains a symlink: {path}")
         resolved_actual_files = set()
         for path in actual_wrapper_files:
             try:

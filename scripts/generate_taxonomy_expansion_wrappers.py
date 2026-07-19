@@ -104,6 +104,38 @@ def _render_manifest_path(path: Path, manifest_parent: Path) -> str:
     return _relative_path(path, manifest_parent)
 
 
+def _validate_output_topology(
+    output_root: Path,
+    artifacts_dir: Path,
+    seeds_dir: Path,
+    prompt_variants_dir: Path,
+    manifest_path: Path,
+    base_directories: list[Path],
+) -> None:
+    protected_roots = (
+        artifacts_dir,
+        seeds_dir,
+        prompt_variants_dir,
+        manifest_path.parent,
+    )
+    for root in protected_roots:
+        if output_root == root or _is_within(root, output_root):
+            raise ValueError(
+                f"Output directory contains a protected input root: {root}"
+            )
+    if _is_within(manifest_path, output_root):
+        raise ValueError("Output directory must not contain the manifest path")
+    for base_directory in base_directories:
+        if (
+            output_root == base_directory
+            or _is_within(base_directory, output_root)
+            or _is_within(output_root, base_directory)
+        ):
+            raise ValueError(
+                f"Output directory overlaps base scenario directory: {base_directory}"
+            )
+
+
 def _replace_output_and_manifest(
     *, output_dir: Path, stage_dir: Path, manifest_path: Path, manifest_text: str
 ) -> None:
@@ -155,6 +187,14 @@ def generate_expansion_wrappers(
     if seed_report["errors"]:
         raise ValueError("Invalid expansion seeds: " + "; ".join(seed_report["errors"]))
     prompt_variants = load_prompt_variants(prompt_variants_dir)
+    _validate_output_topology(
+        output_root,
+        artifacts_dir,
+        seeds_dir,
+        prompt_variants_dir,
+        manifest_path,
+        [artifacts_dir / seed["title"] for _, seed in seeds],
+    )
 
     planned: list[tuple[Path, str]] = []
     manifest: list[dict] = []
