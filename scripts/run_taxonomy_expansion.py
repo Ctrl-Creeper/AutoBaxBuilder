@@ -48,8 +48,24 @@ def commands_for_seed(
             "--difficulty",
             str(difficulty),
         ],
-        [python_executable, "src/main.py", "--generate_tests", "--scenario", title],
-        [python_executable, "src/main.py", "--generate_exploits", "--scenario", title],
+        [
+            python_executable,
+            "src/main.py",
+            "--generate_tests",
+            "--scenario",
+            title,
+            "--path",
+            str(artifacts_dir),
+        ],
+        [
+            python_executable,
+            "src/main.py",
+            "--generate_exploits",
+            "--scenario",
+            title,
+            "--path",
+            str(artifacts_dir),
+        ],
     ]
 
 

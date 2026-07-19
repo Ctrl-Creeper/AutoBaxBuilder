@@ -4,6 +4,7 @@ import json
 import os
 import sys
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -67,6 +68,8 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                     "--generate_tests",
                     "--scenario",
                     "ExampleScenario",
+                    "--path",
+                    str(artifacts_dir),
                 ],
                 [
                     "/custom/python",
@@ -74,6 +77,8 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                     "--generate_exploits",
                     "--scenario",
                     "ExampleScenario",
+                    "--path",
+                    str(artifacts_dir),
                 ],
             ],
         )
@@ -208,6 +213,96 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                 )
             )
             self.assertTrue(any("Scenario1" in command for command in calls))
+
+    def test_parallel_workers_overlap_for_different_seeds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds = self.expansion_seeds(root, count=2)
+            args = runner.parse_args(
+                [
+                    "--artifacts-dir",
+                    str(root / "artifacts"),
+                    "--status-path",
+                    str(root / "report.json"),
+                    "--parallel",
+                    "2",
+                ]
+            )
+            active_titles = set()
+            lock = threading.Lock()
+            overlap = threading.Event()
+            release = threading.Event()
+            result = []
+
+            def fake_runner(argv, **kwargs):
+                if "--generate_scenarios" not in argv:
+                    return SimpleNamespace(returncode=0)
+                title = Path(argv[argv.index("--seed_file") + 1]).stem
+                with lock:
+                    active_titles.add(title)
+                    if len(active_titles) == 2:
+                        overlap.set()
+                release.wait(timeout=5)
+                with lock:
+                    active_titles.remove(title)
+                return SimpleNamespace(returncode=0)
+
+            def run_in_thread():
+                with patch.object(
+                    runner, "discover_expansion_seeds", return_value=seeds
+                ), patch.object(
+                    runner, "validate_expansion_seeds", return_value=self.valid_report()
+                ):
+                    result.append(runner.run_batch(args, command_runner=fake_runner))
+
+            batch_thread = threading.Thread(target=run_in_thread)
+            batch_thread.start()
+            try:
+                self.assertTrue(overlap.wait(timeout=2))
+            finally:
+                release.set()
+                batch_thread.join(timeout=5)
+
+        self.assertFalse(batch_thread.is_alive())
+        self.assertEqual(result, [0])
+
+    def test_repeat_dry_runs_have_identical_content_except_timing_fields(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds = self.expansion_seeds(root)
+            first_path = root / "first.json"
+            second_path = root / "second.json"
+            common_args = [
+                "--artifacts-dir",
+                str(root / "artifacts"),
+                "--dry-run",
+            ]
+            first_args = runner.parse_args(
+                common_args + ["--status-path", str(first_path)]
+            )
+            second_args = runner.parse_args(
+                common_args + ["--status-path", str(second_path)]
+            )
+            with patch.object(
+                runner, "discover_expansion_seeds", return_value=seeds
+            ), patch.object(
+                runner, "validate_expansion_seeds", return_value=self.valid_report()
+            ), contextlib.redirect_stdout(
+                io.StringIO()
+            ):
+                self.assertEqual(runner.run_batch(first_args), 0)
+                self.assertEqual(runner.run_batch(second_args), 0)
+
+            first = json.loads(first_path.read_text(encoding="utf-8"))
+            second = json.loads(second_path.read_text(encoding="utf-8"))
+
+        for report in (first, second):
+            report.pop("started_at")
+            report.pop("finished_at")
+            for seed in report["seeds"]:
+                for stage in seed["stages"]:
+                    stage.pop("elapsed_seconds")
+        self.assertEqual(first, second)
 
     def test_invalid_parallel_is_rejected(self):
         for value in ("0", "9"):
