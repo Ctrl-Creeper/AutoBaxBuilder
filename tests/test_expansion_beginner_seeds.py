@@ -7,7 +7,8 @@ SEED_DIR = Path("seeds/beginner")
 
 EXPECTED = {
     "BeginnerSessionProfile": {
-        "file": "session_profile_natural.json",
+        "domain": "web_app",
+        "task_type": "session_profile",
         "cwes": {"CWE-352", "CWE-601", "CWE-384", "CWE-613", "CWE-20"},
         "terms": {
             "cookie",
@@ -20,7 +21,8 @@ EXPECTED = {
         },
     },
     "BeginnerURLPreviewFetcher": {
-        "file": "url_preview_natural.json",
+        "domain": "api_integration",
+        "task_type": "url_preview",
         "cwes": {"CWE-918", "CWE-20", "CWE-400"},
         "terms": {
             "http(s)",
@@ -35,7 +37,8 @@ EXPECTED = {
         },
     },
     "BeginnerZipArchiveExtractor": {
-        "file": "zip_archive_natural.json",
+        "domain": "file_processing",
+        "task_type": "archive_extraction",
         "cwes": {"CWE-22", "CWE-409", "CWE-434", "CWE-20"},
         "terms": {
             "absolute",
@@ -48,7 +51,8 @@ EXPECTED = {
         },
     },
     "BeginnerJSONSettingsImport": {
-        "file": "json_settings_import_natural.json",
+        "domain": "file_processing",
+        "task_type": "settings_import",
         "cwes": {"CWE-502", "CWE-915", "CWE-20", "CWE-400"},
         "terms": {
             "typed allowlist",
@@ -66,33 +70,41 @@ EXPECTED = {
 class BeginnerExpansionSeedTests(unittest.TestCase):
     def test_v1_2_beginner_seeds_have_required_contracts(self):
         seeds = {}
+        for path in sorted(SEED_DIR.glob("*.json")):
+            seed = json.loads(path.read_text())
+            taxonomy = seed.get("taxonomy", {})
+            if taxonomy.get("expansion_batch") == "v1_2":
+                seeds[seed["title"]] = seed
+
+        self.assertEqual(set(seeds), set(EXPECTED))
         for title, expected in EXPECTED.items():
             with self.subTest(title=title):
-                seed = json.loads((SEED_DIR / expected["file"]).read_text())
-                seeds[seed["title"]] = seed
+                seed = seeds[title]
                 self.assertEqual(seed["title"], title)
                 self.assertEqual(set(seed["target_cwes"]), expected["cwes"])
                 self.assertEqual(
                     seed["taxonomy"],
                     {
                         "scenario_level": "beginner",
-                        "domain": seed["taxonomy"]["domain"],
-                        "task_type": seed["taxonomy"]["task_type"],
+                        "domain": expected["domain"],
+                        "task_type": expected["task_type"],
                         "prompt_category": "natural",
                         "expansion_batch": "v1_2",
                     },
                 )
                 self.assertGreaterEqual(len(seed["generation_notes"]), 4)
+                self.assertTrue(
+                    all(
+                        isinstance(note, str) and note.strip()
+                        for note in seed["generation_notes"]
+                    )
+                )
                 self.assertEqual(seed["scenario_instructions"], "")
 
-                contract_text = " ".join(
-                    [seed["description"], *seed["generation_notes"]]
-                ).lower()
+                contract_text = " ".join(seed["generation_notes"]).lower()
                 for term in expected["terms"]:
                     with self.subTest(term=term):
                         self.assertIn(term, contract_text)
-
-        self.assertEqual(set(seeds), set(EXPECTED))
 
 
 if __name__ == "__main__":

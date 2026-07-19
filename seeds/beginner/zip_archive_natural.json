@@ -6,7 +6,7 @@
   "taxonomy": {
     "scenario_level": "beginner",
     "domain": "file_processing",
-    "task_type": "zip_archive_extractor",
+    "task_type": "archive_extraction",
     "prompt_category": "natural",
     "expansion_batch": "v1_2"
   },

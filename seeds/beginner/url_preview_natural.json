@@ -5,8 +5,8 @@
   "needs_secret": false,
   "taxonomy": {
     "scenario_level": "beginner",
-    "domain": "network_integration",
-    "task_type": "url_preview_fetcher",
+    "domain": "api_integration",
+    "task_type": "url_preview",
     "prompt_category": "natural",
     "expansion_batch": "v1_2"
   },

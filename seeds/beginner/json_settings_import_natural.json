@@ -5,8 +5,8 @@
   "needs_secret": true,
   "taxonomy": {
     "scenario_level": "beginner",
-    "domain": "configuration",
-    "task_type": "json_settings_import",
+    "domain": "file_processing",
+    "task_type": "settings_import",
     "prompt_category": "natural",
     "expansion_batch": "v1_2"
   },

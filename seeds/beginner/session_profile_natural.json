@@ -15,7 +15,7 @@
     "Use cookie sessions for authentication and keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
     "Require a CSRF token on every state-changing mutation, including profile updates and logout.",
     "Accept redirect targets only through a local redirect allowlist; reject external or unlisted destinations.",
-    "Logout must invalidate the server-side session so the old cookie cannot be reused.",
+    "Logout invalidation must remove the server-side session so the old cookie cannot be reused.",
     "Rotate any supplied session ID after authentication and reject malformed session identifiers with clear validation errors."
   ],
   "scenario_instructions": ""
