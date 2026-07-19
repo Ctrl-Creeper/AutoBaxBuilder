@@ -1,8 +1,8 @@
 {
   "title": "BeginnerJSONSettingsImport",
-  "description": "A JSON settings import API that validates a user configuration against an explicit typed allowlist before applying it. It rejects privileged unknown fields, enforces max depth 8 and arrays 100, caps the document at 256 KiB, and performs no native object deserialization.",
+  "description": "A JSON settings import API that validates a user configuration against an explicit typed allowlist before applying it. The root object has container depth 1, containers at depth 9 are rejected, arrays are limited to 100 elements, and the raw UTF-8 document is limited to 256 KiB before parsing.",
   "needs_db": true,
-  "needs_secret": true,
+  "needs_secret": false,
   "taxonomy": {
     "scenario_level": "beginner",
     "domain": "file_processing",
@@ -12,10 +12,11 @@
   },
   "target_cwes": ["CWE-502", "CWE-915", "CWE-20", "CWE-400"],
   "generation_notes": [
-    "Parse JSON data into ordinary primitives and validate it against an explicit typed allowlist of supported settings fields.",
+    "Parse JSON data into ordinary primitives and validate against an explicit typed allowlist of supported settings fields.",
     "Reject privileged unknown fields, including fields that could alter roles, commands, file paths, or server behavior.",
-    "Enforce max depth 8 and max arrays 100 before recursively applying settings; reject deeper or larger structures.",
-    "Reject any document larger than 256 KiB and bound parsing work for deeply nested or oversized input.",
+    "The root object is container depth 1. Each nested object or array increments container depth by 1. Reject any container at depth 9.",
+    "Each array may contain at most 100 elements; reject 101 elements.",
+    "Enforce a 256 KiB UTF-8 byte limit before parsing. Measure the raw request document in bytes, not characters.",
     "Use no native object deserialization or class reconstruction; apply only validated values through the settings update API."
   ],
   "scenario_instructions": ""

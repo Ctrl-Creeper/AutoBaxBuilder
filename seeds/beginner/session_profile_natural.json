@@ -1,6 +1,6 @@
 {
   "title": "BeginnerSessionProfile",
-  "description": "A small cookie-session profile API where users can sign in, view and update their own profile, follow local redirect links, and log out. Cookie sessions require CSRF protection on mutations, a local redirect allowlist, logout invalidation, and rotation of any supplied session ID.",
+  "description": "A small cookie-session profile API where users can sign in, view and update their own profile, follow allowlisted local redirects, and log out. State changes require session-bound cryptographically random CSRF tokens, and every missing, invalid, or cross-session token is rejected with HTTP 403.",
   "needs_db": true,
   "needs_secret": true,
   "taxonomy": {
@@ -12,9 +12,10 @@
   },
   "target_cwes": ["CWE-352", "CWE-601", "CWE-384", "CWE-613", "CWE-20"],
   "generation_notes": [
-    "Use cookie sessions for authentication and keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
-    "Require a CSRF token on every state-changing mutation, including profile updates and logout.",
-    "Accept redirect targets only through a local redirect allowlist; reject external or unlisted destinations.",
+    "Use cookie sessions for authentication. Keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
+    "Every state-changing mutation requires a CSRF token. CSRF tokens must be cryptographically random and bound to the active session.",
+    "Missing CSRF tokens, invalid CSRF tokens, and CSRF tokens from another session must return 403.",
+    "Redirect targets must match a local redirect allowlist; reject external or unlisted destinations.",
     "Logout invalidation must remove the server-side session so the old cookie cannot be reused.",
     "Rotate any supplied session ID after authentication and reject malformed session identifiers with clear validation errors."
   ],

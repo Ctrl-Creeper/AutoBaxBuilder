@@ -1,6 +1,6 @@
 {
   "title": "BeginnerZipArchiveExtractor",
-  "description": "A ZIP upload API that extracts a small archive into an application-owned directory and lists the extracted files. It rejects absolute paths, parent traversal, symlinks, and duplicate entries, and limits archives to 100 members and 20 MiB expanded.",
+  "description": "A ZIP upload API that extracts a small archive into an application-owned directory and lists the extracted files. It validates paths and file types before extraction, allows only .txt, .csv, .json, and .md members, and limits archives to 100 members and 20 MiB expanded.",
   "needs_db": false,
   "needs_secret": false,
   "taxonomy": {
@@ -12,9 +12,11 @@
   },
   "target_cwes": ["CWE-22", "CWE-409", "CWE-434", "CWE-20"],
   "generation_notes": [
-    "Reject absolute archive member paths and any parent traversal before joining a member name to the extraction directory.",
-    "Reject symlink entries and duplicate member names; do not let archive metadata overwrite an existing extracted file.",
-    "Limit each upload to 100 members and 20 MiB expanded, counting decompressed bytes while extracting.",
+    "Reject absolute paths, parent traversal, symlinks, and duplicate entries before extraction.",
+    "Allow only safe member extensions: .txt, .csv, .json, and .md. Apply this strict safe-member extension allowlist before extraction.",
+    "Reject executable, script, or dangerous file types and any non-allowlisted extension before extraction.",
+    "Limit each archive to 100 members. Reject the archive before extraction if its member count exceeds the limit.",
+    "Limit expanded data to 20 MiB. Count decompressed bytes while extracting and abort before publishing partial output if the limit is exceeded.",
     "Write only beneath an application-owned extraction directory and verify the resolved destination remains inside it.",
     "Treat malformed ZIP files, unsupported member types, and limit violations as validation errors without partially publishing output."
   ],
