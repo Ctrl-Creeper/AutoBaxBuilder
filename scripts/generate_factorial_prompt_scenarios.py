@@ -149,19 +149,8 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
         tree = ast.parse(source, filename=str(path))
     except SyntaxError as error:
         return False, f"contains invalid Python: {error.msg}"
-    has_scenario_import = any(
-        isinstance(node, ast.ImportFrom)
-        and node.module == "scenarios.base"
-        and any(
-            alias.name == "Scenario" and alias.asname in (None, "Scenario")
-            for alias in node.names
-        )
-        for node in tree.body
-    )
-    if not has_scenario_import:
-        return False, "must import Scenario from scenarios.base"
     assignments = []
-    for node in tree.body:
+    for index, node in enumerate(tree.body):
         if not isinstance(node, (ast.Assign, ast.AnnAssign)):
             continue
         targets = node.targets if isinstance(node, ast.Assign) else [node.target]
@@ -169,10 +158,20 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
             isinstance(target, ast.Name) and target.id == "SCENARIO"
             for target in targets
         ):
-            assignments.append(node)
+            assignments.append((index, node))
     if not assignments:
         return False, "does not assign SCENARIO at module scope"
-    value = assignments[-1].value
+    assignment_index, assignment = assignments[-1]
+    binding = None
+    for node in tree.body[:assignment_index]:
+        if _binds_scenario(node):
+            binding = node
+    if not _is_canonical_scenario_import(binding):
+        return (
+            False,
+            "must bind Scenario from scenarios.base before SCENARIO assignment",
+        )
+    value = assignment.value
     if not (
         isinstance(value, ast.Call)
         and isinstance(value.func, ast.Name)
@@ -198,6 +197,34 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
             f"SCENARIO call is missing required keywords: {', '.join(missing)}",
         )
     return True, ""
+
+
+def _binds_scenario(node: ast.stmt) -> bool:
+    if isinstance(node, (ast.Assign, ast.AnnAssign)):
+        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
+        return any(
+            isinstance(target, ast.Name) and target.id == "Scenario"
+            for target in targets
+        )
+    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+        return node.name == "Scenario"
+    if isinstance(node, (ast.Import, ast.ImportFrom)):
+        return any(
+            (alias.asname or alias.name.split(".")[0]) == "Scenario"
+            for alias in node.names
+        )
+    return False
+
+
+def _is_canonical_scenario_import(node: ast.stmt | None) -> bool:
+    return (
+        isinstance(node, ast.ImportFrom)
+        and node.module == "scenarios.base"
+        and any(
+            alias.name == "Scenario" and alias.asname in (None, "Scenario")
+            for alias in node.names
+        )
+    )
 
 
 def wrapper_source(

@@ -115,6 +115,19 @@ SCENARIO = Scenario(
                     "from scenarios.base import Scenario",
                     "from attacker import Scenario",
                 ),
+                self.SCENARIO_SOURCE.replace(
+                    "from scenarios.base import Scenario\n\n", ""
+                )
+                + "\nfrom scenarios.base import Scenario\n",
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\nScenario = None\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\ndef Scenario():\n    pass\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\nclass Scenario:\n    pass\n\nSCENARIO"
+                ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
