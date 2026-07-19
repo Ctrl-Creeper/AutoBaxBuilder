@@ -77,6 +77,12 @@ V1_2_EMPTY_COUNT_ERRORS = [
 
 
 class TaxonomyExpansionTests(unittest.TestCase):
+    def assert_discovery_error(self, seed, expected_error):
+        self.assertEqual(len(seed), 1)
+        sentinel = next(iter(seed))
+        self.assertIs(type(sentinel), object)
+        self.assertEqual(seed[sentinel], [expected_error])
+
     def empty_seeds_dir(self, temporary_directory):
         seeds_dir = Path(temporary_directory) / "seeds"
         for level in ("beginner", "complex"):
@@ -125,8 +131,37 @@ class TaxonomyExpansionTests(unittest.TestCase):
             seeds = discover_expansion_seeds(seeds_dir, BATCH)
             report = validate_expansion_seeds(seeds, BATCH)
 
-        self.assertEqual(seeds, [(path, {"__discovery_errors__": [error]})])
+        self.assertEqual([seed_path for seed_path, _ in seeds], [path])
+        self.assert_discovery_error(seeds[0][1], error)
         self.assertEqual(report["errors"], sorted([error] + V1_2_EMPTY_COUNT_ERRORS))
+
+    def test_discovery_reports_invalid_utf8_without_throwing(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            path = seeds_dir / "beginner" / "invalid_utf8.json"
+            path.write_bytes(b"\xff")
+            error = f"{path}: seed file is not valid UTF-8"
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual([seed_path for seed_path, _ in seeds], [path])
+        self.assert_discovery_error(seeds[0][1], error)
+        self.assertIn(error, report["errors"])
+
+    def test_discovery_reports_json_decoder_recursion_without_throwing(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            path = seeds_dir / "complex" / "too_deep.json"
+            path.write_text("[" * 2000 + "]" * 2000, encoding="utf-8")
+            error = f"{path}: JSON nesting exceeds decoder recursion limit"
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual([seed_path for seed_path, _ in seeds], [path])
+        self.assert_discovery_error(seeds[0][1], error)
+        self.assertIn(error, report["errors"])
 
     def test_discovery_reports_array_and_null_roots(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -144,10 +179,8 @@ class TaxonomyExpansionTests(unittest.TestCase):
             report = validate_expansion_seeds(seeds, BATCH)
 
         self.assertEqual([path for path, _ in seeds], [array_path, null_path])
-        self.assertEqual(
-            [seed["__discovery_errors__"] for _, seed in seeds],
-            [[root_errors[0]], [root_errors[1]]],
-        )
+        for (_, seed), error in zip(seeds, root_errors):
+            self.assert_discovery_error(seed, error)
         self.assertEqual(
             report["errors"],
             sorted(
@@ -181,11 +214,44 @@ class TaxonomyExpansionTests(unittest.TestCase):
                 seeds = discover_expansion_seeds(seeds_dir, BATCH)
             report = validate_expansion_seeds(seeds, BATCH)
 
-        self.assertEqual(
-            seeds,
-            [(link_path, {"__discovery_errors__": [discovery_error]})],
-        )
+        self.assertEqual([path for path, _ in seeds], [link_path])
+        self.assert_discovery_error(seeds[0][1], discovery_error)
         self.assertIn(discovery_error, report["errors"])
+
+    def test_discovery_reports_symlink_loop_as_path_safety_error(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            loop_path = seeds_dir / "complex" / "loop.json"
+            try:
+                loop_path.symlink_to(loop_path.name)
+            except (NotImplementedError, OSError) as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            discovery_error = f"{loop_path}: path safety check failed during resolution"
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual([path for path, _ in seeds], [loop_path])
+        self.assert_discovery_error(seeds[0][1], discovery_error)
+        self.assertIn(discovery_error, report["errors"])
+
+    def test_string_discovery_errors_field_does_not_bypass_validation(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.empty_seeds_dir(temporary_directory)
+            path = seeds_dir / "beginner" / "ordinary_field.json"
+            self.write_seed(
+                path,
+                {
+                    "taxonomy": {"expansion_batch": BATCH},
+                    "__discovery_errors__": [],
+                },
+            )
+
+            seeds = discover_expansion_seeds(seeds_dir, BATCH)
+            report = validate_expansion_seeds(seeds, BATCH)
+
+        self.assertEqual(seeds[0][1]["__discovery_errors__"], [])
+        self.assertIn(f"{path}: missing required field 'title'", report["errors"])
 
     def test_discovery_sorts_by_full_relative_posix_path(self):
         with tempfile.TemporaryDirectory() as temporary_directory:

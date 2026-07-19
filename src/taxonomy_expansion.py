@@ -22,7 +22,7 @@ _REQUIRED_FIELDS = (
     "oracle_contract",
 )
 _CWE_PATTERN = re.compile(r"^CWE-[1-9][0-9]*$")
-_DISCOVERY_ERRORS = "__discovery_errors__"
+_DISCOVERY_ERRORS = object()
 _MAX_JSON_DEPTH = 64
 
 
@@ -34,7 +34,15 @@ def discover_expansion_seeds(seeds_dir: Path, batch: str) -> list[tuple[Path, di
 
     seeds = []
     for path in paths:
-        if not _is_within(path.resolve(), resolved_seeds_dir):
+        try:
+            resolved_path = path.resolve()
+        except RuntimeError:
+            seeds.append(
+                _discovery_error(path, "path safety check failed during resolution")
+            )
+            continue
+
+        if not _is_within(resolved_path, resolved_seeds_dir):
             seeds.append(
                 _discovery_error(path, "symlink target resolves outside seeds_dir")
             )
@@ -42,6 +50,14 @@ def discover_expansion_seeds(seeds_dir: Path, batch: str) -> list[tuple[Path, di
 
         try:
             seed = json.loads(path.read_text(encoding="utf-8"))
+        except UnicodeDecodeError:
+            seeds.append(_discovery_error(path, "seed file is not valid UTF-8"))
+            continue
+        except RecursionError:
+            seeds.append(
+                _discovery_error(path, "JSON nesting exceeds decoder recursion limit")
+            )
+            continue
         except json.JSONDecodeError as error:
             seeds.append(
                 _discovery_error(
@@ -88,7 +104,11 @@ def validate_expansion_seeds(seeds: list[tuple[Path, dict]], batch: str) -> dict
     for path, seed in seeds:
         path = Path(path)
         path_text = str(path)
-        paths_by_key[str(path.resolve())].append(path_text)
+        try:
+            path_key = str(path.resolve())
+        except RuntimeError:
+            path_key = str(path.absolute())
+        paths_by_key[path_key].append(path_text)
 
         if not isinstance(seed, dict):
             errors.append(f"{path_text}: seed must be an object")
