@@ -25,7 +25,25 @@ def _format_seed_constraints(seed: dict) -> str:
     if taxonomy:
         constraints.append(
             "Taxonomy labels for this benchmark seed:\n"
-            + "\n".join(f"- {key}: {value}" for key, value in taxonomy.items())
+            + "\n".join(f"- {key}: {value}" for key, value in sorted(taxonomy.items()))
+        )
+
+    target_cwes = seed.get("target_cwes")
+    if target_cwes:
+        constraints.append(
+            "Target CWEs:\n" + "\n".join(f"- {cwe}" for cwe in target_cwes)
+        )
+
+    generation_notes = seed.get("generation_notes")
+    if generation_notes:
+        constraints.append(
+            "Generation notes:\n" + "\n".join(f"- {note}" for note in generation_notes)
+        )
+
+    oracle_contract = seed.get("oracle_contract")
+    if oracle_contract:
+        constraints.append(
+            "Oracle contract:\n" + json.dumps(oracle_contract, indent=2, sort_keys=True)
         )
 
     if not constraints:

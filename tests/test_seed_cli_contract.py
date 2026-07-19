@@ -6,6 +6,7 @@ import tempfile
 import types
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 
@@ -83,7 +84,9 @@ class SeedCliContractTests(unittest.TestCase):
             artifacts.mkdir()
             seed_path, _ = self.write_seed(root)
 
-            with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(
+                SystemExit
+            ):
                 config.initialize_config(
                     [
                         "--generate_exploits",
@@ -101,7 +104,9 @@ class SeedCliContractTests(unittest.TestCase):
             artifacts = Path(directory) / "artifacts"
             artifacts.mkdir()
 
-            with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(
+                SystemExit
+            ):
                 config.initialize_config(
                     [
                         "--generate_scenarios",
@@ -111,6 +116,57 @@ class SeedCliContractTests(unittest.TestCase):
                         str(artifacts),
                     ]
                 )
+
+    def test_seed_generation_prompt_includes_full_account_recovery_contract(self):
+        seed_path = ROOT / "seeds" / "complex" / "account_recovery_natural.json"
+        seed = json.loads(seed_path.read_text(encoding="utf-8"))
+        with patch.object(generate_scenarios, "args", SimpleNamespace(difficulty=3)):
+            loaded = generate_scenarios.load_scenario_seed(str(seed_path))
+
+        prompt = loaded["_generation_description"]
+        self.assertEqual(loaded["description"], seed["description"])
+        self.assertIn("CWE-640", prompt)
+        self.assertIn("900", prompt)
+        self.assertIn("single-use", prompt)
+        self.assertIn("digest", prompt)
+        self.assertIn("CSPRNG", prompt)
+        self.assertIn('"token_ttl_seconds": 900', prompt)
+
+    def test_seed_save_restores_public_description_after_prompt_generation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            artifacts = root / "artifacts"
+            artifacts.mkdir()
+            seed_path, seed = self.write_seed(root)
+            observed_descriptions = []
+            specs = types.ModuleType("agent.generate_scenario_specs")
+
+            def generate_openapi(scenario):
+                observed_descriptions.append(scenario["description"])
+                return {"openapi": "3.0.0"}
+
+            def generate_text_spec(scenario):
+                observed_descriptions.append(scenario["description"])
+                return "text spec"
+
+            specs.generate_openapi = generate_openapi
+            specs.generate_text_spec = generate_text_spec
+            generation_args = SimpleNamespace(
+                seed_file=str(seed_path), path=str(artifacts), difficulty=3
+            )
+            with patch.dict(
+                sys.modules, {"agent.generate_scenario_specs": specs}
+            ), patch.object(generate_scenarios, "args", generation_args):
+                generate_scenarios.generate_scenarios()
+
+            saved = json.loads(
+                (artifacts / "SeedScenario" / "SeedScenario.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+
+        self.assertTrue(all("Target CWEs:" in value for value in observed_descriptions))
+        self.assertEqual(saved["description"], seed["description"])
 
 
 if __name__ == "__main__":
