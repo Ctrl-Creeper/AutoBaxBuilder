@@ -62,6 +62,62 @@ class CWE(Enum):
         "num": 20,
         "desc": "The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly.",
     }
+    OBSERVABLE_RESPONSE_DISCREPANCY = {
+        "num": 204,
+        "desc": "The product provides different responses to sensitive requests depending on whether the requested resource exists.",
+    }
+    AUTHENTICATION_BYPASS_BY_CAPTURE_REPLAY = {
+        "num": 294,
+        "desc": "The product's authentication can be bypassed by capturing and replaying an authentication exchange.",
+    }
+    INSUFFICIENT_VERIFICATION_OF_DATA_AUTHENTICITY = {
+        "num": 345,
+        "desc": "The product does not sufficiently verify that data is authentic before using it.",
+    }
+    CROSS_SITE_REQUEST_FORGERY = {
+        "num": 352,
+        "desc": "The web application does not sufficiently verify whether a request was intentionally sent by the user.",
+    }
+    CONCURRENT_EXECUTION_WITH_IMPROPER_SYNCHRONIZATION = {
+        "num": 362,
+        "desc": "The product uses a shared resource concurrently without properly synchronizing access.",
+    }
+    SESSION_FIXATION = {
+        "num": 384,
+        "desc": "The product does not invalidate or sufficiently change an existing session identifier after authentication.",
+    }
+    IMPROPER_HANDLING_OF_HIGHLY_COMPRESSED_DATA = {
+        "num": 409,
+        "desc": "The product does not properly limit or handle highly compressed data that expands excessively during decompression.",
+    }
+    DESERIALIZATION_OF_UNTRUSTED_DATA = {
+        "num": 502,
+        "desc": "The product deserializes untrusted data without sufficiently verifying its structure or content.",
+    }
+    URL_REDIRECTION_TO_UNTRUSTED_SITE = {
+        "num": 601,
+        "desc": "The product redirects a user to an untrusted site using externally controlled input.",
+    }
+    INSUFFICIENT_SESSION_EXPIRATION = {
+        "num": 613,
+        "desc": "The product does not sufficiently enforce session expiration or invalidate sessions when they should expire.",
+    }
+    AUTHORIZATION_BYPASS_THROUGH_USER_CONTROLLED_KEY = {
+        "num": 639,
+        "desc": "The product uses a user-controlled key to access a resource without properly verifying authorization.",
+    }
+    WEAK_PASSWORD_RECOVERY_MECHANISM_FORGOTTEN_PASSWORD = {
+        "num": 640,
+        "desc": "The product uses a weak mechanism to recover or reset a forgotten password.",
+    }
+    IMPROPERLY_CONTROLLED_MODIFICATION_OF_DYNAMICALLY_DETERMINED_OBJECT_ATTRIBUTES = {
+        "num": 915,
+        "desc": "The product allows an actor to modify dynamically determined object attributes without adequately controlling the modification.",
+    }
+    SERVER_SIDE_REQUEST_FORGERY = {
+        "num": 918,
+        "desc": "The web application fetches a remote resource based on user-supplied input without validating the destination.",
+    }
 
 
 def get_cwe_by_id(cwe_id):

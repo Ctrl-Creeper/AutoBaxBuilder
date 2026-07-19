@@ -40,6 +40,20 @@ MITRE_TOP_25 = [
     522,  # Insufficiently Protected Credentials
     863,  # Incorrect Authorization
     20,  # Improper Input Validation
+    204,  # Observable Response Discrepancy
+    294,  # Authentication Bypass by Capture-replay
+    345,  # Insufficient Verification of Data Authenticity
+    352,  # Cross-Site Request Forgery (CSRF)
+    362,  # Concurrent Execution using Shared Resource with Improper Synchronization
+    384,  # Session Fixation
+    409,  # Improper Handling of Highly Compressed Data
+    502,  # Deserialization of Untrusted Data
+    601,  # URL Redirection to Untrusted Site
+    613,  # Insufficient Session Expiration
+    639,  # Authorization Bypass Through User-Controlled Key
+    640,  # Weak Password Recovery Mechanism for Forgotten Password
+    915,  # Improperly Controlled Modification of Dynamically-Determined Object Attributes
+    918,  # Server-Side Request Forgery (SSRF)
 ]
 
 args = None
