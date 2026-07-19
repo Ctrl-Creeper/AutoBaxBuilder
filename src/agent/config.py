@@ -176,6 +176,13 @@ def build_parser() -> ArgumentParser:
         help="Path to artifacts folder",
     )
 
+    parser.add_argument(
+        "--seed_file",
+        help=(
+            "JSON scenario seed to expand when using --generate_scenarios. "
+            "If omitted, a scenario idea is generated from scratch."
+        ),
+    )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--generate_scenarios", action="store_true", help="Generate scenarios"
@@ -214,12 +221,16 @@ def initialize_config(argv: Sequence[str] | None = None) -> Namespace:
         parser.error(
             "--scenario is required when using --generate_tests or --generate_exploits"
         )
+    if parsed_args.seed_file and not parsed_args.generate_scenarios:
+        parser.error("--seed_file can only be used with --generate_scenarios")
 
     logger.info(f"Parsed command-line arguments: {parsed_args}")
 
     # Verify that the provided arguments are valid
     if not os.path.exists(parsed_args.path):
         parser.error(f"Invalid path {parsed_args.path}")
+    if parsed_args.seed_file and not os.path.isfile(parsed_args.seed_file):
+        parser.error(f"Invalid seed file {parsed_args.seed_file}")
 
     parsed_scenario_folder_path = os.path.join(
         parsed_args.path,
