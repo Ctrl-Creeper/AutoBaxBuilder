@@ -128,10 +128,38 @@ SCENARIO = Scenario(
                 self.SCENARIO_SOURCE.replace(
                     "\n\nSCENARIO", "\nclass Scenario:\n    pass\n\nSCENARIO"
                 ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\nScenario, other = (None, None)\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\nfor Scenario in []:\n    pass\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nwith open(__file__) as Scenario:\n    pass\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\ndel Scenario\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO", "\nif True:\n    Scenario = None\n\nSCENARIO"
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\ntry:\n    pass\nexcept Exception as Scenario:\n    pass\n\nSCENARIO",
+                ),
             ):
                 path.write_text(invalid, encoding="utf-8")
                 self.assertFalse(generator.validate_scenario_source(path)[0])
             path.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
+            self.assertTrue(generator.validate_scenario_source(path)[0])
+            path.write_text(
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\ndef helper():\n    Scenario = None\n    return [Scenario for Scenario in []]\n\nSCENARIO",
+                ),
+                encoding="utf-8",
+            )
             self.assertTrue(generator.validate_scenario_source(path)[0])
 
     def test_loader_rejects_all_prompt_variant_symlinks(self):

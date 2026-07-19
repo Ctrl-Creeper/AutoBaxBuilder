@@ -164,9 +164,9 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
     assignment_index, assignment = assignments[-1]
     binding = None
     for node in tree.body[:assignment_index]:
-        if _binds_scenario(node):
-            binding = node
-    if not _is_canonical_scenario_import(binding):
+        for candidate in _runtime_scenario_bindings(node, direct_top_level=True):
+            binding = candidate
+    if binding != "canonical":
         return (
             False,
             "must bind Scenario from scenarios.base before SCENARIO assignment",
@@ -199,32 +199,92 @@ def validate_scenario_source(path: Path) -> tuple[bool, str]:
     return True, ""
 
 
-def _binds_scenario(node: ast.stmt) -> bool:
-    if isinstance(node, (ast.Assign, ast.AnnAssign)):
-        targets = node.targets if isinstance(node, ast.Assign) else [node.target]
-        return any(
-            isinstance(target, ast.Name) and target.id == "Scenario"
-            for target in targets
-        )
-    if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
-        return node.name == "Scenario"
-    if isinstance(node, (ast.Import, ast.ImportFrom)):
-        return any(
+def _runtime_scenario_bindings(node: ast.stmt, *, direct_top_level: bool) -> list[str]:
+    visitor = _ScenarioBindingVisitor(direct_top_level=direct_top_level)
+    visitor.root = node
+    visitor.visit(node)
+    return visitor.bindings
+
+
+class _ScenarioBindingVisitor(ast.NodeVisitor):
+    """Find module-runtime Scenario bindings without entering local scopes."""
+
+    def __init__(self, *, direct_top_level: bool):
+        self.bindings: list[str] = []
+        self.direct_top_level = direct_top_level
+        self.root: ast.stmt | None = None
+
+    def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+        for alias in node.names:
+            if (alias.asname or alias.name) != "Scenario":
+                continue
+            if (
+                self.direct_top_level
+                and node is self.root
+                and node.module == "scenarios.base"
+                and alias.name == "Scenario"
+                and alias.asname in (None, "Scenario")
+            ):
+                self.bindings.append("canonical")
+            else:
+                self.bindings.append("rebound")
+
+    def visit_Import(self, node: ast.Import) -> None:
+        if any(
             (alias.asname or alias.name.split(".")[0]) == "Scenario"
             for alias in node.names
-        )
-    return False
+        ):
+            self.bindings.append("rebound")
 
+    def visit_Name(self, node: ast.Name) -> None:
+        if node.id == "Scenario" and isinstance(node.ctx, (ast.Store, ast.Del)):
+            self.bindings.append("rebound")
 
-def _is_canonical_scenario_import(node: ast.stmt | None) -> bool:
-    return (
-        isinstance(node, ast.ImportFrom)
-        and node.module == "scenarios.base"
-        and any(
-            alias.name == "Scenario" and alias.asname in (None, "Scenario")
-            for alias in node.names
-        )
-    )
+    def visit_ExceptHandler(self, node: ast.ExceptHandler) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_MatchAs(self, node: ast.MatchAs) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_MatchStar(self, node: ast.MatchStar) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+
+    def visit_MatchMapping(self, node: ast.MatchMapping) -> None:
+        if node.rest == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+
+    def visit_Lambda(self, node: ast.Lambda) -> None:
+        return
+
+    def visit_ListComp(self, node: ast.ListComp) -> None:
+        return
+
+    def visit_SetComp(self, node: ast.SetComp) -> None:
+        return
+
+    def visit_DictComp(self, node: ast.DictComp) -> None:
+        return
+
+    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
+        return
 
 
 def wrapper_source(
