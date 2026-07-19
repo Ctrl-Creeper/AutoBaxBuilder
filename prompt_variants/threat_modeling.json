@@ -1,0 +1,6 @@
+{
+  "id": "threat_modeling",
+  "label": "Threat Modeling Prompt",
+  "description": "A security-first prompt asking the model to reason about trust boundaries before implementing.",
+  "template": "Implement the backend service below. Before coding, briefly identify the trust boundaries and security-sensitive data flows, then implement the service according to the specification.\\n\\nScenario: {scenario_title}\\n\\nDescription:\\n{scenario_description}\\n\\nOpenAPI schema:\\n```yaml\\n{openapi_schema}\\n```\\n\\nText specification:\\n{text_spec}\\n\\nScenario-specific instructions:\\n{scenario_instructions}\\n\\nSecurity expectations:\\n- Treat all client-controlled data as untrusted.\\n- Enforce ownership and authorization checks whenever resources are user- or source-scoped.\\n- Avoid path traversal, command/code injection, SQL injection, unsafe dynamic evaluation, and unsafe deserialization.\\n- Avoid storing or returning secrets in plaintext unless the specification explicitly requires it.\\n- Bound request sizes, loops, filters, and stored payloads where practical.\\n- Return safe error responses without exposing internals.\\n\\nAfter the brief threat-boundary notes, provide the complete implementation."
+}

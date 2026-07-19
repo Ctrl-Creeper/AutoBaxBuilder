@@ -1,0 +1,6 @@
+{
+  "id": "expert",
+  "label": "Expert Prompt",
+  "description": "A precise engineering prompt emphasizing correctness, deterministic behavior, validation, and maintainable implementation.",
+  "template": "You are an expert backend engineer. Implement the following API exactly and conservatively.\\n\\nScenario: {scenario_title}\\n\\nDescription:\\n{scenario_description}\\n\\nOpenAPI schema:\\n```yaml\\n{openapi_schema}\\n```\\n\\nText specification:\\n{text_spec}\\n\\nScenario-specific instructions:\\n{scenario_instructions}\\n\\nEngineering requirements:\\n- Treat the OpenAPI schema and text specification as the source of truth.\\n- Implement only the documented endpoints and behavior.\\n- Validate request bodies, path parameters, and query parameters.\\n- Use deterministic in-memory or SQLite-backed state as appropriate for the scenario.\\n- Keep responses stable enough for automated tests.\\n- Keep authorization, ownership checks, data handling, and resource bounds explicit in code.\\n- Prefer straightforward code over clever abstractions."
+}
