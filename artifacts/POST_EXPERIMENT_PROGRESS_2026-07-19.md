@@ -5,6 +5,28 @@ sample）实验之后的工作状态。它是独立记录：已完成的结构�
 的候选和未开始的运行时工作严格分开，不把设计、静态审计或 LLM 候选写成
 已证实的 benchmark 结果。
 
+## 归档与可复现边界
+
+本文是**当前工作区快照**，不是自足的可复现实验包。提交 `65753f3`
+只包含本文档；许多历史实验/audit artifact 位于被 Git 忽略的 `artifacts/`，
+而 `src/llm_audit.py` 当前是未跟踪文件。它们均不在该提交中。因此文内路径
+和链接可在本工作区解析，但在从 `65753f3`（或本归档的后续提交）进行干净
+检出时不会自动存在。任何复核必须先取得下表所列的同一工作区快照，或以
+SHA-256 核验另行提供的证据副本。
+
+下表的 SHA-256 从当前文件计算；不包含 `.env`、API key 或其他凭据。`65753f3`
+列描述该文件是否出现在该提交的 Git tree，不表示该文件的内容已被本归档验证。
+
+| 快照证据文件 | SHA-256（当前工作区） | Git 状态 | `65753f3` tree |
+|---|---|---|---|
+| `artifacts/eval_runs_factorial_repeats3/FACTORIAL_REPEATS3_SUMMARY.json` | `be968b523d6332d7e950e66617cac6c9aebc87099e8cae60a744c50611150a7e` | ignored | absent |
+| `artifacts/SECURITY_SUITE_V1_1_AUDIT.md` | `02f1165b2798f53901d82d2c45935312a0d99c4de3f609a93e46eeb586372395` | ignored | absent |
+| `artifacts/REFERENCE_CALIBRATION_V1_1_REPORT.md` | `cfd2cc8b7126a160b10eb2b8db7acad55f7f5a44e756dcac0f45c3de54900847` | ignored | absent |
+| `artifacts/llm_audit_live_initial_20260718_deduplicated/llm_audit_report.json` | `0e0c88382a18f5019972257f1d815720914bc185a8783e4279ec1c46869f93b7` | ignored | absent |
+| `src/llm_audit.py` | `f6bff517e80987b643505a31c102cae61517950e66221afb6fd87c8a95321e6a` | untracked | absent |
+| `seeds/beginner/json_settings_import_natural.json` | `012a6dbf8712b275083f557dd2a28d4887acf189a54eb9dd220af12a6196cd92` | tracked | present |
+| `seeds/complex/account_recovery_natural.json` | `57d928498c2402a4fe1d78e85a5d362fcc46e3b7290a15d7a0d2662128c8cb21` | tracked | present |
+
 ## 实验基线与结论边界
 
 原始 factorial 报告记录了 120 个 sample：63 passed、45 security_failed、
@@ -21,17 +43,17 @@ sample）实验之后的工作状态。它是独立记录：已完成的结构�
 
 ## 状态总览
 
-| 状态 | 工作项 | 当前事实与证据 |
-|---|---|---|
-| 已完成 | 实验报告和限制汇总 | 120-sample 结果、解释边界和局限已归档于 `artifacts/FACTORIAL_EXPERIMENT_REPORT.md`。 |
-| 已完成 | v1.1 strict-oracle 拆分的静态审计 | 24 个 wrapper 绑定 72 个 security-test binding，静态审计为 0 failures；见 `artifacts/SECURITY_SUITE_V1_1_AUDIT.md`、`artifacts/factorial_prompt_manifest_v1_1.json`。 |
-| 进行中 | v1.1 参考实现校准 | 18 个 strict probe 已登记，但 secure/vulnerable fixture 均未实施或执行，18/18 为 pending；见 `artifacts/REFERENCE_CALIBRATION_V1_1.md`、`artifacts/REFERENCE_CALIBRATION_V1_1_REPORT.md`。 |
-| 已完成 | 可选 LLM 候选审计的静态防护与首轮小样本运行 | 审计是后处理，不能改变确定性分数；已形成 5-sample、2-group 的候选队列；见 `src/llm_audit.py`、`artifacts/llm_audit_live_initial_20260718_deduplicated/llm_audit_report.md`。 |
-| 进行中 | 人工 triage | 指标管道和模板已存在，但尚未录入人工结论，所有计数均为 0；见 `src/llm_audit_triage.py`、`artifacts/LLM_AUDIT_TRIAGE_SUMMARY.md`。 |
-| 已完成 | OrderManagement v1.2 身份/归属契约设计与生成验证 | 版本化新场景明确 bearer identity、ownerId 和双用户探针，保留 v1.0/v1.1 证据不变；见 `seeds/complex/order_management_authorized_v1_2.json`、`scripts/generate_order_management_v1_2.py`。 |
-| 已完成 | taxonomy expansion seed 与验证器加固 | v1_2 批次有 8 个 seed；发现和验证逻辑已覆盖输入与路径安全；见 `src/taxonomy_expansion.py`、`tests/test_taxonomy_expansion.py`。 |
-| 进行中 | 可恢复扩展 runner | `scripts/run_taxonomy_expansion.py` 已有实现和测试，但当前仍在审阅，不能视为最终流水线。 |
-| 待完成 | wrapper、API 生成、评测与参考校准运行 | 新 8 个场景尚未生成对应 API/测试/exploit artifact、72 个 wrapper 或 216 个 sample；参考 fixture 亦未完成。 |
+| 状态   | 工作项                                           | 当前事实与证据                                                                                                                                                                             |
+| ------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 已完成 | 实验报告和限制汇总                               | 120-sample 结果、解释边界和局限已归档于 `artifacts/FACTORIAL_EXPERIMENT_REPORT.md`。                                                                                                       |
+| 已完成 | v1.1 strict-oracle 拆分的静态审计                | 24 个 wrapper 绑定 72 个 security-test binding，静态审计为 0 failures；见 `artifacts/SECURITY_SUITE_V1_1_AUDIT.md`、`artifacts/factorial_prompt_manifest_v1_1.json`。                      |
+| 进行中 | v1.1 参考实现校准                                | 18 个 strict probe 已登记，但 secure/vulnerable fixture 均未实施或执行，18/18 为 pending；见 `artifacts/REFERENCE_CALIBRATION_V1_1.md`、`artifacts/REFERENCE_CALIBRATION_V1_1_REPORT.md`。 |
+| 已完成 | 可选 LLM 候选审计的静态防护与首轮小样本运行      | 审计是后处理，不能改变确定性分数；已形成 5-sample、2-group 的候选队列；见 `src/llm_audit.py`、`artifacts/llm_audit_live_initial_20260718_deduplicated/llm_audit_report.md`。               |
+| 进行中 | 人工 triage                                      | 指标管道和模板已存在，但尚未录入人工结论，所有计数均为 0；见 `src/llm_audit_triage.py`、`artifacts/LLM_AUDIT_TRIAGE_SUMMARY.md`。                                                          |
+| 已完成 | OrderManagement v1.2 身份/归属契约设计与生成验证 | 版本化新场景明确 bearer identity、ownerId 和双用户探针，保留 v1.0/v1.1 证据不变；见 `seeds/complex/order_management_authorized_v1_2.json`、`scripts/generate_order_management_v1_2.py`。   |
+| 已完成 | taxonomy expansion seed 与验证器加固             | v1_2 批次有 8 个 seed；发现和验证逻辑已覆盖输入与路径安全；见 `src/taxonomy_expansion.py`、`tests/test_taxonomy_expansion.py`。                                                            |
+| 进行中 | 可恢复扩展 runner                                | `scripts/run_taxonomy_expansion.py` 已有实现和测试，但当前仍在审阅，不能视为最终流水线。                                                                                                   |
+| 待完成 | wrapper、API 生成、评测与参考校准运行            | 新 8 个场景尚未生成对应 API/测试/exploit artifact、72 个 wrapper 或 216 个 sample；参考 fixture 亦未完成。                                                                                 |
 
 ## v1.1 严格 oracle 与校准登记
 
@@ -82,7 +104,9 @@ JSON。它不执行生成代码，也不会写回或修改 BaxBench 的确定性
 审计报告保存 packet/code/prompt hash 和 endpoint host；非 dry-run 的外部调用
 必须显式给出 `--allow-code-upload`，因为生成源代码会发送给配置的外部端点。
 
-下面是来自实现的简化示例，展示两个关键边界：
+下面是来自当前工作区 `src/llm_audit.py` 的简化快照片段，展示两个关键边界。
+它只作为上述 SHA-256 `f6bff517e80987b643505a31c102cae61517950e66221afb6fd87c8a95321e6a`
+所绑定的快照证据；该源文件并未包含在 `65753f3`，不能由干净检出独立复现：
 
 ```python
 # src/llm_audit.py（简化）
@@ -96,9 +120,9 @@ require_code_upload_confirmation(
 首轮 live audit 在 2026-07-18 选取 5 个确定性通过样本，0 audit errors，聚合为
 2 个候选组。两组均是 **未确认的漏测候选**，不改变原实验的分数：
 
-| 候选组 | 覆盖样本 | 状态 |
-|---|---:|---|
-| CWE-522：`POST /proxy` 的非敏感命名 header 可能带着 API key 片段进入日志，再由 `GET /logs` 暴露 | 4 个 `ComplexAPIMockProxy` sample | 高置信候选，待人工复核和确定性测试。 |
+| 候选组                                                                                          |                          覆盖样本 | 状态                                       |
+| ----------------------------------------------------------------------------------------------- | --------------------------------: | ------------------------------------------ |
+| CWE-522：`POST /proxy` 的非敏感命名 header 可能带着 API key 片段进入日志，再由 `GET /logs` 暴露 | 4 个 `ComplexAPIMockProxy` sample | 高置信候选，待人工复核和确定性测试。       |
 | CWE-863 / CWE-20：`allowedPaths` 前缀检查可能接受 `/allowed/../forbidden` 这类 dot-segment 路径 | 1 个 `ComplexAPIMockProxy` sample | 中置信候选，待验证路径归一化和预期状态码。 |
 
 **证据：** `artifacts/LLM_AUDIT_PROTOCOL.md`、
@@ -137,19 +161,19 @@ deterministic-test yield 因而暂为 0.0，表示尚无人工处理记录，而
 只有在 base artifact 和测试完成后，才可生成其余 prompt wrapper 并保持单变量
 比较。
 
-| 新基础场景 | 层级 / 领域 | 新增目标 CWE |
-|---|---|---|
-| `BeginnerJSONSettingsImport` | beginner / file_processing | CWE-502, CWE-915, CWE-20, CWE-400 |
-| `BeginnerSessionProfile` | beginner / web_app | CWE-352, CWE-601, CWE-384, CWE-613, CWE-20 |
-| `BeginnerURLPreviewFetcher` | beginner / api_integration | CWE-918, CWE-20, CWE-400 |
-| `BeginnerZipArchiveExtractor` | beginner / file_processing | CWE-22, CWE-409, CWE-434, CWE-20 |
-| `ComplexAccountRecovery` | complex / web_app | CWE-640, CWE-294, CWE-204, CWE-613, CWE-522 |
-| `ComplexInventoryCheckout` | complex / web_app | CWE-362, CWE-863, CWE-20, CWE-400 |
-| `ComplexMultiTenantDocumentExport` | complex / database | CWE-284, CWE-863, CWE-639, CWE-89, CWE-20 |
-| `ComplexSignedWebhookProcessor` | complex / api_integration | CWE-345, CWE-294, CWE-20, CWE-400 |
+| 新基础场景                         | 层级 / 领域                | 新增目标 CWE                                |
+| ---------------------------------- | -------------------------- | ------------------------------------------- |
+| `BeginnerJSONSettingsImport`       | beginner / file_processing | CWE-502, CWE-915, CWE-20, CWE-400           |
+| `BeginnerSessionProfile`           | beginner / web_app         | CWE-352, CWE-601, CWE-384, CWE-613, CWE-20  |
+| `BeginnerURLPreviewFetcher`        | beginner / api_integration | CWE-918, CWE-20, CWE-400                    |
+| `BeginnerZipArchiveExtractor`      | beginner / file_processing | CWE-22, CWE-409, CWE-434, CWE-20            |
+| `ComplexAccountRecovery`           | complex / web_app          | CWE-640, CWE-294, CWE-204, CWE-613, CWE-522 |
+| `ComplexInventoryCheckout`         | complex / web_app          | CWE-362, CWE-863, CWE-20, CWE-400           |
+| `ComplexMultiTenantDocumentExport` | complex / database         | CWE-284, CWE-863, CWE-639, CWE-89, CWE-20   |
+| `ComplexSignedWebhookProcessor`    | complex / api_integration  | CWE-345, CWE-294, CWE-20, CWE-400           |
 
-相对原 taxonomy 的 CWE 增量为：CWE-204、294、345、352、362、384、409、502、601、
-613、639、640、915、918。
+相对原 taxonomy 的 CWE 增量为：CWE-204、CWE-294、CWE-345、CWE-352、CWE-362、
+CWE-384、CWE-409、CWE-502、CWE-601、CWE-613、CWE-639、CWE-640、CWE-915、CWE-918。
 
 ### 结构化 `oracle_contract` 示例
 
