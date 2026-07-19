@@ -322,6 +322,22 @@ class TaxonomyExpansionTests(unittest.TestCase):
 
         self.assertIn("duplicate title 'ComplexInventoryCheckout'", report["errors"])
 
+    def test_title_must_be_a_python_identifier(self):
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            seeds_dir = self.copied_seeds_dir(temporary_directory)
+            path, seed = self.read_seed(
+                seeds_dir, "beginner", "json_settings_import_natural.json"
+            )
+            seed["title"] = "unsafe/title"
+            self.write_seed(path, seed)
+            report = validate_expansion_seeds(
+                discover_expansion_seeds(seeds_dir, BATCH), BATCH
+            )
+
+        self.assertIn(
+            f"{path}: title must match ^[A-Za-z_][A-Za-z0-9_]*$", report["errors"]
+        )
+
     def test_duplicate_description_is_reported(self):
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.copied_seeds_dir(temporary_directory)

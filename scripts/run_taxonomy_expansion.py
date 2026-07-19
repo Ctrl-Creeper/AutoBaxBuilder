@@ -2,6 +2,7 @@
 """Run a validated taxonomy expansion batch with resumable per-seed stages."""
 
 import argparse
+import ast
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 import json
@@ -13,6 +14,8 @@ import sys
 import tempfile
 import time
 from typing import Any, Callable
+
+import fcntl
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -95,11 +98,49 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     return parser.parse_args(argv)
 
 
+def _is_within(path: Path, parent: Path) -> bool:
+    try:
+        path.relative_to(parent)
+        return True
+    except ValueError:
+        return False
+
+
+def _artifact_directory(title: str, artifacts_dir: Path) -> Path:
+    root = artifacts_dir.resolve()
+    directory = (root / title).resolve()
+    if not _is_within(directory, root):
+        raise ValueError("artifact path escapes artifacts directory")
+    return directory
+
+
+def _valid_scenario(path: Path, title: str) -> bool:
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("title") == title
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, AttributeError):
+        return False
+
+
+def _valid_python_artifact(path: Path) -> bool:
+    try:
+        source = path.read_text(encoding="utf-8")
+        if not source.strip():
+            return False
+        tree = ast.parse(source, filename=str(path))
+    except (OSError, UnicodeDecodeError, SyntaxError):
+        return False
+    return any(
+        isinstance(node, ast.Assign)
+        and any(isinstance(target, ast.Name) and target.id == "SCENARIO" for target in node.targets)
+        for node in tree.body
+    )
+
+
 def _artifact_status(title: str, artifacts_dir: Path) -> list[bool]:
-    directory = artifacts_dir / title
-    has_scenario = (directory / f"{title}.json").exists()
-    has_tests = any(directory.glob(f"{title}_iu*.py"))
-    has_exploits = (directory / f"{title}_iw0.py").exists()
+    directory = _artifact_directory(title, artifacts_dir)
+    has_scenario = _valid_scenario(directory / f"{title}.json", title)
+    has_tests = any(_valid_python_artifact(path) for path in directory.glob(f"{title}_iu*.py"))
+    has_exploits = _valid_python_artifact(directory / f"{title}_iw0.py")
     return [
         has_scenario or has_tests or has_exploits,
         has_tests or has_exploits,
@@ -117,6 +158,13 @@ def _stage_record(name: str, status: str, argv: list[str]) -> dict[str, Any]:
     }
 
 
+def _failed_seed(title: str, seed_file: Path, commands: list[list[str]] | None = None):
+    commands = commands or [[], [], []]
+    stages = [_stage_record(name, "skipped", argv) for name, argv in zip(STAGE_NAMES, commands)]
+    stages[0]["status"] = "failed"
+    return {"title": title, "path": str(seed_file), "stages": stages}
+
+
 def run_seed(
     *,
     seed_file: Path,
@@ -129,24 +177,31 @@ def run_seed(
     monotonic: Callable[[], float] = time.monotonic,
 ) -> dict[str, Any]:
     """Run one seed sequentially, preserving later artifacts as completed work."""
-    commands = commands_for_seed(
-        seed_file, artifacts_dir, difficulty, python_executable
-    )
+    try:
+        commands = commands_for_seed(seed_file, artifacts_dir, difficulty, python_executable)
+    except Exception:
+        return _failed_seed(title, seed_file)
     stages: list[dict[str, Any]] = []
     stopped = False
 
     for index, (name, argv) in enumerate(zip(STAGE_NAMES, commands)):
-        if stopped or _artifact_status(title, artifacts_dir)[index]:
+        try:
+            completed = _artifact_status(title, artifacts_dir)[index]
+        except Exception:
+            stages.append(_stage_record(name, "failed", argv))
+            stopped = True
+            continue
+        if stopped or completed:
             stages.append(_stage_record(name, "skipped", argv))
             continue
         if dry_run:
             stages.append(_stage_record(name, "planned", argv))
             continue
 
-        log_path = artifacts_dir / title / "taxonomy_expansion.log"
-        log_path.parent.mkdir(parents=True, exist_ok=True)
         started = monotonic()
         try:
+            log_path = _artifact_directory(title, artifacts_dir) / "taxonomy_expansion.log"
+            log_path.parent.mkdir(parents=True, exist_ok=True)
             with log_path.open("a", encoding="utf-8") as log_file:
                 result = runner(
                     argv,
@@ -156,7 +211,7 @@ def run_seed(
                     cwd=REPOSITORY_ROOT,
                 )
             exit_code = getattr(result, "returncode", 1)
-        except OSError:
+        except Exception:
             exit_code = None
         elapsed = round(monotonic() - started, 6)
         status = "passed" if exit_code == 0 else "failed"
@@ -198,7 +253,9 @@ def _aggregate(seeds: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def _write_status_atomically(status_path: Path, report: dict[str, Any]) -> None:
+def _write_status_atomically(
+    status_path: Path, report: dict[str, Any], fsync: Callable[[int], Any] = os.fsync
+) -> None:
     status_path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(
         mode="w",
@@ -210,8 +267,26 @@ def _write_status_atomically(status_path: Path, report: dict[str, Any]) -> None:
     ) as temporary_file:
         json.dump(report, temporary_file, indent=2, sort_keys=True)
         temporary_file.write("\n")
+        temporary_file.flush()
+        fsync(temporary_file.fileno())
         temporary_path = Path(temporary_file.name)
     os.replace(temporary_path, status_path)
+    directory_fd = os.open(status_path.parent, os.O_RDONLY)
+    try:
+        fsync(directory_fd)
+    finally:
+        os.close(directory_fd)
+
+
+def _acquire_lock(status_path: Path):
+    status_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_file = open(f"{status_path}.lock", "a", encoding="utf-8")
+    try:
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except Exception:
+        lock_file.close()
+        raise
+    return lock_file
 
 
 def run_batch(
@@ -225,49 +300,65 @@ def run_batch(
     seeds_dir = _repository_path(args.seeds_dir)
     artifacts_dir = _repository_path(args.artifacts_dir)
     status_path = _repository_path(args.status_path)
-    seeds = discover_expansion_seeds(seeds_dir, args.batch)
-    validation = validate_expansion_seeds(seeds, args.batch)
-    if validation["errors"]:
-        for error in validation["errors"]:
-            print(error, file=sys.stderr)
-        return 2
+    lock_file = None
+    if not args.dry_run:
+        try:
+            lock_file = _acquire_lock(status_path)
+        except OSError:
+            return 3
+    try:
+        seeds = discover_expansion_seeds(seeds_dir, args.batch)
+        validation = validate_expansion_seeds(seeds, args.batch)
+        if validation["errors"]:
+            for error in validation["errors"]:
+                print(error, file=sys.stderr)
+            return 2
 
-    ordered_seeds = sorted(seeds, key=lambda item: str(item[0]))
-    started_at = now()
-    with ThreadPoolExecutor(max_workers=args.parallel) as executor:
-        futures = [
-            executor.submit(
-                run_seed,
-                seed_file=seed_file,
-                title=seed["title"],
-                artifacts_dir=artifacts_dir,
-                difficulty=args.difficulty,
-                python_executable=args.python_executable,
-                dry_run=args.dry_run,
-                runner=command_runner,
-                monotonic=monotonic,
-            )
-            for seed_file, seed in ordered_seeds
-        ]
-        results = [future.result() for future in futures]
+        ordered_seeds = sorted(seeds, key=lambda item: str(item[0]))
+        started_at = now()
+        with ThreadPoolExecutor(max_workers=args.parallel) as executor:
+            futures = [
+                executor.submit(
+                    run_seed,
+                    seed_file=seed_file,
+                    title=seed["title"],
+                    artifacts_dir=artifacts_dir,
+                    difficulty=args.difficulty,
+                    python_executable=args.python_executable,
+                    dry_run=args.dry_run,
+                    runner=command_runner,
+                    monotonic=monotonic,
+                )
+                for seed_file, seed in ordered_seeds
+            ]
+            results = []
+            for future, (seed_file, seed) in zip(futures, ordered_seeds):
+                try:
+                    results.append(future.result())
+                except Exception:
+                    results.append(_failed_seed(seed["title"], seed_file))
 
-    if args.dry_run:
-        for seed in results:
-            for stage in seed["stages"]:
-                if stage["status"] == "planned":
-                    print(shlex.join(stage["argv"]))
+        if args.dry_run:
+            for seed in results:
+                for stage in seed["stages"]:
+                    if stage["status"] == "planned":
+                        print(shlex.join(stage["argv"]))
 
-    report = {
-        "schema_version": STATUS_SCHEMA_VERSION,
-        "batch": args.batch,
-        "dry_run": args.dry_run,
-        "started_at": started_at,
-        "finished_at": now(),
-        "seeds": results,
-        "aggregate": _aggregate(results),
-    }
-    _write_status_atomically(status_path, report)
-    return 1 if report["aggregate"]["failed_seeds"] else 0
+        report = {
+            "schema_version": STATUS_SCHEMA_VERSION,
+            "batch": args.batch,
+            "dry_run": args.dry_run,
+            "started_at": started_at,
+            "finished_at": now(),
+            "seeds": results,
+            "aggregate": _aggregate(results),
+        }
+        _write_status_atomically(status_path, report)
+        return 1 if report["aggregate"]["failed_seeds"] else 0
+    finally:
+        if lock_file is not None:
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+            lock_file.close()
 
 
 def main(argv: list[str] | None = None) -> int:
