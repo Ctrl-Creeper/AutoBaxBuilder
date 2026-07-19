@@ -5,6 +5,29 @@ sample）实验之后的工作状态。它是独立记录：已完成的结构�
 的候选和未开始的运行时工作严格分开，不把设计、静态审计或 LLM 候选写成
 已证实的 benchmark 结果。
 
+## 一句话版
+
+这轮 120 个样本的实验已经完成，报告现在把结果和“通过测试不等于绝对安全”
+的限制放在一起说明。之后补上了更严格的 v1.1 测试划分、待校准清单和可选的
+LLM 复核流程，但这些工作不会倒改原实验分数。首轮 LLM 复核只提出了两个待查
+线索，尚未确认任何新漏洞。下一步仍是生成和评测新增场景、运行参考实现校准，
+而不是把设计稿或候选直接当作结论。
+
+## 先看懂这些词
+
+| 术语 | 本文中的含义 |
+|---|---|
+| 场景（scenario） | 一道待生成和测试的 API/应用任务，包含需求、接口和测试边界。 |
+| seed | 场景的 JSON 起点，先写清任务类型、目标 CWE 与可验证约束，再交给流程扩展。 |
+| prompt wrapper | 同一基础场景的提示语版本；接口和测试不变，只改变给模型的说明方式。 |
+| CWE | 通用弱点编号，例如 CWE-863 表示授权判断错误；它是问题类别，不是单个漏洞实例。 |
+| security test | 用确定性请求检查某一安全性质的测试，例如跨用户读取订单应被拒绝。 |
+| oracle | 判断测试结果的明确规则，例如“应该返回 403 或 404”；规则越清楚，结论越可靠。 |
+| strict / exploratory | strict 是规格支持且应纳入正式分数的检查；exploratory 是有参考价值、但规格或阈值不够稳定的探索信号。 |
+| reference fixture / calibration | 一对已知安全和已知脆弱的参考实现，用来检验测试能否放过安全实现、抓住预期弱点。 |
+| LLM candidate / confirmed vulnerability | candidate 是 LLM 提出的待查线索；只有人工复核和确定性测试支持后，才可能成为确认的漏洞结论。 |
+| artifact | 流程产生的报告、JSON、测试结果或生成代码等证据文件；它不一定被 Git 跟踪。 |
+
 ## 归档与可复现边界
 
 本文是**当前工作区快照**，不是自足的可复现实验包。提交 `65753f3`
@@ -37,6 +60,9 @@ SHA-256 核验另行提供的证据副本。
 实验后已把结果、场景级观察、CWE 含义与限制集中保存在报告中。后续任何
 结论仍应以确定性测试、参考实现校准和人工复核为准。
 
+通俗地说：实验给出了“在这套题和这批测试下”的表现，不能把它理解成对模型或
+任一生成程序的全面安全认证。
+
 **证据：** `artifacts/FACTORIAL_EXPERIMENT_REPORT.md`、
 `artifacts/eval_runs_factorial_repeats3/FACTORIAL_REPEATS3_SUMMARY.md`、
 `artifacts/QUALITY_NOTES.md`。
@@ -62,9 +88,15 @@ v1.1 将每个 wrapper 的安全套件显式拆为 `strict_base_tests` 与
 bounded-load 试验排除在 formal strict score 外。`SECURITY_SUITE_V1_1_AUDIT.md`
 确认的是绑定完整性，不是行为校准。
 
+通俗地说：strict 部分像写进评分标准的必答题；exploratory 部分像值得记录的
+压力测试，不能因为一次阈值触发就直接改变正式成绩。
+
 参考校准登记册为每个严格探针要求两类证据：安全参考实现不得报 CWE，匹配的
 故意脆弱实现必须报预期 CWE。当前报告为 total 18、calibrated 0、pending 18；
 因此 v1.1 不能被描述为已校准的正式 benchmark 结果。
+
+通俗地说：校准是在先拿已知答案检查“报警器”是否准，避免它把安全实现误报，
+或对明知的弱点漏报；目前这 18 个报警器还没有完成这一步。
 
 ## 端点、模型和环境变量
 
@@ -100,9 +132,15 @@ timeout、transport-error 处理和 memory sampling 的 graceful skip。对测�
 元数据、测试结果和有限长度的生成代码，构造审计包，并要求审计模型返回受限的
 JSON。它不执行生成代码，也不会写回或修改 BaxBench 的确定性状态。
 
+通俗地说：它更像给已通过样本加的一位代码审阅者，只负责提出“这里也许值得补
+测试”，没有权限改成绩单。
+
 隐私和可复现性约束已落地：常见 secret assignment 与 Bearer token 会被脱敏；
 审计报告保存 packet/code/prompt hash 和 endpoint host；非 dry-run 的外部调用
 必须显式给出 `--allow-code-upload`，因为生成源代码会发送给配置的外部端点。
+
+通俗地说：真正发送代码前必须明确同意；报告保留可比对的指纹和端点主机，而不
+把密钥写进报告。
 
 下面是来自当前工作区 `src/llm_audit.py` 的简化快照片段，展示两个关键边界。
 它只作为上述 SHA-256 `f6bff517e80987b643505a31c102cae61517950e66221afb6fd87c8a95321e6a`
@@ -124,6 +162,9 @@ require_code_upload_confirmation(
 | ----------------------------------------------------------------------------------------------- | --------------------------------: | ------------------------------------------ |
 | CWE-522：`POST /proxy` 的非敏感命名 header 可能带着 API key 片段进入日志，再由 `GET /logs` 暴露 | 4 个 `ComplexAPIMockProxy` sample | 高置信候选，待人工复核和确定性测试。       |
 | CWE-863 / CWE-20：`allowedPaths` 前缀检查可能接受 `/allowed/../forbidden` 这类 dot-segment 路径 | 1 个 `ComplexAPIMockProxy` sample | 中置信候选，待验证路径归一化和预期状态码。 |
+
+通俗地说：这两项是“值得复查的地址”，不是已经定案的漏洞；下一步需要人工确认
+证据，再补上能稳定复现的测试。
 
 **证据：** `artifacts/LLM_AUDIT_PROTOCOL.md`、
 `artifacts/llm_audit_live_initial_20260718_deduplicated/llm_audit_report.md`、
@@ -156,6 +197,9 @@ deterministic-test yield 因而暂为 0.0，表示尚无人工处理记录，而
 设计目标是从 10 个 base 扩到 18 个 base；以 4 个 prompt wrapper 计算，wrapper
 由 40 扩至 72；每 wrapper 3 次 repeat 时，计划 sample 数由 120 扩至 216。这里的
 18/72/216 是待执行的设计容量，不是已生成或已评测的产物。
+
+通俗地说：这是扩容后的排期和容量，不是已经跑出的新结果；好比把 8 道新题放进
+题库设计，尚未开始出题、答题和评分。
 
 `v1_2` 批次固定为 4 个 beginner + 4 个 complex，且均为 natural 基础 seed；将来
 只有在 base artifact 和测试完成后，才可生成其余 prompt wrapper 并保持单变量
@@ -206,6 +250,9 @@ complex seed 的账号恢复契约则将枚举和 token 生命周期写成确定
 }
 ```
 
+通俗地说：`oracle_contract` 把“要安全”改写为可检查的验收条件，例如最大文件
+大小、token 是否一次性和是否撤销旧会话，测试不必猜测需求作者的意图。
+
 ### validator 加固
 
 `discover_expansion_seeds()` 采用稳定的相对路径排序，并将 malformed JSON、
@@ -214,6 +261,9 @@ error；它还拒绝解析后逃出 `seeds_dir` 的 symlink 和 resolution loop�
 `validate_expansion_seeds()` 检查必填字段、层级/批次/自然 prompt 约束、重复
 title/description/path、CWE 格式及支持性，并以显式栈验证 `oracle_contract` 的
 JSON 兼容性、循环和最大深度（64）。
+
+通俗地说：验证器像入口检查，先拦下损坏 JSON、越界的符号链接或层级过深的
+数据，避免把不可信的场景定义送进后续昂贵的生成流程。
 
 实现中的调用关系可概括为：
 
@@ -228,6 +278,9 @@ if validation["errors"]:
 可恢复 runner 已支持按 seed、按 stages（scenarios/tests/exploits）跳过已有
 artifact、并行度限制、每 seed 失败隔离和原子状态报告；但它目前仍在审阅，不能
 据此声称已完成扩展运行。其 dry-run 入口为：
+
+通俗地说：它的目标是长任务中断后能从已有产物继续，而不是每次从头开始；不过
+在审阅完成并实际运行前，它仍只是待验证的执行工具。
 
 ```bash
 PYTHONPATH=src python3 scripts/run_taxonomy_expansion.py \
