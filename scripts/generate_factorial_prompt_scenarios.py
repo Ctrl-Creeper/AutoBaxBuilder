@@ -279,18 +279,7 @@ class _ScenarioBindingVisitor(ast.NodeVisitor):
         for keyword in node.keywords:
             self.visit(keyword.value)
         self._visit_type_params(node)
-        if _class_declares_global_scenario(node):
-            for statement in node.body:
-                for binding in _runtime_scenario_bindings(
-                    statement, direct_top_level=False
-                ):
-                    self.bindings.append(binding)
-        else:
-            for nested_class in _nested_class_definitions(node):
-                for binding in _runtime_scenario_bindings(
-                    nested_class, direct_top_level=False
-                ):
-                    self.bindings.append(binding)
+        self.bindings.extend(_class_scenario_bindings(node))
 
     def visit_Lambda(self, node: ast.Lambda) -> None:
         self._visit_arguments(node.args)
@@ -358,6 +347,156 @@ def _class_declares_global_scenario(node: ast.ClassDef) -> bool:
     return visitor.declared
 
 
+def _class_scenario_bindings(node: ast.ClassDef) -> list[str]:
+    visitor = _ClassScopeScenarioVisitor(
+        global_scenario=_class_declares_global_scenario(node)
+    )
+    for statement in node.body:
+        visitor.visit(statement)
+    return visitor.bindings
+
+
+class _ClassScopeScenarioVisitor(ast.NodeVisitor):
+    """Inspect class execution without treating class-local names as module names."""
+
+    def __init__(self, *, global_scenario: bool):
+        self.bindings: list[str] = []
+        self.global_scenario = global_scenario
+
+    def visit_ImportFrom(self, node: ast.ImportFrom) -> None:
+        if self.global_scenario and any(
+            (alias.asname or alias.name) == "Scenario" for alias in node.names
+        ):
+            self.bindings.append("rebound")
+
+    def visit_Import(self, node: ast.Import) -> None:
+        if self.global_scenario and any(
+            (alias.asname or alias.name.split(".")[0]) == "Scenario"
+            for alias in node.names
+        ):
+            self.bindings.append("rebound")
+
+    def visit_Name(self, node: ast.Name) -> None:
+        if (
+            self.global_scenario
+            and node.id == "Scenario"
+            and isinstance(node.ctx, (ast.Store, ast.Del))
+        ):
+            self.bindings.append("rebound")
+
+    def visit_ExceptHandler(self, node: ast.ExceptHandler) -> None:
+        if self.global_scenario and node.name == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_MatchAs(self, node: ast.MatchAs) -> None:
+        if self.global_scenario and node.name == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_MatchStar(self, node: ast.MatchStar) -> None:
+        if self.global_scenario and node.name == "Scenario":
+            self.bindings.append("rebound")
+
+    def visit_MatchMapping(self, node: ast.MatchMapping) -> None:
+        if self.global_scenario and node.rest == "Scenario":
+            self.bindings.append("rebound")
+        self.generic_visit(node)
+
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+        if not self.global_scenario:
+            return
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+        self._visit_function_header(node)
+
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
+        if not self.global_scenario:
+            return
+        if node.name == "Scenario":
+            self.bindings.append("rebound")
+        self._visit_function_header(node)
+
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        if self.global_scenario:
+            if node.name == "Scenario":
+                self.bindings.append("rebound")
+            self._visit_class_header(node)
+        self.bindings.extend(_class_scenario_bindings(node))
+
+    def visit_Lambda(self, node: ast.Lambda) -> None:
+        if self.global_scenario:
+            self._visit_arguments(node.args)
+
+    def visit_ListComp(self, node: ast.ListComp) -> None:
+        if self.global_scenario:
+            self._visit_comprehension(node.generators)
+            self.visit(node.elt)
+
+    def visit_SetComp(self, node: ast.SetComp) -> None:
+        if self.global_scenario:
+            self._visit_comprehension(node.generators)
+            self.visit(node.elt)
+
+    def visit_DictComp(self, node: ast.DictComp) -> None:
+        if self.global_scenario:
+            self._visit_comprehension(node.generators)
+            self.visit(node.key)
+            self.visit(node.value)
+
+    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
+        if self.global_scenario:
+            self._visit_comprehension(node.generators)
+            self.visit(node.elt)
+
+    def _visit_class_header(self, node: ast.ClassDef) -> None:
+        for decorator in node.decorator_list:
+            self.visit(decorator)
+        for base in node.bases:
+            self.visit(base)
+        for keyword in node.keywords:
+            self.visit(keyword.value)
+        self._visit_type_params(node)
+
+    def _visit_function_header(
+        self, node: ast.FunctionDef | ast.AsyncFunctionDef
+    ) -> None:
+        for decorator in node.decorator_list:
+            self.visit(decorator)
+        self._visit_arguments(node.args)
+        if node.returns is not None:
+            self.visit(node.returns)
+        self._visit_type_params(node)
+
+    def _visit_arguments(self, arguments: ast.arguments) -> None:
+        for argument in (
+            list(arguments.posonlyargs)
+            + list(arguments.args)
+            + list(arguments.kwonlyargs)
+            + ([arguments.vararg] if arguments.vararg else [])
+            + ([arguments.kwarg] if arguments.kwarg else [])
+        ):
+            if argument.annotation is not None:
+                self.visit(argument.annotation)
+        for default in list(arguments.defaults) + [
+            default for default in arguments.kw_defaults if default is not None
+        ]:
+            self.visit(default)
+
+    def _visit_type_params(self, node: ast.AST) -> None:
+        for parameter in getattr(node, "type_params", []):
+            for attribute in ("bound", "default_value"):
+                value = getattr(parameter, attribute, None)
+                if value is not None:
+                    self.visit(value)
+
+    def _visit_comprehension(self, generators: list[ast.comprehension]) -> None:
+        for generator in generators:
+            self.visit(generator.iter)
+            for condition in generator.ifs:
+                self.visit(condition)
+
+
 class _ClassGlobalScenarioVisitor(ast.NodeVisitor):
     def __init__(self):
         self.declared = False
@@ -373,42 +512,6 @@ class _ClassGlobalScenarioVisitor(ast.NodeVisitor):
         return
 
     def visit_ClassDef(self, node: ast.ClassDef) -> None:
-        return
-
-    def visit_Lambda(self, node: ast.Lambda) -> None:
-        return
-
-    def visit_ListComp(self, node: ast.ListComp) -> None:
-        return
-
-    def visit_SetComp(self, node: ast.SetComp) -> None:
-        return
-
-    def visit_DictComp(self, node: ast.DictComp) -> None:
-        return
-
-    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
-        return
-
-
-def _nested_class_definitions(node: ast.ClassDef) -> list[ast.ClassDef]:
-    visitor = _NestedClassDefinitionVisitor()
-    for statement in node.body:
-        visitor.visit(statement)
-    return visitor.classes
-
-
-class _NestedClassDefinitionVisitor(ast.NodeVisitor):
-    def __init__(self):
-        self.classes: list[ast.ClassDef] = []
-
-    def visit_ClassDef(self, node: ast.ClassDef) -> None:
-        self.classes.append(node)
-
-    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
-        return
-
-    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
         return
 
     def visit_Lambda(self, node: ast.Lambda) -> None:

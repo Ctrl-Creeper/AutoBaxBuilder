@@ -178,6 +178,18 @@ SCENARIO = Scenario(
                 ),
                 self.SCENARIO_SOURCE.replace(
                     "\n\nSCENARIO",
+                    "\nclass Outer:\n    if True:\n        class Inner:\n            global Scenario\n            Scenario = None\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nclass Outer:\n    class Middle:\n        class Inner:\n            global Scenario\n            del Scenario\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
+                    "\nclass Outer:\n    global Scenario\n    class Inner((Scenario := object())):\n        pass\n\nSCENARIO",
+                ),
+                self.SCENARIO_SOURCE.replace(
+                    "\n\nSCENARIO",
                     "\n[(Scenario := None) for item in []]\n\nSCENARIO",
                 ),
             ):
@@ -185,6 +197,18 @@ SCENARIO = Scenario(
                 self.assertFalse(generator.validate_scenario_source(path)[0])
             path.write_text(self.SCENARIO_SOURCE, encoding="utf-8")
             self.assertTrue(generator.validate_scenario_source(path)[0])
+            for valid in (
+                "\nclass Outer:\n    class Scenario:\n        pass\n\nSCENARIO",
+                "\nclass Outer:\n    class Inner((Scenario := object())):\n        pass\n\nSCENARIO",
+                "\nclass Outer:\n    @((Scenario := (lambda value: value)))\n    class Inner:\n        pass\n\nSCENARIO",
+                "\nclass Outer:\n    class Inner(metaclass=(Scenario := type)):\n        pass\n\nSCENARIO",
+            ):
+                with self.subTest(class_scope_source=valid):
+                    path.write_text(
+                        self.SCENARIO_SOURCE.replace("\n\nSCENARIO", valid),
+                        encoding="utf-8",
+                    )
+                    self.assertTrue(generator.validate_scenario_source(path)[0])
             path.write_text(
                 self.SCENARIO_SOURCE.replace(
                     "\n\nSCENARIO",
