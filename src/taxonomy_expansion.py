@@ -137,9 +137,7 @@ def validate_expansion_seeds(seeds: list[tuple[Path, dict]], batch: str) -> dict
             titles.append(title)
             titles_by_value[title].append(path_text)
             if not _TITLE_PATTERN.fullmatch(title):
-                errors.append(
-                    f"{path_text}: title must match ^[A-Za-z_][A-Za-z0-9_]*$"
-                )
+                errors.append(f"{path_text}: title must match ^[A-Za-z_][A-Za-z0-9_]*$")
         else:
             errors.append(f"{path_text}: title must be a nonempty string")
 

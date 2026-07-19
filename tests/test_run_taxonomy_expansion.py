@@ -141,7 +141,9 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
             artifact_dir = root / "artifacts" / "ExampleScenario"
             artifact_dir.mkdir(parents=True)
             (artifact_dir / "ExampleScenario.json").write_text("{}", encoding="utf-8")
-            (artifact_dir / "ExampleScenario_iu0.py").write_text("not python", encoding="utf-8")
+            (artifact_dir / "ExampleScenario_iu0.py").write_text(
+                "not python", encoding="utf-8"
+            )
             (artifact_dir / "ExampleScenario_iw0.py").write_text("", encoding="utf-8")
             calls = []
             result = runner.run_seed(
@@ -155,7 +157,9 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                 or SimpleNamespace(returncode=0),
             )
 
-        self.assertEqual([stage["status"] for stage in result["stages"]], ["passed"] * 3)
+        self.assertEqual(
+            [stage["status"] for stage in result["stages"]], ["passed"] * 3
+        )
         self.assertEqual(len(calls), 3)
 
     def test_unsafe_title_fails_without_writing_outside_artifacts(self):
@@ -183,13 +187,20 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
             artifacts_file.write_text("not a directory", encoding="utf-8")
             status_path = root / "report.json"
             args = runner.parse_args(
-                ["--artifacts-dir", str(artifacts_file), "--status-path", str(status_path)]
+                [
+                    "--artifacts-dir",
+                    str(artifacts_file),
+                    "--status-path",
+                    str(status_path),
+                ]
             )
             with patch.object(
                 runner,
                 "discover_expansion_seeds",
                 return_value=[(seed_file, {"title": "ExampleScenario"})],
-            ), patch.object(runner, "validate_expansion_seeds", return_value=self.valid_report()):
+            ), patch.object(
+                runner, "validate_expansion_seeds", return_value=self.valid_report()
+            ):
                 exit_code = runner.run_batch(args)
             report = json.loads(status_path.read_text(encoding="utf-8"))
 
@@ -207,15 +218,57 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
 
     def test_live_run_lock_rejects_second_runner_before_workers(self):
         with tempfile.TemporaryDirectory() as directory:
-            status_path = Path(directory) / "report.json"
-            lock = runner._acquire_lock(status_path)
+            root = Path(directory)
+            artifacts_dir = root / "artifacts"
+            lock = runner._acquire_lock(artifacts_dir, "v1_2")
             try:
-                args = runner.parse_args(["--status-path", str(status_path)])
-                with patch.object(runner, "discover_expansion_seeds") as discover:
+                args = runner.parse_args(
+                    [
+                        "--artifacts-dir",
+                        str(artifacts_dir),
+                        "--status-path",
+                        str(root / "other-status.json"),
+                    ]
+                )
+                with patch.object(
+                    runner, "discover_expansion_seeds", return_value=[]
+                ) as discover, patch.object(
+                    runner, "validate_expansion_seeds", return_value=self.valid_report()
+                ), patch.object(
+                    runner, "run_seed"
+                ) as run_seed:
                     self.assertEqual(runner.run_batch(args), 3)
-                discover.assert_not_called()
+                discover.assert_called_once()
+                run_seed.assert_not_called()
             finally:
                 lock.close()
+
+            other_artifacts = root / "other-artifacts"
+            seed_file = self.write_seed(root, "ExampleScenario")
+            args = runner.parse_args(
+                [
+                    "--artifacts-dir",
+                    str(other_artifacts),
+                    "--status-path",
+                    str(root / "second-status.json"),
+                ]
+            )
+            with patch.object(
+                runner,
+                "discover_expansion_seeds",
+                return_value=[(seed_file, {"title": "ExampleScenario"})],
+            ), patch.object(
+                runner, "validate_expansion_seeds", return_value=self.valid_report()
+            ):
+                self.assertEqual(
+                    runner.run_batch(
+                        args,
+                        command_runner=lambda argv, **kwargs: SimpleNamespace(
+                            returncode=0
+                        ),
+                    ),
+                    0,
+                )
 
     def test_dry_run_plans_all_24_commands_without_creating_artifact_directories(self):
         with tempfile.TemporaryDirectory() as directory:
