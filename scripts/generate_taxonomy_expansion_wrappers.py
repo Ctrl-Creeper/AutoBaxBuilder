@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Generate the v1.2 taxonomy-expansion prompt wrapper matrix."""
+"""Generate the v1.2 taxonomy-expansion prompt wrapper matrix transactionally."""
 
 import argparse
-import ast
 import hashlib
 import json
 import os
 from pathlib import Path
+import shutil
 import sys
 import tempfile
+import uuid
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +24,20 @@ from scripts.generate_factorial_prompt_scenarios import (
     PROMPT_ORDER,
     build_manifest_entry,
     load_prompt_variants,
+    validate_scenario_source,
     wrapper_source,
 )
 from taxonomy_expansion import discover_expansion_seeds, validate_expansion_seeds
 
 
 BENCHMARK_VERSION = "taxonomy_expansion_v1_2"
+
+
+def _resolve(path: Path, label: str) -> Path:
+    try:
+        return path.resolve()
+    except (OSError, RuntimeError) as error:
+        raise ValueError(f"{label} cannot be resolved safely: {error}") from error
 
 
 def _is_within(path: Path, parent: Path) -> bool:
@@ -43,28 +52,8 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _has_top_level_scenario_assignment(path: Path) -> tuple[bool, str]:
-    try:
-        source = path.read_text(encoding="utf-8")
-    except UnicodeDecodeError:
-        return False, "is not valid UTF-8"
-    except OSError as error:
-        return False, f"cannot be read: {error}"
-    if not source.strip():
-        return False, "is empty"
-    try:
-        tree = ast.parse(source, filename=str(path))
-    except SyntaxError as error:
-        return False, f"contains invalid Python: {error.msg}"
-    for node in tree.body:
-        if isinstance(node, (ast.Assign, ast.AnnAssign)):
-            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
-            if any(
-                isinstance(target, ast.Name) and target.id == "SCENARIO"
-                for target in targets
-            ):
-                return True, ""
-    return False, "does not assign SCENARIO at module scope"
+def _relative_path(path: Path, start: Path) -> str:
+    return os.path.relpath(path, start=start).replace(os.sep, "/")
 
 
 def _write_text_atomically(path: Path, text: str) -> None:
@@ -73,12 +62,73 @@ def _write_text_atomically(path: Path, text: str) -> None:
         "w", encoding="utf-8", dir=path.parent, delete=False
     ) as temporary_file:
         temporary_file.write(text)
+        temporary_file.flush()
+        os.fsync(temporary_file.fileno())
         temporary_path = Path(temporary_file.name)
     try:
         os.replace(temporary_path, path)
     except Exception:
         temporary_path.unlink(missing_ok=True)
         raise
+
+
+def _assert_safe_existing_output(output_dir: Path) -> Path:
+    if output_dir.is_symlink():
+        raise ValueError(f"Output directory must not be a symlink: {output_dir}")
+    root = _resolve(output_dir, "output directory")
+    if output_dir.exists() and not output_dir.is_dir():
+        raise ValueError(f"Output path is not a directory: {output_dir}")
+    if output_dir.exists():
+        try:
+            children = list(output_dir.rglob("*"))
+        except OSError as error:
+            raise ValueError(f"Cannot inspect output directory: {error}") from error
+        for child in children:
+            if child.is_symlink():
+                raise ValueError(f"Output directory contains a symlink: {child}")
+    return root
+
+
+def _safe_stage_path(output_dir: Path) -> Path:
+    parent = output_dir.parent
+    parent.mkdir(parents=True, exist_ok=True)
+    stage = parent / f".{output_dir.name}.staging-{uuid.uuid4().hex}"
+    if not _is_within(
+        _resolve(stage, "staging directory"), _resolve(parent, "output parent")
+    ):
+        raise ValueError("Staging directory escapes output parent")
+    return stage
+
+
+def _render_manifest_path(path: Path, manifest_parent: Path) -> str:
+    return _relative_path(path, manifest_parent)
+
+
+def _replace_output_and_manifest(
+    *, output_dir: Path, stage_dir: Path, manifest_path: Path, manifest_text: str
+) -> None:
+    backup_dir = output_dir.parent / f".{output_dir.name}.backup-{uuid.uuid4().hex}"
+    old_output = output_dir.exists()
+    swapped = False
+    try:
+        if old_output:
+            os.replace(output_dir, backup_dir)
+        os.replace(stage_dir, output_dir)
+        swapped = True
+        _write_text_atomically(manifest_path, manifest_text)
+    except Exception:
+        if swapped and output_dir.exists():
+            failed_dir = (
+                output_dir.parent / f".{output_dir.name}.failed-{uuid.uuid4().hex}"
+            )
+            os.replace(output_dir, failed_dir)
+            shutil.rmtree(failed_dir, ignore_errors=True)
+        if old_output and backup_dir.exists():
+            os.replace(backup_dir, output_dir)
+        raise
+    else:
+        if backup_dir.exists():
+            shutil.rmtree(backup_dir)
 
 
 def generate_expansion_wrappers(
@@ -89,65 +139,80 @@ def generate_expansion_wrappers(
     manifest_path: Path,
     batch: str = "v1_2",
 ) -> list[dict]:
-    """Generate four prompt wrappers for each complete, valid expansion seed."""
-    seeds_dir = Path(seeds_dir).resolve()
-    artifacts_dir = Path(artifacts_dir).resolve()
-    prompt_variants_dir = Path(prompt_variants_dir).resolve()
-    output_dir = Path(output_dir).resolve()
-    manifest_path = Path(manifest_path).resolve()
+    """Generate four wrappers per seed using a rollback-safe directory swap."""
+    seeds_dir = _resolve(Path(seeds_dir), "seeds directory")
+    artifacts_dir = _resolve(Path(artifacts_dir), "artifacts directory")
+    prompt_variants_dir = _resolve(
+        Path(prompt_variants_dir), "prompt variants directory"
+    )
+    output_dir = Path(output_dir)
+    output_root = _assert_safe_existing_output(output_dir)
+    manifest_path = _resolve(Path(manifest_path), "manifest path")
+    manifest_parent = manifest_path.parent
 
     seeds = discover_expansion_seeds(seeds_dir, batch)
     seed_report = validate_expansion_seeds(seeds, batch)
     if seed_report["errors"]:
         raise ValueError("Invalid expansion seeds: " + "; ".join(seed_report["errors"]))
-
     prompt_variants = load_prompt_variants(prompt_variants_dir)
-    planned_wrappers: list[tuple[Path, str]] = []
-    manifest: list[dict] = []
 
+    planned: list[tuple[Path, str]] = []
+    manifest: list[dict] = []
     for seed_file, seed in seeds:
         title = seed["title"]
         base_scenario_file = artifacts_dir / title / f"{title}_iw0.py"
-        resolved_base = base_scenario_file.resolve()
+        resolved_base = _resolve(base_scenario_file, "base scenario")
         if not _is_within(resolved_base, artifacts_dir):
             raise ValueError(
                 f"Base scenario path escapes artifacts directory: {base_scenario_file}"
             )
-        if not base_scenario_file.is_file():
+        if not resolved_base.is_file():
             raise ValueError(f"Missing base scenario: {base_scenario_file}")
-        valid_base, base_error = _has_top_level_scenario_assignment(base_scenario_file)
+        valid_base, base_error = validate_scenario_source(resolved_base)
         if not valid_base:
             raise ValueError(f"Base scenario {base_scenario_file} {base_error}")
 
         for prompt_id in PROMPT_ORDER:
             scenario_id = f"{title}__{prompt_id}"
-            variant_scenario_file = output_dir / title / f"{scenario_id}.py"
-            resolved_wrapper = variant_scenario_file.resolve()
-            if not _is_within(resolved_wrapper, output_dir):
+            final_wrapper = output_root / title / f"{scenario_id}.py"
+            if final_wrapper.parent.is_symlink():
                 raise ValueError(
-                    f"Wrapper path escapes output directory: {variant_scenario_file}"
+                    f"Wrapper output parent is a symlink: {final_wrapper.parent}"
                 )
+            resolved_wrapper = _resolve(final_wrapper, "wrapper output path")
+            if not _is_within(resolved_wrapper, output_root):
+                raise ValueError(
+                    f"Wrapper output path escapes output directory: {final_wrapper}"
+                )
+            relative_base = _relative_path(resolved_base.parent, final_wrapper.parent)
             source = wrapper_source(
                 base_title=title,
-                base_module_name=base_scenario_file.stem,
+                base_module_name=resolved_base.stem,
+                base_relative_path=relative_base,
                 scenario_id=scenario_id,
                 scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
             )
-            planned_wrappers.append((variant_scenario_file, source))
+            planned.append((final_wrapper, source))
             entry = build_manifest_entry(
-                seed_file=seed_file.resolve(),
+                seed_file=_resolve(seed_file, "seed file"),
                 seed=seed,
                 prompt_id=prompt_id,
                 prompt_variant=prompt_variants[prompt_id],
-                base_scenario_file=base_scenario_file,
-                variant_scenario_file=variant_scenario_file,
+                base_scenario_file=resolved_base,
+                variant_scenario_file=final_wrapper,
             )
+            for key, path in (
+                ("base_seed_file", _resolve(seed_file, "seed file")),
+                ("base_scenario_file", resolved_base),
+                ("variant_scenario_file", final_wrapper),
+            ):
+                entry[key] = _render_manifest_path(path, manifest_parent)
             entry.update(
                 {
                     "benchmark_version": BENCHMARK_VERSION,
                     "expansion_batch": batch,
                     "oracle_contract": seed["oracle_contract"],
-                    "base_scenario_sha256": _sha256(base_scenario_file),
+                    "base_scenario_sha256": _sha256(resolved_base),
                     "wrapper_sha256": hashlib.sha256(
                         source.encode("utf-8")
                     ).hexdigest(),
@@ -155,11 +220,21 @@ def generate_expansion_wrappers(
             )
             manifest.append(entry)
 
-    for wrapper_path, source in planned_wrappers:
-        _write_text_atomically(wrapper_path, source)
-    _write_text_atomically(
-        manifest_path, json.dumps(manifest, indent=2, sort_keys=True) + "\n"
-    )
+    manifest_text = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+    stage_dir = _safe_stage_path(output_root)
+    try:
+        for final_wrapper, source in planned:
+            stage_wrapper = stage_dir / final_wrapper.relative_to(output_root)
+            _write_text_atomically(stage_wrapper, source)
+        _replace_output_and_manifest(
+            output_dir=output_root,
+            stage_dir=stage_dir,
+            manifest_path=manifest_path,
+            manifest_text=manifest_text,
+        )
+    except Exception:
+        shutil.rmtree(stage_dir, ignore_errors=True)
+        raise
     return manifest
 
 
@@ -172,9 +247,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--artifacts-dir", type=Path, default=REPOSITORY_ROOT / "artifacts"
     )
     parser.add_argument(
-        "--prompt-variants-dir",
-        type=Path,
-        default=REPOSITORY_ROOT / "prompt_variants",
+        "--prompt-variants-dir", type=Path, default=REPOSITORY_ROOT / "prompt_variants"
     )
     parser.add_argument(
         "--output-dir",

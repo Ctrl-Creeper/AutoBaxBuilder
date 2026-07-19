@@ -23,6 +23,7 @@ from scripts.generate_factorial_prompt_scenarios import (
     PROMPT_CATEGORY_INSTRUCTIONS,
     PROMPT_ORDER,
     load_prompt_variants,
+    validate_scenario_source,
     wrapper_source,
 )
 from taxonomy_expansion import discover_expansion_seeds, validate_expansion_seeds
@@ -55,6 +56,8 @@ def _write_text_atomically(path: Path, text: str) -> None:
         "w", encoding="utf-8", dir=path.parent, delete=False
     ) as temporary_file:
         temporary_file.write(text)
+        temporary_file.flush()
+        os.fsync(temporary_file.fileno())
         temporary_path = Path(temporary_file.name)
     try:
         os.replace(temporary_path, path)
@@ -76,19 +79,8 @@ def _python_source(path: Path) -> tuple[str | None, str | None]:
         return None, f"cannot be read: {error}"
     if not source.strip():
         return None, "is empty"
-    try:
-        tree = ast.parse(source, filename=str(path))
-    except SyntaxError as error:
-        return None, f"contains invalid Python: {error.msg}"
-    for node in tree.body:
-        if isinstance(node, (ast.Assign, ast.AnnAssign)):
-            targets = node.targets if isinstance(node, ast.Assign) else [node.target]
-            if any(
-                isinstance(target, ast.Name) and target.id == "SCENARIO"
-                for target in targets
-            ):
-                return source, None
-    return None, "does not assign SCENARIO at module scope"
+    valid, error = validate_scenario_source(path)
+    return (source, None) if valid else (None, error)
 
 
 def _wrapper_scenario_id(source: str) -> str | None:
@@ -116,23 +108,29 @@ def _wrapper_scenario_id(source: str) -> str | None:
     return None
 
 
-def _manifest_file_path(value: object) -> Path | None:
+def _manifest_file_path(value: object, manifest_parent: Path) -> Path | None:
     if not isinstance(value, str) or not value:
         return None
     path = Path(value)
-    return path if path.is_absolute() else REPOSITORY_ROOT / path
+    if path.is_absolute():
+        return None
+    return manifest_parent / path
 
 
 def _checked_file(
-    value: object, parent: Path, label: str, errors: list[str]
+    value: object,
+    parent: Path,
+    manifest_parent: Path,
+    label: str,
+    errors: list[str],
 ) -> Path | None:
-    path = _manifest_file_path(value)
+    path = _manifest_file_path(value, manifest_parent)
     if path is None:
         errors.append(f"{label} must be a nonempty path string")
         return None
     try:
         resolved_path = path.resolve()
-    except RuntimeError:
+    except (OSError, RuntimeError):
         errors.append(f"{label} cannot be resolved safely: {path}")
         return None
     if not _is_within(resolved_path, parent):
@@ -189,6 +187,7 @@ def audit_taxonomy_expansion(
     artifacts_dir = Path(artifacts_dir).resolve()
     output_dir = Path(output_dir).resolve()
     manifest_path = Path(manifest_path).resolve()
+    manifest_parent = manifest_path.parent
     audit_json_path = Path(audit_json_path).resolve()
     audit_markdown_path = Path(audit_markdown_path).resolve()
 
@@ -288,8 +287,14 @@ def audit_taxonomy_expansion(
                         f"{prefix} {key} does not match the expected declaration"
                     )
 
-            declared_seed = _manifest_file_path(row.get("base_seed_file"))
-            if declared_seed is None or declared_seed.resolve() != seed_file:
+            declared_seed = _checked_file(
+                row.get("base_seed_file"),
+                seeds_dir,
+                manifest_parent,
+                f"{prefix} base_seed_file",
+                errors,
+            )
+            if declared_seed is None or declared_seed != seed_file:
                 errors.append(f"{prefix} base_seed_file differs from current seed path")
 
             expected_base = (
@@ -298,6 +303,7 @@ def audit_taxonomy_expansion(
             base_file = _checked_file(
                 row.get("base_scenario_file"),
                 artifacts_dir,
+                manifest_parent,
                 f"{prefix} base_scenario_file",
                 errors,
             )
@@ -316,6 +322,7 @@ def audit_taxonomy_expansion(
             wrapper_file = _checked_file(
                 row.get("variant_scenario_file"),
                 output_dir,
+                manifest_parent,
                 f"{prefix} variant_scenario_file",
                 errors,
             )
@@ -331,6 +338,9 @@ def audit_taxonomy_expansion(
                     expected_source = wrapper_source(
                         base_title=base_title,
                         base_module_name=f"{base_title}_iw0",
+                        base_relative_path=os.path.relpath(
+                            expected_base.parent, start=expected_wrapper.parent
+                        ).replace(os.sep, "/"),
                         scenario_id=expected_id,
                         scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[prompt_id],
                     )
@@ -374,6 +384,33 @@ def audit_taxonomy_expansion(
                 errors.append(
                     f"manifest must contain 8 {prompt_id} rows; found {prompt_counts[prompt_id]}"
                 )
+        expected_wrapper_files = {
+            (output_dir / title / f"{title}__{prompt_id}.py").resolve()
+            for title in seed_by_title
+            for prompt_id in PROMPT_ORDER
+        }
+        try:
+            actual_wrapper_files = set(output_dir.rglob("*.py"))
+        except OSError as error:
+            errors.append(f"unable to enumerate wrapper output: {error}")
+            actual_wrapper_files = set()
+        resolved_actual_files = set()
+        for path in actual_wrapper_files:
+            try:
+                resolved_path = path.resolve()
+            except (OSError, RuntimeError) as error:
+                errors.append(
+                    f"wrapper output path cannot be resolved safely: {path}: {error}"
+                )
+                continue
+            if path.is_symlink() or not _is_within(resolved_path, output_dir):
+                errors.append(f"wrapper output path escapes output directory: {path}")
+                continue
+            resolved_actual_files.add(resolved_path)
+        for path in sorted(expected_wrapper_files - resolved_actual_files):
+            errors.append(f"expected wrapper is missing from output: {path}")
+        for path in sorted(resolved_actual_files - expected_wrapper_files):
+            errors.append(f"unmanifested wrapper exists in output: {path}")
         report.update(
             {
                 "manifest_row_count": len(manifest),

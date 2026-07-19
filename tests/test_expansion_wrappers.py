@@ -1,3 +1,4 @@
+import ast
 import hashlib
 import json
 import os
@@ -6,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -65,7 +67,7 @@ class ExpansionWrapperTests(unittest.TestCase):
                 if write_bases:
                     base_path = artifacts_dir / title / f"{title}_iw0.py"
                     base_path.parent.mkdir(parents=True, exist_ok=True)
-                    base_path.write_text("SCENARIO = object()\n", encoding="utf-8")
+                    base_path.write_text("SCENARIO = Scenario()\n", encoding="utf-8")
 
         return {
             "seeds_dir": seeds_dir,
@@ -97,8 +99,11 @@ class ExpansionWrapperTests(unittest.TestCase):
             seeds_only=seeds_only,
         )
 
-    def write_wrapper(self, entry: dict, source: str) -> None:
-        path = Path(entry["variant_scenario_file"])
+    def manifest_file(self, layout: dict[str, Path], entry: dict, key: str) -> Path:
+        return layout["manifest_path"].parent / entry[key]
+
+    def write_wrapper(self, layout: dict[str, Path], entry: dict, source: str) -> None:
+        path = self.manifest_file(layout, entry, "variant_scenario_file")
         path.write_text(source, encoding="utf-8")
         entry["wrapper_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -143,6 +148,148 @@ class ExpansionWrapperTests(unittest.TestCase):
             base.write_text("not valid python", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "invalid Python"):
                 self.generate(layout)
+
+            for invalid_source in ("SCENARIO = None\n", "SCENARIO = object()\n"):
+                base.write_text(invalid_source, encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "Scenario"):
+                    self.generate(layout)
+
+    def test_manifest_and_wrapper_sources_are_root_independent_and_relative(self):
+        with tempfile.TemporaryDirectory() as directory:
+            first = self.create_layout(Path(directory) / "first")
+            second = self.create_layout(Path(directory) / "second")
+            self.generate(first)
+            self.generate(second)
+
+            self.assertEqual(
+                first["manifest_path"].read_bytes(),
+                second["manifest_path"].read_bytes(),
+            )
+            first_wrappers = {
+                path.relative_to(first["output_dir"]): path.read_bytes()
+                for path in first["output_dir"].rglob("*.py")
+            }
+            second_wrappers = {
+                path.relative_to(second["output_dir"]): path.read_bytes()
+                for path in second["output_dir"].rglob("*.py")
+            }
+            self.assertEqual(first_wrappers, second_wrappers)
+            manifest = json.loads(first["manifest_path"].read_text())
+            for entry in manifest:
+                for key in (
+                    "base_seed_file",
+                    "base_scenario_file",
+                    "variant_scenario_file",
+                ):
+                    self.assertFalse(Path(entry[key]).is_absolute())
+                    self.assertNotIn("\\", entry[key])
+            wrapper = next(first["output_dir"].rglob("*.py"))
+            source = wrapper.read_text(encoding="utf-8")
+            tree = ast.parse(source)
+            assignment = next(
+                node
+                for node in tree.body
+                if isinstance(node, ast.Assign)
+                and any(
+                    isinstance(target, ast.Name) and target.id == "_BASE_SCENARIO_DIR"
+                    for target in node.targets
+                )
+            )
+            relative_base = next(
+                node.value
+                for node in ast.walk(assignment.value)
+                if isinstance(node, ast.Constant) and isinstance(node.value, str)
+            )
+            self.assertTrue((wrapper.parent / relative_base).resolve().is_dir())
+            self.assertEqual(self.audit(first)["errors"], [])
+
+    def test_transaction_failure_preserves_prior_output_and_manifest(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            self.generate(layout)
+            before_manifest = layout["manifest_path"].read_bytes()
+            before_output = {
+                path.relative_to(layout["output_dir"]): path.read_bytes()
+                for path in layout["output_dir"].rglob("*")
+                if path.is_file()
+            }
+            original_write = generator._write_text_atomically
+            calls = 0
+
+            def fail_second_stage_write(path, text):
+                nonlocal calls
+                calls += 1
+                if calls == 2:
+                    raise OSError("injected stage write failure")
+                original_write(path, text)
+
+            with patch.object(
+                generator, "_write_text_atomically", side_effect=fail_second_stage_write
+            ), self.assertRaisesRegex(OSError, "injected"):
+                self.generate(layout)
+
+            self.assertEqual(layout["manifest_path"].read_bytes(), before_manifest)
+            self.assertEqual(
+                {
+                    path.relative_to(layout["output_dir"]): path.read_bytes()
+                    for path in layout["output_dir"].rglob("*")
+                    if path.is_file()
+                },
+                before_output,
+            )
+            self.assertEqual(
+                list(
+                    layout["output_dir"].parent.glob(
+                        ".factorial_prompt_scenarios_expansion_v1_2.staging-*"
+                    )
+                ),
+                [],
+            )
+
+    def test_generator_rejects_output_symlink_and_audit_rejects_stale_wrapper(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            outside = Path(directory) / "outside"
+            outside.mkdir()
+            layout["output_dir"].mkdir()
+            link = layout["output_dir"] / "BeginnerScenario0"
+            try:
+                link.symlink_to(outside, target_is_directory=True)
+            except OSError as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                self.generate(layout)
+
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            self.generate(layout)
+            (layout["output_dir"] / "stale.py").write_text(
+                "SCENARIO = Scenario()\n", encoding="utf-8"
+            )
+            self.assertTrue(self.audit(layout)["errors"])
+
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            self.generate(layout)
+            next(layout["output_dir"].rglob("*.py")).unlink()
+            self.assertTrue(self.audit(layout)["errors"])
+
+    def test_audit_survives_manifest_path_symlink_loop_and_writes_reports(self):
+        with tempfile.TemporaryDirectory() as directory:
+            layout = self.create_layout(Path(directory))
+            entries = self.generate(layout)
+            loop = layout["manifest_path"].parent / "loop"
+            try:
+                loop.symlink_to(loop.name)
+            except OSError as error:
+                self.skipTest(f"symlinks unavailable: {error}")
+            entries[0]["base_scenario_file"] = "loop/base.py"
+            layout["manifest_path"].write_text(json.dumps(entries), encoding="utf-8")
+            report = self.audit(layout)
+
+            self.assertTrue(report["errors"])
+            self.assertTrue(layout["audit_json_path"].is_file())
+            self.assertTrue(layout["audit_markdown_path"].is_file())
 
     def test_audit_detects_hash_extra_row_metadata_drift_and_path_escape(self):
         cases = {
@@ -232,7 +379,7 @@ class ExpansionWrapperTests(unittest.TestCase):
             with self.subTest(name=name), tempfile.TemporaryDirectory() as directory:
                 layout = self.create_layout(Path(directory))
                 entries = self.generate(layout)
-                mutate(entries)
+                mutate(layout, entries)
                 layout["manifest_path"].write_text(
                     json.dumps(entries), encoding="utf-8"
                 )
@@ -245,10 +392,12 @@ class ExpansionWrapperTests(unittest.TestCase):
             entries = self.generate(layout)
             entry = self._entry_for_prompt(entries)
             self.write_wrapper(
+                layout,
                 entry,
                 wrapper_source(
                     base_title=entry["base_scenario"],
                     base_module_name=f"{entry['base_scenario']}_iw0",
+                    base_relative_path="../unused",
                     scenario_id="IncorrectScenario__natural",
                     scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[
                         entry["prompt_category"]
@@ -268,47 +417,63 @@ class ExpansionWrapperTests(unittest.TestCase):
     ) -> dict:
         return next(entry for entry in entries if entry["prompt_category"] == prompt_id)
 
-    def _corrupt_base_python(self, entries: list[dict]) -> None:
+    def _corrupt_base_python(
+        self, layout: dict[str, Path], entries: list[dict]
+    ) -> None:
         entry = self._entry_for_prompt(entries)
-        Path(entry["base_scenario_file"]).write_text(
+        self.manifest_file(layout, entry, "base_scenario_file").write_text(
             "not valid Python", encoding="utf-8"
         )
 
-    def _base_without_scenario(self, entries: list[dict]) -> None:
+    def _base_without_scenario(
+        self, layout: dict[str, Path], entries: list[dict]
+    ) -> None:
         entry = self._entry_for_prompt(entries)
-        Path(entry["base_scenario_file"]).write_text("value = 1\n", encoding="utf-8")
+        self.manifest_file(layout, entry, "base_scenario_file").write_text(
+            "value = 1\n", encoding="utf-8"
+        )
 
-    def _corrupt_wrapper_python(self, entries: list[dict]) -> None:
+    def _corrupt_wrapper_python(
+        self, layout: dict[str, Path], entries: list[dict]
+    ) -> None:
         entry = self._entry_for_prompt(entries)
-        self.write_wrapper(entry, "not valid Python")
+        self.write_wrapper(layout, entry, "not valid Python")
 
-    def _wrapper_without_scenario(self, entries: list[dict]) -> None:
+    def _wrapper_without_scenario(
+        self, layout: dict[str, Path], entries: list[dict]
+    ) -> None:
         entry = self._entry_for_prompt(entries)
-        self.write_wrapper(entry, "value = 1\n")
+        self.write_wrapper(layout, entry, "value = 1\n")
 
-    def _wrong_scenario_id(self, entries: list[dict]) -> None:
+    def _wrong_scenario_id(self, layout: dict[str, Path], entries: list[dict]) -> None:
         entry = self._entry_for_prompt(entries)
         entry["scenario_id"] = "IncorrectScenario__natural"
 
-    def _wrong_scenario_instructions(self, entries: list[dict]) -> None:
+    def _wrong_scenario_instructions(
+        self, layout: dict[str, Path], entries: list[dict]
+    ) -> None:
         entry = self._entry_for_prompt(entries, "weak_security")
         self.write_wrapper(
+            layout,
             entry,
             wrapper_source(
                 base_title=entry["base_scenario"],
                 base_module_name=f"{entry['base_scenario']}_iw0",
+                base_relative_path="../unused",
                 scenario_id=entry["scenario_id"],
                 scenario_instructions="incorrect instructions",
             ),
         )
 
-    def _wrong_base_import(self, entries: list[dict]) -> None:
+    def _wrong_base_import(self, layout: dict[str, Path], entries: list[dict]) -> None:
         entry = self._entry_for_prompt(entries)
         self.write_wrapper(
+            layout,
             entry,
             wrapper_source(
                 base_title=entry["base_scenario"],
                 base_module_name=f"{entry['base_scenario']}_incorrect",
+                base_relative_path="../unused",
                 scenario_id=entry["scenario_id"],
                 scenario_instructions=PROMPT_CATEGORY_INSTRUCTIONS[
                     entry["prompt_category"]
@@ -323,6 +488,7 @@ class ExpansionWrapperTests(unittest.TestCase):
         source = wrapper_source(
             base_title="ExampleScenario",
             base_module_name="ExampleScenario_iw0",
+            base_relative_path="../ExampleScenario",
             scenario_id="ExampleScenario__natural",
             scenario_instructions="",
         )
@@ -345,6 +511,7 @@ class ExpansionWrapperTests(unittest.TestCase):
                     "assert 'ExampleScenario_iw0' in wrapper_source("
                     "base_title='ExampleScenario', "
                     "base_module_name='ExampleScenario_iw0', "
+                    "base_relative_path='../ExampleScenario', "
                     "scenario_id='ExampleScenario__natural', "
                     "scenario_instructions='')",
                     str(PROMPT_VARIANTS),
