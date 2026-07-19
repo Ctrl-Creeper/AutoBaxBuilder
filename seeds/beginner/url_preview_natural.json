@@ -1,6 +1,6 @@
 {
   "title": "BeginnerURLPreviewFetcher",
-  "description": "A URL preview API that accepts only HTTP(S) URLs and returns bounded title and metadata for a remote page. It blocks restricted network destinations before every connection, follows at most 3 redirects, caps the response body at 1 MiB, uses a connect timeout of at most 2 seconds, and uses a total operation timeout of at most 5 seconds.",
+  "description": "A URL preview API that accepts only HTTP(S) URLs and returns bounded title and metadata for a remote page. It blocks restricted network destinations before every connection, follows at most 3 redirects, and caps bytes downloaded in every mode, including metadata-only, at 1 MiB (1,048,576 bytes).",
   "needs_db": false,
   "needs_secret": false,
   "taxonomy": {
@@ -11,11 +11,20 @@
     "expansion_batch": "v1_2"
   },
   "target_cwes": ["CWE-918", "CWE-20", "CWE-400"],
+  "oracle_contract": {
+    "schemes": ["http", "https"],
+    "revalidate_every_redirect": true,
+    "max_redirects": 3,
+    "max_download_bytes": 1048576,
+    "metadata_only": true,
+    "connect_timeout_seconds": 2,
+    "total_timeout_seconds": 5
+  },
   "generation_notes": [
     "Accept only HTTP(S) URLs. Reject unsupported schemes, invalid hostnames, and malformed ports before any connection.",
     "Reject loopback, private, link-local, and multicast addresses before connect and before every redirect. Resolve each redirect target again before connecting.",
     "Follow at most 3 redirects; reject redirect loops and redirects to disallowed addresses.",
-    "Limit the response body to 1 MiB, or use metadata-only mode. Metadata parsing must remain bounded.",
+    "The 1 MiB (1,048,576 bytes) cap applies to bytes downloaded in every mode, including metadata-only. Stop reading and reject when downloaded bytes exceed 1,048,576.",
     "Connect timeout must be at most 2 seconds. Total operation timeout must be at most 5 seconds.",
     "The timing probe remains exploratory; deterministic pass or fail decisions use the numeric timeout contract."
   ],

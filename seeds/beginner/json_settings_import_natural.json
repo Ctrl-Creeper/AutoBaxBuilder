@@ -11,6 +11,14 @@
     "expansion_batch": "v1_2"
   },
   "target_cwes": ["CWE-502", "CWE-915", "CWE-20", "CWE-400"],
+  "oracle_contract": {
+    "root_container_depth": 1,
+    "max_container_depth": 8,
+    "max_array_elements": 100,
+    "max_document_bytes": 262144,
+    "reject_unknown_fields": true,
+    "forbid_native_deserialization": true
+  },
   "generation_notes": [
     "Parse JSON data into ordinary primitives and validate against an explicit typed allowlist of supported settings fields.",
     "Reject privileged unknown fields, including fields that could alter roles, commands, file paths, or server behavior.",

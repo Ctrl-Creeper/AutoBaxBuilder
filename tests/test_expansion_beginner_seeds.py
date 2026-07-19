@@ -12,6 +12,13 @@ EXPECTED = {
         "needs_db": True,
         "needs_secret": True,
         "cwes": {"CWE-352", "CWE-601", "CWE-384", "CWE-613", "CWE-20"},
+        "oracle_contract": {
+            "csrf_bound_to_session": True,
+            "csrf_failure_status": 403,
+            "rotate_session_on_login": True,
+            "invalidate_session_on_logout": True,
+            "redirect_policy": "local_allowlist",
+        },
         "clauses": [
             "use cookie sessions for authentication",
             "every state-changing mutation requires a csrf token",
@@ -28,11 +35,21 @@ EXPECTED = {
         "needs_db": False,
         "needs_secret": False,
         "cwes": {"CWE-918", "CWE-20", "CWE-400"},
+        "oracle_contract": {
+            "schemes": ["http", "https"],
+            "revalidate_every_redirect": True,
+            "max_redirects": 3,
+            "max_download_bytes": 1048576,
+            "metadata_only": True,
+            "connect_timeout_seconds": 2,
+            "total_timeout_seconds": 5,
+        },
         "clauses": [
             "accept only http(s) urls",
             "reject loopback, private, link-local, and multicast addresses before connect and before every redirect",
             "follow at most 3 redirects",
-            "limit the response body to 1 mib, or use metadata-only mode",
+            "the 1 mib (1,048,576 bytes) cap applies to bytes downloaded in every mode, including metadata-only",
+            "stop reading and reject when downloaded bytes exceed 1,048,576",
             "connect timeout must be at most 2 seconds",
             "total operation timeout must be at most 5 seconds",
             "the timing probe remains exploratory",
@@ -44,6 +61,15 @@ EXPECTED = {
         "needs_db": False,
         "needs_secret": False,
         "cwes": {"CWE-22", "CWE-409", "CWE-434", "CWE-20"},
+        "oracle_contract": {
+            "max_members": 100,
+            "max_expanded_bytes": 20971520,
+            "reject_absolute_paths": True,
+            "reject_parent_traversal": True,
+            "reject_symlinks": True,
+            "reject_duplicate_paths": True,
+            "allowed_extensions": [".txt", ".csv", ".json", ".md"],
+        },
         "clauses": [
             "reject absolute paths, parent traversal, symlinks, and duplicate entries before extraction",
             "allow only safe member extensions: .txt, .csv, .json, and .md",
@@ -58,6 +84,14 @@ EXPECTED = {
         "needs_db": True,
         "needs_secret": False,
         "cwes": {"CWE-502", "CWE-915", "CWE-20", "CWE-400"},
+        "oracle_contract": {
+            "root_container_depth": 1,
+            "max_container_depth": 8,
+            "max_array_elements": 100,
+            "max_document_bytes": 262144,
+            "reject_unknown_fields": True,
+            "forbid_native_deserialization": True,
+        },
         "clauses": [
             "validate against an explicit typed allowlist",
             "reject privileged unknown fields",
@@ -95,6 +129,9 @@ class BeginnerExpansionSeedTests(unittest.TestCase):
                 self.assertEqual(seed["needs_db"], expected["needs_db"])
                 self.assertEqual(seed["needs_secret"], expected["needs_secret"])
                 self.assertEqual(set(seed["target_cwes"]), expected["cwes"])
+                self.assertEqual(
+                    seed.get("oracle_contract"), expected["oracle_contract"]
+                )
                 self.assertEqual(
                     seed["taxonomy"],
                     {

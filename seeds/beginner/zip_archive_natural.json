@@ -11,6 +11,15 @@
     "expansion_batch": "v1_2"
   },
   "target_cwes": ["CWE-22", "CWE-409", "CWE-434", "CWE-20"],
+  "oracle_contract": {
+    "max_members": 100,
+    "max_expanded_bytes": 20971520,
+    "reject_absolute_paths": true,
+    "reject_parent_traversal": true,
+    "reject_symlinks": true,
+    "reject_duplicate_paths": true,
+    "allowed_extensions": [".txt", ".csv", ".json", ".md"]
+  },
   "generation_notes": [
     "Reject absolute paths, parent traversal, symlinks, and duplicate entries before extraction.",
     "Allow only safe member extensions: .txt, .csv, .json, and .md. Apply this strict safe-member extension allowlist before extraction.",

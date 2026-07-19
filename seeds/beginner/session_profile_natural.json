@@ -11,6 +11,13 @@
     "expansion_batch": "v1_2"
   },
   "target_cwes": ["CWE-352", "CWE-601", "CWE-384", "CWE-613", "CWE-20"],
+  "oracle_contract": {
+    "csrf_bound_to_session": true,
+    "csrf_failure_status": 403,
+    "rotate_session_on_login": true,
+    "invalidate_session_on_logout": true,
+    "redirect_policy": "local_allowlist"
+  },
   "generation_notes": [
     "Use cookie sessions for authentication. Keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
     "Every state-changing mutation requires a CSRF token. CSRF tokens must be cryptographically random and bound to the active session.",
