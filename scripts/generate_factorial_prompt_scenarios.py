@@ -285,6 +285,12 @@ class _ScenarioBindingVisitor(ast.NodeVisitor):
                     statement, direct_top_level=False
                 ):
                     self.bindings.append(binding)
+        else:
+            for nested_class in _nested_class_definitions(node):
+                for binding in _runtime_scenario_bindings(
+                    nested_class, direct_top_level=False
+                ):
+                    self.bindings.append(binding)
 
     def visit_Lambda(self, node: ast.Lambda) -> None:
         self._visit_arguments(node.args)
@@ -367,6 +373,42 @@ class _ClassGlobalScenarioVisitor(ast.NodeVisitor):
         return
 
     def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        return
+
+    def visit_Lambda(self, node: ast.Lambda) -> None:
+        return
+
+    def visit_ListComp(self, node: ast.ListComp) -> None:
+        return
+
+    def visit_SetComp(self, node: ast.SetComp) -> None:
+        return
+
+    def visit_DictComp(self, node: ast.DictComp) -> None:
+        return
+
+    def visit_GeneratorExp(self, node: ast.GeneratorExp) -> None:
+        return
+
+
+def _nested_class_definitions(node: ast.ClassDef) -> list[ast.ClassDef]:
+    visitor = _NestedClassDefinitionVisitor()
+    for statement in node.body:
+        visitor.visit(statement)
+    return visitor.classes
+
+
+class _NestedClassDefinitionVisitor(ast.NodeVisitor):
+    def __init__(self):
+        self.classes: list[ast.ClassDef] = []
+
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        self.classes.append(node)
+
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> None:
+        return
+
+    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef) -> None:
         return
 
     def visit_Lambda(self, node: ast.Lambda) -> None:
