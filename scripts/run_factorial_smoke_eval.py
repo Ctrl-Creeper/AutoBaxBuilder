@@ -176,7 +176,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def preflight(env_file: Path = Path(".env")) -> None:
+def preflight(env_file: Path = Path(".env"), needs_generation: bool = True) -> None:
     """Fail before the run rather than producing empty results after it.
 
     Two settings have each cost a full sweep. Without OPENAI_API_KEY the model
@@ -196,6 +196,15 @@ def preflight(env_file: Path = Path(".env")) -> None:
             # Anything already exported wins: an explicit override on the
             # command line must not be undone by the file.
             os.environ.setdefault(name.strip(), value.strip().strip("\"'"))
+
+    if not needs_generation:
+        # A test- or evaluate-only run contacts no model endpoint, so the
+        # generation settings are irrelevant. Requiring them here refused a
+        # re-scoring run that could not have spent anything, and the refusal
+        # read as "nothing needed doing".
+        print("PREFLIGHT ok (no generation phase; model settings not required)",
+              flush=True)
+        return
 
     if not os.environ.get("OPENAI_API_KEY"):
         raise SystemExit(
@@ -222,7 +231,7 @@ def preflight(env_file: Path = Path(".env")) -> None:
 
 def main() -> None:
     args = parse_args()
-    preflight()
+    preflight(needs_generation=args.phase in {"all", "generate"})
     if args.n_samples > 1:
         # run_smoke_eval fixes temperature at 0, where BaxBench collapses the
         # requested samples to one. Asking for three yields one, and the run

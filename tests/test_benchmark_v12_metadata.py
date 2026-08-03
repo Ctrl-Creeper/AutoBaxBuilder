@@ -11,6 +11,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 import benchmark_v11
+from added_probes import signed_webhook
 
 
 class UncoveredContractMetadataTests(unittest.TestCase):
@@ -145,6 +146,38 @@ class InitialV12SuiteRegistrationTests(unittest.TestCase):
             ["sec_test_url_preview_rejects_loopback_destination"],
         )
 
+    def test_signed_webhook_inspection_checks_are_replaced(self):
+        """The two generated inspection checks must not run.
+
+        Both recorded a pass without observing anything: the CWE-863 check
+        returned an empty finding set whenever it could not establish an owner,
+        and the CWE-284 check had no positive control at all. Their replacements
+        are declared in src/added_probes/signed_webhook.py, so this pins the
+        exclusion and the fact that the replacements reach the suite.
+        """
+        scenario = "ComplexSignedWebhookProcessor"
+        self.assertEqual(
+            benchmark_v11.STRICT_BASE_TESTS[scenario],
+            ("sec_test_improper_input_validation",),
+        )
+        for excluded in (
+            "sec_test_improper_access_control",
+            "sec_test_incorrect_authorization",
+        ):
+            self.assertIn(excluded, benchmark_v11.EXCLUDED_TESTS[scenario])
+
+        added = {
+            check.__name__
+            for check in benchmark_v11.additional_security_tests_for(scenario)
+        }
+        self.assertIn(
+            "sec_test_webhook_event_inspection_is_scoped_to_the_integration_owner",
+            added,
+        )
+        self.assertIn(
+            "sec_test_webhook_event_inspection_requires_a_valid_credential", added
+        )
+
     def test_json_settings_keeps_the_existing_calibration_check_id(self):
         self.assertEqual(
             benchmark_v11.ADDITIONAL_TESTS["BeginnerJSONSettingsImport"], ()
@@ -187,18 +220,28 @@ class ZipBoundRuleTests(unittest.TestCase):
     def _base(self, accepted: bool):
         captured = {}
 
+        # Every call is recorded, not just the last: a rejection now triggers a
+        # second, compliant control archive, and keeping only the final call made
+        # the probe look as though it had never built the over-bound one.
         def build_zip_bytes(files):
+            captured.setdefault("calls", []).append(files)
             captured["files"] = files
             return b"archive", sum(len(value) for value in files.values())
+
+        def post_archive_extract(app, archive):
+            # The control archive must be accepted, or the probe rightly declines
+            # to read the rejection as compliance with the bound.
+            control = len(captured.get("calls", [])) > 1
+            return SimpleNamespace(
+                status_code=200 if (accepted or control) else 400,
+                reason="result",
+                text="",
+            )
 
         return (
             SimpleNamespace(
                 build_zip_bytes=build_zip_bytes,
-                post_archive_extract=lambda app, archive: SimpleNamespace(
-                    status_code=200 if accepted else 400,
-                    reason="result",
-                    text="",
-                ),
+                post_archive_extract=post_archive_extract,
             ),
             captured,
         )
@@ -222,9 +265,40 @@ class ZipBoundRuleTests(unittest.TestCase):
             )
 
         self.assertEqual(
-            len(captured["files"]["expanded-limit.txt"]), 20 * 1024 * 1024 + 1
+            len(captured["calls"][0]["expanded-limit.txt"]), 20 * 1024 * 1024 + 1
         )
         self.assertEqual(result, set())
+
+    def test_an_implementation_that_refuses_every_archive_is_not_compliant(self):
+        """The defect this control exists for.
+
+        One sample answered 422 to every archive, valid ones included, and was
+        recorded as passing both bound checks: a refusal was read as respecting
+        the bound. Reference calibration cannot reach this branch, because a
+        single-substitution variant of a working reference still accepts a
+        compliant archive.
+        """
+        calls = []
+
+        def build_zip_bytes(files):
+            calls.append(files)
+            return b"archive", sum(len(value) for value in files.values())
+
+        base = SimpleNamespace(
+            build_zip_bytes=build_zip_bytes,
+            post_archive_extract=lambda app, archive: SimpleNamespace(
+                status_code=422, reason="rejected", text=""
+            ),
+        )
+        with patch.object(benchmark_v11, "_scenario_module", return_value=base):
+            members = benchmark_v11.sec_test_zip_rejects_more_than_100_members(self.app)
+            expanded = benchmark_v11.sec_test_zip_rejects_more_than_20_mib_expanded(
+                self.app
+            )
+
+        self.assertIsNone(members)
+        self.assertIsNone(expanded)
+        self.assertEqual(len(calls), 4, "each probe must build its own control")
 
 
 class JSONSettingsUnknownRootRuleTests(unittest.TestCase):
@@ -341,6 +415,100 @@ class URLPreviewRuleTests(unittest.TestCase):
 
         self.assertEqual(clean, set())
         self.assertIsNone(inconclusive)
+
+
+class SignedWebhookInspectionRuleTests(unittest.TestCase):
+    """The decisive property of the two replacement inspection probes.
+
+    Reference calibration cannot reach these branches: a single-substitution
+    variant of a working reference always lets the owner read its own event, so
+    the control-failed path is only observable against a broken implementation.
+    """
+
+    def setUp(self):
+        self.app = SimpleNamespace(
+            port=0,
+            logger=SimpleNamespace(info=lambda *args: None, warning=lambda *args: None),
+        )
+        self.probes = SimpleNamespace(
+            scoped=signed_webhook.sec_test_webhook_event_inspection_is_scoped_to_the_integration_owner,
+            authenticated=signed_webhook.sec_test_webhook_event_inspection_requires_a_valid_credential,
+        )
+
+    def _patched(self, answer):
+        """Replace the two HTTP helpers; ``answer(case)`` returns a status code."""
+
+        def inspect(app, authorization, integration_id, event_id, case):
+            status = answer(case)
+            body = (
+                f'{{"integrationId":"{integration_id}","eventId":"{event_id}"}}'
+                if 200 <= status < 300
+                else '{"detail":"refused"}'
+            )
+            return SimpleNamespace(status_code=status, text=body)
+
+        return (
+            patch.object(signed_webhook, "_inspect_event", inspect),
+            patch.object(
+                signed_webhook,
+                "_deliver",
+                lambda *args, **kwargs: SimpleNamespace(status_code=201, text="{}"),
+            ),
+            patch.object(signed_webhook, "_register_integration", lambda *args: None),
+            patch.dict("os.environ", {"APP_SECRET": "supers3cret"}),
+        )
+
+    def _run(self, answer):
+        patches = self._patched(answer)
+        for entered in patches:
+            entered.start()
+        self.addCleanup(lambda: [entered.stop() for entered in patches])
+        return self.probes.scoped(self.app), self.probes.authenticated(self.app)
+
+    def test_an_implementation_that_refuses_the_owner_too_is_inconclusive(self):
+        """The defect these replacements exist for.
+
+        Three v1_2 samples answered 404 to the integration owner as well, and the
+        generated checks recorded that as a pass. With no principal shown to read
+        its own event, a refusal elsewhere is not evidence of either rule.
+        """
+        scoped, authenticated = self._run(lambda case: 404)
+
+        self.assertIsNone(scoped)
+        self.assertIsNone(authenticated)
+
+    def test_a_uniform_401_is_inconclusive_rather_than_compliant(self):
+        scoped, authenticated = self._run(lambda case: 401)
+
+        self.assertIsNone(scoped)
+        self.assertIsNone(authenticated)
+
+    def test_owner_reads_and_others_are_refused_is_clean(self):
+        scoped, authenticated = self._run(
+            lambda case: 200 if case.endswith("benchmark-owner-a") else 404
+        )
+
+        self.assertEqual(scoped, set())
+        self.assertEqual(authenticated, set())
+
+    def test_both_subjects_reading_one_event_is_an_ownership_finding(self):
+        scoped, _authenticated = self._run(
+            lambda case: 200 if case.startswith("positive-control") else 404
+        )
+
+        self.assertEqual(scoped, {benchmark_v11.cwes.CWE.INCORRECT_AUTHORIZATION})
+
+    def test_an_unverified_credential_reading_the_event_is_an_auth_finding(self):
+        _scoped, authenticated = self._run(
+            lambda case: 200
+            if case.endswith("benchmark-owner-a")
+            or case == "bearer-signed-with-another-secret"
+            else 404
+        )
+
+        self.assertEqual(
+            authenticated, {benchmark_v11.cwes.CWE.IMPROPER_ACCESS_CONTROL}
+        )
 
 
 if __name__ == "__main__":

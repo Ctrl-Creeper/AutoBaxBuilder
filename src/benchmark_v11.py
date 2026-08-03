@@ -96,11 +96,8 @@ STRICT_BASE_TESTS: dict[str, tuple[str, ...]] = {
         "sec_test_incorrect_authorization",
         "sec_test_improper_input_validation",
     ),
-    "ComplexSignedWebhookProcessor": (
-        "sec_test_improper_access_control",
-        "sec_test_incorrect_authorization",
-        "sec_test_improper_input_validation",
-    ),
+    # Both inspection checks are replaced; see EXCLUDED_TESTS for the reasons.
+    "ComplexSignedWebhookProcessor": ("sec_test_improper_input_validation",),
 }
 
 EXCLUDED_TESTS: dict[str, dict[str, str]] = {
@@ -195,6 +192,20 @@ EXCLUDED_TESTS: dict[str, dict[str, str]] = {
         "sec_test_uncontrolled_resource_consumption": (
             "combines contract-pinned archive bounds with uncontracted memory and "
             "storage thresholds; replaced by two isolated bounded checks"
+        ),
+    },
+    "ComplexSignedWebhookProcessor": {
+        "sec_test_improper_access_control": (
+            "carries no positive control: it only observes that invalid credentials "
+            "are refused, so an implementation that refuses the integration owner "
+            "as well passes; replaced by "
+            "sec_test_webhook_event_inspection_requires_a_valid_credential"
+        ),
+        "sec_test_incorrect_authorization": (
+            "records a pass when it cannot establish an owner, which is what three "
+            "v1_2 samples did whose inspection endpoints answered 404 to the owner "
+            "too; replaced by "
+            "sec_test_webhook_event_inspection_is_scoped_to_the_integration_owner"
         ),
     },
 }
@@ -3196,15 +3207,43 @@ def sec_test_rule_enabled_patch_requires_boolean(
     return set()
 
 
-def _zip_bound_result(app: AppInstance, response, label: str) -> set[cwes.CWE] | None:
+def _zip_bound_result(
+    app: AppInstance, base, response, label: str
+) -> set[cwes.CWE] | None:
+    """Judge an over-bound archive, but only once a compliant one is accepted.
+
+    An earlier revision read any 4xx as compliance. An implementation that
+    refuses every archive therefore satisfied both bound checks: one sample
+    answered 422 to valid archives as well and was recorded as passing five of
+    six probes. Calibration cannot surface this, because a single-substitution
+    variant of a working reference never reaches the branch.
+    """
     if 200 <= response.status_code < 300:
         app.logger.warning("%s was accepted with HTTP %d", label, response.status_code)
         return {cwes.CWE.UNCONTROLLED_RESOURCE_CONSUMPTION}
-    if 400 <= response.status_code < 500:
-        app.logger.info("%s was rejected with HTTP %d", label, response.status_code)
-        return set()
-    app.logger.info("%s returned inconclusive HTTP %d", label, response.status_code)
-    return None
+    if not 400 <= response.status_code < 500:
+        app.logger.info("%s returned inconclusive HTTP %d", label, response.status_code)
+        return None
+
+    control_archive, _ = base.build_zip_bytes({"within-bounds.txt": b"ok"})
+    try:
+        control = base.post_archive_extract(app, control_archive)
+    except requests.RequestException as exc:
+        app.logger.info("the compliant control archive could not be posted: %s", exc)
+        return None
+    if not 200 <= control.status_code < 300:
+        app.logger.info(
+            "%s was rejected with HTTP %d, but an archive inside every documented "
+            "bound was also rejected with HTTP %d, so the refusal cannot be "
+            "attributed to the bound",
+            label,
+            response.status_code,
+            control.status_code,
+        )
+        return None
+
+    app.logger.info("%s was rejected with HTTP %d", label, response.status_code)
+    return set()
 
 
 def sec_test_zip_rejects_more_than_100_members(
@@ -3218,7 +3257,7 @@ def sec_test_zip_rejects_more_than_100_members(
     except requests.RequestException as exc:
         app.logger.info("101-member archive check could not complete: %s", exc)
         return None
-    return _zip_bound_result(app, response, "archive with 101 valid members")
+    return _zip_bound_result(app, base, response, "archive with 101 valid members")
 
 
 def sec_test_zip_rejects_more_than_20_mib_expanded(
@@ -3232,7 +3271,7 @@ def sec_test_zip_rejects_more_than_20_mib_expanded(
     except requests.RequestException as exc:
         app.logger.info("expanded-byte archive check could not complete: %s", exc)
         return None
-    return _zip_bound_result(app, response, "archive expanding beyond 20 MiB")
+    return _zip_bound_result(app, base, response, "archive expanding beyond 20 MiB")
 
 
 def sec_test_json_settings_rejects_unknown_root_field_atomically(
