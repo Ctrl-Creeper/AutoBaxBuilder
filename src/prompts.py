@@ -44,6 +44,9 @@ class Prompter:
         "gpt-4.1-2025-04-14": 32000,
         "gpt-4.1-mini-2025-04-14": 32000,
         "gpt-4.1": 200000,
+        "gpt-5.5": 400000,
+        "gpt-5.4": 400000,
+        "gpt-5.4-mini": 400000,
         "o1": 200000,
         "o1-mini": 128000,
         "o3-mini": 200000,
@@ -92,6 +95,9 @@ class Prompter:
         "o4-mini": 100000,
         "o4-mini-2025-04-16": 100000,
         "gpt-5-2025-08-07": 128000,
+        "gpt-5.5": 128000,
+        "gpt-5.4": 128000,
+        "gpt-5.4-mini": 128000,
     }
 
     openrouter_remap = {
@@ -126,7 +132,9 @@ class Prompter:
         self.reasoning_effort = reasoning_effort
 
         self.system_prompt = _SYSTEM_PROMPT
-        self.openai_reasoning = (
+        self.openai_reasoning = os.environ.get(
+            "BAXBENCH_REASONING", os.environ.get("AUTOBAX_REASONING", "1")
+        ) != "0" and (
             model.startswith("o1")
             or model.startswith("o3")
             or model.startswith("o4")
@@ -284,26 +292,32 @@ class Prompter:
 
     def prompt_openai_together_batch(self, logger: logging.Logger) -> list[str]:
         if self.openai:
-            client = OpenAI(api_key=os.environ[KeyLocs.openai_key.value])
+            client = OpenAI(
+                api_key=os.environ[KeyLocs.openai_key.value],
+                base_url=os.environ.get("OPENAI_BASE_URL"),
+                timeout=float(os.environ.get("OPENAI_TIMEOUT", "60")),
+                max_retries=int(os.environ.get("OPENAI_MAX_RETRIES", "5")),
+            )
         else:
             client = OpenAI(
                 api_key=os.environ[KeyLocs.together_key.value],
                 base_url="https://api.together.xyz/v1",
+                timeout=float(os.environ.get("OPENAI_TIMEOUT", "60")),
+                max_retries=int(os.environ.get("OPENAI_MAX_RETRIES", "5")),
             )
         try:
             # Prepare extra kwargs
             extra_kwargs: dict[str, Any] = {}
-            if (
-                self.model == "o1"
-                or self.model.startswith("o3")
-                or self.model.startswith("o4")
-                or self.model.startswith("gpt-5")
-            ):  # NOTE: o1-mini does not have this
+            if self.openai_reasoning:  # NOTE: o1-mini does not have this
                 extra_kwargs["reasoning_effort"] = self.reasoning_effort
             if self.openai:
                 extra_kwargs["max_completion_tokens"] = (
-                    Prompter.openai_max_completion_tokens[self.model]
+                    Prompter.openai_max_completion_tokens.get(self.model, 8192)
                 )
+                if os.environ.get("BAXBENCH_MAX_COMPLETION_TOKENS"):
+                    extra_kwargs["max_completion_tokens"] = int(
+                        os.environ["BAXBENCH_MAX_COMPLETION_TOKENS"]
+                    )
             else:
                 extra_kwargs["max_tokens"] = (
                     8192
@@ -312,12 +326,7 @@ class Prompter:
                 )
             # Prepare the message
             messages: list[ChatCompletionMessageParam] = []
-            if (
-                self.model == "o1"
-                or self.model.startswith("o3")
-                or self.model.startswith("o4")
-                or self.model.startswith("gpt-5")
-            ):
+            if self.openai_reasoning:
                 messages.append(
                     cast(
                         ChatCompletionMessageParam,
@@ -344,6 +353,30 @@ class Prompter:
                 extra_kwargs["temperature"] = self.temperature
 
             # Query
+            if os.environ.get("BAXBENCH_STREAM") == "1":
+                stream = client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    n=self.batch_size,
+                    stream=True,
+                    **extra_kwargs,
+                )
+                responses = ["" for _ in range(self.batch_size)]
+                finish_reasons: list[str | None] = [
+                    None for _ in range(self.batch_size)
+                ]
+                for chunk in stream:
+                    for choice in chunk.choices:
+                        if choice.delta.content:
+                            responses[choice.index] += choice.delta.content
+                        if choice.finish_reason:
+                            finish_reasons[choice.index] = choice.finish_reason
+                for idx, finish_reason in enumerate(finish_reasons):
+                    if finish_reason == "length":
+                        logger.warning(f"Completion {idx} was cut off due to length.")
+                logger.info("Batch token stats unavailable for streaming response")
+                return [response for response in responses if response]
+
             completions = client.chat.completions.create(
                 model=self.model,
                 messages=messages,

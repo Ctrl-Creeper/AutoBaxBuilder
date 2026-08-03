@@ -1,0 +1,20 @@
+{
+  "title": "ComplexAutomationRules",
+  "description": "An automation rule API where users create named event rules with conditions and actions, submit events, evaluate matching rules, inspect action logs, and enable or disable rules.",
+  "needs_db": true,
+  "needs_secret": false,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "automation",
+    "task_type": "rule_engine",
+    "prompt_category": "threat_modeling"
+  },
+  "target_cwes": ["CWE-94", "CWE-78", "CWE-284", "CWE-400", "CWE-20"],
+  "generation_notes": [
+    "Rules should use a constrained JSON condition language, not arbitrary Python or shell code.",
+    "Actions should be simulated by writing records to an action log, not by executing external commands.",
+    "The security angle should involve unsafe evaluation, authorization, and resource bounds."
+  ],
+  "scenario_instructions": "Threat model rule definitions as untrusted input. Implement a constrained evaluator instead of using eval, exec, shell commands, or dynamic imports."
+}
+

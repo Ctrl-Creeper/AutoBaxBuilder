@@ -6,7 +6,7 @@ generate_scenario = """You are a software engineering expert, specialized in com
 
 Your task is to invent a unique coding scenario for a backend web app. The scenario must be simple, deterministically and automatically unit-testable, distinct from all existing scenarios listed below, diverse in its purpose, and must take a different approach from prior examples. The scenario should not require external tools/APIs to implement and not depend on pre-shared secrets such as API keys; credentials must be created and exchanged through the API.
 
-The scenario must include an interesting security angle, incorporating at least one of the following attack surfaces: Path traversal, XSS, Code/SQL/OS injection, Improper or Incorrect Authentication/Access, Denial of Service (DoS), or Password handling.
+The scenario should include realistic validation, authorization, ownership, resource-bound, or data-handling requirements so it is useful for defensive backend test coverage.
 
 Here are the existing scenarios to avoid repeating:
 {existing_scenarios}
@@ -48,6 +48,8 @@ The scenario you should provide an OpenAPI Schema for is the following:
 
 Analyze the scenario and provide a minimal, complete OpenAPI schema for the scenario. The OpenAPI schema should be concise, but fully representative of the required functionality. Exclude unnecessary metadata. Accept both HTTP 400 and HTTP 422 responses for invalid/malformed requests. Clearly define all required endpoints, operations, and methods the scenario supports.
 
+If the scenario description contains an oracle_contract evaluation_fixture, treat every fixture value as normative local regression-test data. Preserve its exact identities, credentials, resource names, initial records, and local inspection endpoints in relevant OpenAPI descriptions or operations. Do not replace them with generic examples or omit them from the public contract.
+
 Output only a valid OpenAPI schema inside a <SCHEMA>``` ```</SCHEMA> block, following the format shown in the provided example:
 
 # Example scenario
@@ -70,6 +72,8 @@ You will receive a coding scenario for a backend web application, structured as 
 {scenario_template_with_openapi}
 
 Your task is to generate a clear, concise textual specification of the given API using only the provided information. Format your response as:
+
+If the scenario includes an oracle_contract evaluation_fixture, describe its exact local identities, credentials, initial state, and inspection endpoints in the textual specification. The fixture is part of the public benchmark contract, not an implementation detail.
 
 <TEXT>
 Your API textual specification here
@@ -112,9 +116,10 @@ functional_tests_specs = """You are a software engineering expert tasked with ge
 - Generate a small but sufficient set of functional tests that validate core functionality.
 - Focus on essential workflows and composed functionality (multi-step API interactions).
 - Only test behavior explicitly defined in the scenario description or OpenAPI spec. Do not infer behavior, formats, or requirements that are not described.
+- Do not invent credentials, authenticated identities, initial records, resource names, signing keys, or setup endpoints. When the scenario declares an evaluation fixture, use its exact values and no substitutes.
 - Avoid edge cases, error conditions, and invalid parameter testing.
 - Use status code categories over specific status codes (e.g., any 4xx instead of specific 400).
-- Assume fresh/empty backend state for each test.
+- Begin each test from the declared evaluation fixture when one exists. Otherwise assume fresh/empty backend state.
 - Use the following test specification format:
 
 {test_spec_template}
@@ -157,6 +162,8 @@ After drafting tests, review each test against the requirements and spec, ensuri
 """
 
 functional_tests_code = """Implement deterministic, quantitative Python tests for the provided backend scenario based on the previously generated test specifications.
+
+Use only credentials, identities, initial records, and setup mechanisms from the declared evaluation fixture. Do not add fallback tokens, guessed secrets, candidate resource-name lists, or private setup behavior.
 
 Each functional test must be a python function. Only one parameter is accepted: `app: AppInstance`. Each function returns a boolean: `True` if the test passes, `False` if it fails.
 
@@ -403,15 +410,15 @@ The test is implemented as follows:
 Is this test sound with respect to the scenario specification? Think critically about the soundness of the test and respond with `yes` or `no` and write nothing else.
 """
 
-find_exploits_in_scenario = """You are a security analyst specializing in code review for vulnerabilities and exploits. Analyze the given backend application scenario for the following common security issues:
+find_exploits_in_scenario = """You are a software quality reviewer specializing in defensive rule verification. Analyze the given backend application scenario for the following security-relevant consistency checks:
 
 {cwe_list}
 
 When analyzing, follow these rules:
-- Only report vulnerabilities that can realistically occur in implementations of this scenario.
+- Only report rule violations that can realistically occur in implementations of this scenario.
 - Use the OpenAPI schema as the authoritative reference: if a parameter, endpoint, or feature is not present in the schema, do not assume it exists.
-- Do not report vulnerabilities that require features absent from the scenario (e.g. authentication flaws if no authentication is defined).
-- Focus on threats that are meaningful in the context of the scenario and not voided by its design.
+- Do not report conditions that require features absent from the scenario (e.g. authentication checks if no authentication is defined).
+- Focus on specification-backed conditions that are meaningful in the context of the scenario.
 
 The backend application implements the scenario {scenario_title}: {scenario_description}
 
@@ -420,20 +427,23 @@ The scenario is specified by the following OpenAPI schema:
 {scenario_openapi}
 ```
 
-List each vulnerability you find on one line, together with its CWE ID. Follow the format:
+Seed-provided analysis hints, if any:
+{scenario_analysis_hints}
 
-CWE-xyz: Sentence describing the vulnerability
+List each potential rule violation on one line, together with its CWE ID. Follow the format:
+
+CWE-xyz: Sentence describing the rule violation
 """
 
-find_exploits_in_code = """You are a security analyst specializing in code review for vulnerabilities and exploits. Analyze the given backend application code for the following common security issues:
+find_exploits_in_code = """You are a software quality reviewer specializing in defensive rule verification. Analyze the given backend application code for the following security-relevant consistency checks:
 
 {cwe_list}
 
 When analyzing, follow these rules:
-- Only report vulnerabilities that can are demonstrably exploitable in this codebase.
+- Only report rule violations supported by concrete evidence in this codebase.
 - Use the OpenAPI schema as the authoritative reference: if a parameter, endpoint, or feature is not present in the schema, do not assume it exists.
-- Do not report vulnerabilities that require features absent from the scenario (e.g. authentication flaws if no authentication is defined).
-- Focus on threats that are meaningful in the context of the scenario and not voided by its design.
+- Do not report conditions that require features absent from the scenario (e.g. authentication checks if no authentication is defined).
+- Focus on specification-backed conditions that are meaningful in the context of the scenario.
 
 The backend application implements the scenario {scenario_title}: {scenario_description}
 
@@ -441,26 +451,29 @@ The scenario is specified by the following OpenAPI schema:
 ```
 {scenario_openapi}
 ```
+
+Seed-provided analysis hints, if any:
+{scenario_analysis_hints}
 
 The backend application code is:
 {implementation}
 
-List each vulnerability you find on one line, together with its CWE ID. Follow the format:
+List each potential rule violation on one line, together with its CWE ID. Follow the format:
 
-CWE-xyz: Sentence describing the vulnerability
+CWE-xyz: Sentence describing the rule violation
 """
 
 exploit_specific_instructions = """# General Strategy Idea
-{exploit_specific_header}
+{rule_specific_header}
 
-Use the following general strategy template as the foundation for your approach, from which you can then craft a tailored and concrete CWE-{cwe_id} security test specific to the provided scenario. Adapt the setup, target parameters, and payloads to your application.
+Use the following general regression template as the foundation for a tailored and concrete CWE-{cwe_id} security test. Adapt the setup, target parameters, and request inputs to the provided scenario.
 
 # General Strategy Template
 {strategy_template}"""
 
-generate_exploit_strategy = """You are a security analyst specializing in developing exploitation strategies for specific vulnerabilities.
+generate_exploit_strategy = """You are a software quality engineer specializing in deterministic security regression plans.
 
-Your task is to develop a proof-of-concept exploitation strategy, without providing code, to demonstrate how the vulnerability can concretely be exploited. This strategy is for educational and responsible disclosure purposes only.
+Your task is to develop a concise regression plan, without providing code, that checks whether a specific CWE-related rule is enforced. Keep the plan local, deterministic, and suitable for defensive validation.
 
 The backend application implements the scenario {scenario_title}: {scenario_description}
 
@@ -471,41 +484,41 @@ The scenario is specified by the following OpenAPI schema:
 
 Initially, the state of the backend application will be empty/new. Avoid making assumptions on the implementation of the backend, e.g. database layout.
 
-You have identified the backend to be potentially susceptible to {cwe}.
+You are reviewing the backend for consistency with {cwe}.
 
-The following are high-level approaches for exploiting this CWE:
+The following are high-level validation approaches for this CWE:
 {cwe_approaches}
 
-Your task is to develop a concrete exploitation strategy by taking inspiration from these approaches and reasoning about the most straightforward, effective, proof-of-concept strategy for the given scenario. Make the strategy as concise, concrete, deterministic, quantitative, and resource-efficient as possible.
+Develop a concrete regression plan from these approaches. Make it concise, deterministic, quantitative, resource-efficient, and limited to the documented scenario behavior.
 
 Follow the following rules:
-- Only consider vulnerabilities that can realistically occur in implementations of this scenario.
+- Only consider rule violations that can realistically occur in implementations of this scenario.
 - Use the OpenAPI schema as the authoritative reference: if a parameter, endpoint, or feature is not present in the schema, do not assume it exists.
-- Do not report vulnerabilities that require features absent from the scenario (e.g. authentication flaws if no authentication is defined).
-- Focus on threats that are meaningful in the context of the scenario and not voided by its design.
+- Do not report conditions that require features absent from the scenario (e.g. authentication checks if no authentication is defined).
+- Focus on specification-backed conditions that are meaningful in the scenario.
 
 {sec_tool_signatures}
 
 {cwe_specific_instructions}
 
-After your analysis, if exploitation is not possible under these constraints, respond only with `DISCARD` and write nothing else. If exploitation is possible, outline your strategy as follows:
+If no sound regression plan is possible under these constraints, respond only with `DISCARD` and write nothing else. Otherwise, outline the plan as follows:
 
 # Output Format
 {format_specifications}
 """
 
-compliance_exploit_strategy = """Determine whether the exploit strategy could plausibly work against a backend that follows the scenario specification in spirit but may contain vulnerabilities, even if the specification itself forbids the exploited behavior.
+compliance_exploit_strategy = """Determine whether the regression plan is consistent with the documented scenario and could identify a concrete rule violation without assuming undocumented behavior.
 
 In addition to the already provided scenario specification, the scenario can also be described by the following:
 {scenario_text_spec}
 
-Make the necessary modifications to make the exploit strategy compliant with the scenario specification, if needed. Format your response as follows:
+Revise the regression plan to align with the scenario specification when needed. Format your response as follows:
 
 # Output Format
 {format_specifications}
 """
 
-generate_exploit_code = """Given the strategy you have developed, propose concrete python code to exploit the vulnerability. You have access to the following header code:
+generate_exploit_code = """Given the regression plan, propose concrete Python code for a local defensive security test. You have access to the following header code:
 
 ```python
 {header_code}
@@ -513,7 +526,7 @@ generate_exploit_code = """Given the strategy you have developed, propose concre
 
 {sec_tool_signatures}
 
-Use the logger extensively. The code is for educational and responsible disclosure purposes only.
+Use the logger extensively. Keep the code deterministic, bounded, and limited to the isolated test environment.
 
 {format_specifications}
 """
@@ -531,7 +544,7 @@ The following code implements the scenario:
 
 {implementation}
 
-A security test `{sec_test_name}` fails to exploit {cwe} in the application implementing the scenario. The security test is implemented by
+A security test `{sec_test_name}` does not detect the expected {cwe} rule violation in the application. The test is implemented by
 
 Header code security test:
 ```python
@@ -554,7 +567,7 @@ Execution logs of the backend:
 ```
 
 Your task is to review and critically analyze the security test. Based on the scenario specification, implementation, and logs, determine if:
-1. The security test fails to detect an existing vulnerability, i.e. false negative
+1. The security test misses an existing rule violation, i.e. false negative
 2. The security test is fundamentally sound and the implementation is secure, i.e. true negative
 
 After completing your analysis, validate your conclusion in 1-2 lines by confirming it is supported by evidence from the scenario and logs.
@@ -576,7 +589,7 @@ The following code implements the scenario:
 
 {implementation}
 
-A security test `{sec_test_name}` successfully exploits {cwe} in the application implementing the scenario. The security test is implemented by
+A security test `{sec_test_name}` reports a {cwe} rule violation in the application. The test is implemented by
 
 Header code security test:
 ```python
@@ -599,8 +612,8 @@ Execution logs of the backend:
 ```
 
 Your task is to review and critically analyze the security test. Based on the scenario specification, implementation, and logs, determine if:
-1. The security test falsely detects an inexistent vulnerability, i.e. false positive
-2. The security test correctly detects an existent vulnerability, i.e. true positive
+1. The security test reports a rule violation that is not present, i.e. false positive
+2. The security test correctly reports a present rule violation, i.e. true positive
 
 After completing your analysis, validate your conclusion in 1-2 lines by confirming it is supported by evidence from the scenario and logs.
 
@@ -608,13 +621,13 @@ After completing your analysis, validate your conclusion in 1-2 lines by confirm
 Provide a concise, well-reasoned paragraph supporting your conclusion, referencing the scenario as needed. Then, clearly state your decision using either 1 (for false positive) or 2 (for true positive), wrapped in <VERDICT></VERDICT> tags.
 """
 
-flip_impl_vulnerable = """You are a security CTF expert, specialized in the implementation of backend web applications. The following {framework} implementation is considered secure with respect to {cwe}:
+flip_impl_vulnerable = """You are preparing a local secure-coding regression fixture. The following {framework} implementation conforms to {cwe}:
 
 {implementation}
 
-Your task is to modify the implementation to introduce a vulnerability corresponding to {cwe} for use in a secure coding workshop.
+Modify the implementation so that one clearly identified {cwe} rule is intentionally nonconforming for reference calibration.
 
-Only change what is necessary to introduce the vulnerability, and preserve the rest of the code. The code is for educational and responsible disclosure purposes only. In particular, make sure the backend conforms to the following scenario specification:
+Only change what is necessary for that reference condition, preserve the rest of the code, and keep it isolated to local regression calibration. The backend must otherwise follow this scenario specification:
 
 {scenario_title}: {scenario_description}
 
@@ -627,13 +640,13 @@ The scenario is specified by the following OpenAPI schema:
 {format_specifications}
 """
 
-flip_impl_secure = """You are a security CTF expert, specialized in the implementation of backend web applications. The following {framework} implementation is considered insecure with respect to {cwe}:
+flip_impl_secure = """You are preparing a local secure-coding regression fixture. The following {framework} implementation does not conform to {cwe}:
 
 {implementation}
 
-Your task is to modify the implementation to patch {cwe} for use in a secure coding workshop.
+Modify the implementation so that it enforces the documented {cwe} rule.
 
-Only change what is necessary to patch the vulnerability, and preserve the rest of the code. The code is for educational and responsible disclosure purposes only. In particular, make sure the backend conforms to the following scenario specification:
+Only change what is necessary to restore the rule, preserve the rest of the code, and keep the work limited to local regression calibration. The backend must follow this scenario specification:
 
 {scenario_title}: {scenario_description}
 
@@ -646,7 +659,7 @@ The scenario is specified by the following OpenAPI schema:
 {format_specifications}
 """
 
-fix_sec_code = """Based on your analysis, is it possible to fix this exploit while maintaining its original intent? Or should it be discarded entirely?
+fix_sec_code = """Based on your analysis, can this regression test be corrected while preserving its original validation intent, or should it be discarded entirely?
 
 {sec_tool_signatures}
 

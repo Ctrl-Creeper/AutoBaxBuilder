@@ -59,6 +59,7 @@ def commands_for_seed(
             title,
             "--path",
             str(artifacts_dir),
+            "--generate_only",
         ],
         [
             python_executable,
@@ -68,6 +69,7 @@ def commands_for_seed(
             title,
             "--path",
             str(artifacts_dir),
+            "--generate_only",
         ],
     ]
 
@@ -88,6 +90,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--batch", default="v1_2")
     parser.add_argument("--difficulty", type=int, default=3)
     parser.add_argument("--parallel", type=_parallel, default=2)
+    parser.add_argument(
+        "--title",
+        dest="titles",
+        action="append",
+        default=[],
+        help="run only this exact scenario title; may be repeated",
+    )
     parser.add_argument("--python", dest="python_executable", default=sys.executable)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument(
@@ -326,6 +335,19 @@ def run_batch(
             return 2
 
         ordered_seeds = sorted(seeds, key=lambda item: str(item[0]))
+        if args.titles:
+            available_titles = {seed["title"] for _, seed in ordered_seeds}
+            unknown_titles = sorted(set(args.titles) - available_titles)
+            if unknown_titles:
+                print(
+                    "unknown --title value(s): " + ", ".join(unknown_titles),
+                    file=sys.stderr,
+                )
+                return 2
+            selected_titles = set(args.titles)
+            ordered_seeds = [
+                item for item in ordered_seeds if item[1]["title"] in selected_titles
+            ]
         started_at = now()
         if not args.dry_run:
             try:

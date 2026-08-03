@@ -1,0 +1,20 @@
+{
+  "title": "ComplexOrderManagement",
+  "description": "An order management API where users create products, place orders with line items, update order status, list orders by status, and compute order totals from stored product prices.",
+  "needs_db": true,
+  "needs_secret": false,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "web_app",
+    "task_type": "order_management",
+    "prompt_category": "natural"
+  },
+  "target_cwes": ["CWE-284", "CWE-863", "CWE-89", "CWE-20"],
+  "generation_notes": [
+    "Use deterministic integer prices and quantities.",
+    "Keep payment externalities out of scope; this scenario manages orders only.",
+    "The security angle should involve ownership, status transitions, and query/filter parameters."
+  ],
+  "scenario_instructions": ""
+}
+

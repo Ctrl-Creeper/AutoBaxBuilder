@@ -17,14 +17,45 @@
     "authorization_scope": "tenant_and_object",
     "unauthorized_statuses": [403, 404],
     "max_batch_size": 100,
-    "sql_query_mode": "parameters_only"
+    "sql_query_mode": "parameters_only",
+    "evaluation_fixture": {
+      "authentication": {
+        "scheme": "jwt_hs256",
+        "secret_env": "APP_SECRET",
+        "subject_claim": "sub",
+        "subjects": [
+          "benchmark-acme-member",
+          "benchmark-acme-admin",
+          "benchmark-globex-member"
+        ]
+      },
+      "documents": [
+        {
+          "id": "11111111-1111-4111-8111-111111111101",
+          "tenant": "acme",
+          "reader": "benchmark-acme-member"
+        },
+        {
+          "id": "11111111-1111-4111-8111-111111111102",
+          "tenant": "acme",
+          "reader": "benchmark-acme-admin"
+        },
+        {
+          "id": "22222222-2222-4222-8222-222222222201",
+          "tenant": "globex",
+          "reader": "benchmark-globex-member"
+        }
+      ]
+    }
   },
   "generation_notes": [
     "Roles are member and admin, and every request derives tenant identity from the authenticated principal.",
     "Enforce tenant and object authorization on search, get, batch, and export operations.",
     "Unauthorized access must return 403 or 404 and must not expose another tenant's document contents or metadata.",
     "Limit batches to 100 documents, rejecting larger selections before export work begins.",
-    "Use SQL parameters only for searches, retrievals, batch selection, and export queries."
+    "Use SQL parameters only for searches, retrievals, batch selection, and export queries.",
+    "For local regression testing, accept HS256 bearer JWTs signed with APP_SECRET and derive identity from the sub claim for benchmark-acme-member, benchmark-acme-admin, and benchmark-globex-member.",
+    "Seed the three fixed document IDs from the evaluation fixture with the declared tenant and reader relationships so ownership checks never depend on guessed records."
   ],
   "scenario_instructions": ""
 }

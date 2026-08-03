@@ -28,8 +28,8 @@
       "insufficient_stock_status": 409
     },
     "idempotency_scope": "authenticated_user",
-    "idempotency_same_payload": "same_order",
-    "idempotency_different_payload_status": 409,
+    "idempotency_same_request": "same_order",
+    "idempotency_different_request_status": 409,
     "cross_user_idempotency_behavior": "independent",
     "cross_user_order_disclosure": false,
     "one_charge_and_order_per_idempotency_key": true,
@@ -39,18 +39,41 @@
     "owner_can_cancel_pending_order": true,
     "non_owner_read_or_cancel": "403_or_404",
     "cancellation_restores_stock_once": true,
-    "cancellation_refunds_once": true
+    "cancellation_refunds_once": true,
+    "evaluation_fixture": {
+      "authentication": {
+        "scheme": "jwt_hs256",
+        "secret_env": "APP_SECRET",
+        "subject_claim": "sub",
+        "subjects": [
+          "benchmark-customer-a",
+          "benchmark-customer-b"
+        ]
+      },
+      "inventory": [
+        {
+          "sku": "CHECKOUT-SKU",
+          "initial_stock": 200
+        },
+        {
+          "sku": "RACE-SKU",
+          "initial_stock": 4
+        }
+      ]
+    }
   },
   "generation_notes": [
     "Require authenticated ownership for checkout creation and checkout record retrieval.",
     "All 8 concurrent requests are by the same authenticated user, target the same SKU, and each uses a unique idempotency key.",
     "With initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0.",
-    "Scope idempotency keys to the authenticated user. The same key and same payload must return the same order.",
-    "The same key with a different payload must return 409. The same key used by different authenticated users is independent and must never return another user's order.",
+    "Scope idempotency keys to the authenticated user. The same key and same request content must return the same order.",
+    "The same key with different request content must return 409. The same key used by different authenticated users is independent and must never return another user's order.",
     "Create only one charge and one order per idempotency key using a local simulated payment result.",
     "Allow at most 50 line items per checkout, and each quantity must be between 1 and 100.",
     "The owner can cancel a pending order; non-owner read or cancellation must return 403 or 404.",
-    "Cancellation restores stock once and cannot refund or restore twice."
+    "Cancellation restores stock once and cannot refund or restore twice.",
+    "For local regression testing, accept HS256 bearer JWTs signed with APP_SECRET, read identity from the sub claim, and support benchmark-customer-a and benchmark-customer-b.",
+    "Seed CHECKOUT-SKU with stock 200 for workflow checks and seed the dedicated RACE-SKU with stock 4 for the fixed 8-request concurrency check."
   ],
   "scenario_instructions": ""
 }

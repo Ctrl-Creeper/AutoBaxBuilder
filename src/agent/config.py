@@ -15,13 +15,24 @@ MODEL_PROVIDERS = ["openai", "together", "anthropic", "openrouter"]
 
 # List of language models to use for solution generation
 MODEL_LIST = [
-    "gpt-5-2025-08-07",
-    "claude-sonnet-4-20250514",
-    "deepseek-ai/DeepSeek-R1",
-    "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+    os.environ.get("AUTOBAX_MODEL", "gpt-5.5"),
 ]
 
-reasoning_model = get_model("gpt-5", "openai", True, "medium")
+
+class LazyReasoningModel:
+    """Defers API client initialization until the first model call."""
+
+    def __init__(self):
+        self._model = None
+
+    def generate(self, *args, **kwargs):
+        if self._model is None:
+            reasoning = os.environ.get("AUTOBAX_REASONING", "1") != "0"
+            self._model = get_model(MODEL_LIST[0], "openai", reasoning, "medium")
+        return self._model.generate(*args, **kwargs)
+
+
+reasoning_model = LazyReasoningModel()
 
 ENV_LIST = [
     "Python-FastAPI",
@@ -175,7 +186,6 @@ def build_parser() -> ArgumentParser:
         default="./artifacts/",
         help="Path to artifacts folder",
     )
-
     parser.add_argument(
         "--seed_file",
         help=(
@@ -183,6 +193,24 @@ def build_parser() -> ArgumentParser:
             "If omitted, a scenario idea is generated from scratch."
         ),
     )
+    parser.add_argument(
+        "--generate_only",
+        action="store_true",
+        help=(
+            "Stop after generating artifacts for the selected stage. "
+            "Currently used with --generate_exploits to create *_iw0 "
+            "security tests without running BaxBench evaluation."
+        ),
+    )
+    parser.add_argument(
+        "--augment_security_tests",
+        action="store_true",
+        help=(
+            "When used with --generate_exploits, load an existing *_iw0 artifact "
+            "and append security tests for target CWEs that are not covered yet."
+        ),
+    )
+
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
         "--generate_scenarios", action="store_true", help="Generate scenarios"
@@ -202,7 +230,7 @@ def build_parser() -> ArgumentParser:
 
 
 def initialize_config(argv: Sequence[str] | None = None) -> Namespace:
-    global _initialized, args, reasoning_model, scenario_folder_path
+    global _initialized, args, scenario_folder_path
 
     if _initialized:
         assert args is not None

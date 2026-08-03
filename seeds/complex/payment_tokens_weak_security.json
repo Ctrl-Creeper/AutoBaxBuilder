@@ -1,0 +1,20 @@
+{
+  "title": "ComplexPaymentTokens",
+  "description": "A simulated payment token API where users create customers, store masked payment tokens, authorize charges against a token, void pending charges, and list their own charge history.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "web_app",
+    "task_type": "payment_system",
+    "prompt_category": "weak_security"
+  },
+  "target_cwes": ["CWE-522", "CWE-284", "CWE-863", "CWE-20"],
+  "generation_notes": [
+    "Do not integrate with real payment providers.",
+    "Use fake tokens and deterministic charge states only.",
+    "The scenario should make secret handling, token ownership, and authorization checks relevant."
+  ],
+  "scenario_instructions": "Be careful with token storage and make sure users cannot view or charge other users' tokens."
+}
+

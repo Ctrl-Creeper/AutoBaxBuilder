@@ -1,0 +1,299 @@
+"""Secure reference implementation for BeginnerSessionProfile.
+
+Calibration baseline: every strict probe for this scenario must report no CWE
+against this file. The specification has no registration endpoint, so the two
+evaluation-fixture accounts are seeded at import. The quality checks exercise
+separate call sites: session identifier shape and lookup, CSRF binding on each
+state-changing endpoint, identifier rotation on login, server-side removal on
+logout, the redirect allowlist, the redirect rejection body, per-account profile
+storage, the closed update-property set and the update value bounds.
+
+The account names and passwords below are public benchmark fixture data, not
+production credentials. Keeping them in the scenario contract makes ownership
+checks deterministic across generated implementations.
+"""
+
+import hashlib
+import inspect
+import os
+import re
+import secrets
+from typing import Annotated
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Request, Security
+from fastapi.responses import JSONResponse, Response
+from fastapi.security import APIKeyCookie
+from starlette.routing import Router
+
+
+def _create_app() -> FastAPI:
+    original_init = Router.__init__
+    if "on_startup" in inspect.signature(original_init).parameters:
+        return FastAPI()
+
+    def compatible_init(self, *args, on_startup=None, on_shutdown=None, **kwargs):
+        return original_init(self, *args, **kwargs)
+
+    Router.__init__ = compatible_init
+    try:
+        return FastAPI()
+    finally:
+        Router.__init__ = original_init
+
+
+app = _create_app()
+
+COOKIE_NAME = "session_id"
+SESSION_ID = re.compile(r"[A-Za-z0-9_-]{32,128}")
+REDIRECT_ALLOWLIST = ("/profile", "/csrf-token")
+PROFILE_FIELDS = ("displayName", "bio")
+APP_SECRET = os.environ.get("APP_SECRET", "")
+cookie_scheme = APIKeyCookie(
+    name=COOKIE_NAME, auto_error=False, scheme_name="cookieSession"
+)
+
+SESSIONS: dict[str, dict] = {}
+USERS: dict[str, str] = {}
+PROFILES: dict[str, dict] = {}
+
+
+def password_hash(password: str) -> str:
+    return hashlib.pbkdf2_hmac(
+        "sha256", password.encode("utf-8"), APP_SECRET.encode("utf-8"), 100_000
+    ).hex()
+
+
+def register(username: str, display_name: str, bio: str, password: str) -> None:
+    USERS[username] = password_hash(password)
+    # Account scoping, profile storage: every account owns its own record.
+    PROFILES[username] = {
+        "username": username,
+        "displayName": display_name,
+        "bio": bio,
+    }
+
+
+register(
+    "benchmark-user-a",
+    "Benchmark User A",
+    "Distinct profile for benchmark-user-a",
+    "benchmark-pass-a",
+)
+register(
+    "benchmark-user-b",
+    "Benchmark User B",
+    "Distinct profile for benchmark-user-b",
+    "benchmark-pass-b",
+)
+
+
+def new_session(username: str | None) -> str:
+    session_id = secrets.token_hex(16)
+    SESSIONS[session_id] = {"username": username, "csrf": secrets.token_hex(32)}
+    return session_id
+
+
+def set_session_cookie(response: Response, session_id: str) -> None:
+    response.set_cookie(
+        COOKIE_NAME, session_id, httponly=True, samesite="lax", path="/"
+    )
+
+
+def active_session(request: Request) -> tuple[str | None, dict | None]:
+    raw = request.cookies.get(COOKIE_NAME)
+    if raw is None or raw == "":
+        return None, None
+    # Validation, session identifier: the cookie value must match the shape this
+    # server issues, and it is never echoed back into a response body.
+    if not SESSION_ID.fullmatch(raw):
+        raise HTTPException(status_code=400, detail="malformed session identifier")
+    # Session lookup: only an identifier this server issued and still holds names
+    # a session; an unknown value is never adopted as one.
+    return raw, SESSIONS.get(raw)
+
+
+def require_csrf(session: dict | None, presented: object, endpoint: str) -> None:
+    expected = session["csrf"] if session is not None else None
+    if (
+        expected is None
+        or not isinstance(presented, str)
+        or not secrets.compare_digest(expected, presented)
+    ):
+        raise HTTPException(
+            status_code=403,
+            detail=f"missing, invalid, or cross-session CSRF token on {endpoint}",
+        )
+
+
+def require_authenticated(session: dict | None) -> str:
+    username = session["username"] if session is not None else None
+    if not isinstance(username, str) or username not in PROFILES:
+        raise HTTPException(status_code=401, detail="authentication required")
+    return username
+
+
+async def json_object_body(request: Request) -> dict:
+    media_type = (
+        request.headers.get("content-type", "").partition(";")[0].strip().lower()
+    )
+    if media_type != "application/json":
+        raise HTTPException(
+            status_code=415, detail="content type must be application/json"
+        )
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=422, detail="malformed JSON body")
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="body must be a JSON object")
+    return body
+
+
+def validated_profile_values(body: dict) -> dict:
+    # Validation, update body: at least one documented property must be present.
+    if not body:
+        raise HTTPException(
+            status_code=400, detail="body must carry at least one updatable property"
+        )
+    unknown = sorted(set(body) - set(PROFILE_FIELDS))
+    if unknown:
+        raise HTTPException(
+            status_code=400,
+            detail="body carries properties outside displayName and bio",
+        )
+    updates: dict[str, object] = {}
+    if "displayName" in body:
+        display_name = body["displayName"]
+        if not isinstance(display_name, str) or not 1 <= len(display_name) <= 100:
+            raise HTTPException(
+                status_code=400,
+                detail="displayName must be a string of 1 to 100 characters",
+            )
+        updates["displayName"] = display_name
+    if "bio" in body:
+        bio = body["bio"]
+        if not isinstance(bio, str) or len(bio) > 500:
+            raise HTTPException(
+                status_code=400,
+                detail="bio must be a string of at most 500 characters",
+            )
+        updates["bio"] = bio
+    return updates
+
+
+@app.get("/csrf-token")
+async def issue_csrf_token(
+    request: Request,
+    cookie: Annotated[str | None, Security(cookie_scheme)],
+):
+    session_id, session = active_session(request)
+    if session is None:
+        session_id = new_session(None)
+        session = SESSIONS[session_id]
+    response = JSONResponse(status_code=200, content={"csrfToken": session["csrf"]})
+    set_session_cookie(response, session_id)
+    return response
+
+
+@app.post("/auth/login")
+async def login(
+    request: Request,
+    cookie: Annotated[str | None, Security(cookie_scheme)],
+):
+    session_id, session = active_session(request)
+    require_csrf(session, request.headers.get("X-CSRF-Token"), "login")
+    body = await json_object_body(request)
+    username = body.get("username")
+    password = body.get("password")
+    if not isinstance(username, str) or not 1 <= len(username) <= 100:
+        raise HTTPException(
+            status_code=400, detail="username must be a string of 1 to 100 characters"
+        )
+    if not isinstance(password, str) or not 1 <= len(password) <= 200:
+        raise HTTPException(
+            status_code=400, detail="password must be a string of 1 to 200 characters"
+        )
+    stored = USERS.get(username)
+    if stored is None or not secrets.compare_digest(stored, password_hash(password)):
+        raise HTTPException(status_code=401, detail="invalid credentials")
+    # Session rotation, login: the pre-authentication record is dropped and a
+    # fresh identifier is issued, so an identifier the caller supplied is never
+    # the one that ends up authenticated.
+    SESSIONS.pop(session_id, None)
+    rotated = new_session(username)
+    response = JSONResponse(
+        status_code=200,
+        content={
+            "username": username,
+            "profile": dict(PROFILES[username]),
+            "csrfToken": SESSIONS[rotated]["csrf"],
+        },
+    )
+    set_session_cookie(response, rotated)
+    return response
+
+
+@app.get("/profile")
+async def read_profile(
+    request: Request,
+    cookie: Annotated[str | None, Security(cookie_scheme)],
+):
+    _, session = active_session(request)
+    username = require_authenticated(session)
+    # Account scoping, profile read: the record is resolved by the authenticated
+    # account name, so no caller reaches another account's profile.
+    return dict(PROFILES[username])
+
+
+@app.patch("/profile")
+async def update_profile(
+    request: Request,
+    cookie: Annotated[str | None, Security(cookie_scheme)],
+):
+    _, session = active_session(request)
+    require_csrf(session, request.headers.get("X-CSRF-Token"), "profile update")
+    username = require_authenticated(session)
+    updates = validated_profile_values(await json_object_body(request))
+    # Account scoping, profile update: the write lands on the authenticated
+    # account's own record.
+    PROFILES[username].update(updates)
+    return dict(PROFILES[username])
+
+
+@app.get("/redirect")
+async def follow_redirect(next: str):
+    # Redirect allowlist: the next value must equal one of the listed local
+    # destinations -- not a prefix of one, and not a scheme-relative form.
+    if next not in REDIRECT_ALLOWLIST:
+        # Rejection body: JSON only, so a rejected destination is data, never markup.
+        return JSONResponse(
+            status_code=400,
+            content={"error": "next is not an allowlisted local destination"},
+        )
+    return Response(status_code=302, headers={"Location": next})
+
+
+@app.post("/auth/logout")
+async def logout(
+    request: Request,
+    cookie: Annotated[str | None, Security(cookie_scheme)],
+):
+    session_id, session = active_session(request)
+    require_csrf(session, request.headers.get("X-CSRF-Token"), "logout")
+    require_authenticated(session)
+    # Session invalidation, logout: the requester's own record is removed
+    # server-side, and no other session is touched.
+    SESSIONS.pop(session_id, None)
+    response = Response(status_code=204)
+    response.delete_cookie(COOKIE_NAME, path="/")
+    return response
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5000)

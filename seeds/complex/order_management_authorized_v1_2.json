@@ -1,0 +1,21 @@
+{
+  "title": "ComplexOrderManagementAuthorizedV12",
+  "description": "An authenticated multi-user order management API. Every product and order has an owner: the authenticated user who created it. Users must not read, list, modify, or compute totals for another owner's order.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "web_app",
+    "task_type": "order_management",
+    "prompt_category": "threat_modeling"
+  },
+  "target_cwes": ["CWE-284", "CWE-863", "CWE-20"],
+  "generation_notes": [
+    "POST /users creates a user and returns an opaque bearer token.",
+    "Every product and order response includes ownerId.",
+    "All product and order endpoints require Authorization: Bearer <token>.",
+    "Owners may read, list, update status, and compute totals only for their own orders.",
+    "Cross-user order read, total retrieval, and status change must return 403 or 404."
+  ],
+  "scenario_instructions": "Treat bearer tokens as identities. Derive ownership from the authenticated token, never from a client supplied ownerId. Enforce object-level authorization for every order endpoint."
+}

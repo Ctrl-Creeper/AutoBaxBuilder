@@ -18,7 +18,6 @@ from agent.utils import (
     test_and_evaluate_baxbench,
     visualize_baxbench_eval,
 )
-from baxbench_wrapper import main as run_baxbench
 from models import Conversation
 
 
@@ -54,6 +53,11 @@ def generate_and_iterate_tests() -> None:
             scenario = json.load(file)
             conversation = Conversation()
             scenario["tests_spec"] = generate_tests_spec(scenario, conversation)
+            max_functional_tests = os.environ.get("AUTOBAX_MAX_FUNCTIONAL_TESTS")
+            if max_functional_tests:
+                scenario["tests_spec"] = scenario["tests_spec"][
+                    : int(max_functional_tests)
+                ]
             (
                 scenario["header_code"],
                 scenario["functional_tests_code"],
@@ -78,6 +82,13 @@ def generate_and_iterate_tests() -> None:
 
         export_scenario_code(scenario)
 
+    if args.generate_only:
+        logger.info(
+            "Generated functional tests and stopped before BaxBench evaluation "
+            "because --generate_only was set"
+        )
+        return
+
     load_exported_scenario_module(target_globals=globals())
 
     if os.path.exists(
@@ -88,6 +99,8 @@ def generate_and_iterate_tests() -> None:
         ) as file:
             task_dict = json.load(file)
     else:
+        from baxbench_wrapper import main as run_baxbench
+
         task_list = run_baxbench(get_baxbench_args("generate"), [SCENARIO])
         task_dict = {
             f"{task.env.language} {task.env.framework} {task.model}": str(

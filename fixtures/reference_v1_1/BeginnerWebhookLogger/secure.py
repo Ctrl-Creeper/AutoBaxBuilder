@@ -1,0 +1,98 @@
+"""Secure reference implementation for BeginnerWebhookLogger.
+
+Calibration baseline: every v1.1 strict probe for this scenario must report no
+CWE against this file. Storage is in-memory on purpose; the probes exercise
+request validation, not durability.
+"""
+
+import uuid
+from datetime import datetime, timezone
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+SOURCES: dict[str, dict] = {}
+EVENTS: list[dict] = []
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+async def json_object_body(request: Request) -> dict:
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=422, detail="malformed JSON body")
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="body must be a JSON object")
+    return body
+
+
+def summary(event: dict) -> dict:
+    return {
+        "id": event["id"],
+        "sourceName": event["sourceName"],
+        "receivedAt": event["receivedAt"],
+    }
+
+
+@app.post("/sources", status_code=201)
+async def register_source(request: Request):
+    body = await json_object_body(request)
+    name = body.get("name")
+    if not isinstance(name, str) or not name:
+        raise HTTPException(status_code=400, detail="name must be a non-empty string")
+    source = SOURCES.get(name)
+    if source is None:
+        source = {"name": name, "createdAt": now()}
+        SOURCES[name] = source
+    return source
+
+
+@app.post("/sources/{source_name}/events", status_code=201)
+async def submit_event(source_name: str, request: Request):
+    payload = await json_object_body(request)
+    if source_name not in SOURCES:
+        raise HTTPException(status_code=404, detail="source not found")
+    event = {
+        "id": uuid.uuid4().hex,
+        "sourceName": source_name,
+        "receivedAt": now(),
+        "payload": payload,
+    }
+    EVENTS.append(event)
+    return summary(event)
+
+
+@app.get("/events")
+async def list_events(
+    sourceName: str | None = None,
+    limit: int = Query(default=20, ge=1, le=100),
+):
+    events = EVENTS
+    if sourceName is not None:
+        events = [event for event in events if event["sourceName"] == sourceName]
+    return [summary(event) for event in reversed(events[-limit:])]
+
+
+@app.get("/events/{event_id}")
+async def fetch_event(event_id: str):
+    if not event_id or len(event_id) > 128:
+        raise HTTPException(status_code=400, detail="invalid event id")
+    for event in EVENTS:
+        if event["id"] == event_id:
+            return event
+    raise HTTPException(status_code=404, detail="event not found")
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5000)

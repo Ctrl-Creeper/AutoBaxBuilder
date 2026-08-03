@@ -30,6 +30,8 @@ Load environment variables in a `.env` file:
 
 ```bash
 export OPENAI_API_KEY="<your_API_key>"
+# Optional: set this for OpenAI-compatible endpoints. Leave unset for official OpenAI.
+export OPENAI_BASE_URL="https://your-openai-compatible-endpoint/v1"
 export TOGETHER_API_KEY="<your_API_key>"
 export ANTHROPIC_API_KEY="<your_API_key>"
 export OPENROUTER_API_KEY="<your_API_key>"
@@ -103,6 +105,7 @@ Options:
   -P, --parallel N       Parallel workers                               (default: 1)
   -d, --difficulty N     Number of endpoints: 1=easy 3=medium 5=hard    (default: 3)
   -p, --path PATH        Artifacts base directory                       (default: <script_dir>/artifacts)
+  -s, --seed-file PATH   Curated seed JSON for one scenario             (default: random generation)
   -v, --debug            Enable debug output                            (default: off)
 ```
 
@@ -127,11 +130,17 @@ Run AutoBaxBuilder from the repository root with `python src/main.py`. It runs i
 - `--N_SEC_STEPS N`: Maximum steps for security iteration
 - `--debug`: Debug mode (print additional information)
 - `--path PATH`: Artifact path
+- `--seed_file PATH`: Curated scenario seed JSON for `--generate_scenarios`
 
 #### Examples
 ```bash
 # Generate scenarios
 python src/main.py --generate_scenarios
+
+# Generate a scenario from a curated taxonomy seed
+python src/main.py \
+  --generate_scenarios \
+  --seed_file seeds/beginner/web_login_natural.json
 
 # Generate tests for a specific scenario
 python src/main.py --generate_tests --scenario FooBarScenario
@@ -145,6 +154,46 @@ python src/main.py --generate_tests --debug
 # Save artifacts in a different directory
 python src/main.py --generate_scenarios --path /path/to/artifacts/
 ```
+
+### Generating from Curated Taxonomy Seeds
+
+For controlled coverage experiments, use the curated JSON seeds under `seeds/`.
+This lets you hand-control the task taxonomy while still using AutoBaxBuilder to
+expand the seed into an OpenAPI schema, textual spec, functional tests, candidate
+implementations, exploits, and final scenario artifact.
+
+Each seed must provide:
+- `title`
+- `description`
+- `needs_db`
+- `needs_secret`
+
+Seeds may also include:
+- `taxonomy`: labels such as `scenario_level`, `domain`, `task_type`, and `prompt_category`
+- `target_cwes`: intended security surfaces
+- `generation_notes`: constraints used while expanding the seed
+- `scenario_instructions`: additional instructions shown to solution-generation models
+- `schema` and `text_spec`: optional hand-written specs; if omitted, AutoBaxBuilder generates them
+
+Run a full pipeline from one seed:
+
+```bash
+./autobaxbuilder.sh --seed-file seeds/complex/order_management_natural.json
+```
+
+Run only the scenario-expansion step:
+
+```bash
+python src/main.py \
+  --path artifacts \
+  --difficulty 3 \
+  --seed_file seeds/complex/order_management_natural.json \
+  --generate_scenarios
+```
+
+The generated scenario JSON preserves the taxonomy metadata for later analysis,
+but exported BaxBench scenario files remain compatible with the existing
+`Scenario` class.
 
 #### Artifact Overview
 `--generate_scenarios` produces a new folder in the artifacts directory, corresponding to a novel scenario. `--generate_tests` takes the scenario name of a scenario produced with `--generate_scenarios`, on the basis of which it generates functional tests. `--generate_exploits` also takes a scenario name and builds on top of the previous steps to develop security tests. In each step, artifacts are created. For an exemplary scenario named `FooBarScenario`, these are structured as follows:

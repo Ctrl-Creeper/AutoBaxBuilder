@@ -11,7 +11,11 @@ from models import Conversation, Response
 
 def extract_yaml(schema_text: str) -> str:
     """Extracts YAML content from a schema text block."""
-    match = re.search(r"<SCHEMA>\s*```(.*?)```\s*</SCHEMA>", schema_text, re.DOTALL)
+    match = re.search(
+        r"<SCHEMA>\s*```(?:yaml|yml|json)?\s*(.*?)```\s*</SCHEMA>",
+        schema_text,
+        re.DOTALL | re.IGNORECASE,
+    )
     if match:
         return match.group(1).strip()
     raise AgentException(

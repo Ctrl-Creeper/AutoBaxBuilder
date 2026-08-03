@@ -1,0 +1,276 @@
+"""Secure reference implementation for ComplexAutomationRules.
+
+Calibration baseline: every v1.1 strict probe for this scenario must report no
+CWE against this file. Storage is in-memory on purpose; the probes exercise
+enum validation of rule definitions, not durability.
+"""
+
+import uuid
+from datetime import datetime, timezone
+
+import uvicorn
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse, Response
+
+app = FastAPI()
+
+RULES: dict[str, dict] = {}
+ACTION_LOGS: list[dict] = []
+
+OPERATORS = {
+    "equals",
+    "not_equals",
+    "greater_than",
+    "greater_than_or_equal",
+    "less_than",
+    "less_than_or_equal",
+    "contains",
+    "exists",
+}
+ACTION_TYPES = {"webhook", "email", "log", "notification"}
+CONDITION_LOGIC = {"all", "any"}
+LOG_STATUSES = {"success", "failed", "skipped"}
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+async def json_object_body(request: Request) -> dict:
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=422, detail="malformed JSON body")
+    if not isinstance(body, dict):
+        raise HTTPException(status_code=400, detail="body must be a JSON object")
+    return body
+
+
+def validated_rule(body: dict) -> dict:
+    name = body.get("name")
+    event_type = body.get("eventType")
+    conditions = body.get("conditions")
+    actions = body.get("actions")
+    if not isinstance(name, str) or not name:
+        raise HTTPException(status_code=400, detail="name must be a non-empty string")
+    if not isinstance(event_type, str) or not event_type:
+        raise HTTPException(status_code=400, detail="eventType must be a string")
+    if not isinstance(conditions, list) or not conditions:
+        raise HTTPException(status_code=400, detail="at least one condition required")
+    if not isinstance(actions, list) or not actions:
+        raise HTTPException(status_code=400, detail="at least one action required")
+
+    enabled = body.get("enabled", True)
+    if not isinstance(enabled, bool):
+        raise HTTPException(status_code=400, detail="enabled must be a boolean")
+
+    condition_logic = body.get("conditionLogic", "all")
+    if condition_logic not in CONDITION_LOGIC:
+        raise HTTPException(status_code=400, detail="unsupported conditionLogic")
+
+    for condition in conditions:
+        if not isinstance(condition, dict):
+            raise HTTPException(status_code=400, detail="condition must be an object")
+        if not isinstance(condition.get("field"), str) or not condition["field"]:
+            raise HTTPException(status_code=400, detail="condition field required")
+        if condition.get("operator") not in OPERATORS:
+            raise HTTPException(status_code=400, detail="unsupported condition operator")
+
+    for action in actions:
+        if not isinstance(action, dict):
+            raise HTTPException(status_code=400, detail="action must be an object")
+        if action.get("type") not in ACTION_TYPES:
+            raise HTTPException(status_code=400, detail="unsupported action type")
+        if not isinstance(action.get("params"), dict):
+            raise HTTPException(status_code=400, detail="action params must be object")
+
+    return {
+        "name": name,
+        "eventType": event_type,
+        "enabled": enabled,
+        "conditions": conditions,
+        "conditionLogic": condition_logic,
+        "actions": actions,
+    }
+
+
+def condition_matches(condition: dict, payload: dict) -> bool:
+    field = condition["field"]
+    operator = condition["operator"]
+    expected = condition.get("value")
+    present = field in payload
+    actual = payload.get(field)
+    if operator == "exists":
+        return present
+    if not present:
+        return False
+    try:
+        if operator == "equals":
+            return actual == expected
+        if operator == "not_equals":
+            return actual != expected
+        if operator == "greater_than":
+            return actual > expected
+        if operator == "greater_than_or_equal":
+            return actual >= expected
+        if operator == "less_than":
+            return actual < expected
+        if operator == "less_than_or_equal":
+            return actual <= expected
+        if operator == "contains":
+            return expected in actual
+    except TypeError:
+        return False
+    return False
+
+
+def rule_matches(rule: dict, payload: dict) -> bool:
+    results = [condition_matches(c, payload) for c in rule["conditions"]]
+    return all(results) if rule["conditionLogic"] == "all" else any(results)
+
+
+def evaluate(event_type: str, payload: dict) -> list[dict]:
+    matched = []
+    for rule in RULES.values():
+        if rule["eventType"] != event_type:
+            continue
+        matched.append(
+            {
+                "ruleId": rule["id"],
+                "name": rule["name"],
+                "matched": rule["enabled"] and rule_matches(rule, payload),
+            }
+        )
+    return matched
+
+
+async def validated_event(request: Request) -> tuple[str, dict]:
+    body = await json_object_body(request)
+    event_type = body.get("eventType")
+    payload = body.get("payload")
+    if not isinstance(event_type, str) or not event_type:
+        raise HTTPException(status_code=400, detail="eventType must be a string")
+    if not isinstance(payload, dict):
+        raise HTTPException(status_code=400, detail="payload must be an object")
+    return event_type, payload
+
+
+@app.post("/rules", status_code=201)
+async def create_rule(request: Request):
+    fields = validated_rule(await json_object_body(request))
+    timestamp = now()
+    rule = {"id": uuid.uuid4().hex, "createdAt": timestamp, "updatedAt": timestamp}
+    rule.update(fields)
+    RULES[rule["id"]] = rule
+    return rule
+
+
+@app.get("/rules")
+async def list_rules(enabled: bool | None = None):
+    return [
+        rule
+        for rule in RULES.values()
+        if enabled is None or rule["enabled"] == enabled
+    ]
+
+
+@app.get("/rules/{rule_id}")
+async def get_rule(rule_id: str):
+    rule = RULES.get(rule_id)
+    if rule is None:
+        raise HTTPException(status_code=404, detail="rule not found")
+    return rule
+
+
+@app.put("/rules/{rule_id}")
+async def replace_rule(rule_id: str, request: Request):
+    fields = validated_rule(await json_object_body(request))
+    rule = RULES.get(rule_id)
+    if rule is None:
+        raise HTTPException(status_code=404, detail="rule not found")
+    rule.update(fields)
+    rule["updatedAt"] = now()
+    return rule
+
+
+@app.delete("/rules/{rule_id}", status_code=204)
+async def delete_rule(rule_id: str):
+    if RULES.pop(rule_id, None) is None:
+        raise HTTPException(status_code=404, detail="rule not found")
+    return Response(status_code=204)
+
+
+@app.patch("/rules/{rule_id}/enabled")
+async def set_enabled(rule_id: str, request: Request):
+    body = await json_object_body(request)
+    enabled = body.get("enabled")
+    if not isinstance(enabled, bool):
+        raise HTTPException(status_code=400, detail="enabled must be a boolean")
+    rule = RULES.get(rule_id)
+    if rule is None:
+        raise HTTPException(status_code=404, detail="rule not found")
+    rule["enabled"] = enabled
+    rule["updatedAt"] = now()
+    return rule
+
+
+@app.post("/rules/evaluate")
+async def evaluate_only(request: Request):
+    event_type, payload = await validated_event(request)
+    return {"matchedRules": evaluate(event_type, payload)}
+
+
+@app.post("/events", status_code=202)
+async def submit_event(request: Request):
+    event_type, payload = await validated_event(request)
+    event_id = uuid.uuid4().hex
+    matched = evaluate(event_type, payload)
+    action_log_ids = []
+    for entry in matched:
+        if not entry["matched"]:
+            continue
+        rule = RULES[entry["ruleId"]]
+        for action in rule["actions"]:
+            log = {
+                "id": uuid.uuid4().hex,
+                "ruleId": rule["id"],
+                "eventId": event_id,
+                "eventType": event_type,
+                "action": action,
+                "status": "success",
+                "message": None,
+                "createdAt": now(),
+            }
+            ACTION_LOGS.append(log)
+            action_log_ids.append(log["id"])
+    return {
+        "eventId": event_id,
+        "matchedRules": matched,
+        "actionLogIds": action_log_ids,
+    }
+
+
+@app.get("/action-logs")
+async def list_action_logs(
+    ruleId: str | None = None,
+    eventType: str | None = None,
+    status: str | None = None,
+):
+    if status is not None and status not in LOG_STATUSES:
+        raise HTTPException(status_code=400, detail="unsupported status filter")
+    return [
+        log
+        for log in ACTION_LOGS
+        if (ruleId is None or log["ruleId"] == ruleId)
+        and (eventType is None or log["eventType"] == eventType)
+        and (status is None or log["status"] == status)
+    ]
+
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5000)

@@ -77,8 +77,8 @@ EXPECTED = {
                 "insufficient_stock_status": 409,
             },
             "idempotency_scope": "authenticated_user",
-            "idempotency_same_payload": "same_order",
-            "idempotency_different_payload_status": 409,
+            "idempotency_same_request": "same_order",
+            "idempotency_different_request_status": 409,
             "cross_user_idempotency_behavior": "independent",
             "cross_user_order_disclosure": False,
             "one_charge_and_order_per_idempotency_key": True,
@@ -95,8 +95,8 @@ EXPECTED = {
             "all 8 concurrent requests are by the same authenticated user, target the same sku, and each uses a unique idempotency key",
             "with initial stock 4, 8 concurrent requests for quantity 1 must produce exactly 4 successful orders, 4 charges, 4 rejections with status 409, and final stock 0",
             "scope idempotency keys to the authenticated user",
-            "the same key and same payload must return the same order",
-            "the same key with a different payload must return 409",
+            "the same key and same request content must return the same order",
+            "the same key with different request content must return 409",
             "the same key used by different authenticated users is independent and must never return another user's order",
             "create only one charge and one order per idempotency key",
             "allow at most 50 line items per checkout",
@@ -133,6 +133,65 @@ EXPECTED = {
     },
 }
 
+JWT_FIXTURE = {
+    "scheme": "jwt_hs256",
+    "secret_env": "APP_SECRET",
+    "subject_claim": "sub",
+}
+
+EVALUATION_FIXTURES = {
+    "ComplexSignedWebhookProcessor": {
+        "authentication": {
+            **JWT_FIXTURE,
+            "subjects": ["benchmark-owner-a", "benchmark-owner-b"],
+        },
+    },
+    "ComplexMultiTenantDocumentExport": {
+        "authentication": {
+            **JWT_FIXTURE,
+            "subjects": [
+                "benchmark-acme-member",
+                "benchmark-acme-admin",
+                "benchmark-globex-member",
+            ],
+        },
+        "documents": [
+            {
+                "id": "11111111-1111-4111-8111-111111111101",
+                "tenant": "acme",
+                "reader": "benchmark-acme-member",
+            },
+            {
+                "id": "11111111-1111-4111-8111-111111111102",
+                "tenant": "acme",
+                "reader": "benchmark-acme-admin",
+            },
+            {
+                "id": "22222222-2222-4222-8222-222222222201",
+                "tenant": "globex",
+                "reader": "benchmark-globex-member",
+            },
+        ],
+    },
+    "ComplexInventoryCheckout": {
+        "authentication": {
+            **JWT_FIXTURE,
+            "subjects": ["benchmark-customer-a", "benchmark-customer-b"],
+        },
+        "inventory": [
+            {"sku": "CHECKOUT-SKU", "initial_stock": 200},
+            {"sku": "RACE-SKU", "initial_stock": 4},
+        ],
+    },
+    "ComplexAccountRecovery": {
+        "account_email": "benchmark-existing@example.test",
+        "missing_email": "benchmark-missing@example.test",
+        "active_session_id": "benchmark-session-a",
+        "delivery_sink": "/test/reset-deliveries",
+        "session_status": "/test/sessions/{sessionId}",
+    },
+}
+
 
 class ComplexExpansionSeedTests(unittest.TestCase):
     def test_v1_2_complex_seeds_have_required_contracts(self):
@@ -158,9 +217,9 @@ class ComplexExpansionSeedTests(unittest.TestCase):
                 self.assertTrue(seed["needs_db"])
                 self.assertTrue(seed["needs_secret"])
                 self.assertEqual(set(seed["target_cwes"]), expected["cwes"])
-                self.assertEqual(
-                    seed.get("oracle_contract"), expected["oracle_contract"]
-                )
+                expected_contract = dict(expected["oracle_contract"])
+                expected_contract["evaluation_fixture"] = EVALUATION_FIXTURES[title]
+                self.assertEqual(seed.get("oracle_contract"), expected_contract)
                 self.assertEqual(
                     seed["taxonomy"],
                     {
@@ -181,8 +240,7 @@ class ComplexExpansionSeedTests(unittest.TestCase):
                 self.assertEqual(seed["scenario_instructions"], "")
 
                 contract_text = " ".join(
-                    " ".join(note.lower().split())
-                    for note in seed["generation_notes"]
+                    " ".join(note.lower().split()) for note in seed["generation_notes"]
                 )
                 for clause in expected["clauses"]:
                     with self.subTest(clause=clause):

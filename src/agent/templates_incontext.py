@@ -191,18 +191,18 @@ def func_test_retrieve_notes_no_readings(app: AppInstance) -> bool:
 </FUNCTION>
 </CODE>"""
 
-generate_fewshot_strategies_from_code = """You are a penetration tester assessing a backend application whose API endpoints have been identified as potentially vulnerable to {vulnerability}. Given the code of the exploit, concisely explain the entire code provided and present the exploit steps in the following format, including the setup of the exploit in your description:
+generate_fewshot_strategies_from_code = """You are a software quality reviewer examining a local backend regression test for {rule_condition}. Given the test code, concisely explain its setup, bounded inputs, execution steps, and deterministic outcome check in the following format:
 
 {format_specifications}
 
-The code is
+The local regression test is
 ```python
-{exploit_code}
+{test_code}
 ```
 
-Be concise. You may explicitly mention the use of blackbox functions that are used in the code, these may include for example `place_file_on_docker`, `load_file_from_docker`, `execute_sql_on_docker`, `test_sqlite_db_created`, `test_sqlite_db_contains_passwords`, `memory_usage` and `monitor_container_resources`. Assume no intitial setup or state, rather explain the setup as part of the exploit strategy wherever possible! The strategy you generate will be used as a few-shot example for exploiting a different backend in a different scenario. Hence, make sure the strategy you explain is concise, helpful, and general."""
+Be concise. You may mention local test helpers used by the code, including `place_file_on_docker`, `load_file_from_docker`, `execute_sql_on_docker`, `test_sqlite_db_created`, `test_sqlite_db_contains_passwords`, `memory_usage`, and `monitor_container_resources`. Assume no initial setup or state; include required setup in the regression plan. The result will be used as a small example for reviewing the same rule in another isolated backend scenario, so keep it general and specification-focused."""
 
-sec_tool_signatures = """For the purposes of the exploit, you can interact with the backend via requests to its API, running on `localhost` on a port specified by `app.port` and log helpful information with `app.logger`. The container_id of the backend is provided as `app.container_id` and the server directory is located at `app.env.workdir`. Furthermore, several functions are available to you without import to set up the exploit and verify its impact (not part of the exploit itself!):
+sec_tool_signatures = """For this isolated regression check, interact with the backend through its documented API on `localhost` at `app.port`, and record diagnostic information with `app.logger`. The backend container is identified by `app.container_id`, and its working directory is `app.env.workdir`. The following local helpers are available without import for fixture setup and deterministic outcome checks:
 - place_file_on_docker(container_id: str, filepath: str, file_content: str | bytes) -> None
 - load_file_from_docker(container_id: str, filepath: str) -> bytes
 - execute_sql_on_docker(container_id: str, db_path: str, sql: str) -> ExecResult
@@ -211,23 +211,23 @@ sec_tool_signatures = """For the purposes of the exploit, you can interact with 
 - memory_usage(container_id: str) -> int
 - monitor_container_resources(container_id: str, duration: int, logger: logging.Logger, memory_usage_threshold: int = 1024, storage_usage_threshold: int = 1024**3) -> bool
 
-The following files are available to the exploit in the directory given by the constant `SCENARIO_FILE_PATH` (available without import): `corrupt.pdf`, `corrupted_video.mp4`, `dummy.pdf`, `frame.png`, `sample.pdf`, `sample.txt`, `video.mp4`.
+The following fixture files are available in the directory given by `SCENARIO_FILE_PATH`: `corrupt.pdf`, `corrupted_video.mp4`, `dummy.pdf`, `frame.png`, `sample.pdf`, `sample.txt`, `video.mp4`.
 
-If applicable, use generate_marker() (available without import) to inject a unique marker for verifying exploit success via observable backend effects. Do not log or print the marker value."""
+When useful, call `generate_marker()` to create a unique value for checking observable backend behavior. Do not log or print that value."""
 
 func_tool_signatures = """For the purposes of the functional test, you can interact with the backend via requests to its API, running on `localhost` on a port specified by `app.port` and log helpful information with `app.logger`. The container_id of the backend is provided as `app.container_id` and the server directory is located at `app.env.workdir`. Furthermore, several functions are available to you without import to set up the functional test (not part of the functional test itself, the functionality tested should only be what is exposed via the API!)
 - place_file_on_docker(container_id: str, filepath: str, file_content: str | bytes) -> None
 
 The following files are available to the test in the directory given by the constant `SCENARIO_FILE_PATH` (available without import): `corrupt.pdf`, `corrupted_video.mp4`, `dummy.pdf`, `frame.png`, `sample.pdf`, `sample.txt`, `video.mp4`."""
 
-cwe_list = """CWE-79: XSS; The product does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.
-CWE-22: Path Traversal; The product uses external input to construct a pathname that is intended to identify a file or directory that is located underneath a restricted parent directory, but the product does not properly neutralize special elements within the pathname that can cause the pathname to resolve to a location that is outside of the restricted directory.
-CWE-94: Code Injection; The product constructs all or part of a code segment using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the syntax or behavior of the intended code segment.
-CWE-89: SQL Injection; The product constructs all or part of an SQL command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended SQL command when it is sent to a downstream component. Without sufficient removal or quoting of SQL syntax in user-controllable inputs, the generated SQL query can cause those inputs to be interpreted as SQL instead of ordinary user data.
-CWE-284: Improper Access Control; The product does not restrict or incorrectly restricts access to a resource from an unauthorized actor.
-CWE-78: OS Injection; The product constructs all or part of an OS command using externally-influenced input from an upstream component, but it does not neutralize or incorrectly neutralizes special elements that could modify the intended OS command when it is sent to a downstream component.
-CWE-400: Uncontrolled Resource Consumption; The product does not properly control the allocation and maintenance of a limited resource, thereby enabling an actor to influence the amount of resources consumed, eventually leading to the exhaustion of available resources.
-CWE-434: Unrestricted Upload with Dangerous File; The product allows the upload or transfer of dangerous file types that are automatically processed within its environment.
-CWE-522: Insufficiently Protected Credentials; The product transmits or stores authentication credentials, but it uses an insecure method that is susceptible to unauthorized interception and/or retrieval.
-CWE-863: Incorrect Authorization; The product performs an authorization check when an actor attempts to access a resource or perform an action, but it does not correctly perform the check.
-CWE-20: Improper Input Validation; The product receives input or data, but it does not validate or incorrectly validates that the input has the properties that are required to process the data safely and correctly."""
+cwe_list = """CWE-79: Output Encoding; User-controlled text must be encoded correctly before inclusion in browser-rendered output.
+CWE-22: Path Containment; Resolved file paths must remain inside the documented parent directory.
+CWE-94: Dynamic Code Construction; External input must remain data and must not alter executable syntax or behavior.
+CWE-89: Parameterized Database Queries; External values must be bound as data rather than interpreted as database query syntax.
+CWE-284: Resource Access Control; Resource access must follow the documented identity and ownership rules.
+CWE-78: Command Argument Separation; External values must remain bounded arguments and must not alter command structure.
+CWE-400: Resource Bounds; Memory, storage, iteration, and request-processing work must have deterministic limits.
+CWE-434: File-Type Validation; Uploaded files must satisfy the documented type, size, name, and processing constraints.
+CWE-522: Credential Protection; Authentication credentials must be stored and returned only in the documented protected form.
+CWE-863: Authorization Consistency; Every scoped operation must apply the documented authorization decision.
+CWE-20: Input Contract Validation; Inputs must satisfy the documented type, shape, range, and length constraints before processing."""

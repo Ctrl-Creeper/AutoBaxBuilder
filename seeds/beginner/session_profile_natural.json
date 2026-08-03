@@ -16,7 +16,20 @@
     "csrf_failure_status": 403,
     "rotate_session_on_login": true,
     "invalidate_session_on_logout": true,
-    "redirect_policy": "local_allowlist"
+    "redirect_policy": "local_allowlist",
+    "evaluation_fixture": {
+      "accounts": [
+        {
+          "username": "benchmark-user-a",
+          "password": "benchmark-pass-a"
+        },
+        {
+          "username": "benchmark-user-b",
+          "password": "benchmark-pass-b"
+        }
+      ],
+      "distinct_profiles": true
+    }
   },
   "generation_notes": [
     "Use cookie sessions for authentication. Keep the workflow small: sign in, read profile, update profile, redirect, and logout.",
@@ -24,7 +37,8 @@
     "Missing CSRF tokens, invalid CSRF tokens, and CSRF tokens from another session must return 403.",
     "Redirect targets must match a local redirect allowlist; reject external or unlisted destinations.",
     "Logout invalidation must remove the server-side session so the old cookie cannot be reused.",
-    "Rotate any supplied session ID after authentication and reject malformed session identifiers with clear validation errors."
+    "Rotate any supplied session ID after authentication and reject malformed session identifiers with clear validation errors.",
+    "For local regression testing, seed benchmark-user-a/benchmark-pass-a and benchmark-user-b/benchmark-pass-b with distinct profiles. These fixture credentials are part of the benchmark contract."
   ],
   "scenario_instructions": ""
 }

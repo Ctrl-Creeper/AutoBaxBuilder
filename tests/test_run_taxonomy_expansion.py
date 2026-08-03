@@ -70,6 +70,7 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                     "ExampleScenario",
                     "--path",
                     str(artifacts_dir),
+                    "--generate_only",
                 ],
                 [
                     "/custom/python",
@@ -79,6 +80,7 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                     "ExampleScenario",
                     "--path",
                     str(artifacts_dir),
+                    "--generate_only",
                 ],
             ],
         )
@@ -308,6 +310,67 @@ class TaxonomyExpansionRunnerTests(unittest.TestCase):
                     for stage in seed["stages"]
                 )
             )
+
+    def test_title_filter_plans_only_requested_seeds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds = self.expansion_seeds(root)
+            status_path = root / "report.json"
+            args = runner.parse_args(
+                [
+                    "--artifacts-dir",
+                    str(root / "artifacts"),
+                    "--status-path",
+                    str(status_path),
+                    "--title",
+                    "Scenario2",
+                    "--title",
+                    "Scenario5",
+                    "--dry-run",
+                ]
+            )
+            with patch.object(
+                runner, "discover_expansion_seeds", return_value=seeds
+            ), patch.object(
+                runner, "validate_expansion_seeds", return_value=self.valid_report()
+            ), contextlib.redirect_stdout(
+                io.StringIO()
+            ):
+                exit_code = runner.run_batch(args)
+            report = json.loads(status_path.read_text(encoding="utf-8"))
+
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(
+            [seed["title"] for seed in report["seeds"]],
+            ["Scenario2", "Scenario5"],
+        )
+        self.assertEqual(report["aggregate"]["stages"]["planned"], 6)
+
+    def test_unknown_title_filter_is_rejected_before_workers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            seeds = self.expansion_seeds(root)
+            args = runner.parse_args(
+                [
+                    "--artifacts-dir",
+                    str(root / "artifacts"),
+                    "--status-path",
+                    str(root / "report.json"),
+                    "--title",
+                    "MissingScenario",
+                ]
+            )
+            with patch.object(
+                runner, "discover_expansion_seeds", return_value=seeds
+            ), patch.object(
+                runner, "validate_expansion_seeds", return_value=self.valid_report()
+            ), patch.object(
+                runner, "run_seed"
+            ) as run_seed:
+                exit_code = runner.run_batch(args)
+
+        self.assertEqual(exit_code, 2)
+        run_seed.assert_not_called()
 
     def test_failure_stops_only_its_seed_and_other_workers_continue(self):
         with tempfile.TemporaryDirectory() as directory:

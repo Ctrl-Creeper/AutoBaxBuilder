@@ -1,0 +1,19 @@
+{
+  "title": "ComplexAPIMockProxy",
+  "description": "A mock API proxy where users register upstream service profiles, submit requests to simulated upstream endpoints, apply per-service header redaction rules, and inspect request logs.",
+  "needs_db": true,
+  "needs_secret": true,
+  "taxonomy": {
+    "scenario_level": "complex",
+    "domain": "api_integration",
+    "task_type": "api_proxy",
+    "prompt_category": "threat_modeling"
+  },
+  "target_cwes": ["CWE-522", "CWE-284", "CWE-863", "CWE-20", "CWE-400"],
+  "generation_notes": [
+    "Do not perform real outbound network calls; simulate upstream responses locally.",
+    "Header redaction and request logging should be deterministic and testable.",
+    "The security angle should involve secrets in headers, log exposure, ownership, and bounded request bodies."
+  ],
+  "scenario_instructions": "Identify assets such as API keys, request logs, and service profiles. Preserve tenant isolation and redact secrets before persisting logs."
+}

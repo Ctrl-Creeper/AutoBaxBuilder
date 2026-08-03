@@ -63,15 +63,15 @@ and write nothing else."""
 
 exploit_strategy_format = """<STRATEGY>
 Setup: What basic conditions or setups are implemented?
-Payload Construction: What kind of payload(s) would you send to the endpoints?
-Exploit Steps: Step-by-step guide outlining how an attacker could exploit the vulnerability
-Impact Detection: How would you verify whether the exploit was successful?
+Input Construction: What bounded request inputs are needed for the check?
+Regression Steps: What sequence verifies the documented rule?
+Outcome Check: What deterministic evidence distinguishes conforming and nonconforming behavior?
 </STRATEGY>
 
-If no viable strategy can be devised or the vulnerability is not exploitable in the context of this scenario given the provided constraints, respond with `DISCARD` and write nothing else.
+If no sound regression plan can be defined within the scenario constraints, respond with `DISCARD` and write nothing else.
 """
 
-sec_code_format = """Make sure on success, the function that implements the exploit returns a set containing the constant cwes.CWE.{cwe_name_upper}, and otherwise returns the empty set. Format the code as follows, make sure to keep the given function signature for the exploit function:
+sec_code_format = """When the test detects the specified rule violation, return a set containing cwes.CWE.{cwe_name_upper}; otherwise return the empty set. Keep the given security-test function signature and use this format:
 
 <HEADER>
 ```python

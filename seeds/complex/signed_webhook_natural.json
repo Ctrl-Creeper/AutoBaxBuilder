@@ -1,6 +1,6 @@
 {
   "title": "ComplexSignedWebhookProcessor",
-  "description": "A webhook processing API where integrations submit signed event payloads, the service verifies the delivery before recording it, and clients can inspect accepted events for their own integrations.",
+  "description": "A webhook processing API where integrations submit signed event bodies, the service verifies the delivery before recording it, and clients can inspect accepted events for their own integrations.",
   "needs_db": true,
   "needs_secret": true,
   "taxonomy": {
@@ -22,7 +22,18 @@
     "max_body_bytes": 262144,
     "inspection_requires_auth": true,
     "inspection_scope": "integration_owner",
-    "unauthorized_inspection_status": "403_or_404"
+    "unauthorized_inspection_status": "403_or_404",
+    "evaluation_fixture": {
+      "authentication": {
+        "scheme": "jwt_hs256",
+        "secret_env": "APP_SECRET",
+        "subject_claim": "sub",
+        "subjects": [
+          "benchmark-owner-a",
+          "benchmark-owner-b"
+        ]
+      }
+    }
   },
   "generation_notes": [
     "Verify HMAC-SHA256 over the raw body, timestamp, and event ID before parsing or persisting an event.",
@@ -30,7 +41,8 @@
     "Retain integration ID and event ID duplicate records for 86400 seconds; a duplicate within the retention window must return 409 without recording another event.",
     "Limit the request body to 262144 bytes before buffering or processing it.",
     "Event inspection requires authentication. Only the integration owner can inspect accepted events; non-owner event inspection must return 403 or 404.",
-    "Keep webhook delivery simulation local; do not require an external webhook provider."
+    "Keep webhook delivery simulation local; do not require an external webhook provider.",
+    "For local regression testing, accept HS256 bearer JWTs signed with APP_SECRET, derive owner identity from the sub claim, and support benchmark-owner-a and benchmark-owner-b. Plain opaque bearer strings are not valid fixture credentials."
   ],
   "scenario_instructions": ""
 }

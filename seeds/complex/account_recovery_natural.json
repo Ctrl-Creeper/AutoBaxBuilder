@@ -21,7 +21,14 @@
     "token_storage": "digest",
     "token_single_use": true,
     "token_reuse": "invalid",
-    "reset_revokes_all_sessions": true
+    "reset_revokes_all_sessions": true,
+    "evaluation_fixture": {
+      "account_email": "benchmark-existing@example.test",
+      "missing_email": "benchmark-missing@example.test",
+      "active_session_id": "benchmark-session-a",
+      "delivery_sink": "/test/reset-deliveries",
+      "session_status": "/test/sessions/{sessionId}"
+    }
   },
   "generation_notes": [
     "Return the same 202 response for existing and missing accounts when a password reset is requested.",
@@ -30,7 +37,9 @@
     "Store reset tokens as digests and make them single-use; never store the raw token.",
     "Reused reset tokens are invalid, including after a successful reset attempt.",
     "A successful password reset revokes all sessions for that account.",
-    "Keep reset delivery local and testable; do not require production email delivery."
+    "Keep reset delivery local and testable; do not require production email delivery.",
+    "Seed benchmark-existing@example.test with active session benchmark-session-a. Keep benchmark-missing@example.test absent.",
+    "Expose the local delivery sink at /test/reset-deliveries and session state at /test/sessions/{sessionId} so token single-use, expiry, and session revocation can be checked deterministically."
   ],
   "scenario_instructions": ""
 }

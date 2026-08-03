@@ -83,6 +83,19 @@ class TaxonomyExpansionTests(unittest.TestCase):
         self.assertIs(type(sentinel), object)
         self.assertEqual(seed[sentinel], [expected_error])
 
+    def json_recursion_depth(self):
+        """Smallest nesting depth whose decode raises RecursionError on this build."""
+        # The decoder's effective depth is not sys.getrecursionlimit(); it varies by
+        # interpreter version, so probe instead of hard-coding a literal depth.
+        depth = 1000
+        while depth <= 1_000_000:
+            try:
+                json.loads("[" * depth + "]" * depth)
+            except RecursionError:
+                return depth
+            depth *= 2
+        self.skipTest("decoder does not raise RecursionError at any probed depth")
+
     def empty_seeds_dir(self, temporary_directory):
         seeds_dir = Path(temporary_directory) / "seeds"
         for level in ("beginner", "complex"):
@@ -150,10 +163,11 @@ class TaxonomyExpansionTests(unittest.TestCase):
         self.assertIn(error, report["errors"])
 
     def test_discovery_reports_json_decoder_recursion_without_throwing(self):
+        depth = self.json_recursion_depth()
         with tempfile.TemporaryDirectory() as temporary_directory:
             seeds_dir = self.empty_seeds_dir(temporary_directory)
             path = seeds_dir / "complex" / "too_deep.json"
-            path.write_text("[" * 2000 + "]" * 2000, encoding="utf-8")
+            path.write_text("[" * depth + "]" * depth, encoding="utf-8")
             error = f"{path}: JSON nesting exceeds decoder recursion limit"
 
             seeds = discover_expansion_seeds(seeds_dir, BATCH)

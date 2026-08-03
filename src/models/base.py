@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 from dataclasses import dataclass, field
 from datetime import datetime
 
-parser = ArgumentParser()
+parser = ArgumentParser(add_help=False)
 parser.add_argument("--path", default="./artifacts/")
 parser.add_argument("--scenario")
 

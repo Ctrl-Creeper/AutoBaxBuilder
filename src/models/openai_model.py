@@ -9,25 +9,18 @@ from models.base import BaseModel, Conversation, Response, record_token_usage
 class OpenAIModel(BaseModel):
 
     context_lengths = {
-        "gpt-4o": 128000,
-        "chatgpt-4o-latest": 128000,
-        "o1": 200000,
-        "o1-mini": 128000,
-        "o3-mini": 200000,
-        "o4-mini": 200000,
-        "gpt-4.1": 200000,
         "gpt-5": 400000,
+        "gpt-5.5": 400000,
+        "gpt-5.4": 400000,
+        "gpt-5.4-mini": 400000,
     }
 
     max_completion_tokens = {
-        "gpt-4o": 16384,
-        "chatgpt-4o-latest": 16384,
-        "o1": 100000,
-        "o1-mini": 65536,
-        "o3-mini": 100000,
-        "o4-mini": 100000,
-        "gpt-4.1": 32768,
         "gpt-5": 128000,
+        "gpt-5.5": 128000,
+        "gpt-5.4": 128000,
+        "gpt-5.4-mini": 128000,
+        "huihui_ai/glm-4.7-flash-abliterated:q4_K": 32768,
     }
 
     def __init__(
@@ -38,7 +31,12 @@ class OpenAIModel(BaseModel):
         reasoning_effort: int | str | None = None,
     ):
         super().__init__(model_name, model_provider, reasoning, reasoning_effort)
-        self.client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+        self.client = OpenAI(
+            api_key=os.environ["OPENAI_API_KEY"],
+            base_url=os.environ.get("OPENAI_BASE_URL"),
+            timeout=float(os.environ.get("OPENAI_TIMEOUT", "60")),
+            max_retries=int(os.environ.get("OPENAI_MAX_RETRIES", "5")),
+        )
 
     def _generate_chat(
         self, conversation: Conversation, temperature: float, purpose: str
@@ -58,7 +56,8 @@ class OpenAIModel(BaseModel):
                 thinking=False,
                 purpose=purpose,
             )
-        text = completion.choices[0].message.content
+        message = completion.choices[0].message
+        text = message.content or getattr(message, "reasoning", None)
         if text is None or len(text) == 0:
             raise Exception("Empty response")
         else:
@@ -88,7 +87,8 @@ class OpenAIModel(BaseModel):
                 thinking=self.reasoning_effort,
                 purpose=purpose,
             )
-        text = completion.choices[0].message.content
+        message = completion.choices[0].message
+        text = message.content or getattr(message, "reasoning", None)
         if len(text) == 0:
             raise Exception("Empty response")
         else:

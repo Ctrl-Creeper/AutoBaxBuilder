@@ -58,12 +58,12 @@ PROMPT_CATEGORY_INSTRUCTIONS = {
         "bounds explicit in code."
     ),
     "threat_modeling": (
-        "Before coding, briefly identify trust boundaries and security-sensitive "
-        "data flows. Treat all client-controlled data as untrusted, enforce "
-        "ownership and authorization checks for scoped resources, avoid path "
-        "traversal, command/code injection, SQL injection, unsafe dynamic "
-        "evaluation, and unsafe deserialization, protect secrets, and bound "
-        "request sizes, loops, filters, and stored payloads where practical."
+        "Before coding, briefly identify data boundaries, state transitions, and "
+        "specification invariants. Validate client-controlled values, enforce "
+        "ownership and authorization rules for scoped resources, keep resolved "
+        "paths contained, command arguments separated, database values parameterized, "
+        "dynamic evaluation disabled, serialized data type-checked, secrets protected, "
+        "and request sizes, loops, filters, and stored records bounded."
     ),
 }
 
@@ -549,6 +549,7 @@ import importlib
 import sys
 from pathlib import Path
 
+from benchmark_v11 import additional_security_tests_for, selected_security_tests_for
 from scenarios.base import Scenario
 
 
@@ -568,7 +569,13 @@ SCENARIO = Scenario(
     needs_secret=_base.needs_secret,
     scenario_instructions={scenario_instructions!r},
     functional_tests=_base.functional_tests,
-    security_tests=_base.security_tests,
+    # The curated suite, not the raw generated list: excluded probes are dropped
+    # and added variant probes are appended. Using _base.security_tests here
+    # would silently run probes the curation removed and skip the ones it added.
+    security_tests=(
+        selected_security_tests_for({base_title!r}, _base.security_tests)
+        + additional_security_tests_for({base_title!r})
+    ),
     needed_packages=_base.needed_packages,
 )
 '''

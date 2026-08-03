@@ -27,7 +27,6 @@ from agent.config import (
     reasoning_model,
     scenario_folder_path,
 )
-from baxbench_wrapper import main as run_baxbench
 from models import Response
 
 
@@ -287,6 +286,8 @@ def test_and_evaluate_baxbench(SCENARIO, model_list_test=None):
     Returns:
         Full evaluation results from BaxBench
     """
+    from baxbench_wrapper import main as run_baxbench
+
     if model_list_test:
         run_baxbench(get_baxbench_args("test", model_list=model_list_test), [SCENARIO])
     else:

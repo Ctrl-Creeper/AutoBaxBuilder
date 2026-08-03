@@ -63,9 +63,30 @@ def save_to_csv(data: list, save_path: str) -> None:
 
 def fetch_cwes(cwe_ids: list = MITRE_TOP_25) -> None:
     """Fetch and save CWE information for multiple CWE IDs."""
-    if os.path.exists(os.path.join(args.path, "cwe_db.csv")):
+    cwe_db_path = os.path.join(args.path, "cwe_db.csv")
+    if os.path.exists(cwe_db_path):
         pass
     else:
+        metadata_path = os.path.join("data", "cwe_metadata.json")
+        if os.path.exists(metadata_path):
+            metadata = pd.read_json(metadata_path)
+            metadata["cwe_id"] = metadata["ID"].astype(int)
+            metadata = metadata[metadata["cwe_id"].isin(cwe_ids)]
+            metadata = metadata.rename(
+                columns={
+                    "Name": "name",
+                    "Description": "description",
+                }
+            )
+            metadata["alternate_terms"] = ""
+            save_to_csv(
+                metadata[["cwe_id", "name", "description", "alternate_terms"]].to_dict(
+                    "records"
+                ),
+                cwe_db_path,
+            )
+            return
+
         results = []
         for cwe_id in cwe_ids:
             info = fetch_cwe_info(cwe_id)

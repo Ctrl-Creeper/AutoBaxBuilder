@@ -105,6 +105,22 @@ EXPECTED = {
     },
 }
 
+EVALUATION_FIXTURES = {
+    "BeginnerSessionProfile": {
+        "accounts": [
+            {
+                "username": "benchmark-user-a",
+                "password": "benchmark-pass-a",
+            },
+            {
+                "username": "benchmark-user-b",
+                "password": "benchmark-pass-b",
+            },
+        ],
+        "distinct_profiles": True,
+    },
+}
+
 
 class BeginnerExpansionSeedTests(unittest.TestCase):
     def test_v1_2_beginner_seeds_have_required_contracts(self):
@@ -129,9 +145,10 @@ class BeginnerExpansionSeedTests(unittest.TestCase):
                 self.assertEqual(seed["needs_db"], expected["needs_db"])
                 self.assertEqual(seed["needs_secret"], expected["needs_secret"])
                 self.assertEqual(set(seed["target_cwes"]), expected["cwes"])
-                self.assertEqual(
-                    seed.get("oracle_contract"), expected["oracle_contract"]
-                )
+                expected_contract = dict(expected["oracle_contract"])
+                if title in EVALUATION_FIXTURES:
+                    expected_contract["evaluation_fixture"] = EVALUATION_FIXTURES[title]
+                self.assertEqual(seed.get("oracle_contract"), expected_contract)
                 self.assertEqual(
                     seed["taxonomy"],
                     {
@@ -152,8 +169,7 @@ class BeginnerExpansionSeedTests(unittest.TestCase):
                 self.assertEqual(seed["scenario_instructions"], "")
 
                 contract_text = " ".join(
-                    " ".join(note.lower().split())
-                    for note in seed["generation_notes"]
+                    " ".join(note.lower().split()) for note in seed["generation_notes"]
                 )
                 for clause in expected["clauses"]:
                     with self.subTest(clause=clause):

@@ -10,6 +10,7 @@ DIFFICULTY=3           # difficulty level (1=easy, 3=medium, 5=hard)
 DEBUG=0                # debug mode for python calls (0=off, 1=on)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ARTIFACT_PATH="$SCRIPT_DIR/artifacts"   # base directory for all generated output
+SEED_FILE=""           # optional curated seed JSON for scenario generation
 
 # ─────────────────────────────────────────────────────────────────────────────
 # COLORS
@@ -48,6 +49,7 @@ usage() {
     echo "  -P, --parallel N       Parallel workers                     (default: $N_PARALLEL)"
     echo "  -d, --difficulty N     Difficulty: 1=easy 3=medium 5=hard   (default: $DIFFICULTY)"
     echo "  -p, --path PATH        Artifacts base directory             (default: <script_dir>/artifacts)"
+    echo "  -s, --seed-file PATH   Curated seed JSON for one scenario   (default: random generation)"
     echo "  -v, --debug            Enable debug output in python calls  (default: off)"
     echo "  -h, --help             Show this help"
     exit 0
@@ -62,6 +64,7 @@ while [[ $# -gt 0 ]]; do
         -P|--parallel)    N_PARALLEL="$2";  shift 2 ;;
         -d|--difficulty)  DIFFICULTY="$2";  shift 2 ;;
         -p|--path)        ARTIFACT_PATH="$2"; shift 2 ;;
+        -s|--seed-file)   SEED_FILE="$2"; shift 2 ;;
         -v|--debug)       DEBUG=1; shift ;;
         -h|--help)        usage ;;
         *) echo -e "${RED}Unknown option: $1${R}"; usage ;;
@@ -77,10 +80,16 @@ export $(grep -v '^#' .env | xargs)
 export ARTIFACT_PATH
 export DIFFICULTY
 export DEBUG
+export SEED_FILE
 
 DEBUG_FLAG=""
 [ "$DEBUG" = "1" ] && DEBUG_FLAG="--debug"
 export DEBUG_FLAG
+
+if [ -n "$SEED_FILE" ] && [ "$N_SCENARIOS" -ne 1 ]; then
+    echo -e "${RED}--seed-file generates one named scenario; use --n-scenarios 1.${R}"
+    exit 1
+fi
 
 mkdir -p "$ARTIFACT_PATH"
 find "$ARTIFACT_PATH" -maxdepth 1 -type f -name 'token_usage_*' -delete
@@ -103,6 +112,7 @@ echo -e "  ${GRAY}Scenarios  ${R}  ${WHITE}$N_SCENARIOS${R}"
 echo -e "  ${GRAY}Parallel   ${R}  ${WHITE}$N_PARALLEL${R}"
 echo -e "  ${GRAY}Difficulty ${R}  ${WHITE}$DIFF_LABEL${R}"
 echo -e "  ${GRAY}Debug      ${R}  ${WHITE}$([ "$DEBUG" = "1" ] && echo on || echo off)${R}"
+echo -e "  ${GRAY}Seed       ${R}  ${WHITE}$([ -n "$SEED_FILE" ] && echo "$SEED_FILE" || echo random)${R}"
 echo -e "  ${GRAY}Artifacts  ${R}  ${WHITE}$ARTIFACT_PATH${R}"
 echo -e "  ${GRAY}─────────────────────────────────────────${R}"
 echo ""
@@ -120,7 +130,17 @@ run_scenario() {
     echo "[Worker $IDX] Starting scenario generation..."
 
     # shellcheck disable=SC2086
-    if ! python src/main.py $DEBUG_FLAG --path "$ARTIFACT_PATH" --difficulty "$DIFFICULTY" --generate_scenarios 2>&1 | tee "$LOGFILE"; then
+    if [ -n "$SEED_FILE" ]; then
+        GENERATE_CMD=(python src/main.py)
+        [ -n "$DEBUG_FLAG" ] && GENERATE_CMD+=("$DEBUG_FLAG")
+        GENERATE_CMD+=(--path "$ARTIFACT_PATH" --difficulty "$DIFFICULTY" --seed_file "$SEED_FILE" --generate_scenarios)
+    else
+        GENERATE_CMD=(python src/main.py)
+        [ -n "$DEBUG_FLAG" ] && GENERATE_CMD+=("$DEBUG_FLAG")
+        GENERATE_CMD+=(--path "$ARTIFACT_PATH" --difficulty "$DIFFICULTY" --generate_scenarios)
+    fi
+
+    if ! "${GENERATE_CMD[@]}" 2>&1 | tee "$LOGFILE"; then
         END_TIME=$(date +%s)
         ELAPSED=$(( END_TIME - START_TIME ))
         echo "FAIL|$IDX|generate_scenario failed|${ELAPSED}s" > "$STATUS_DIR/$IDX.result"
