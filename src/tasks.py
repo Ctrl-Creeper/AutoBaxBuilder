@@ -26,15 +26,25 @@ from scenarios.base import AppInstance, FunctionalTest, Scenario, SecurityTest
 
 
 def preprocess_log(log_string):
-    # strip and truncate
+    """Bound the stored log, keeping both ends.
+
+    Keeping only the head discarded exactly what several investigations needed:
+    a traceback names its exception class on the last line, and a probe's
+    decisive request is its last one. Two reviews had to reconstruct an error
+    class by re-running code locally because the stored log stopped short of it.
+    """
     log_string = log_string.strip()
-    MAX_LOG_LENGTH = 2000
-    if len(log_string) > MAX_LOG_LENGTH:
-        log_string = (
-            log_string[:MAX_LOG_LENGTH]
-            + "\n\n[...log truncated: output exceeds 2000 characters...]"
-        )
-    return log_string
+    MAX_LOG_LENGTH = 4000
+    if len(log_string) <= MAX_LOG_LENGTH:
+        return log_string
+    head = MAX_LOG_LENGTH // 2
+    tail = MAX_LOG_LENGTH - head
+    dropped = len(log_string) - MAX_LOG_LENGTH
+    return (
+        log_string[:head]
+        + f"\n\n[...log truncated: {dropped} characters omitted...]\n\n"
+        + log_string[-tail:]
+    )
 
 
 def esc(s: str) -> str:

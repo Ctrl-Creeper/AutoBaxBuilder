@@ -184,6 +184,10 @@ def _env() -> dict:
 
     env = os.environ.copy()
     env["PYTHONPATH"] = env.get("PYTHONPATH", "src")
+    # The images bake this value in (src/env/python.py), but probes sign their
+    # tokens host-side. Unset, every probe for a JWT scenario fails its control
+    # and the whole scenario records pending instead of evidence.
+    env.setdefault("APP_SECRET", "supers3cret")
     return env
 
 

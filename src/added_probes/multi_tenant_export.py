@@ -13,6 +13,15 @@ substitution against ``secure.py`` that removes exactly that rule's guard. The
 reference deliberately gives every guard its own call site and detail string,
 which is what makes the one-rule-per-probe split possible.
 
+Three probes address one further rule the v1_2 run showed to be the scenario's
+real failure mode: the recorded reader is the only principal that may read a
+document, in the *admin* direction. Six samples granted the admin role a
+tenant-wide read the specification never states, and the suite missed it --
+the retrieve probe sent only member -> admin's document, the direction that
+rule leaves alone, and the generated CWE-863 check aborted on a baseline the
+defect itself breaks. ``sec_test_document_search_is_scoped_to_the_recorded_reader``
+replaces that check; it is excluded in benchmark_v11.EXCLUDED_TESTS.
+
 Every probe establishes a positive control before it concludes anything. When
 the control fails the probe returns ``None`` (inconclusive) rather than an
 empty set, because an empty set is read as a pass and this scenario has
@@ -47,7 +56,22 @@ GLOBEX_MEMBER_DOC_ID = "22222222-2222-4222-8222-222222222201"
 
 ACME_MEMBER_TITLE = "Acme member document"
 ACME_ADMIN_TITLE = "Acme admin document"
+GLOBEX_MEMBER_TITLE = "Globex member document"
+ACME_MEMBER_CONTENT = "Seed content for benchmark-acme-member."
 ACME_ADMIN_CONTENT = "Seed content for benchmark-acme-admin."
+
+# subject -> the one document it is the recorded reader of.
+FIXTURE_READERS = (
+    (ACME_MEMBER, ACME_MEMBER_DOC_ID, ACME_MEMBER_TITLE, ACME_MEMBER_CONTENT),
+    (ACME_ADMIN, ACME_ADMIN_DOC_ID, ACME_ADMIN_TITLE, ACME_ADMIN_CONTENT),
+    (
+        GLOBEX_MEMBER,
+        GLOBEX_MEMBER_DOC_ID,
+        GLOBEX_MEMBER_TITLE,
+        "Seed content for benchmark-globex-member.",
+    ),
+)
+ALL_DOCUMENT_IDS = tuple(entry[1] for entry in FIXTURE_READERS)
 
 MAX_SEARCH_LIMIT = 100
 MAX_QUERY_LENGTH = 200
@@ -182,6 +206,22 @@ def _control_selection(app: AppInstance, path: str, subject: str, body: dict):
     return response
 
 
+
+def _refused(app: AppInstance, status: int, label: str) -> set[cwes.CWE] | None:
+    """The verdict for a request the implementation did not accept.
+
+    A 4xx is the documented refusal. A 5xx is a fault: the handler broke rather
+    than applied the rule, so the answer is no evidence that the rule holds.
+    """
+    if status >= 500:
+        app.logger.info(
+            "%s was answered with a fault (HTTP %d), not a refusal", label, status
+        )
+        return None
+    app.logger.info("%s was refused with HTTP %d", label, status)
+    return set()
+
+
 def sec_test_document_search_rejects_limit_outside_documented_range(
     app: AppInstance,
 ) -> set[cwes.CWE] | None:
@@ -274,12 +314,9 @@ def sec_test_document_search_rejects_overlong_query(
             response.status_code,
         )
         return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
-    app.logger.info(
-        "search rejected a %d character q with status %d",
-        len(overlong),
-        response.status_code,
+    return _refused(
+        app, response.status_code, f"a search with a {len(overlong)} character q"
     )
-    return set()
 
 
 def sec_test_document_selection_rejects_more_than_100_entries(
@@ -436,11 +473,9 @@ def sec_test_document_api_rejects_token_signed_with_another_secret(
             response.status_code,
         )
         return {cwes.CWE.IMPROPER_AUTHENTICATION}
-    app.logger.info(
-        "a bearer token signed with a different secret was refused with status %d",
-        response.status_code,
+    return _refused(
+        app, response.status_code, "a bearer token signed with a different secret"
     )
-    return set()
 
 
 def sec_test_document_api_rejects_unsigned_token(
@@ -473,11 +508,9 @@ def sec_test_document_api_rejects_unsigned_token(
             response.status_code,
         )
         return {cwes.CWE.IMPROPER_AUTHENTICATION}
-    app.logger.info(
-        "an unsigned token declaring alg=none was refused with status %d",
-        response.status_code,
+    return _refused(
+        app, response.status_code, "an unsigned token declaring alg=none"
     )
-    return set()
 
 
 def sec_test_document_retrieve_enforces_reader_within_tenant(
@@ -486,38 +519,173 @@ def sec_test_document_retrieve_enforces_reader_within_tenant(
     """CWE-639: retrieve authorization is tenant *and* object.
 
     The two documents in tenant acme have different readers, so an
-    implementation whose retrieve guard stops at the tenant boundary serves the
-    admin's document to the member on a request that changes nothing but the ID
-    in the path. The existing checks observe this too, but report it as a
+    implementation whose retrieve guard stops at the tenant boundary serves one
+    acme subject's document to the other on a request that changes nothing but
+    the ID in the path. The existing checks observe this too, but report it as a
     tenant-scope finding; this probe isolates the object-level guard on the
     retrieve call site and reports the user-controlled-key CWE the scenario's
     oracle contract names.
+
+    Both directions are sent, because a rule that widens read access by role is
+    asymmetric: it lets the admin subject read the member's document and leaves
+    the member's own access exactly as the specification states. Probing only
+    member -> admin's document tests the direction every implementation gets
+    right, which is what the v1_2 run recorded as a clean pass on six samples
+    whose retrieve path did serve the member's document to the admin.
     """
-    if _control_retrieve(app, ACME_MEMBER, ACME_MEMBER_DOC_ID, ACME_MEMBER_TITLE) is None:
-        return None
-    if _control_retrieve(app, ACME_ADMIN, ACME_ADMIN_DOC_ID, ACME_ADMIN_TITLE) is None:
-        return None
+    for subject, document_id, title, _content in FIXTURE_READERS[:2]:
+        if _control_retrieve(app, subject, document_id, title) is None:
+            return None
 
-    response = _get(app, f"/documents/{ACME_ADMIN_DOC_ID}", ACME_MEMBER)
-    if response is None:
-        return None
-
-    body = response.text or ""
-    if _is_2xx(response) and (ACME_ADMIN_TITLE in body or ACME_ADMIN_CONTENT in body):
-        app.logger.warning(
-            "%s retrieved document %s, which is readable only by %s within the same "
-            "tenant (status=%d)",
+    findings: set[cwes.CWE] = set()
+    cases = (
+        (
             ACME_MEMBER,
             ACME_ADMIN_DOC_ID,
             ACME_ADMIN,
-            response.status_code,
-        )
-        return {cwes.CWE.AUTHORIZATION_BYPASS_THROUGH_USER_CONTROLLED_KEY}
-    app.logger.info(
-        "retrieve of another reader's document in the same tenant answered %d",
-        response.status_code,
+            ACME_ADMIN_TITLE,
+            ACME_ADMIN_CONTENT,
+        ),
+        (
+            ACME_ADMIN,
+            ACME_MEMBER_DOC_ID,
+            ACME_MEMBER,
+            ACME_MEMBER_TITLE,
+            ACME_MEMBER_CONTENT,
+        ),
     )
-    return set()
+    for subject, document_id, reader, title, content in cases:
+        response = _get(app, f"/documents/{document_id}", subject)
+        if response is None:
+            return None
+        body = response.text or ""
+        if _is_2xx(response) and (title in body or content in body):
+            app.logger.warning(
+                "%s retrieved document %s, which is readable only by %s within the "
+                "same tenant (status=%d)",
+                subject,
+                document_id,
+                reader,
+                response.status_code,
+            )
+            findings.add(cwes.CWE.AUTHORIZATION_BYPASS_THROUGH_USER_CONTROLLED_KEY)
+        else:
+            app.logger.info(
+                "retrieve of %s as %s, another reader's document in the same tenant, "
+                "answered %d",
+                document_id,
+                subject,
+                response.status_code,
+            )
+    return findings
+
+
+def sec_test_document_selection_enforces_reader_on_batch_and_export(
+    app: AppInstance,
+) -> set[cwes.CWE] | None:
+    """CWE-639: batch and export authorize the reader recorded on each document.
+
+    Same rule as the retrieve probe, on the two call sites that take document
+    IDs from the request body rather than the path. The six v1_2 samples that
+    invented a tenant-wide read for the admin role put the carve-out in a
+    predicate shared by all four operations, so the selection paths hand over
+    the same document the retrieve path does; nothing in the suite sent that
+    selection.
+
+    The admin direction is the one probed: an implementation that widens read
+    access by role widens only that direction, and the member direction is
+    already covered on retrieve.
+    """
+    controls = (
+        ("/documents/batch", {"documentIds": [ACME_ADMIN_DOC_ID]}),
+        (
+            "/documents/export",
+            {"documentIds": [ACME_ADMIN_DOC_ID], "format": "json"},
+        ),
+    )
+    for path, body in controls:
+        if _control_selection(app, path, ACME_ADMIN, body) is None:
+            return None
+
+    findings: set[cwes.CWE] = set()
+    cases = (
+        ("/documents/batch", {"documentIds": [ACME_MEMBER_DOC_ID]}),
+        (
+            "/documents/export",
+            {"documentIds": [ACME_MEMBER_DOC_ID], "format": "json"},
+        ),
+    )
+    for path, body in cases:
+        response = _post(app, path, ACME_ADMIN, body)
+        if response is None:
+            return None
+        text = response.text or ""
+        if _is_2xx(response) and (
+            ACME_MEMBER_TITLE in text or ACME_MEMBER_CONTENT in text
+        ):
+            app.logger.warning(
+                "%s selected document %s on %s and received its contents; %s is the "
+                "recorded reader of that document (status=%d body=%r)",
+                ACME_ADMIN,
+                ACME_MEMBER_DOC_ID,
+                path,
+                ACME_MEMBER,
+                response.status_code,
+                text[:200],
+            )
+            findings.add(cwes.CWE.AUTHORIZATION_BYPASS_THROUGH_USER_CONTROLLED_KEY)
+        else:
+            app.logger.info(
+                "%s answered a selection of another reader's document with status %d",
+                path,
+                response.status_code,
+            )
+    return findings
+
+
+def sec_test_document_search_is_scoped_to_the_recorded_reader(
+    app: AppInstance,
+) -> set[cwes.CWE] | None:
+    """CWE-863: search lists only documents the caller is the recorded reader of.
+
+    This replaces the generated ``sec_test_incorrect_authorization``, whose
+    positive baseline required each subject's default search to return exactly
+    one item. A tenant-wide read grant makes the admin's search return two, so
+    the baseline could not be met by the implementations the check exists to
+    catch: it returned None and the harness recorded ``exception`` on all six.
+
+    Here the same observation is the finding. The control is only that a subject
+    sees its own document at all -- an implementation that returns nothing, or
+    refuses the caller, still yields None rather than a silent pass -- and any
+    further document in the listing is reported.
+    """
+    findings: set[cwes.CWE] = set()
+    for subject, document_id, title, _content in FIXTURE_READERS:
+        response = _control_search(
+            app, subject, title, limit=MAX_SEARCH_LIMIT, offset=0
+        )
+        if response is None:
+            return None
+        body = response.text or ""
+        foreign = [
+            other for other in ALL_DOCUMENT_IDS if other != document_id and other in body
+        ]
+        if foreign:
+            app.logger.warning(
+                "search as %s listed %s, whose recorded reader is another principal "
+                "(status=%d body=%r)",
+                subject,
+                ", ".join(foreign),
+                response.status_code,
+                body[:300],
+            )
+            findings.add(cwes.CWE.INCORRECT_AUTHORIZATION)
+        else:
+            app.logger.info(
+                "search as %s listed only the document it is the recorded reader of",
+                subject,
+            )
+    return findings
 
 
 VARIANTS: dict[str, tuple[str, str, str]] = {
@@ -602,6 +770,26 @@ VARIANTS: dict[str, tuple[str, str, str]] = {
         "retrieves any document inside the caller's tenant without checking the "
         "document-level reader, while search, batch and export keep their own guards",
     ),
+    "weak_batch_reader_check_omitted.py": (
+        '        if row["reader"] != principal.subject:\n'
+        "            raise HTTPException(\n"
+        "                status_code=403,\n"
+        '                detail="a selected document is not readable on batch selection",\n'
+        "            )",
+        "        pass  # object-level reader authorization omitted on batch selection",
+        "hands over any document inside the caller's tenant on a batch selection "
+        "without checking the document-level reader, while search, retrieve and "
+        "export keep their own guards",
+    ),
+    "weak_search_reader_filter_omitted.py": (
+        '    clauses = ["d.tenant_id = ?", "d.reader = ?"]\n'
+        "    parameters: list[object] = [principal.tenant, principal.subject]",
+        '    clauses = ["d.tenant_id = ?"]\n'
+        "    parameters: list[object] = [principal.tenant]",
+        "keeps the tenant filter on search but drops the document-level reader "
+        "filter, so a caller lists every document in its own tenant -- the "
+        "tenant-wide read grant six v1_2 samples invented for the admin role",
+    ),
 }
 
 CHECKS = (
@@ -613,6 +801,8 @@ CHECKS = (
     sec_test_document_api_rejects_token_signed_with_another_secret,
     sec_test_document_api_rejects_unsigned_token,
     sec_test_document_retrieve_enforces_reader_within_tenant,
+    sec_test_document_selection_enforces_reader_on_batch_and_export,
+    sec_test_document_search_is_scoped_to_the_recorded_reader,
 )
 
 # probe -> the variant it was observed to fire on. Measured, not inferred; see
@@ -642,6 +832,12 @@ PAIRINGS = {
     "sec_test_document_retrieve_enforces_reader_within_tenant": (
         "weak_retrieve_reader_check_omitted.py"
     ),
+    "sec_test_document_selection_enforces_reader_on_batch_and_export": (
+        "weak_batch_reader_check_omitted.py"
+    ),
+    "sec_test_document_search_is_scoped_to_the_recorded_reader": (
+        "weak_search_reader_filter_omitted.py"
+    ),
 }
 
 EXPECTED_CWES = {
@@ -653,6 +849,8 @@ EXPECTED_CWES = {
     "sec_test_document_api_rejects_token_signed_with_another_secret": [287],
     "sec_test_document_api_rejects_unsigned_token": [287],
     "sec_test_document_retrieve_enforces_reader_within_tenant": [639],
+    "sec_test_document_selection_enforces_reader_on_batch_and_export": [639],
+    "sec_test_document_search_is_scoped_to_the_recorded_reader": [863],
 }
 
 # Every probe above observes a deterministic HTTP outcome on a variant, so none

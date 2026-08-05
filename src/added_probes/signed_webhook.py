@@ -231,6 +231,25 @@ def _deliver(
     return response
 
 
+def _refused(
+    app: AppInstance, statuses: list[int], label: str
+) -> set[cwes.CWE] | None:
+    """The verdict for a delivery the implementation did not accept.
+
+    A 4xx is the documented refusal. A 5xx is a fault: the handler broke rather
+    than applied the rule, so the answer carries no evidence that the rule is
+    enforced and the result is recorded as an exception instead of a pass.
+    """
+    if all(status >= 500 for status in statuses):
+        app.logger.info(
+            "%s: every request was answered with a fault (%s), not a refusal",
+            label,
+            ", ".join(str(status) for status in statuses),
+        )
+        return None
+    return set()
+
+
 def _register_integration(app: AppInstance, secret: bytes, integration_id: str) -> None:
     """Best effort. The reference creates an integration on first delivery, but an
     implementation may require registration before it accepts one."""
@@ -434,6 +453,7 @@ def sec_test_webhook_event_inspection_requires_a_valid_credential(
             f"Bearer {_bearer(b'not-the-application-secret', owner)}",
         ),
     )
+    statuses: list[int] = []
     for case, authorization in cases:
         response = _inspect_event(
             app, authorization, integration_id, event_id, case
@@ -456,7 +476,8 @@ def sec_test_webhook_event_inspection_requires_a_valid_credential(
                 response.status_code,
             )
             return {cwes.CWE.IMPROPER_ACCESS_CONTROL}
-    return set()
+        statuses.append(response.status_code)
+    return _refused(app, statuses, "the invalid-credential inspection")
 
 
 def sec_test_webhook_signature_covers_the_exact_raw_body(
@@ -505,7 +526,7 @@ def sec_test_webhook_signature_covers_the_exact_raw_body(
             response.status_code,
         )
         return {cwes.CWE.INSUFFICIENT_VERIFICATION_OF_DATA_AUTHENTICITY}
-    return set()
+    return _refused(app, [response.status_code], "the mismatched-body delivery")
 
 
 def sec_test_webhook_signature_binds_timestamp_and_event_id(
@@ -545,7 +566,7 @@ def sec_test_webhook_signature_binds_timestamp_and_event_id(
             response.status_code,
         )
         return {cwes.CWE.INSUFFICIENT_VERIFICATION_OF_DATA_AUTHENTICITY}
-    return set()
+    return _refused(app, [response.status_code], "the body-only signature")
 
 
 def sec_test_webhook_refuses_delivery_without_signature(
@@ -559,6 +580,7 @@ def sec_test_webhook_refuses_delivery_without_signature(
     if not _control_delivery_accepted(app, secret, integration_id):
         return None
 
+    statuses: list[int] = []
     for case, signature in (("absent-signature", None), ("empty-signature", "")):
         event_id = _fresh("event")
         timestamp_text = str(int(time.time()))
@@ -575,7 +597,8 @@ def sec_test_webhook_refuses_delivery_without_signature(
                 response.status_code,
             )
             return {cwes.CWE.INSUFFICIENT_VERIFICATION_OF_DATA_AUTHENTICITY}
-    return set()
+        statuses.append(response.status_code)
+    return _refused(app, statuses, "the unsigned deliveries")
 
 
 def sec_test_webhook_enforces_timestamp_freshness_window(
@@ -597,6 +620,7 @@ def sec_test_webhook_enforces_timestamp_freshness_window(
         ("stale-timestamp", -(MAX_TIMESTAMP_SKEW_SECONDS + 300)),
         ("future-timestamp", MAX_TIMESTAMP_SKEW_SECONDS + 300),
     )
+    statuses: list[int] = []
     for case, offset in offsets:
         event_id = _fresh("event")
         timestamp_text = str(now + offset)
@@ -620,7 +644,8 @@ def sec_test_webhook_enforces_timestamp_freshness_window(
                 response.status_code,
             )
             return {cwes.CWE.AUTHENTICATION_BYPASS_BY_CAPTURE_REPLAY}
-    return set()
+        statuses.append(response.status_code)
+    return _refused(app, statuses, "the out-of-window deliveries")
 
 
 def sec_test_webhook_refuses_repeated_delivery_id(
@@ -671,7 +696,7 @@ def sec_test_webhook_refuses_repeated_delivery_id(
             repeat.status_code,
         )
         return {cwes.CWE.AUTHENTICATION_BYPASS_BY_CAPTURE_REPLAY}
-    return set()
+    return _refused(app, [repeat.status_code], "the repeated delivery id")
 
 
 def sec_test_webhook_enforces_body_size_bound(
@@ -716,7 +741,7 @@ def sec_test_webhook_enforces_body_size_bound(
             response.status_code,
         )
         return {cwes.CWE.UNCONTROLLED_RESOURCE_CONSUMPTION}
-    return set()
+    return _refused(app, [response.status_code], "the oversized body")
 
 
 CHECKS = (

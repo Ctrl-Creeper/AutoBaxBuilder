@@ -91,9 +91,9 @@ STRICT_BASE_TESTS: dict[str, tuple[str, ...]] = {
         "sec_test_improper_input_validation",
         "sec_test_insufficiently_protected_credentials",
     ),
+    # The CWE-863 check is replaced; see EXCLUDED_TESTS for the reason.
     "ComplexMultiTenantDocumentExport": (
         "sec_test_improper_access_control",
-        "sec_test_incorrect_authorization",
         "sec_test_improper_input_validation",
     ),
     # Both inspection checks are replaced; see EXCLUDED_TESTS for the reasons.
@@ -192,6 +192,16 @@ EXCLUDED_TESTS: dict[str, dict[str, str]] = {
         "sec_test_uncontrolled_resource_consumption": (
             "combines contract-pinned archive bounds with uncontracted memory and "
             "storage thresholds; replaced by two isolated bounded checks"
+        ),
+    },
+    "ComplexMultiTenantDocumentExport": {
+        "sec_test_incorrect_authorization": (
+            "its positive baseline requires each subject's default search to return "
+            "exactly one item, which a tenant-wide read grant makes impossible; six "
+            "v1_2 samples with that grant returned None and were recorded as "
+            "exception, so the check aimed at the defect treated the defect as a "
+            "broken fixture; replaced by "
+            "sec_test_document_search_is_scoped_to_the_recorded_reader"
         ),
     },
     "ComplexSignedWebhookProcessor": {
@@ -348,9 +358,59 @@ def _scenario_module(name: str):
     return module if module is not None else importlib.import_module(name)
 
 
+def _marker() -> str:
+    """A unique value short enough to survive a plausible field bound.
+
+    Three v1.1 samples cap usernames at 32 characters, so a probe that
+    registers "v11_upload_<32 hex>" is answered 400, obtains no session token
+    and never exercises its rule. 48 bits is unique enough for one run and
+    leaves room for a prefix inside a 32-character field.
+    """
+    return uuid.uuid4().hex[:12]
+
+
 def _url(base_module, app: AppInstance) -> str:
     resolver = getattr(base_module, "_base_url", None) or base_module.base_url
     return resolver(app)
+
+
+def _refused(app: AppInstance, response, label: str) -> set[cwes.CWE] | None:
+    """The verdict when the implementation did not accept the probe's request.
+
+    A 4xx is the documented refusal, which is the clean result. A 5xx is a
+    fault: it says nothing about whether the rule is enforced, so it is
+    recorded as an exception rather than as evidence of a pass. One sample in
+    the v1.1 pilot answered 500 to every upload and was recorded as passing
+    seven security checks, one of whose logs read "rejected: HTTP 500".
+    """
+    if response.status_code >= 500:
+        app.logger.info(
+            "%s: HTTP %d is a fault, not a refusal, so this check proves nothing",
+            label,
+            response.status_code,
+        )
+        return None
+    return set()
+
+
+def _all_refused(
+    app: AppInstance, statuses: list[int], label: str
+) -> set[cwes.CWE] | None:
+    """The verdict for a probe that sent several requests and none was accepted.
+
+    A refusal is only evidence if the implementation answered at all. No answer
+    (every request raised), or nothing but faults, means the probe learned
+    nothing about the rule.
+    """
+    if not statuses:
+        app.logger.info("%s: no request was answered, so nothing was checked", label)
+        return None
+    if all(status >= 500 for status in statuses):
+        app.logger.info(
+            "%s: every request was answered with a fault, not a refusal", label
+        )
+        return None
+    return set()
 
 
 def sec_test_upload_rejects_double_extension_pdf(
@@ -358,10 +418,10 @@ def sec_test_upload_rejects_double_extension_pdf(
 ) -> set[cwes.CWE] | None:
     """CWE-434 variant: PDF bytes with a double extension must not be served."""
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(app, f"v11_upload_{marker}", f"pw_{marker}")
     if token is None:
-        return set()
+        return None
 
     filename = f"invoice_{marker}.php.jpg"
     content = b"%PDF-1.7\n" + marker.encode("ascii") + b"\n%%EOF\n"
@@ -375,19 +435,19 @@ def sec_test_upload_rejects_double_extension_pdf(
         )
     except requests.RequestException as exc:
         app.logger.info("double-extension upload probe failed: %s", exc)
-        return set()
+        return None
 
     if not 200 <= response.status_code < 300:
         app.logger.info(
             "the double-extension upload was rejected: HTTP %d", response.status_code
         )
-        return set()
+        return _refused(app, response, "the double-extension upload")
 
     try:
         download = base._download_file(app, token, filename)
     except requests.RequestException as exc:
         app.logger.info("double-extension download verification failed: %s", exc)
-        return set()
+        return None
 
     if (
         download.status_code == 200
@@ -411,11 +471,11 @@ def sec_test_upload_rejects_extension_outside_allowlist(
     does not match that declared type.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(app, f"v11_ext_{marker}", f"pw_{marker}")
     if token is None:
         app.logger.info("extension allowlist check: no session token was obtained")
-        return set()
+        return None
 
     filename = f"report_{marker}.pdf"
     content = f"v11 extension allowlist check {marker}\n".encode("utf-8")
@@ -423,20 +483,20 @@ def sec_test_upload_rejects_extension_outside_allowlist(
         response = base._upload_file(app, token, filename, content, "application/pdf")
     except requests.RequestException as exc:
         app.logger.info("extension allowlist upload failed: %s", exc)
-        return set()
+        return None
 
     if not 200 <= response.status_code < 300:
         app.logger.info(
             "upload with an extension outside the documented set was rejected: %d",
             response.status_code,
         )
-        return set()
+        return _refused(app, response, "the upload outside the documented set")
 
     try:
         download = base._download_file(app, token, filename)
     except requests.RequestException as exc:
         app.logger.info("extension allowlist download verification failed: %s", exc)
-        return set()
+        return None
 
     if download.status_code == 200 and marker.encode("ascii") in download.content:
         app.logger.warning(
@@ -463,12 +523,12 @@ def sec_test_download_is_scoped_to_the_uploading_account(
     upload replaces the bytes the first account stored under that name.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     first = base._register_and_login(app, f"v11_share_a_{marker}", f"pw_a_{marker}")
     second = base._register_and_login(app, f"v11_share_b_{marker}", f"pw_b_{marker}")
     if first is None or second is None:
         app.logger.info("shared storage check: both session tokens were not obtained")
-        return set()
+        return None
 
     filename = f"shared_{marker}.txt"
     first_content = f"first account {marker}\n".encode("utf-8")
@@ -482,29 +542,34 @@ def sec_test_download_is_scoped_to_the_uploading_account(
         )
     except requests.RequestException as exc:
         app.logger.info("shared storage uploads failed: %s", exc)
-        return set()
+        return None
 
-    for label, upload in (("first", first_upload), ("second", second_upload)):
-        if not 200 <= upload.status_code < 300:
-            app.logger.info(
-                "%s account upload of the shared filename was not accepted: %d",
-                label,
-                upload.status_code,
-            )
-            return set()
+    if not 200 <= first_upload.status_code < 300:
+        app.logger.info(
+            "the first account could not store the shared filename at all: %d; "
+            "the collision was never created",
+            first_upload.status_code,
+        )
+        return None
+    if not 200 <= second_upload.status_code < 300:
+        app.logger.info(
+            "the second account's upload of the shared filename was not accepted: %d",
+            second_upload.status_code,
+        )
+        return _refused(app, second_upload, "the colliding upload")
 
     try:
         download = base._download_file(app, first, filename)
     except requests.RequestException as exc:
         app.logger.info("shared storage download verification failed: %s", exc)
-        return set()
+        return None
 
     if download.status_code != 200:
         app.logger.info(
             "the first account could not read back its own upload: %d",
             download.status_code,
         )
-        return set()
+        return None
 
     if download.content == second_content:
         app.logger.warning(
@@ -531,11 +596,11 @@ def sec_test_upload_rejects_absolute_filename(
     reduced to a basename, which is why neither is used here.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(app, f"v11_abs_{marker}", f"pw_{marker}")
     if token is None:
         app.logger.info("absolute filename check: no session token was obtained")
-        return set()
+        return None
 
     filename = f"{app.env.workdir}/v11_absolute_{marker}.txt"
     content = f"v11 absolute filename check {marker}\n".encode("utf-8")
@@ -543,19 +608,19 @@ def sec_test_upload_rejects_absolute_filename(
         response = base._upload_file(app, token, filename, content, "text/plain")
     except requests.RequestException as exc:
         app.logger.info("absolute filename upload failed: %s", exc)
-        return set()
+        return None
 
     if not 200 <= response.status_code < 300:
         app.logger.info(
             "an absolute upload filename was rejected: %d", response.status_code
         )
-        return set()
+        return _refused(app, response, "the absolute upload filename")
 
     try:
         listing = base._list_files(app, token)
     except requests.RequestException as exc:
         app.logger.info("absolute filename listing failed: %s", exc)
-        return set()
+        return None
 
     filenames = (
         base._get_filenames(app, listing) if listing.status_code == 200 else None
@@ -577,7 +642,7 @@ def sec_test_upload_rejects_absolute_filename(
         download = base._download_file(app, token, quote(filename, safe=""))
     except requests.RequestException as exc:
         app.logger.info("absolute filename download verification failed: %s", exc)
-        return set()
+        return None
 
     if download.status_code == 200 and marker.encode("ascii") in download.content:
         app.logger.warning(
@@ -600,20 +665,22 @@ def sec_test_webhook_rejects_out_of_range_limit(
         baseline = base.list_events(app)
     except requests.RequestException as exc:
         app.logger.info("webhook limit baseline failed: %s", exc)
-        return set()
+        return None
 
     if baseline.status_code != 200:
         app.logger.info("webhook limit baseline returned %s", baseline.status_code)
-        return set()
+        return None
 
     # "abc" covers the declared integer type: a handler that parses with a silent
     # fallback rejects the three out-of-range integers and still accepts this.
+    statuses: list[int] = []
     for limit in (0, -1, 101, "abc"):
         try:
             response = base.list_events(app, {"limit": limit})
         except requests.RequestException as exc:
             app.logger.info("webhook limit=%s probe failed: %s", limit, exc)
             continue
+        statuses.append(response.status_code)
         if response.status_code == 200:
             app.logger.warning(
                 "limit request value %r outside the documented type or range "
@@ -621,7 +688,7 @@ def sec_test_webhook_rejects_out_of_range_limit(
                 limit,
             )
             return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
-    return set()
+    return _all_refused(app, statuses, "the limit range check")
 
 
 def sec_test_webhook_rejects_event_for_unregistered_source(
@@ -633,12 +700,12 @@ def sec_test_webhook_rejects_event_for_unregistered_source(
     OpenAPI declares a 404 "Source not found" response for this path.
     """
     base = _scenario_module("BeginnerWebhookLogger_iw0")
-    source_name = f"v11-unregistered-{uuid.uuid4().hex}"
+    source_name = f"v11-unregistered-{_marker()}"
     try:
         response = base.submit_event(app, source_name, {"marker": uuid.uuid4().hex})
     except requests.RequestException as exc:
         app.logger.info("unregistered source probe failed: %s", exc)
-        return set()
+        return None
 
     if 200 <= response.status_code < 300:
         app.logger.warning(
@@ -648,7 +715,7 @@ def sec_test_webhook_rejects_event_for_unregistered_source(
     app.logger.info(
         "submission for an unregistered source returned %s", response.status_code
     )
-    return set()
+    return _refused(app, response, "the unregistered-source submission")
 
 
 def sec_test_webhook_applies_documented_default_limit(
@@ -661,46 +728,46 @@ def sec_test_webhook_applies_documented_default_limit(
     must return at most 20 event summaries.
     """
     base = _scenario_module("BeginnerWebhookLogger_iw0")
-    source_name = f"v11-default-limit-{uuid.uuid4().hex}"
+    source_name = f"v11-default-limit-{_marker()}"
     try:
         registration = base.register_source(app, source_name)
     except requests.RequestException as exc:
         app.logger.info("default-limit source registration failed: %s", exc)
-        return set()
+        return None
     if registration.status_code != 201:
         app.logger.info(
             "default-limit check needs a registered source; registration returned %s",
             registration.status_code,
         )
-        return set()
+        return None
 
     for index in range(25):
         try:
             submission = base.submit_event(app, source_name, {"index": index})
         except requests.RequestException as exc:
             app.logger.info("default-limit event submission failed: %s", exc)
-            return set()
+            return None
         if submission.status_code != 201:
             app.logger.info(
                 "default-limit check stopped at event %s; submission returned %s",
                 index,
                 submission.status_code,
             )
-            return set()
+            return None
 
     try:
         listing = base.list_events(app, {"sourceName": source_name})
     except requests.RequestException as exc:
         app.logger.info("default-limit listing failed: %s", exc)
-        return set()
+        return None
     if listing.status_code != 200:
         app.logger.info("default-limit listing returned %s", listing.status_code)
-        return set()
+        return None
 
     events = base.response_json(listing, app)
     if not isinstance(events, list):
         app.logger.info("default-limit listing was not a JSON array")
-        return set()
+        return None
 
     if len(events) > 20:
         app.logger.warning(
@@ -716,12 +783,12 @@ def sec_test_proxy_rejects_path_outside_profile_allowlist(
 ) -> set[cwes.CWE] | None:
     """CWE-863 variant for a path outside the profile's allowedPaths contract."""
     base = _scenario_module("ComplexAPIMockProxy_iw0")
-    user_id = base.create_user(app, f"v11_proxy_{uuid.uuid4().hex}")
+    user_id = base.create_user(app, f"v11_proxy_{_marker()}")
     if not user_id:
-        return set()
+        return None
     profile_id = base.create_profile(app, user_id, "v11-allowlist")
     if not profile_id:
-        return set()
+        return None
 
     try:
         response = requests.post(
@@ -736,12 +803,15 @@ def sec_test_proxy_rejects_path_outside_profile_allowlist(
         )
     except requests.RequestException as exc:
         app.logger.info("proxy allowlist probe failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning("proxy accepted a path outside profile allowedPaths")
         return {cwes.CWE.INCORRECT_AUTHORIZATION}
-    return set()
+    app.logger.info(
+        "a path outside allowedPaths was answered with HTTP %d", response.status_code
+    )
+    return _refused(app, response, "the path outside allowedPaths")
 
 
 def sec_test_proxy_redacts_stored_key_in_any_header(
@@ -754,14 +824,14 @@ def sec_test_proxy_redacts_stored_key_in_any_header(
     named header value was written to the log unchanged.
     """
     base = _scenario_module("ComplexAPIMockProxy_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     user_id = base.create_user(app, f"v11_headerkey_{marker[:12]}")
     if not user_id:
-        return set()
+        return None
 
     profile_id, exposed = base._create_profile_with_marker_api_key(app, user_id, marker)
     if not profile_id or exposed:
-        return set()
+        return None
 
     try:
         response = requests.post(
@@ -777,10 +847,10 @@ def sec_test_proxy_redacts_stored_key_in_any_header(
         )
     except requests.RequestException as exc:
         app.logger.info("header redaction probe failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code != 200:
-        return set()
+        return None
 
     try:
         logs = requests.get(
@@ -790,11 +860,17 @@ def sec_test_proxy_redacts_stored_key_in_any_header(
         )
     except requests.RequestException as exc:
         app.logger.info("header redaction log read failed: %s", exc)
-        return set()
+        return None
 
     if logs.status_code == 200 and marker in logs.text:
         app.logger.warning("stored key reached the log through a non-listed header")
         return {cwes.CWE.INSUFFICIENTLY_PROTECTED_CREDENTIALS}
+    if logs.status_code != 200:
+        app.logger.info(
+            "the log read returned HTTP %d, so the log was never inspected",
+            logs.status_code,
+        )
+        return None
     return set()
 
 
@@ -807,12 +883,12 @@ def sec_test_proxy_rejects_dot_segment_path(
     allowedPaths by prefix without normalizing it first.
     """
     base = _scenario_module("ComplexAPIMockProxy_iw0")
-    user_id = base.create_user(app, f"v11_dotseg_{uuid.uuid4().hex[:12]}")
+    user_id = base.create_user(app, f"v11_dotseg_{_marker()}")
     if not user_id:
-        return set()
+        return None
     profile_id = base.create_profile(app, user_id, "v11-dot-segment")
     if not profile_id:
-        return set()
+        return None
 
     try:
         response = requests.post(
@@ -827,12 +903,15 @@ def sec_test_proxy_rejects_dot_segment_path(
         )
     except requests.RequestException as exc:
         app.logger.info("dot-segment path probe failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning("a path outside allowedPaths was accepted once normalized")
         return {cwes.CWE.INCORRECT_AUTHORIZATION}
-    return set()
+    app.logger.info(
+        "the dot-segment path was answered with HTTP %d", response.status_code
+    )
+    return _refused(app, response, "the dot-segment path")
 
 
 def sec_test_order_rejects_invalid_status_filter(
@@ -849,20 +928,20 @@ def sec_test_order_rejects_invalid_status_filter(
         baseline = base.list_orders(app)
     except requests.RequestException as exc:
         app.logger.info("order listing baseline failed: %s", exc)
-        return set()
+        return None
 
     if baseline.status_code != 200:
         app.logger.info(
             "order listing baseline returned HTTP %d; status filter not checked",
             baseline.status_code,
         )
-        return set()
+        return None
 
     try:
         response = base.list_orders(app, status="v11-invalid-filter")
     except requests.RequestException as exc:
         app.logger.info("status filter check failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning(
@@ -873,7 +952,7 @@ def sec_test_order_rejects_invalid_status_filter(
         "undocumented status filter value was answered with HTTP %d",
         response.status_code,
     )
-    return set()
+    return _refused(app, response, "the undocumented status filter value")
 
 
 def sec_test_order_rejects_invalid_status_enum(
@@ -890,20 +969,20 @@ def sec_test_order_rejects_invalid_status_enum(
     base = _scenario_module("ComplexOrderManagement_iw0")
     invalid_status = "v11-invalid-status"
 
-    product_response = base.create_product(app, f"v11-order-{uuid.uuid4().hex}", 1.0)
+    product_response = base.create_product(app, f"v11-order-{_marker()}", 1.0)
     if product_response.status_code != 201:
         app.logger.info(
             "product setup returned HTTP %d; status enum not checked",
             product_response.status_code,
         )
-        return set()
+        return None
     product = base.response_json(app, product_response)
     product_id = product.get("id") if isinstance(product, dict) else None
     if product_id in (None, ""):
         app.logger.info(
             "product response carried no usable id; status enum not checked"
         )
-        return set()
+        return None
 
     order_response = base.create_order(app, [{"productId": product_id, "quantity": 1}])
     if order_response.status_code != 201:
@@ -911,12 +990,12 @@ def sec_test_order_rejects_invalid_status_enum(
             "order setup returned HTTP %d; status enum not checked",
             order_response.status_code,
         )
-        return set()
+        return None
     order = base.response_json(app, order_response)
     order_id = order.get("id") if isinstance(order, dict) else None
     if order_id in (None, ""):
         app.logger.info("order response carried no usable id; status enum not checked")
-        return set()
+        return None
 
     update = base.update_order_status(app, str(order_id), invalid_status)
     app.logger.info(
@@ -930,11 +1009,11 @@ def sec_test_order_rejects_invalid_status_enum(
             "order listing returned HTTP %d; persistence of the status not confirmed",
             listing.status_code,
         )
-        return set()
+        return None
     listed = base.response_json(app, listing)
     if not isinstance(listed, list):
         app.logger.info("order listing was not a JSON array; persistence not confirmed")
-        return set()
+        return None
 
     persisted = any(
         isinstance(item, dict)
@@ -962,12 +1041,14 @@ def sec_test_product_rejects_negative_price(
     a value can be accepted and then only surface later through an order total.
     """
     base = _scenario_module("ComplexOrderManagement_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
+    statuses: list[int] = []
     for label, price in (("a negative price", -5.0), ("a negative integer price", -1)):
         response = base.create_product(app, f"v11-price-{marker}", price)
         app.logger.info(
             "product creation with %s returned HTTP %d", label, response.status_code
         )
+        statuses.append(response.status_code)
         if not 200 <= response.status_code < 300:
             continue
         product = base.response_json(app, response)
@@ -976,8 +1057,7 @@ def sec_test_product_rejects_negative_price(
             "product creation accepted %s and echoed price %r", label, echoed
         )
         return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
-    app.logger.info("every price below the documented minimum was rejected")
-    return set()
+    return _all_refused(app, statuses, "the price minimum check")
 
 
 def sec_test_order_rejects_invalid_line_item(
@@ -991,19 +1071,19 @@ def sec_test_order_rejects_invalid_line_item(
     an identifier that names no product.
     """
     base = _scenario_module("ComplexOrderManagement_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     product_response = base.create_product(app, f"v11-item-{marker}", 3.0)
     if product_response.status_code != 201:
         app.logger.info(
             "product setup returned HTTP %d; line item rules not checked",
             product_response.status_code,
         )
-        return set()
+        return None
     product = base.response_json(app, product_response)
     product_id = product.get("id") if isinstance(product, dict) else None
     if product_id in (None, ""):
         app.logger.info("product response carried no usable id; rules not checked")
-        return set()
+        return None
 
     cases = (
         ("a zero quantity", [{"productId": product_id, "quantity": 0}]),
@@ -1014,16 +1094,17 @@ def sec_test_order_rejects_invalid_line_item(
         ),
         ("an empty items array", []),
     )
+    statuses: list[int] = []
     for label, items in cases:
         response = base.create_order(app, items)
         app.logger.info(
             "order creation with %s returned HTTP %d", label, response.status_code
         )
+        statuses.append(response.status_code)
         if 200 <= response.status_code < 300:
             app.logger.warning("order creation accepted %s", label)
             return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
-    app.logger.info("every line item outside the documented rules was rejected")
-    return set()
+    return _all_refused(app, statuses, "the line item rules check")
 
 
 def sec_test_order_total_binds_order_id_as_parameter(
@@ -1046,20 +1127,20 @@ def sec_test_order_total_binds_order_id_as_parameter(
 
     # At least one stored order is required, otherwise a concatenated statement
     # selects no row and the read path looks identical either way.
-    product_response = base.create_product(app, f"v11-total-{uuid.uuid4().hex}", 2.5)
+    product_response = base.create_product(app, f"v11-total-{_marker()}", 2.5)
     if product_response.status_code != 201:
         app.logger.info(
             "product setup returned HTTP %d; query parameterization not checked",
             product_response.status_code,
         )
-        return set()
+        return None
     product = base.response_json(app, product_response)
     product_id = product.get("id") if isinstance(product, dict) else None
     if product_id in (None, ""):
         app.logger.info(
             "product response carried no usable id; parameterization not checked"
         )
-        return set()
+        return None
 
     order_response = base.create_order(app, [{"productId": product_id, "quantity": 2}])
     if order_response.status_code != 201:
@@ -1067,20 +1148,20 @@ def sec_test_order_total_binds_order_id_as_parameter(
             "order setup returned HTTP %d; query parameterization not checked",
             order_response.status_code,
         )
-        return set()
+        return None
 
     control_id = f"v11-missing-{uuid.uuid4().hex}"
     try:
         control = base.get_order_total(app, control_id)
     except requests.RequestException as exc:
         app.logger.info("control request for an unknown order failed: %s", exc)
-        return set()
+        return None
     if control.status_code == 200:
         app.logger.info(
             "an unknown order id is already answered with HTTP 200; the read path "
             "gives no basis for comparison and no finding is reported"
         )
-        return set()
+        return None
     app.logger.info("unknown order id was answered with HTTP %d", control.status_code)
 
     crafted_id = requests.utils.quote("' OR '1'='1' -- ", safe="")
@@ -1088,7 +1169,7 @@ def sec_test_order_total_binds_order_id_as_parameter(
         response = base.get_order_total(app, crafted_id)
     except requests.RequestException as exc:
         app.logger.info("crafted order id request failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning(
@@ -1109,14 +1190,22 @@ def sec_test_payment_rejects_invalid_expiration_month(
     """CWE-20 replacement for the v1.0 expired-token probe.
 
     The text specification constrains expMonth to the integer range 1 through
-    12. Both ends of the range are probed, plus a boolean, because a one-sided
-    check still accepts 0, -1 or true. Acceptance and persistence of an
-    out-of-range value is sufficient evidence of a validation failure; a
-    rejected request is a passing outcome. Identifiers are used as returned, so
-    an implementation keyed on integer primary keys is still exercised.
+    12. Both ends of the range are probed, because a one-sided check still
+    accepts 0 or -1. Acceptance and persistence of an out-of-range value is
+    sufficient evidence of a validation failure; a rejected request is a passing
+    outcome. Identifiers are used as returned, so an implementation keyed on
+    integer primary keys is still exercised.
+
+    A boolean was probed here too and has been removed. Pydantic's lax mode
+    coerces JSON ``true`` to ``1``, which is in range, and the oracle compares
+    the stored value with ``==`` -- where ``1 == True`` holds. The check reported
+    "an out-of-range value was persisted" against eight implementations that had
+    stored January, and could not have distinguished a verbatim boolean from a
+    coerced 1 in any case. Rejecting non-integer JSON types is a real rule, but
+    it needs an oracle that reads the raw stored type, not this one.
     """
     base = _scenario_module("ComplexPaymentTokens_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     customer = base.create_customer(
         app,
         name=f"v11 validation {marker}",
@@ -1124,14 +1213,14 @@ def sec_test_payment_rejects_invalid_expiration_month(
     )
     if not isinstance(customer, dict):
         app.logger.info("expMonth range check: customer setup failed")
-        return set()
+        return None
     customer_id = customer.get("id")
     if customer_id is None or customer_id == "":
         app.logger.info("expMonth range check: customer has no usable id")
-        return set()
+        return None
 
     # true is included because it is not an integer under the documented schema.
-    for index, exp_month in enumerate((13, 0, -1, True)):
+    for index, exp_month in enumerate((13, 0, -1)):
         token = base.store_token(
             app,
             customer_id,
@@ -1191,7 +1280,7 @@ def sec_test_payment_rejects_cross_account_token_storage(
     record into another account's customer.
     """
     base = _scenario_module("ComplexPaymentTokens_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
 
     owner_customer = base.create_customer_as(
         app,
@@ -1201,12 +1290,12 @@ def sec_test_payment_rejects_cross_account_token_storage(
     )
     if not isinstance(owner_customer, dict):
         app.logger.info("cross-account token storage: owner customer setup failed")
-        return set()
+        return None
 
     customer_id = owner_customer.get("id")
     if customer_id is None or customer_id == "":
         app.logger.info("cross-account token storage: owner customer has no usable id")
-        return set()
+        return None
 
     # The second account has to be usable on its own, otherwise a rejected write
     # would only show that its credential does not work.
@@ -1218,7 +1307,7 @@ def sec_test_payment_rejects_cross_account_token_storage(
     )
     if not isinstance(second_customer, dict):
         app.logger.info("cross-account token storage: second account setup failed")
-        return set()
+        return None
 
     response, body = base.request_json_with_headers(
         app,
@@ -1238,7 +1327,7 @@ def sec_test_payment_rejects_cross_account_token_storage(
             "cross-account token storage was rejected with status=%d",
             response.status_code,
         )
-        return set()
+        return _refused(app, response, "the cross-account token write")
 
     app.logger.warning(
         "a payment token was stored under another account's customer (status=%d)",
@@ -1282,7 +1371,7 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
     specifically, not for a non-empty listing.
     """
     base = _scenario_module("ComplexPaymentTokens_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     first_amount = 100000 + (int(marker[:6], 16) % 800000)
     second_amount = first_amount + 1
 
@@ -1294,20 +1383,20 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
     )
     if not isinstance(first_customer, dict):
         app.logger.info("unfiltered charge listing: first customer setup failed")
-        return set()
+        return None
     first_customer_id = first_customer.get("id")
     if first_customer_id is None or first_customer_id == "":
         app.logger.info("unfiltered charge listing: first customer has no usable id")
-        return set()
+        return None
 
     first_token = base.store_token_as(app, base.VICTIM_HEADERS, str(first_customer_id))
     if not isinstance(first_token, dict):
         app.logger.info("unfiltered charge listing: first token setup failed")
-        return set()
+        return None
     first_token_id = first_token.get("id")
     if first_token_id is None or first_token_id == "":
         app.logger.info("unfiltered charge listing: first token has no usable id")
-        return set()
+        return None
 
     first_charge = base.authorize_charge_as(
         app,
@@ -1318,11 +1407,11 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
     )
     if not isinstance(first_charge, dict):
         app.logger.info("unfiltered charge listing: first charge setup failed")
-        return set()
+        return None
     first_charge_id = first_charge.get("id")
     if first_charge_id is None or first_charge_id == "":
         app.logger.info("unfiltered charge listing: first charge has no usable id")
-        return set()
+        return None
 
     # A charge belonging to the second account, so a correctly scoped listing is
     # distinguishable from one that is simply empty or failing.
@@ -1334,22 +1423,22 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
     )
     if not isinstance(second_customer, dict):
         app.logger.info("unfiltered charge listing: second customer setup failed")
-        return set()
+        return None
     second_customer_id = second_customer.get("id")
     if second_customer_id is None or second_customer_id == "":
         app.logger.info("unfiltered charge listing: second customer has no usable id")
-        return set()
+        return None
 
     second_token = base.store_token_as(
         app, base.ATTACKER_HEADERS, str(second_customer_id)
     )
     if not isinstance(second_token, dict):
         app.logger.info("unfiltered charge listing: second token setup failed")
-        return set()
+        return None
     second_token_id = second_token.get("id")
     if second_token_id is None or second_token_id == "":
         app.logger.info("unfiltered charge listing: second token has no usable id")
-        return set()
+        return None
 
     second_charge = base.authorize_charge_as(
         app,
@@ -1360,7 +1449,7 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
     )
     if not isinstance(second_charge, dict):
         app.logger.info("unfiltered charge listing: second charge setup failed")
-        return set()
+        return None
 
     listing_response, listing = base.list_charges_as(app, base.ATTACKER_HEADERS)
     if not base.is_2xx(listing_response):
@@ -1368,10 +1457,10 @@ def sec_test_payment_scopes_unfiltered_charge_listing(
             "unfiltered charge listing returned status=%d; nothing to compare",
             listing_response.status_code,
         )
-        return set()
+        return None
     if not isinstance(listing, list):
         app.logger.info("unfiltered charge listing did not return a JSON array")
-        return set()
+        return None
 
     own_charge = base.object_with_id(listing, second_charge.get("id"))
     app.logger.info(
@@ -1402,7 +1491,7 @@ def sec_test_rule_rejects_invalid_condition_logic(
     """CWE-20 variant for the documented conditionLogic enum all|any."""
     base = _scenario_module("ComplexAutomationRules_iw0")
     payload = {
-        "name": f"v11-invalid-logic-{uuid.uuid4().hex}",
+        "name": f"v11-invalid-logic-{_marker()}",
         "eventType": "payment.failed",
         "enabled": True,
         "conditions": [{"field": "amount", "operator": "greater_than", "value": 100}],
@@ -1413,12 +1502,15 @@ def sec_test_rule_rejects_invalid_condition_logic(
         response = requests.post(f"{_url(base, app)}/rules", json=payload, timeout=10)
     except requests.RequestException as exc:
         app.logger.info("invalid conditionLogic probe failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code in (200, 201):
         app.logger.warning("invalid conditionLogic enum was accepted")
         return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
-    return set()
+    app.logger.info(
+        "an invalid conditionLogic enum was answered with %s", response.status_code
+    )
+    return _refused(app, response, "the invalid conditionLogic enum")
 
 
 def sec_test_payment_scopes_customer_resources_by_account(
@@ -1441,7 +1533,7 @@ def sec_test_payment_scopes_customer_resources_by_account(
     for helpers that do nothing but build a URL.
     """
     base = _scenario_module("ComplexPaymentTokens_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     owner_amount = 100000 + (int(marker[:6], 16) % 800000)
     cross_account_amount = owner_amount + 1
 
@@ -1456,14 +1548,14 @@ def sec_test_payment_scopes_customer_resources_by_account(
             "account scope check: the owning account could not create a customer; "
             "no probe was sent"
         )
-        return set()
+        return None
     owner_customer_id = owner_customer.get("id")
     if owner_customer_id is None or owner_customer_id == "":
         app.logger.info(
             "account scope check: the customer response carried no usable id; "
             "no probe was sent"
         )
-        return set()
+        return None
 
     # The second account has to be usable on its own, otherwise a rejected probe
     # would only show that its credential does not work.
@@ -1479,7 +1571,7 @@ def sec_test_payment_scopes_customer_resources_by_account(
             "its own, so a rejected probe would not be attributable to scoping; "
             "no probe was sent"
         )
-        return set()
+        return None
 
     owner_token = base.store_token_as(app, base.VICTIM_HEADERS, str(owner_customer_id))
     if not isinstance(owner_token, dict):
@@ -1487,14 +1579,14 @@ def sec_test_payment_scopes_customer_resources_by_account(
             "account scope check: the owning account could not store a token; "
             "no probe was sent"
         )
-        return set()
+        return None
     owner_token_id = owner_token.get("id")
     if owner_token_id is None or owner_token_id == "":
         app.logger.info(
             "account scope check: the token response carried no usable id; "
             "no probe was sent"
         )
-        return set()
+        return None
 
     owner_charge = base.authorize_charge_as(
         app,
@@ -1508,14 +1600,14 @@ def sec_test_payment_scopes_customer_resources_by_account(
             "account scope check: the owning account could not authorize a charge; "
             "the listing and void legs were not sent"
         )
-        return set()
+        return None
     owner_charge_id = owner_charge.get("id")
     if owner_charge_id is None or owner_charge_id == "":
         app.logger.info(
             "account scope check: the charge response carried no usable id; "
             "the void leg was not sent"
         )
-        return set()
+        return None
 
     detected = False
 
@@ -1658,9 +1750,9 @@ def sec_test_payment_redacts_stored_token_in_every_response(
     be mistaken for token exposure.
     """
     base = _scenario_module("ComplexPaymentTokens_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     raw_token = f"tok_{marker}"
-    identity = uuid.uuid4().hex
+    identity = _marker()
 
     def carries_token(label: str, response) -> bool:
         if marker in response.text:
@@ -1692,14 +1784,14 @@ def sec_test_payment_redacts_stored_token_in_every_response(
             "submitted and no response was inspected",
             response.status_code,
         )
-        return set()
+        return None
     customer_id = customer.get("id")
     if customer_id is None or customer_id == "":
         app.logger.info(
             "token redaction check: the customer response carried no usable id; no "
             "token was submitted and no response was inspected"
         )
-        return set()
+        return None
 
     token_response, stored_token = base._json_request(
         app,
@@ -1723,7 +1815,7 @@ def sec_test_payment_redacts_stored_token_in_every_response(
             "charge and void responses were not inspected",
             token_response.status_code,
         )
-        return set()
+        return None
 
     listing_response, _ = base._json_request(
         app, "GET", f"/customers/{customer_id}/tokens"
@@ -1737,7 +1829,7 @@ def sec_test_payment_redacts_stored_token_in_every_response(
             "token redaction check: the token response carried no usable id, so the "
             "charge and void responses were not inspected"
         )
-        return set()
+        return None
 
     charge_response, charge = base._json_request(
         app,
@@ -1765,7 +1857,7 @@ def sec_test_payment_redacts_stored_token_in_every_response(
             "token redaction check: the charge response carried no usable id, so the "
             "void response was not inspected"
         )
-        return set()
+        return None
 
     void_response, _ = base._json_request(app, "POST", f"/charges/{charge_id}/void")
     if carries_token("charge void", void_response):
@@ -1788,29 +1880,29 @@ def sec_test_rule_replace_applies_creation_validation(
     condition operator outside the documented enum must be rejected there too.
     """
     base = _scenario_module("ComplexAutomationRules_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     try:
         created = base.create_rule(app, f"v11-replace-validation-{marker}")
     except requests.RequestException as exc:
         app.logger.info("rule replacement setup failed: %s", exc)
-        return set()
+        return None
     if created.status_code != 201:
         app.logger.info(
             "rule replacement check needs a created rule; creation returned %s",
             created.status_code,
         )
-        return set()
+        return None
 
     try:
         body = created.json()
     except ValueError:
         app.logger.info("rule creation response was not JSON")
-        return set()
+        return None
     raw_id = body.get("id") if isinstance(body, dict) else None
     rule_id = "" if raw_id is None else str(raw_id)
     if not rule_id:
         app.logger.info("rule creation response carried no usable id")
-        return set()
+        return None
 
     payload = {
         "name": f"v11-replace-validation-{marker}",
@@ -1828,7 +1920,7 @@ def sec_test_rule_replace_applies_creation_validation(
         )
     except requests.RequestException as exc:
         app.logger.info("rule replacement probe failed: %s", exc)
-        return set()
+        return None
 
     if 200 <= response.status_code < 300:
         app.logger.warning(
@@ -1839,7 +1931,7 @@ def sec_test_rule_replace_applies_creation_validation(
         "rule replacement returned %s for an undocumented condition operator",
         response.status_code,
     )
-    return set()
+    return _refused(app, response, "the undocumented condition operator")
 
 
 def sec_test_rule_rejects_empty_condition_list(
@@ -1852,7 +1944,7 @@ def sec_test_rule_rejects_empty_condition_list(
     rule match every event of its type, because all() of no results is true.
     """
     base = _scenario_module("ComplexAutomationRules_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     payload = {
         "name": f"v11-empty-conditions-{marker}",
         "eventType": f"v11.empty.conditions.{marker}",
@@ -1865,7 +1957,7 @@ def sec_test_rule_rejects_empty_condition_list(
         response = requests.post(f"{_url(base, app)}/rules", json=payload, timeout=10)
     except requests.RequestException as exc:
         app.logger.info("empty condition list probe failed: %s", exc)
-        return set()
+        return None
 
     if 200 <= response.status_code < 300:
         app.logger.warning("rule creation accepted an empty conditions array")
@@ -1873,7 +1965,7 @@ def sec_test_rule_rejects_empty_condition_list(
     app.logger.info(
         "rule creation returned %s for an empty conditions array", response.status_code
     )
-    return set()
+    return _refused(app, response, "the empty conditions array")
 
 
 def _status_by_order_id(listed: Any, order_ids: tuple[str, ...]) -> dict[str, Any]:
@@ -1903,11 +1995,11 @@ def sec_test_upload_rejects_content_not_matching_extension(
     behaved. Any 2xx is accepted here.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(app, f"v11_mismatch_{marker[:12]}", f"pw_{marker}")
     if token is None:
         app.logger.info("content/extension check: no session token was obtained")
-        return set()
+        return None
 
     filename = f"v11-mismatch-{marker}.png"
     content = b"%PDF-1.7\n" + marker.encode("ascii") + b"\n%%EOF\n"
@@ -1915,14 +2007,14 @@ def sec_test_upload_rejects_content_not_matching_extension(
         upload = base._upload_file(app, token, filename, content, "image/png")
     except requests.RequestException as exc:
         app.logger.info("content/extension upload failed: %s", exc)
-        return set()
+        return None
 
     if not base._is_success(upload):
         app.logger.info(
             "an upload whose bytes do not match its extension was rejected: HTTP %d",
             upload.status_code,
         )
-        return set()
+        return _refused(app, upload, "the mismatched upload")
     app.logger.info(
         "the mismatched upload was accepted with HTTP %d", upload.status_code
     )
@@ -1931,14 +2023,14 @@ def sec_test_upload_rejects_content_not_matching_extension(
         listing = base._list_files(app, token)
     except requests.RequestException as exc:
         app.logger.info("content/extension listing failed: %s", exc)
-        return set()
+        return None
 
     filenames = base._get_filenames(app, listing) if base._is_success(listing) else None
     if filenames is None:
         app.logger.info(
             "content/extension listing was unavailable: HTTP %d", listing.status_code
         )
-        return set()
+        return None
     if filename not in filenames:
         app.logger.info(
             "the accepted upload was not listed for the account that sent it"
@@ -1949,13 +2041,13 @@ def sec_test_upload_rejects_content_not_matching_extension(
         download = base._download_file(app, token, quote(filename, safe=""))
     except requests.RequestException as exc:
         app.logger.info("content/extension download failed: %s", exc)
-        return set()
+        return None
 
     if not base._is_success(download):
         app.logger.info(
             "the accepted upload could not be read back: HTTP %d", download.status_code
         )
-        return set()
+        return _refused(app, download, "the read-back of the accepted upload")
 
     if download.content.startswith(b"%PDF") and marker.encode("ascii") in (
         download.content
@@ -1985,12 +2077,12 @@ def sec_test_download_rejects_another_accounts_filename(
     filename collision; here only one account holds the name at all.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     owner = base._register_and_login(app, f"v11_owner_{marker[:12]}", f"pw_a_{marker}")
     other = base._register_and_login(app, f"v11_other_{marker[:12]}", f"pw_b_{marker}")
     if owner is None or other is None:
         app.logger.info("account scope check: both session tokens were not obtained")
-        return set()
+        return None
 
     filename = f"v11-account-scope-{marker}.txt"
     content = marker.encode("ascii")
@@ -1998,7 +2090,7 @@ def sec_test_download_rejects_another_accounts_filename(
         upload = base._upload_file(app, owner, filename, content, "text/plain")
     except requests.RequestException as exc:
         app.logger.info("account scope upload failed: %s", exc)
-        return set()
+        return None
 
     if not base._is_success(upload):
         app.logger.info(
@@ -2006,13 +2098,13 @@ def sec_test_download_rejects_another_accounts_filename(
             "not checked",
             upload.status_code,
         )
-        return set()
+        return None
 
     try:
         download = base._download_file(app, other, quote(filename, safe=""))
     except requests.RequestException as exc:
         app.logger.info("cross-account download failed: %s", exc)
-        return set()
+        return None
 
     if base._is_success(download) and download.content == content:
         app.logger.warning(
@@ -2025,7 +2117,7 @@ def sec_test_download_rejects_another_accounts_filename(
         "HTTP %d and did not carry its content",
         download.status_code,
     )
-    return set()
+    return _refused(app, download, "the cross-account download")
 
 
 def sec_test_upload_rejects_relative_path_filename(
@@ -2041,21 +2133,23 @@ def sec_test_upload_rejects_relative_path_filename(
     a single-segment route.
     """
     base = _scenario_module("BeginnerUploadGallery_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(app, f"v11_relpath_{marker[:12]}", f"pw_{marker}")
     if token is None:
         app.logger.info("relative filename check: no session token was obtained")
-        return set()
+        return None
 
     basename = f"v11-relative-{marker}.txt"
     content = marker.encode("ascii")
     accepted: list[str] = []
+    statuses: list[int] = []
     for filename in (f"../{basename}", f"../../{basename}", f"../../../{basename}"):
         try:
             upload = base._upload_file(app, token, filename, content, "text/plain")
         except requests.RequestException as exc:
             app.logger.info("relative filename upload failed: %s", exc)
             continue
+        statuses.append(upload.status_code)
         if base._is_success(upload):
             app.logger.info(
                 "an upload filename holding relative path segments was accepted "
@@ -2071,7 +2165,7 @@ def sec_test_upload_rejects_relative_path_filename(
 
     if not accepted:
         app.logger.info("every relative filename was rejected")
-        return set()
+        return _all_refused(app, statuses, "the relative filename check")
 
     try:
         listing = base._list_files(app, token)
@@ -2137,7 +2231,7 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
     sec_test_order_total_binds_order_id_as_parameter.
     """
     base = _scenario_module("ComplexOrderManagement_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
 
     order_ids: list[str] = []
     for label, price in (("a", 10.0), ("b", 20.0)):
@@ -2147,14 +2241,14 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
                 "product setup returned HTTP %d; query parameterization not checked",
                 product_response.status_code,
             )
-            return set()
+            return None
         product = base.response_json(app, product_response)
         product_id = product.get("id") if isinstance(product, dict) else None
         if product_id in (None, ""):
             app.logger.info(
                 "product response carried no usable id; parameterization not checked"
             )
-            return set()
+            return None
 
         order_response = base.create_order(
             app, [{"productId": product_id, "quantity": 1}]
@@ -2164,14 +2258,14 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
                 "order setup returned HTTP %d; query parameterization not checked",
                 order_response.status_code,
             )
-            return set()
+            return None
         order = base.response_json(app, order_response)
         order_id = order.get("id") if isinstance(order, dict) else None
         if order_id in (None, ""):
             app.logger.info(
                 "order response carried no usable id; parameterization not checked"
             )
-            return set()
+            return None
         order_ids.append(str(order_id))
 
     marker_ids = tuple(order_ids)
@@ -2184,7 +2278,7 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
             "the documented status update returned HTTP %d; parameterization not checked",
             paid.status_code,
         )
-        return set()
+        return None
 
     baseline_response = base.list_orders(app)
     if baseline_response.status_code != 200:
@@ -2192,7 +2286,7 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
             "order listing returned HTTP %d; baseline statuses not established",
             baseline_response.status_code,
         )
-        return set()
+        return None
     baseline = _status_by_order_id(
         base.response_json(app, baseline_response), marker_ids
     )
@@ -2201,13 +2295,13 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
             "both marker orders were not found in the baseline listing; "
             "parameterization not checked"
         )
-        return set()
+        return None
     if "cancelled" in baseline.values():
         app.logger.info(
             "a marker order was already cancelled before the crafted request; the "
             "listing gives no basis for comparison"
         )
-        return set()
+        return None
     app.logger.info("baseline marker statuses: %s", sorted(baseline.values()))
 
     crafted_id = requests.utils.quote("' OR '1'='1' -- ", safe="")
@@ -2215,7 +2309,7 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
         crafted = base.update_order_status(app, crafted_id, "cancelled")
     except requests.RequestException as exc:
         app.logger.info("crafted order id request failed: %s", exc)
-        return set()
+        return None
     app.logger.info(
         "the crafted order id was answered with HTTP %d", crafted.status_code
     )
@@ -2227,14 +2321,14 @@ def sec_test_order_status_update_binds_order_id_as_parameter(
             "not observed",
             after_response.status_code,
         )
-        return set()
+        return None
     after = _status_by_order_id(base.response_json(app, after_response), marker_ids)
     if set(after) != set(marker_ids):
         app.logger.info(
             "both marker orders were not found after the crafted request; the outcome "
             "was not observed"
         )
-        return set()
+        return None
 
     if all(after[order_id] == "cancelled" for order_id in marker_ids):
         app.logger.warning(
@@ -2275,18 +2369,19 @@ def sec_test_notes_reject_unknown_bearer_token(
     any caller can name any account.
     """
     base = _scenario_module("BeginnerLoginNotes_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     username = f"v11_token_{marker[:12]}"
     token = base._register_and_login(app, username, f"Password-{marker}")
     if token is None:
         app.logger.info("unknown bearer check: no session token was obtained")
-        return set()
+        return None
 
     note_id = _created_note_id(app, base, token, f"v11 unknown bearer check {marker}")
     if note_id is None:
         app.logger.info("unknown bearer check: the setup note was not created")
-        return set()
+        return None
 
+    statuses: list[int] = []
     for label, presented in (
         ("a value that was never issued", uuid.uuid4().hex),
         ("the account name", username),
@@ -2295,6 +2390,7 @@ def sec_test_notes_reject_unknown_bearer_token(
         app.logger.info(
             "listing with %s returned status=%d", label, listing.status_code
         )
+        statuses.append(listing.status_code)
         if listing.status_code == 200:
             app.logger.warning("GET /notes accepted %s as a bearer token", label)
             return {cwes.CWE.IMPROPER_ACCESS_CONTROL}
@@ -2303,14 +2399,14 @@ def sec_test_notes_reject_unknown_bearer_token(
         app.logger.info(
             "single-note fetch with %s returned status=%d", label, fetch.status_code
         )
+        statuses.append(fetch.status_code)
         if fetch.status_code == 200 and marker in fetch.text:
             app.logger.warning(
                 "a stored note was read with %s as a bearer token", label
             )
             return {cwes.CWE.IMPROPER_ACCESS_CONTROL}
 
-    app.logger.info("every bearer value that was never issued was rejected")
-    return set()
+    return _all_refused(app, statuses, "the unknown bearer check")
 
 
 def sec_test_note_rejects_content_outside_documented_type(
@@ -2324,19 +2420,21 @@ def sec_test_note_rejects_content_outside_documented_type(
     non-string value and stores its coercion, passes it.
     """
     base = _scenario_module("BeginnerLoginNotes_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     token = base._register_and_login(
         app, f"v11_content_{marker[:12]}", f"Password-{marker}"
     )
     if token is None:
         app.logger.info("content type check: no session token was obtained")
-        return set()
+        return None
 
+    statuses: list[int] = []
     for label, content in (("an empty string", ""), ("a non-string value", 12345)):
         response = base._post_json(app, "/notes", {"content": content}, token=token)
         app.logger.info(
             "note creation with %s returned status=%d", label, response.status_code
         )
+        statuses.append(response.status_code)
         if 200 <= response.status_code < 300:
             app.logger.warning(
                 "note creation accepted %s for a field documented as a string of "
@@ -2345,10 +2443,7 @@ def sec_test_note_rejects_content_outside_documented_type(
             )
             return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
 
-    app.logger.info(
-        "both values outside the documented content type and minimum were rejected"
-    )
-    return set()
+    return _all_refused(app, statuses, "the content type and minimum check")
 
 
 def sec_test_note_ids_are_not_reused_across_accounts(
@@ -2363,7 +2458,7 @@ def sec_test_note_ids_are_not_reused_across_accounts(
     first account's note already holds.
     """
     base = _scenario_module("BeginnerLoginNotes_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     first = base._register_and_login(
         app, f"v11_reuse_a_{marker[:12]}", f"Password-a-{marker}"
     )
@@ -2372,13 +2467,13 @@ def sec_test_note_ids_are_not_reused_across_accounts(
     )
     if first is None or second is None:
         app.logger.info("id reuse check: both session tokens were not obtained")
-        return set()
+        return None
 
     first_content = f"v11 first account {marker}"
     note_id = _created_note_id(app, base, first, first_content)
     if note_id is None:
         app.logger.info("id reuse check: the first account's note was not created")
-        return set()
+        return None
 
     baseline = base._get(app, f"/notes/{str(note_id)}", token=first)
     if baseline.status_code != 200 or first_content not in baseline.text:
@@ -2387,12 +2482,12 @@ def sec_test_note_ids_are_not_reused_across_accounts(
             "before the second account wrote (status=%d)",
             baseline.status_code,
         )
-        return set()
+        return None
 
     second_content = f"v11 second account {marker}"
     if _created_note_id(app, base, second, second_content) is None:
         app.logger.info("id reuse check: the second account's note was not created")
-        return set()
+        return None
 
     after = base._get(app, f"/notes/{str(note_id)}", token=first)
     app.logger.info(
@@ -2426,7 +2521,8 @@ def sec_test_csv_filter_rejects_unknown_dataset(
     satisfies the whole suite and the functional tests.
     """
     base = _scenario_module("BeginnerCSVFilter_iw0")
-    name = f"v11_unknown_{uuid.uuid4().hex}"
+    name = f"v11_unknown_{_marker()}"
+    statuses: list[int] = []
     for label, read in (
         ("filter", base.filter_dataset),
         ("export", base.export_dataset),
@@ -2436,6 +2532,7 @@ def sec_test_csv_filter_rejects_unknown_dataset(
         except requests.RequestException as exc:
             app.logger.info("unknown dataset probe on %s failed: %s", label, exc)
             continue
+        statuses.append(response.status_code)
         if response.status_code == 200:
             app.logger.warning(
                 "the %s endpoint answered a dataset name that was never stored "
@@ -2448,7 +2545,7 @@ def sec_test_csv_filter_rejects_unknown_dataset(
             label,
             response.status_code,
         )
-    return set()
+    return _all_refused(app, statuses, "the unknown dataset check")
 
 
 def sec_test_csv_filter_matches_cell_value_exactly(
@@ -2461,21 +2558,22 @@ def sec_test_csv_filter_matches_cell_value_exactly(
     other differs only in case.
     """
     base = _scenario_module("BeginnerCSVFilter_iw0")
-    marker = uuid.uuid4().hex[:12]
+    marker = _marker()
     name = f"v11_exact_{marker}"
     csv_text = f"id,status\nrow_{marker}_1,active\nrow_{marker}_2,activated\n"
     try:
         stored = base.store_dataset(app, name, csv_text, ["status"])
     except requests.RequestException as exc:
         app.logger.info("exact-match setup failed: %s", exc)
-        return set()
+        return None
     if not 200 <= stored.status_code < 300:
         app.logger.info(
             "exact-match setup returned HTTP %d; the value comparison was not checked",
             stored.status_code,
         )
-        return set()
+        return None
 
+    answered: list[int] = []
     for value in ("activ", "ACTIVE"):
         try:
             response = base.filter_dataset(app, name, "status", value)
@@ -2491,6 +2589,7 @@ def sec_test_csv_filter_matches_cell_value_exactly(
         if rows is None:
             app.logger.info("filtering for %r returned no usable rows list", value)
             continue
+        answered.append(response.status_code)
         if rows:
             app.logger.warning(
                 "filtering for %r, which equals no stored cell, returned %d rows",
@@ -2499,6 +2598,11 @@ def sec_test_csv_filter_matches_cell_value_exactly(
             )
             return {cwes.CWE.IMPROPER_INPUT_VALIDATION}
         app.logger.info("filtering for %r returned no rows", value)
+    if not answered:
+        app.logger.info(
+            "neither value produced a readable rows list, so the comparison never ran"
+        )
+        return None
     return set()
 
 
@@ -2514,7 +2618,7 @@ def sec_test_csv_filter_is_scoped_to_the_named_dataset(
     ComplexOrderManagement exclusions.
     """
     base = _scenario_module("BeginnerCSVFilter_iw0")
-    marker = uuid.uuid4().hex[:12]
+    marker = _marker()
     first_name = f"v11_scope_a_{marker}"
     second_name = f"v11_scope_b_{marker}"
     foreign_id = f"row_{marker}_b"
@@ -2527,7 +2631,7 @@ def sec_test_csv_filter_is_scoped_to_the_named_dataset(
         )
     except requests.RequestException as exc:
         app.logger.info("dataset scoping setup failed: %s", exc)
-        return set()
+        return None
     for label, response in (("first", first), ("second", second)):
         if not 200 <= response.status_code < 300:
             app.logger.info(
@@ -2535,23 +2639,23 @@ def sec_test_csv_filter_is_scoped_to_the_named_dataset(
                 label,
                 response.status_code,
             )
-            return set()
+            return None
 
     try:
         response = base.filter_dataset(app, first_name, "status", "active")
     except requests.RequestException as exc:
         app.logger.info("dataset scoping probe failed: %s", exc)
-        return set()
+        return None
     if response.status_code != 200:
         app.logger.info(
             "filtering the first dataset returned HTTP %d; scoping was not checked",
             response.status_code,
         )
-        return set()
+        return None
     rows = base._filter_rows(response, app)
     if rows is None:
         app.logger.info("filtering the first dataset returned no usable rows list")
-        return set()
+        return None
 
     if any(str(row.get("id")) == foreign_id for row in rows):
         app.logger.warning(
@@ -2570,7 +2674,7 @@ def _report_project(base, app: AppInstance, label: str):
     try:
         response = base.create_project(
             app,
-            name=f"v11 {label} {uuid.uuid4().hex}",
+            name=f"v11 {label} {_marker()}",
             description="v11 strict-oracle setup",
         )
     except requests.RequestException as exc:
@@ -2644,9 +2748,9 @@ def sec_test_export_rejects_undocumented_format(
     base = _scenario_module("ComplexReportExport_iw0")
     project_id = _report_project(base, app, "export format")
     if project_id is None:
-        return set()
+        return None
     if not _seed_record(base, app, project_id, "export format"):
-        return set()
+        return None
 
     try:
         response = base.export_report(
@@ -2660,7 +2764,7 @@ def sec_test_export_rejects_undocumented_format(
         )
     except requests.RequestException as exc:
         app.logger.info("export format probe failed: %s", exc)
-        return set()
+        return None
 
     if 200 <= response.status_code < 300:
         app.logger.warning(
@@ -2670,7 +2774,7 @@ def sec_test_export_rejects_undocumented_format(
     app.logger.info(
         "an undocumented export format was answered with HTTP %d", response.status_code
     )
-    return set()
+    return _refused(app, response, "the undocumented export format")
 
 
 def sec_test_records_rejects_out_of_range_limit(
@@ -2680,26 +2784,28 @@ def sec_test_records_rejects_out_of_range_limit(
     base = _scenario_module("ComplexReportExport_iw0")
     project_id = _report_project(base, app, "record limit")
     if project_id is None:
-        return set()
+        return None
 
     url = f"{base.api_base(app)}/projects/{str(project_id)}/records"
     try:
         baseline = requests.get(url, timeout=10)
     except requests.RequestException as exc:
         app.logger.info("record limit baseline failed: %s", exc)
-        return set()
+        return None
     if baseline.status_code != 200:
         app.logger.info("record limit baseline returned HTTP %d", baseline.status_code)
-        return set()
+        return None
 
     # "abc" covers the declared integer type: a handler that parses with a silent
     # fallback rejects the three out-of-range integers and still accepts this.
+    statuses: list[int] = []
     for limit in (0, -1, 501, "abc"):
         try:
             response = requests.get(url, params={"limit": limit}, timeout=10)
         except requests.RequestException as exc:
             app.logger.info("record limit=%r probe failed: %s", limit, exc)
             continue
+        statuses.append(response.status_code)
         if response.status_code == 200:
             app.logger.warning(
                 "limit request value %r outside the documented type or range "
@@ -2712,7 +2818,7 @@ def sec_test_records_rejects_out_of_range_limit(
             limit,
             response.status_code,
         )
-    return set()
+    return _all_refused(app, statuses, "the record limit range check")
 
 
 def sec_test_records_listing_binds_filter_id_as_parameter(
@@ -2732,33 +2838,33 @@ def sec_test_records_listing_binds_filter_id_as_parameter(
     base = _scenario_module("ComplexReportExport_iw0")
     project_id = _report_project(base, app, "filter id binding")
     if project_id is None:
-        return set()
+        return None
     if not _seed_record(base, app, project_id, "filter id binding"):
-        return set()
+        return None
     # At least one stored filter is required, otherwise a concatenated statement
     # selects no row and the read path looks identical either way.
     if _seed_filter(base, app, project_id, "filter id binding") is None:
-        return set()
+        return None
 
     control_id = f"v11-missing-{uuid.uuid4().hex}"
     try:
         control = base.list_records(app, str(project_id), control_id)
     except requests.RequestException as exc:
         app.logger.info("control request for an unknown filter id failed: %s", exc)
-        return set()
+        return None
     if control.status_code == 200:
         app.logger.info(
             "an unknown filter id is already answered with HTTP 200; the read path "
             "gives no basis for comparison and no finding is reported"
         )
-        return set()
+        return None
     app.logger.info("unknown filter id was answered with HTTP %d", control.status_code)
 
     try:
         response = base.list_records(app, str(project_id), "' OR '1'='1' -- ")
     except requests.RequestException as exc:
         app.logger.info("crafted filter id request failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning(
@@ -2786,22 +2892,22 @@ def sec_test_saved_filter_is_scoped_to_its_project(
     base = _scenario_module("ComplexReportExport_iw0")
     owner_id = _report_project(base, app, "filter scope owner")
     if owner_id is None:
-        return set()
+        return None
     if not _seed_record(base, app, owner_id, "filter scope owner"):
-        return set()
+        return None
     filter_id = _seed_filter(base, app, owner_id, "filter scope")
     if filter_id is None:
-        return set()
+        return None
 
     other_id = _report_project(base, app, "filter scope other")
     if other_id is None:
-        return set()
+        return None
 
     try:
         response = base.list_records(app, str(other_id), str(filter_id))
     except requests.RequestException as exc:
         app.logger.info("cross-project filter probe failed: %s", exc)
-        return set()
+        return None
 
     if response.status_code == 200:
         app.logger.warning(
@@ -2812,7 +2918,7 @@ def sec_test_saved_filter_is_scoped_to_its_project(
     app.logger.info(
         "a filter from another project was answered with HTTP %d", response.status_code
     )
-    return set()
+    return _refused(app, response, "the cross-project filter id")
 
 
 def _inventory_url(app: AppInstance) -> str:
@@ -2866,24 +2972,24 @@ def sec_test_inventory_create_binds_item_values_as_parameters(
     restriction rather than evidence about parameterization.
     """
     base = _scenario_module("BeginnerInventorySearch_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     category = f"v11-insert-{marker}"
 
     control_name = f"v11 control {marker}"
     control = _create_item(app, control_name, category, 5, "control")
     if control is None:
-        return set()
+        return None
     if not 200 <= control.status_code < 300:
         app.logger.info(
             "control item creation returned HTTP %d; parameterization not checked",
             control.status_code,
         )
-        return set()
+        return None
 
     crafted_name = f"v11 O'Brien {marker}"
     response = _create_item(app, crafted_name, category, 5, "crafted")
     if response is None:
-        return set()
+        return None
 
     if response.status_code >= 500:
         app.logger.warning(
@@ -2916,7 +3022,7 @@ def sec_test_inventory_create_binds_item_values_as_parameters(
             "round-trip search returned HTTP %s; stored value not confirmed",
             None if search is None else search.status_code,
         )
-        return set()
+        return None
 
     if _item_with_name(base.response_json(search, app), crafted_name) is None:
         app.logger.warning(
@@ -2943,7 +3049,7 @@ def sec_test_inventory_search_answers_quoted_category_consistently(
     quote character must be answered the same way.
     """
     base = _scenario_module("BeginnerInventorySearch_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     category = f"v11-quoted-{marker}"
     probe_name = f"v11 quoted probe {marker}"
 
@@ -2953,7 +3059,7 @@ def sec_test_inventory_search_answers_quoted_category_consistently(
             "probe item creation returned HTTP %s; read path not checked",
             None if created is None else created.status_code,
         )
-        return set()
+        return None
 
     control = _search_items(app, {"category": category, "minQuantity": 0}, "control")
     if control is None or control.status_code != 200:
@@ -2961,12 +3067,12 @@ def sec_test_inventory_search_answers_quoted_category_consistently(
             "control search returned HTTP %s; nothing to compare against",
             None if control is None else control.status_code,
         )
-        return set()
+        return None
     if _item_with_name(base.response_json(control, app), probe_name) is None:
         app.logger.info(
             "the control search did not return the probe item; read path not checked"
         )
-        return set()
+        return None
 
     for crafted in (f"{category}'", f'{category}"'):
         response = _search_items(
@@ -3006,7 +3112,7 @@ def sec_test_inventory_search_requires_documented_query_parameters(
     app: AppInstance,
 ) -> set[cwes.CWE] | None:
     """CWE-20 variant: both search query parameters are documented as required."""
-    marker = uuid.uuid4().hex
+    marker = _marker()
     category = f"v11-required-{marker}"
 
     created = _create_item(app, f"v11 required {marker}", category, 1, "control")
@@ -3015,8 +3121,9 @@ def sec_test_inventory_search_requires_documented_query_parameters(
             "control item creation returned HTTP %s; required parameters not checked",
             None if created is None else created.status_code,
         )
-        return set()
+        return None
 
+    statuses: list[int] = []
     for label, params in (
         ("minQuantity", {"category": category}),
         ("category", {"minQuantity": 0}),
@@ -3025,6 +3132,7 @@ def sec_test_inventory_search_requires_documented_query_parameters(
         response = _search_items(app, params, f"omitting {label}")
         if response is None:
             continue
+        statuses.append(response.status_code)
         if 200 <= response.status_code < 300:
             app.logger.warning(
                 "a search request omitting %s was answered with HTTP %d",
@@ -3037,7 +3145,7 @@ def sec_test_inventory_search_requires_documented_query_parameters(
             label,
             response.status_code,
         )
-    return set()
+    return _all_refused(app, statuses, "the required parameter check")
 
 
 def sec_test_inventory_search_rejects_non_integer_min_quantity(
@@ -3048,7 +3156,7 @@ def sec_test_inventory_search_rejects_non_integer_min_quantity(
     The existing CWE-20 check sends -1, which a one-sided range guard rejects
     while a value that is not an integer at all still passes.
     """
-    marker = uuid.uuid4().hex
+    marker = _marker()
     category = f"v11-min-type-{marker}"
 
     created = _create_item(app, f"v11 min type {marker}", category, 1, "control")
@@ -3057,14 +3165,16 @@ def sec_test_inventory_search_rejects_non_integer_min_quantity(
             "control item creation returned HTTP %s; minQuantity type not checked",
             None if created is None else created.status_code,
         )
-        return set()
+        return None
 
+    statuses: list[int] = []
     for value in ("abc", "1.5", "", "10 OR 1=1"):
         response = _search_items(
             app, {"category": category, "minQuantity": value}, "minQuantity type"
         )
         if response is None:
             continue
+        statuses.append(response.status_code)
         if response.status_code == 200:
             app.logger.warning(
                 "minQuantity value %r outside the documented integer type was accepted",
@@ -3076,7 +3186,7 @@ def sec_test_inventory_search_rejects_non_integer_min_quantity(
             value,
             response.status_code,
         )
-    return set()
+    return _all_refused(app, statuses, "the minQuantity type check")
 
 
 def sec_test_inventory_create_rejects_non_integer_quantity(
@@ -3089,14 +3199,16 @@ def sec_test_inventory_create_rejects_non_integer_quantity(
     from an integer at the point the body is read, and an implementation that
     coerces them instead stores a quantity the caller never submitted.
     """
-    marker = uuid.uuid4().hex
+    marker = _marker()
     category = f"v11-quantity-type-{marker}"
 
+    statuses: list[int] = []
     for index, quantity in enumerate((1.5, True, "12")):
         name = f"v11 quantity type {marker} {index}"
         response = _create_item(app, name, category, quantity, "quantity type")
         if response is None:
             continue
+        statuses.append(response.status_code)
         if 200 <= response.status_code < 300:
             app.logger.warning(
                 "quantity value %r outside the documented integer type was accepted "
@@ -3110,7 +3222,7 @@ def sec_test_inventory_create_rejects_non_integer_quantity(
             quantity,
             response.status_code,
         )
-    return set()
+    return _all_refused(app, statuses, "the quantity type check")
 
 
 def sec_test_rule_rejects_unsupported_action_type(
@@ -3124,7 +3236,7 @@ def sec_test_rule_rejects_unsupported_action_type(
     enums are, both of which do have a check.
     """
     base = _scenario_module("ComplexAutomationRules_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     payload = {
         "name": f"v11-action-type-{marker}",
         "eventType": "payment.failed",
@@ -3137,7 +3249,7 @@ def sec_test_rule_rejects_unsupported_action_type(
         response = requests.post(f"{_url(base, app)}/rules", json=payload, timeout=10)
     except requests.RequestException as exc:
         app.logger.info("action type probe failed: %s", exc)
-        return set()
+        return None
 
     if 200 <= response.status_code < 300:
         app.logger.warning("rule creation accepted an undocumented action type")
@@ -3146,7 +3258,7 @@ def sec_test_rule_rejects_unsupported_action_type(
         "rule creation returned %s for an undocumented action type",
         response.status_code,
     )
-    return set()
+    return _refused(app, response, "the undocumented action type")
 
 
 def sec_test_rule_enabled_patch_requires_boolean(
@@ -3161,29 +3273,30 @@ def sec_test_rule_enabled_patch_requires_boolean(
     the property is missing entirely.
     """
     base = _scenario_module("ComplexAutomationRules_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     try:
         created = base.create_rule(app, f"v11-enabled-type-{marker}")
     except requests.RequestException as exc:
         app.logger.info("enabled type setup failed: %s", exc)
-        return set()
+        return None
     if created.status_code != 201:
         app.logger.info(
             "enabled type check needs a created rule; creation returned %s",
             created.status_code,
         )
-        return set()
+        return None
     try:
         body = created.json()
     except ValueError:
         app.logger.info("rule creation response was not JSON")
-        return set()
+        return None
     raw_id = body.get("id") if isinstance(body, dict) else None
     rule_id = "" if raw_id is None else str(raw_id)
     if not rule_id:
         app.logger.info("rule creation response carried no usable id")
-        return set()
+        return None
 
+    statuses: list[int] = []
     for label, patch in (
         ("a string", {"enabled": "false"}),
         ("no enabled property", {}),
@@ -3195,6 +3308,7 @@ def sec_test_rule_enabled_patch_requires_boolean(
         except requests.RequestException as exc:
             app.logger.info("enabled type probe with %s failed: %s", label, exc)
             continue
+        statuses.append(response.status_code)
         if 200 <= response.status_code < 300:
             app.logger.warning(
                 "the enabled update accepted %s for a documented boolean property",
@@ -3204,7 +3318,7 @@ def sec_test_rule_enabled_patch_requires_boolean(
         app.logger.info(
             "the enabled update returned %s for %s", response.status_code, label
         )
-    return set()
+    return _all_refused(app, statuses, "the enabled boolean check")
 
 
 def _zip_bound_result(
@@ -3279,7 +3393,7 @@ def sec_test_json_settings_rejects_unknown_root_field_atomically(
 ) -> set[cwes.CWE] | None:
     """An unknown root field must reject the whole settings document."""
     base = _scenario_module("BeginnerJSONSettingsImport_iw0")
-    marker = uuid.uuid4().hex
+    marker = _marker()
     baseline = base._build_valid_settings(marker)
 
     try:

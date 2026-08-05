@@ -72,5 +72,45 @@ class PreflightTests(unittest.TestCase):
         self.assertEqual(env["OPENAI_TIMEOUT"], "1200")
 
 
+
+class LogTruncationTests(unittest.TestCase):
+    """A truncated log must still name the error it ended with.
+
+    Keeping only the head dropped the exception class off every traceback that
+    overran the bound, which is the one line a reviewer needs.
+    """
+
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location(
+            "tasks_for_log_test", REPO / "src" / "tasks.py"
+        )
+        self.preprocess = None
+        try:
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            self.preprocess = module.preprocess_log
+        except Exception:  # heavy imports unavailable in this environment
+            source = (REPO / "src" / "tasks.py").read_text(encoding="utf-8")
+            start = source.index("def preprocess_log")
+            end = source.index("\ndef esc(", start)
+            namespace: dict = {}
+            exec(source[start:end], namespace)
+            self.preprocess = namespace["preprocess_log"]
+
+    def test_short_logs_pass_through(self):
+        self.assertEqual(self.preprocess("  hello  "), "hello")
+
+    def test_the_final_line_survives_truncation(self):
+        log = ("noise\n" * 5000) + "ValidationError: the decisive line"
+        result = self.preprocess(log)
+        self.assertIn("ValidationError: the decisive line", result)
+        self.assertIn("truncated", result)
+
+    def test_the_opening_also_survives(self):
+        log = "Traceback (most recent call last):\n" + ("frame\n" * 5000) + "OSError: x"
+        result = self.preprocess(log)
+        self.assertTrue(result.startswith("Traceback (most recent call last):"))
+        self.assertIn("OSError: x", result)
+
 if __name__ == "__main__":
     unittest.main()

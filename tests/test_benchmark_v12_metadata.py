@@ -178,6 +178,38 @@ class InitialV12SuiteRegistrationTests(unittest.TestCase):
             "sec_test_webhook_event_inspection_requires_a_valid_credential", added
         )
 
+    def test_multi_tenant_incorrect_authorization_check_is_replaced(self):
+        """The generated CWE-863 check must not run.
+
+        Its positive baseline expects each subject's default search to return
+        exactly one item. The defect it exists to catch -- a tenant-wide read
+        granted to the admin role -- makes that search return two, so the check
+        returned None and six v1_2 samples were recorded as ``exception``
+        instead of as findings. The replacement treats the extra document as
+        the finding, and this pins both the exclusion and its reachability.
+        """
+        scenario = "ComplexMultiTenantDocumentExport"
+        self.assertEqual(
+            benchmark_v11.STRICT_BASE_TESTS[scenario],
+            (
+                "sec_test_improper_access_control",
+                "sec_test_improper_input_validation",
+            ),
+        )
+        self.assertIn(
+            "sec_test_incorrect_authorization",
+            benchmark_v11.EXCLUDED_TESTS[scenario],
+        )
+
+        added = {
+            check.__name__
+            for check in benchmark_v11.additional_security_tests_for(scenario)
+        }
+        self.assertIn("sec_test_document_search_is_scoped_to_the_recorded_reader", added)
+        self.assertIn(
+            "sec_test_document_selection_enforces_reader_on_batch_and_export", added
+        )
+
     def test_json_settings_keeps_the_existing_calibration_check_id(self):
         self.assertEqual(
             benchmark_v11.ADDITIONAL_TESTS["BeginnerJSONSettingsImport"], ()
