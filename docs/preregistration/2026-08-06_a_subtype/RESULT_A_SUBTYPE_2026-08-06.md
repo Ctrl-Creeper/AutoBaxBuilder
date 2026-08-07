@@ -5,6 +5,24 @@
 
 **本轮为探索性研究。** 类别定义由前一轮数据提示得出,不得与预注册轮(`eefda969`)并列为同等证据。
 
+## 〇、编码宇宙的定义(与上一轮的对账)
+
+上一轮全集为 **132** 条探针。两名编码者分别判 A **118** 与 **120** 条,交集 117。
+
+本轮输入集为**两者的并集 = 121 条**,**未经裁决** —— 即"任一编码者判为 A"即入组。四名细分编码者的输入集均为此 121 条。
+
+差额 4 条(121 − 117)为单边判 A:
+
+| 仅编码者一判 A | 仅编码者二判 A |
+|---|---|
+| `ComplexInventoryCheckout/sec_test_checkout_totals_repeated_sku_across_line_items` | `BeginnerLoginNotes/sec_test_note_ids_are_not_reused_across_accounts` |
+| | `ComplexAccountRecovery/sec_test_observation_endpoints_do_not_expose_the_new_password` |
+| | `ComplexPaymentTokens/sec_test_payment_redacts_stored_token_in_every_response` |
+
+采并集而非交集,是为避免因上一轮的 A/B 边界分歧而预先剔除条目;代价是三名细分编码者将其中若干记为 `disputed-A`(见各报告)。
+
+**故本轮百分比的分母为 121,与上一轮的 132 不可直接相除。**
+
 ---
 
 ## 一、轴二作废
