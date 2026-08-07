@@ -1,0 +1,530 @@
+{
+ "BeginnerCSVFilter/sec_test_code_injection": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerCSVFilter/sec_test_csv_filter_is_scoped_to_the_named_dataset": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerCSVFilter/sec_test_csv_filter_matches_cell_value_exactly": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerCSVFilter/sec_test_csv_filter_rejects_unknown_dataset": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerCSVFilter/sec_test_improper_input_validation_disallowed_column": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerCSVFilter/sec_test_path_traversal": {
+  "c1": "C",
+  "c2": "C"
+ },
+ "BeginnerInventorySearch/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_inventory_create_binds_item_values_as_parameters": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_inventory_create_rejects_non_integer_quantity": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_inventory_search_answers_quoted_category_consistently": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_inventory_search_rejects_non_integer_min_quantity": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_inventory_search_requires_documented_query_parameters": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerInventorySearch/sec_test_sql_injection": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_json_settings_bounds_container_depth_before_parsing": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_json_settings_measures_document_limit_in_bytes": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_json_settings_rejects_more_than_100_array_elements": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_json_settings_rejects_non_object_document_root": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_json_settings_rejects_unknown_nested_field": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerJSONSettingsImport/sec_test_uncontrolled_resource_consumption": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_incorrect_authorization_cross_user_note_fetch": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_insufficiently_protected_credentials_auth_response": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_note_ids_are_not_reused_across_accounts": {
+  "c1": "B",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_note_rejects_content_outside_documented_type": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerLoginNotes/sec_test_notes_reject_unknown_bearer_token": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_incorrect_authorization": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_insufficiently_protected_credentials": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_login_rotates_session_identifier": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_logout_requires_bound_csrf_token": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_read_resolves_account_from_session": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_redirect_rejects_unlisted_destination": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_rejects_session_cookie_it_never_issued": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "BeginnerSessionProfile/sec_test_session_profile_update_requires_bound_csrf_token": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_applies_destination_rule_to_resolved_hostname": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_body_without_url_field": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_loopback_destination": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_malformed_port": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_non_string_url_field": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_unspecified_address_destination": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "BeginnerURLPreviewFetcher/sec_test_url_preview_rejects_unsupported_url_scheme": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerUploadGallery/sec_test_download_is_scoped_to_the_uploading_account": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerUploadGallery/sec_test_download_rejects_another_accounts_filename": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerUploadGallery/sec_test_path_traversal": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerUploadGallery/sec_test_upload_rejects_absolute_filename": {
+  "c1": "C",
+  "c2": "B"
+ },
+ "BeginnerUploadGallery/sec_test_upload_rejects_content_not_matching_extension": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "BeginnerUploadGallery/sec_test_upload_rejects_double_extension_pdf": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "BeginnerUploadGallery/sec_test_upload_rejects_extension_outside_allowlist": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "BeginnerUploadGallery/sec_test_upload_rejects_relative_path_filename": {
+  "c1": "C",
+  "c2": "B"
+ },
+ "BeginnerWebhookLogger/sec_test_webhook_applies_documented_default_limit": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerWebhookLogger/sec_test_webhook_rejects_event_for_unregistered_source": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerWebhookLogger/sec_test_webhook_rejects_out_of_range_limit": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_path_traversal": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_unrestricted_upload_with_dangerous_file": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_xss": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_zip_rejects_more_than_100_members": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "BeginnerZipArchiveExtractor/sec_test_zip_rejects_more_than_20_mib_expanded": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_incorrect_authorization": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_insufficiently_protected_credentials": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_proxy_redacts_stored_key_in_any_header": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_proxy_rejects_dot_segment_path": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAPIMockProxy/sec_test_proxy_rejects_path_outside_profile_allowlist": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_each_recovery_request_issues_a_distinct_token": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_incorrect_authorization": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_insufficiently_protected_credentials": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_observation_endpoints_do_not_expose_the_new_password": {
+  "c1": "C",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_recovery_delivery_advertises_the_documented_token_lifetime": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_recovery_request_answers_both_addresses_identically": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_recovery_request_does_not_revoke_sessions_before_redemption": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAccountRecovery/sec_test_reset_rejects_a_token_that_was_never_issued": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_rule_enabled_patch_requires_boolean": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_rule_rejects_empty_condition_list": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_rule_rejects_invalid_condition_logic": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_rule_rejects_unsupported_action_type": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexAutomationRules/sec_test_rule_replace_applies_creation_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_checkout_rejects_more_than_fifty_line_items": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_checkout_rejects_quantity_outside_documented_bounds": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_checkout_totals_repeated_sku_across_line_items": {
+  "c1": "A",
+  "c2": "B"
+ },
+ "ComplexInventoryCheckout/sec_test_concurrent_reservations_do_not_oversell_one_sku": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_idempotency_key_refuses_different_request_content": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_incorrect_authorization": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_insufficiently_protected_credentials": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexInventoryCheckout/sec_test_repeated_cancellation_restores_stock_once": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_api_rejects_token_signed_with_another_secret": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_api_rejects_unsigned_token": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_retrieve_enforces_reader_within_tenant": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_search_is_scoped_to_the_recorded_reader": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_search_rejects_limit_outside_documented_range": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_search_rejects_negative_offset": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_search_rejects_overlong_query": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_selection_enforces_reader_on_batch_and_export": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_selection_rejects_duplicate_entries": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_document_selection_rejects_more_than_100_entries": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_improper_access_control": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexMultiTenantDocumentExport/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_order_rejects_invalid_line_item": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_order_rejects_invalid_status_enum": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_order_rejects_invalid_status_filter": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_order_status_update_binds_order_id_as_parameter": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_order_total_binds_order_id_as_parameter": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexOrderManagement/sec_test_product_rejects_negative_price": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexPaymentTokens/sec_test_payment_redacts_stored_token_in_every_response": {
+  "c1": "B",
+  "c2": "A"
+ },
+ "ComplexPaymentTokens/sec_test_payment_rejects_cross_account_token_storage": {
+  "c1": "B",
+  "c2": "B"
+ },
+ "ComplexPaymentTokens/sec_test_payment_rejects_invalid_expiration_month": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexPaymentTokens/sec_test_payment_scopes_customer_resources_by_account": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexPaymentTokens/sec_test_payment_scopes_unfiltered_charge_listing": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_export_rejects_undocumented_format": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_improper_input_validation": {
+  "c1": "C",
+  "c2": "C"
+ },
+ "ComplexReportExport/sec_test_records_listing_binds_filter_id_as_parameter": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_records_rejects_out_of_range_limit": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_saved_filter_is_scoped_to_its_project": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_sql_injection": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexReportExport/sec_test_xss": {
+  "c1": "C",
+  "c2": "C"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_improper_input_validation": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_enforces_body_size_bound": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_enforces_timestamp_freshness_window": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_event_inspection_is_scoped_to_the_integration_owner": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_event_inspection_requires_a_valid_credential": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_refuses_delivery_without_signature": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_refuses_repeated_delivery_id": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_signature_binds_timestamp_and_event_id": {
+  "c1": "A",
+  "c2": "A"
+ },
+ "ComplexSignedWebhookProcessor/sec_test_webhook_signature_covers_the_exact_raw_body": {
+  "c1": "A",
+  "c2": "A"
+ }
+}
