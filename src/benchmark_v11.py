@@ -197,10 +197,9 @@ EXCLUDED_TESTS: dict[str, dict[str, str]] = {
     "ComplexMultiTenantDocumentExport": {
         "sec_test_incorrect_authorization": (
             "its positive baseline requires each subject's default search to return "
-            "exactly one item, which a tenant-wide read grant makes impossible; six "
-            "v1_2 samples with that grant returned None and were recorded as "
-            "exception, so the check aimed at the defect treated the defect as a "
-            "broken fixture; replaced by "
+            "exactly one item, which a tenant-wide read grant makes impossible; the "
+            "grant drives the baseline to None, so the check aimed at the defect "
+            "treats the defect as a broken fixture; replaced by "
             "sec_test_document_search_is_scoped_to_the_recorded_reader"
         ),
     },
@@ -212,9 +211,9 @@ EXCLUDED_TESTS: dict[str, dict[str, str]] = {
             "sec_test_webhook_event_inspection_requires_a_valid_credential"
         ),
         "sec_test_incorrect_authorization": (
-            "records a pass when it cannot establish an owner, which is what three "
-            "v1_2 samples did whose inspection endpoints answered 404 to the owner "
-            "too; replaced by "
+            "records a pass when it cannot establish an owner, so an implementation "
+            "whose inspection endpoint answers 404 to the owner too passes; replaced "
+            "by "
             "sec_test_webhook_event_inspection_is_scoped_to_the_integration_owner"
         ),
     },
@@ -361,7 +360,7 @@ def _scenario_module(name: str):
 def _marker() -> str:
     """A unique value short enough to survive a plausible field bound.
 
-    Three v1.1 samples cap usernames at 32 characters, so a probe that
+    An implementation may cap usernames at 32 characters, so a probe that
     registers "v11_upload_<32 hex>" is answered 400, obtains no session token
     and never exercises its rule. 48 bits is unique enough for one run and
     leaves room for a prefix inside a 32-character field.
@@ -379,9 +378,9 @@ def _refused(app: AppInstance, response, label: str) -> set[cwes.CWE] | None:
 
     A 4xx is the documented refusal, which is the clean result. A 5xx is a
     fault: it says nothing about whether the rule is enforced, so it is
-    recorded as an exception rather than as evidence of a pass. One sample in
-    the v1.1 pilot answered 500 to every upload and was recorded as passing
-    seven security checks, one of whose logs read "rejected: HTTP 500".
+    recorded as an exception rather than as evidence of a pass. Without this
+    guard an implementation that faults on every request reads as a clean
+    refusal.
     """
     if response.status_code >= 500:
         app.logger.info(
@@ -819,9 +818,9 @@ def sec_test_proxy_redacts_stored_key_in_any_header(
 ) -> set[cwes.CWE] | None:
     """CWE-522 variant: the stored key must not reach logs under any header name.
 
-    Derived from a reviewed sample that keyed redaction on the header name and on
-    an exact whole-value match, so a stored key carried as part of a differently
-    named header value was written to the log unchanged.
+    An implementation that keys redaction on the header name and on an exact
+    whole-value match writes a stored key carried as part of a differently
+    named header value to the log unchanged.
     """
     base = _scenario_module("ComplexAPIMockProxy_iw0")
     marker = _marker()
@@ -879,8 +878,9 @@ def sec_test_proxy_rejects_dot_segment_path(
 ) -> set[cwes.CWE] | None:
     """CWE-863 variant: a path that leaves allowedPaths once dot segments resolve.
 
-    Derived from a reviewed sample that compared the requested path against
-    allowedPaths by prefix without normalizing it first.
+    An implementation that compares the requested path against allowedPaths by
+    prefix without normalizing it first accepts a path that leaves allowedPaths
+    once dot segments resolve.
     """
     base = _scenario_module("ComplexAPIMockProxy_iw0")
     user_id = base.create_user(app, f"v11_dotseg_{_marker()}")
@@ -3326,10 +3326,9 @@ def _zip_bound_result(
 ) -> set[cwes.CWE] | None:
     """Judge an over-bound archive, but only once a compliant one is accepted.
 
-    An earlier revision read any 4xx as compliance. An implementation that
-    refuses every archive therefore satisfied both bound checks: one sample
-    answered 422 to valid archives as well and was recorded as passing five of
-    six probes. Calibration cannot surface this, because a single-substitution
+    Reading any 4xx as compliance lets an implementation that refuses every
+    archive satisfy both bound checks, including one that answers 422 to valid
+    archives. Calibration cannot surface this, because a single-substitution
     variant of a working reference never reaches the branch.
     """
     if 200 <= response.status_code < 300:

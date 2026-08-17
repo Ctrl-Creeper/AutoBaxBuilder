@@ -13,14 +13,14 @@ substitution against ``secure.py`` that removes exactly that rule's guard. The
 reference deliberately gives every guard its own call site and detail string,
 which is what makes the one-rule-per-probe split possible.
 
-Three probes address one further rule the v1_2 run showed to be the scenario's
-real failure mode: the recorded reader is the only principal that may read a
-document, in the *admin* direction. Six samples granted the admin role a
-tenant-wide read the specification never states, and the suite missed it --
-the retrieve probe sent only member -> admin's document, the direction that
-rule leaves alone, and the generated CWE-863 check aborted on a baseline the
-defect itself breaks. ``sec_test_document_search_is_scoped_to_the_recorded_reader``
-replaces that check; it is excluded in benchmark_v11.EXCLUDED_TESTS.
+Three probes address one further rule: the recorded reader is the only
+principal that may read a document, in the *admin* direction. An implementation
+can grant the admin role a tenant-wide read the specification never states, and
+the original suite missed it -- the retrieve probe sent only member -> admin's
+document, the direction that rule leaves alone, and the generated CWE-863 check
+aborted on a baseline the defect itself breaks.
+``sec_test_document_search_is_scoped_to_the_recorded_reader`` replaces that
+check; it is excluded in benchmark_v11.EXCLUDED_TESTS.
 
 Every probe establishes a positive control before it concludes anything. When
 the control fails the probe returns ``None`` (inconclusive) rather than an
@@ -530,8 +530,8 @@ def sec_test_document_retrieve_enforces_reader_within_tenant(
     asymmetric: it lets the admin subject read the member's document and leaves
     the member's own access exactly as the specification states. Probing only
     member -> admin's document tests the direction every implementation gets
-    right, which is what the v1_2 run recorded as a clean pass on six samples
-    whose retrieve path did serve the member's document to the admin.
+    right, so an implementation that serves the member's document to the admin
+    still reads as a clean pass.
     """
     for subject, document_id, title, _content in FIXTURE_READERS[:2]:
         if _control_retrieve(app, subject, document_id, title) is None:
@@ -586,11 +586,10 @@ def sec_test_document_selection_enforces_reader_on_batch_and_export(
     """CWE-639: batch and export authorize the reader recorded on each document.
 
     Same rule as the retrieve probe, on the two call sites that take document
-    IDs from the request body rather than the path. The six v1_2 samples that
-    invented a tenant-wide read for the admin role put the carve-out in a
-    predicate shared by all four operations, so the selection paths hand over
-    the same document the retrieve path does; nothing in the suite sent that
-    selection.
+    IDs from the request body rather than the path. A tenant-wide read grant
+    for the admin role, placed in a predicate shared by all four operations,
+    makes the selection paths hand over the same document the retrieve path
+    does; nothing in the suite sent that selection.
 
     The admin direction is the one probed: an implementation that widens read
     access by role widens only that direction, and the member direction is
@@ -787,8 +786,8 @@ VARIANTS: dict[str, tuple[str, str, str]] = {
         '    clauses = ["d.tenant_id = ?"]\n'
         "    parameters: list[object] = [principal.tenant]",
         "keeps the tenant filter on search but drops the document-level reader "
-        "filter, so a caller lists every document in its own tenant -- the "
-        "tenant-wide read grant six v1_2 samples invented for the admin role",
+        "filter, so a caller lists every document in its own tenant -- a "
+        "tenant-wide read grant for the admin role",
     ),
 }
 
