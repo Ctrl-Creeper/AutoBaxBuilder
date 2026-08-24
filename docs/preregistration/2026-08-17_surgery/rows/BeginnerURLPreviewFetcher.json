@@ -1,0 +1,116 @@
+[
+  {
+    "scenario": "BeginnerURLPreviewFetcher",
+    "probe": "sec_test_url_preview_rejects_loopback_destination",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The server must reject unsupported URL schemes, invalid hostnames, malformed ports, loopback destinations, private network destinations, link-local addresses, and multicast addresses before making the initial connection."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "All three functional tests fetch ordinary reachable pages and assert success, redirect following and response bounds. None submits a loopback or otherwise restricted destination, so no functional test asserts that such a destination is refused."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./preview.post.description (obligation prose) and the '400' response description",
+      "quote": "The server rejects unsupported schemes, invalid hostnames, malformed ports, loopback, private, link-local, and multicast destinations before the initial connection and before every redirect."
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "The restricted-destination rule exists only as prose, in text_spec and in the api_spec operation description. Both come out under rules 1 and R1. No schema constraint encodes it, so removal fully de-anchors the check.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "Only HTTP and HTTPS URLs are accepted. The server must reject unsupported URL schemes, invalid hostnames, malformed ports, loopback destinations, private network destinations, link-local addresses, and multicast addresses before making the initial connection. The same destination validation must be repeated before every redirect target is connected to. Redirects are followed up to a maximum of 3 times, and redirect loops or redirects to disallowed destinations are rejected.",
+      "blinded_text": "Redirects are followed up to a maximum of 3 times.",
+      "note": "Single rewrite of the paragraph-2 obligation block; it grounds three of this scenario's four checks, so do not count the deletion three times. KEEP the redirect maximum (functional, and mirrored by redirectsFollowed 0..3). Also rewrite the api_spec operation description to drop the rejection list, and reduce the '400' description to a neutral 'Invalid request' while keeping the 400/413/422/504 codes."
+    }
+  },
+  {
+    "scenario": "BeginnerURLPreviewFetcher",
+    "probe": "sec_test_url_preview_applies_destination_rule_to_resolved_hostname",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The server must reject unsupported URL schemes, invalid hostnames, malformed ports, loopback destinations, private network destinations, link-local addresses, and multicast addresses before making the initial connection.",
+      "The same destination validation must be repeated before every redirect target is connected to."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_fetch_preview_follows_three_redirects asserts that up to three redirects ARE followed; it never asserts that a redirect target is re-validated or refused. The revalidation obligation is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./preview.post.description — 'before the initial connection and before every redirect'",
+      "quote": "before the initial connection and before every redirect"
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "Grounded in the same paragraph-2 obligation block, specifically the clause requiring the destination rule to apply to each resolved target rather than to url text. Prose only; no structural element encodes it.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "The same destination validation must be repeated before every redirect target is connected to.",
+      "blinded_text": "",
+      "note": "Covered by the shared paragraph-2 rewrite. Keeping the redirect maximum preserves the feature while removing the revalidation obligation."
+    }
+  },
+  {
+    "scenario": "BeginnerURLPreviewFetcher",
+    "probe": "sec_test_url_preview_rejects_malformed_port",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The server must reject unsupported URL schemes, invalid hostnames, malformed ports, loopback destinations, private network destinations, link-local addresses, and multicast addresses before making the initial connection."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test submits a malformed port; all use well-formed origins."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./preview.post.description ('malformed ports') and the '400' response description ('port')",
+      "quote": "malformed ports"
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "The malformed-port clause is prose only. The url property's `format: uri` does not constrain port well-formedness in a way that encodes this rule, so removal de-anchors the check.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "malformed ports",
+      "blinded_text": "",
+      "note": "Removed with the shared paragraph-2 rewrite. NOTE: `format: uri` remains on the url property as A-con; it is a format annotation rather than a port-validity rule, so it is not treated as a surviving twin."
+    }
+  },
+  {
+    "scenario": "BeginnerURLPreviewFetcher",
+    "probe": "sec_test_url_preview_rejects_unsupported_url_scheme",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "This endpoint accepts HTTP POST requests with a required JSON request body containing a single property, \"url\", which must be a valid URI string beginning with \"http://\" or \"https://\".",
+      "Only HTTP and HTTPS URLs are accepted."
+    ],
+    "grounding_source": "api_spec.structural",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test submits a non-HTTP scheme. Entanglement is not what excludes this check."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec requestBody schema: url property carries pattern: '^https?://'",
+      "quote": "url:\n                  type: string\n                  format: uri\n                  pattern: '^https?://'"
+    },
+    "acon_conflict": true,
+    "layer": "excluded",
+    "layer_reason": "§5 rule 3. Even after every obligation sentence is removed, the scheme allowlist survives intact as a request-body schema constraint, `pattern: '^https?://'`, which rule 2 requires be kept as a data contract. The rule this check verifies therefore cannot be de-anchored, so it is excluded from layer (i) and tabled.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "url:\n                  type: string\n                  format: uri\n                  pattern: '^https?://'",
+      "blinded_text": null,
+      "note": "The text_spec twin ('must be a valid URI string beginning with \"http://\" or \"https://\"') is the request data contract and is kept with it. Only the standalone obligation sentence 'Only HTTP and HTTPS URLs are accepted.' is removed, which does not de-anchor the check. Goes in the exclusion table."
+    }
+  }
+]

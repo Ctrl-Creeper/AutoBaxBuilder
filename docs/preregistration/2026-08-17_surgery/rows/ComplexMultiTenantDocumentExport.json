@@ -1,0 +1,178 @@
+[
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_document_api_rejects_unsigned_token",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "All endpoints require bearer JWT authentication.",
+      "For local regression testing, the server accepts HS256 JWTs signed with the secret from the APP_SECRET environment variable, and derives the authenticated identity from the JWT sub claim."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "All four functional tests call api_get/api_post with a properly signed HS256 subject token. None presents an unsigned or alg:none token, so no functional test asserts that an unsigned token is refused."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation-level `security:` requirement objects (PR-1); securitySchemes bearer JWT definition; '401' response enums",
+      "quote": "security:\n        - bearerAuth: []"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The authentication obligation is removable prose, and PR-1 removes the machine-readable `security:` twin. The sub-claim identity mapping and the three benchmark identities are kept as A-con because the evaluation fixture depends on them.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "All endpoints require bearer JWT authentication. For local regression testing, the server accepts HS256 JWTs signed with the secret from the APP_SECRET environment variable, and derives the authenticated identity from the JWT sub claim.",
+      "blinded_text": "For local regression testing, the authenticated identity is derived from the JWT sub claim, using HS256 with the secret from the APP_SECRET environment variable.",
+      "note": "PR-1 APPLIES. Remove the 'All endpoints require ... authentication' obligation and the operation-level `security:` objects; KEEP securitySchemes, the 401 enums, the sub-claim identity contract and the three benchmark identities (evaluation fixture, A-con)."
+    }
+  },
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_document_api_rejects_token_signed_with_another_secret",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "All endpoints require bearer JWT authentication.",
+      "For local regression testing, the server accepts HS256 JWTs signed with the secret from the APP_SECRET environment variable, and derives the authenticated identity from the JWT sub claim."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "Functional tests always sign with the correct APP_SECRET. None presents a token signed with a different secret, so signature verification is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation-level `security:` requirement objects (PR-1); '401' response enums",
+      "quote": "security:\n        - bearerAuth: []"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "Same removable authentication obligation as sec_test_document_api_rejects_unsigned_token; one edit de-anchors both. Do not double-count the deletion.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "All endpoints require bearer JWT authentication.",
+      "blinded_text": "",
+      "note": "PR-1 APPLIES. Shares the edit with the unsigned-token check."
+    }
+  },
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_document_retrieve_enforces_reader_within_tenant",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Authorization scope is tenant-and-object for all supported operations: search, get, batch, and export. Each request must enforce both the caller’s tenant boundary and document-level read authorization. Unauthorized access must return either 403 or 404 and must not expose another tenant’s document contents or metadata.",
+      "The document is returned only if it belongs to the authenticated principal’s tenant and the principal has document-level read access."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_acme_member_cannot_retrieve_unauthorized_documents",
+      "explanation": "This functional test has benchmark-acme-member retrieve the acme-ADMIN document and requires 4xx plus no leakage of its title/content/reader, then does the same for the globex document. That asserts document-level read authorization WITHIN a tenant and the tenant boundary — precisely the rule this check verifies. Removing the obligation would leave a functional test punishing behaviour the specification no longer requires."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./documents/{documentId}.get.description and 403/404 response descriptions",
+      "quote": "returned only if it belongs to the authenticated principal's tenant and the principal has document-level read access"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1). This is the protocol's own worked-example sentence, but two functional tests assert it directly, so it cannot be removed and the check cannot be de-anchored.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Each request must enforce both the caller’s tenant boundary and document-level read authorization.",
+      "blinded_text": null,
+      "note": "SEE REVIEW NOTE. The frozen protocol §5 cites this exact sentence as its worked example of a removable obligation, but the per-sentence filter it also mandates forbids removing it here. The filter wins; the example does not survive contact with this scenario's functional suite."
+    }
+  },
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_document_selection_enforces_reader_on_batch_and_export",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Every requested document must pass tenant and object authorization.",
+      "The server must enforce tenant and object authorization on every requested document before producing the export.",
+      "Each request must enforce both the caller’s tenant boundary and document-level read authorization."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_acme_member_batch_rejects_mixed_unauthorized_selection",
+      "explanation": "This functional test posts a batch containing the caller's own document plus the acme-admin document and requires 4xx plus no leakage. That asserts the batch authorization rule this check verifies. The export half of the rule shares the same paragraph-3 obligation, which is likewise pinned."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./documents/batch.post.description and /documents/export.post.description; 403/404 response descriptions",
+      "quote": "Every requested document must pass tenant and object authorization."
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): the batch authorization sentence is asserted by func_test_acme_member_batch_rejects_mixed_unauthorized_selection, so it must stay and the check is excluded from layer (i).",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Every requested document must pass tenant and object authorization.",
+      "blinded_text": null,
+      "note": "The export-side sentence is kept with it: splitting them would de-anchor export while batch stays pinned, producing a within-check mixture that cannot be interpreted."
+    }
+  },
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_document_search_is_scoped_to_the_recorded_reader",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The GET /documents/search endpoint searches documents visible to the authenticated principal.",
+      "items is an array of document summaries, where each summary includes id, title, and tenant for documents visible to the caller.",
+      "Authorization scope is tenant-and-object for all supported operations: search, get, batch, and export."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_acme_member_search_retrieve_batch_export_authorized_doc",
+      "explanation": "The functional test calls validate_single_summary_list on the acme member's unfiltered search, requiring the result to be EXACTLY the caller's one visible summary. An implementation returning the acme-admin or globex summary as well fails the functional test. Search scoping is therefore functionally asserted."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec paths./documents/search.get.description — 'visible to the authenticated principal'",
+      "quote": "searches documents visible to the authenticated principal"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): the search-visibility sentence is pinned by the functional suite's exact-one-item assertion.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "The GET /documents/search endpoint searches documents visible to the authenticated principal.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "ComplexMultiTenantDocumentExport",
+    "probe": "sec_test_improper_access_control",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Authorization scope is tenant-and-object for all supported operations: search, get, batch, and export. Each request must enforce both the caller’s tenant boundary and document-level read authorization.",
+      "Tenant identity must always be derived from the authenticated principal, never from request input."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_acme_member_cannot_retrieve_unauthorized_documents",
+      "explanation": "The generated check sweeps all three subjects against all three seeded documents, asserting each principal reaches only its own. Its positive controls and its negative cases are the same rule the two negative functional tests assert."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation descriptions and 403/404 response descriptions",
+      "quote": "Unauthorized access must return either 403 or 404"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1), same pinned paragraph-3 obligation as the retrieve and selection checks.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Authorization scope is tenant-and-object for all supported operations: search, get, batch, and export.",
+      "blinded_text": null,
+      "note": "Exclusion table. NOTE: 'Tenant identity must always be derived from the authenticated principal, never from request input' is also kept — it is pinned by the same functional tests, since deriving tenant from input would let the acme member reach the globex document."
+    }
+  }
+]
