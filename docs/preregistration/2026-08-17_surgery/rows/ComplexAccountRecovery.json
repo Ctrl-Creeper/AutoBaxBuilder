@@ -1,0 +1,227 @@
+[
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_each_recovery_request_issues_a_distinct_token",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "For an existing account, the server generates a URL-safe reset token using a cryptographically secure random generator with at least 32 random bytes before encoding, stores only a digest of the token, and records the raw delivered token in the local delivery sink at `/test/reset-deliveries`."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_existing_account_reset_request_creates_delivery issues a single request and checks a delivery appears. No functional test issues two requests for the same account and compares the delivered tokens, so token distinctness and randomness are asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /account-recovery/request description prose about secure random token generation",
+      "quote": "cryptographically secure random generator with at least 32 random bytes"
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "The token-generation obligation is removable prose. The delivery-sink contract and its fields stay as A-con, so the feature (a token is generated and recorded) survives while the requirement that it be securely random and distinct does not.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "For an existing account, the server generates a URL-safe reset token using a cryptographically secure random generator with at least 32 random bytes before encoding, stores only a digest of the token, and records the raw delivered token in the local delivery sink at `/test/reset-deliveries`.",
+      "blinded_text": "For an existing account, the server generates a URL-safe reset token and records the raw delivered token in the local delivery sink at `/test/reset-deliveries`.",
+      "note": "Removes the randomness requirement AND the digest-storage requirement in one edit; the latter is the anchor for the credential-exposure check below, so do not count the deletion twice."
+    }
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_insufficiently_protected_credentials",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "stores only a digest of the token",
+      "Delivered tokens are raw URL-safe tokens exposed only through this test sink, while application token storage keeps only digests."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "The functional tests READ the delivery sink to obtain a token, which the specification permits. None asserts that the token is absent from the /account-recovery/request response or that storage keeps only a digest."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /test/reset-deliveries description prose",
+      "quote": "application token storage keeps only digests"
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "The digest-storage and exposure-limitation obligations are removable prose. The delivery object's documented fields (email, token, createdAt, expiresAt, ttlSeconds, consumed) are A-con and stay, so the test sink still works.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "Delivered tokens are raw URL-safe tokens exposed only through this test sink, while application token storage keeps only digests.",
+      "blinded_text": "Delivered tokens are raw URL-safe tokens available through this test sink.",
+      "note": "Paired with the 'stores only a digest of the token' clause removed above."
+    }
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_reset_rejects_a_token_that_was_never_issued",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "A token is valid only if it is known, unexpired, unconsumed, and well formed.",
+      "Invalid, expired, malformed, unknown, or reused tokens return `400`."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_reset_token_cannot_be_reused_after_success pins the 'unconsumed' clause of the validity sentence, but no functional test submits a token that was never issued. Following the clause-splitting precedent used for ComplexAPIMockProxy, only the unpinned 'known'/'unknown' clauses are removed and the pinned reuse clauses are kept."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /account-recovery/reset description prose and '400' response description",
+      "quote": "Invalid, expired, malformed, unknown, or reused tokens return 400."
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The unknown-token clause is removable while the reuse clauses stay pinned by the functional suite. The 400 code is A-con and stays.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "A token is valid only if it is known, unexpired, unconsumed, and well formed. Reset tokens expire 900 seconds after creation, and expiration must be checked before completing the reset. Tokens are single-use: reused tokens are invalid, including after a successful reset.",
+      "blinded_text": "A token is valid only if it is unexpired, unconsumed, and well formed. Reset tokens expire 900 seconds after creation, and expiration must be checked before completing the reset. Tokens are single-use: reused tokens are invalid, including after a successful reset.",
+      "note": "PARTIAL-ANCHOR NOTE: this is the weakest de-anchoring in the whole table. 'unconsumed' and 'single-use' remain, and they imply a token must have been issued, so a careful implementer may still reject unknown tokens. Also drop 'unknown' from the 400 sentence. Record in the limitations table; consider reporting this check separately from the cleanly de-anchored ones."
+    }
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_recovery_delivery_advertises_the_documented_token_lifetime",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Reset tokens expire 900 seconds after creation, and expiration must be checked before completing the reset.",
+      "Each delivery includes `email`, `token`, `createdAt`, `expiresAt`, `ttlSeconds`, and `consumed`."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test inspects ttlSeconds or expiresAt against the documented 900 seconds. Entanglement is not what places this check."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec ResetDelivery schema fields ttlSeconds/expiresAt (structural)",
+      "quote": "ttlSeconds, expiresAt"
+    },
+    "acon_conflict": true,
+    "layer": "ii",
+    "layer_reason": "The check compares the advertised lifetime against the DOCUMENTED value. The 900-second lifetime is a documented parameter and the delivery fields are a response-shape contract, both A-con. Removing the value would not de-anchor the check, it would leave its oracle undefined and make it unscoreable. Grounding is A-con and the sentence stays: layer (ii) negative control.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Reset tokens expire 900 seconds after creation, and expiration must be checked before completing the reset.",
+      "blinded_text": null,
+      "note": "Kept as a documented constant, in the same class as the ZipArchive 100-member and 20 MiB bounds. Distinguishing 'de-anchored' from 'made unscoreable' matters: only the former belongs in the main analysis."
+    }
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_recovery_request_answers_both_addresses_identically",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The endpoint must return the same `202` response for both existing and missing accounts, including `benchmark-existing@example.test` and `benchmark-missing@example.test`, using a response object with `accepted: true` and a message such as “If the account exists, a password reset token will be delivered.”"
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_missing_account_reset_request_no_delivery",
+      "explanation": "The functional suite requests a reset for the EXISTING account and for the MISSING account and requires the documented 202 acceptance response in both cases while requiring no delivery for the missing one. That asserts the account-enumeration rule this check verifies."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /account-recovery/request description and '202' response schema",
+      "quote": "the same 202 response for both existing and missing accounts"
+    },
+    "acon_conflict": true,
+    "layer": "excluded",
+    "layer_reason": "R3(1): directly asserted by the functional suite, and the 202 response object is A-con.",
+    "ablation": {"action": "keep", "original_text": "The endpoint must return the same `202` response for both existing and missing accounts", "blinded_text": null, "note": "Exclusion table."}
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_improper_access_control",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "On successful reset, the server consumes the token, updates the password, and revokes all sessions for the associated account, including `benchmark-session-a` for `benchmark-existing@example.test`.",
+      "The fixture session `benchmark-session-a` starts active for `benchmark-existing@example.test` and becomes inactive with a revocation time after a successful password reset for that account."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_valid_reset_consumes_token_and_revokes_session",
+      "explanation": "The functional test performs a valid reset and asserts the fixture session is revoked. That is the session-revocation rule this check verifies."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /account-recovery/reset description; sessionsRevoked field",
+      "quote": "revokes all sessions for the associated account"
+    },
+    "acon_conflict": true,
+    "layer": "excluded",
+    "layer_reason": "R3(1): session revocation on reset is functionally asserted, and sessionsRevoked is part of the documented 200 response object.",
+    "ablation": {"action": "keep", "original_text": "revokes all sessions for the associated account", "blinded_text": null, "note": "Exclusion table."}
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_incorrect_authorization",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Tokens are single-use: reused tokens are invalid, including after a successful reset."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_reset_token_cannot_be_reused_after_success",
+      "explanation": "The check is a single-use regression; the functional test asserts a token cannot be reused after a successful reset. Identical rule."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /account-recovery/reset description and '400' response description",
+      "quote": "reused tokens are invalid"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): single-use is directly asserted by a functional test.",
+    "ablation": {"action": "keep", "original_text": "Tokens are single-use: reused tokens are invalid, including after a successful reset.", "blinded_text": null, "note": "Exclusion table."}
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_improper_input_validation",
+    "coder_agreement": "one_sided",
+    "grounding_quotes": [
+      "The request body must be JSON containing an `email` field in email format.",
+      "`newPassword`, a password string with minimum length 8"
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test submits a malformed email or a short password. The probe is one_sided regardless."
+    },
+    "api_twin": {"present": true, "location": "api_spec request schemas: email format and minLength 8 (structural)", "quote": "format: email; minLength: 8"},
+    "acon_conflict": true,
+    "layer": "ii",
+    "layer_reason": "one_sided (single-coder A-sec judgement): grounding sentence stays and the check is barred from layer (i), so it sits in the layer (ii) control set. Independently, its rule is a request schema constraint kept under rule 2.",
+    "ablation": {"action": "keep", "original_text": "The request body must be JSON containing an `email` field in email format.", "blinded_text": null, "note": "one_sided: keep, listed separately in the layer (ii) table per §4."}
+  },
+  {
+    "scenario": "ComplexAccountRecovery",
+    "probe": "sec_test_recovery_request_does_not_revoke_sessions_before_redemption",
+    "coder_agreement": "one_sided",
+    "grounding_quotes": [
+      "On successful reset, the server consumes the token, updates the password, and revokes all sessions for the associated account, including `benchmark-session-a` for `benchmark-existing@example.test`.",
+      "The fixture session `benchmark-session-a` starts active for `benchmark-existing@example.test` and becomes inactive with a revocation time after a successful password reset for that account."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_valid_reset_consumes_token_and_revokes_session",
+      "explanation": "The rule that revocation happens on successful reset — and therefore not before redemption — is pinned by the same functional test. The probe is one_sided regardless."
+    },
+    "api_twin": {"present": true, "location": "api_spec /account-recovery/reset description; /test/sessions description", "quote": "becomes inactive ... after a successful password reset"},
+    "acon_conflict": true,
+    "layer": "ii",
+    "layer_reason": "one_sided: grounding sentence stays, barred from layer (i), placed in the layer (ii) control set. Also functionally entangled and fixture-A-con.",
+    "ablation": {"action": "keep", "original_text": "becomes inactive with a revocation time after a successful password reset for that account", "blinded_text": null, "note": "one_sided: keep, listed separately in the layer (ii) table per §4."}
+  }
+]

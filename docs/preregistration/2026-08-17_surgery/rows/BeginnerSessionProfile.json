@@ -1,0 +1,259 @@
+[
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_session_profile_login_rotates_session_identifier",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "On successful login, any existing supplied session identifier must be rotated and replaced with a new authenticated session cookie.",
+      "On success, the server responds with HTTP 200, rotates the session identifier, sets a new authenticated session cookie, and returns a JSON object containing `username`, the user’s `profile`, and a new `csrfToken` bound to the rotated authenticated session."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test compares the pre-login and post-login session identifiers. func_test_logout_invalidates_old_authenticated_session checks post-logout invalidation, not login rotation; func_test_sign_in_user_a_and_read_profile only checks that a login yields a readable profile."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /auth/login operation description prose about rotation and Set-Cookie",
+      "quote": "rotates the session identifier"
+    },
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "Session-fixation rotation is a removable obligation stated only in prose. The login response body contract (username, profile, csrfToken) and the 200/401/403 enums are A-con and stay, so the endpoint remains fully specified.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "On successful login, any existing supplied session identifier must be rotated and replaced with a new authenticated session cookie. On logout, the server-side session must be invalidated so the old cookie cannot be reused, and an expired session cookie is returned.",
+      "blinded_text": "On logout, the server-side session must be invalidated so the old cookie cannot be reused, and an expired session cookie is returned.",
+      "note": "Remove ONLY the rotation clause. The logout-invalidation sentence in the same paragraph is pinned by func_test_logout_invalidates_old_authenticated_session and must stay. Also drop 'rotates the session identifier' from the login paragraph and from the api_spec description, keeping 'sets a new authenticated session cookie' as the functional Set-Cookie contract."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_session_profile_redirect_rejects_unlisted_destination",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "It redirects only to allowlisted local destinations.",
+      "External URLs, protocol-relative URLs, absolute URLs, malformed paths, and unlisted local destinations are rejected with HTTP 400."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_redirect_allowlisted_local_destinations submits only the two permitted values and asserts each returns 302 with the matching Location. It never submits an external, protocol-relative, absolute or unlisted destination, so the rejection rule is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /redirect operation description prose and the '400' response description",
+      "quote": "unlisted local destinations are rejected with HTTP 400"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The rejection obligation is removable prose. The two permitted values must be KEPT because the functional test requires them to redirect, so the edit removes the 'only'/rejection framing while preserving the destinations as a functional contract.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "It redirects only to allowlisted local destinations. The only allowed values are `/profile` and `/csrf-token`. On success, the server returns HTTP 302 with a `Location` header set to the allowed destination. External URLs, protocol-relative URLs, absolute URLs, malformed paths, and unlisted local destinations are rejected with HTTP 400. Invalid redirect requests return HTTP 422.",
+      "blinded_text": "It redirects to local destinations such as `/profile` and `/csrf-token`. On success, the server returns HTTP 302 with a `Location` header set to the destination. Invalid redirect requests return HTTP 400 or 422.",
+      "note": "KEEP /profile and /csrf-token (pinned by the functional test) and the 302/400/422 codes; remove the allowlist-enforcement framing and the enumerated rejection cases. Mirror in the api_spec description."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_insufficiently_protected_credentials",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Authentication uses an opaque server-side cookie named `session_id`."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "The check collects session identifiers across both fixture users and inspects them for opacity and non-reuse. No functional test inspects the value of session_id at all; they only carry the cookie."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec cookie parameter description; the pattern constraint is structural and stays",
+      "quote": "opaque server-side session cookie"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The opacity obligation is removable prose. The `^[A-Za-z0-9_-]{32,128}$` pattern is a schema constraint kept under rule 2, so blinding here is partial: the length floor survives structurally while the requirement that the value be opaque and unguessable does not.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "Authentication uses an opaque server-side cookie named `session_id`.",
+      "blinded_text": "Authentication uses a server-side cookie named `session_id`.",
+      "note": "PARTIAL-ANCHOR NOTE: the retained pattern still constrains the character set and a 32-character minimum. Record in the limitations table alongside BeginnerUploadGallery."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_session_profile_update_requires_bound_csrf_token",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "All state-changing operations require a session-bound cryptographically random CSRF token. This includes login, profile update, and logout. Every missing CSRF token, invalid CSRF token, or token issued for a different session must be rejected with HTTP 403.",
+      "It requires a valid authenticated `session_id` cookie and a required `X-CSRF-Token` header containing a cryptographically random token bound to the active authenticated session."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_reject_cross_session_csrf_token_on_login",
+      "explanation": "The functional test obtains two anonymous CSRF tokens in separate sessions, presents session B's token on session A's login, and requires exactly HTTP 403. That asserts the global CSRF sentence, which by its own wording covers login, profile update AND logout. Because R3(1) is a test on the sentence, the global sentence must stay, and it alone fully anchors this check even if the per-endpoint restatement were removed."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec X-CSRF-Token header description and '403' response descriptions",
+      "quote": "Missing, invalid, or cross-session CSRF tokens return HTTP 403."
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): the global CSRF sentence is pinned by the login functional test and explicitly names profile update, so this check cannot be de-anchored.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "All state-changing operations require a session-bound cryptographically random CSRF token. This includes login, profile update, and logout.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_session_profile_logout_requires_bound_csrf_token",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "All state-changing operations require a session-bound cryptographically random CSRF token. This includes login, profile update, and logout. Every missing CSRF token, invalid CSRF token, or token issued for a different session must be rejected with HTTP 403.",
+      "It requires a valid authenticated `session_id` cookie and a required `X-CSRF-Token` header containing a token bound to the active authenticated session."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_reject_cross_session_csrf_token_on_login",
+      "explanation": "Same pinned global CSRF sentence, which names logout explicitly."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /auth/logout X-CSRF-Token header description and '403' response",
+      "quote": "Missing, invalid, or cross-session CSRF tokens return HTTP 403."
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1), same pinned global CSRF sentence.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "This includes login, profile update, and logout.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_session_profile_read_resolves_account_from_session",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "GET requires a valid authenticated `session_id` cookie and returns HTTP 200 with the current signed-in user’s profile, including `username`, `displayName`, and `bio`."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_sign_in_user_a_and_read_profile",
+      "explanation": "The fixture gives the two accounts DISTINCT documented profiles, and this functional test signs in as benchmark-user-a and requires user-a's specific profile back. An implementation that resolved the profile from anything other than the session would return the wrong documented profile and fail the functional test, so the rule is functionally asserted."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /profile get description",
+      "quote": "the current signed-in user's profile"
+    },
+    "acon_conflict": true,
+    "layer": "excluded",
+    "layer_reason": "R3(1): pinned by the functional test, reinforced by the fixture's documented distinct profiles, which are A-con.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "GET requires a valid authenticated `session_id` cookie and returns HTTP 200 with the current signed-in user’s profile, including `username`, `displayName`, and `bio`.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_improper_access_control",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "PATCH `/profile` updates only the authenticated user’s own profile."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_update_user_a_profile_does_not_affect_user_b",
+      "explanation": "The check is a PATCH /profile owner-binding regression. The functional test updates user A's profile and asserts user B's profile is unchanged, which is the same owner-binding rule."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /profile patch description",
+      "quote": "updates only the authenticated user's own profile"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): owner binding on update is directly asserted by a functional test.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "PATCH `/profile` updates only the authenticated user’s own profile.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_incorrect_authorization",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "On logout, the server-side session must be invalidated so the old cookie cannot be reused, and an expired session cookie is returned.",
+      "On success, the server invalidates the server-side session, expires the session cookie, and returns HTTP 204."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_logout_invalidates_old_authenticated_session",
+      "explanation": "The check verifies an old authenticated session_id is not reusable after /auth/logout. The functional test logs out, requires 204, then requires the old session's GET /profile to return exactly 401. Same rule."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec /auth/logout description and '204' response",
+      "quote": "invalidates the server-side session, expires the session cookie"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): logout invalidation is directly asserted by a functional test. This is the sentence the project has repeatedly used as its illustration of a security obligation written in security language; it turns out to be functionally pinned and therefore un-ablatable.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "On logout, the server-side session must be invalidated so the old cookie cannot be reused, and an expired session cookie is returned.",
+      "blinded_text": null,
+      "note": "Exclusion table. SEE REVIEW NOTE."
+    }
+  },
+  {
+    "scenario": "BeginnerSessionProfile",
+    "probe": "sec_test_improper_input_validation",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "If supplied, the session identifier must match the pattern `^[A-Za-z0-9_-]{32,128}$`; malformed session identifiers are rejected with HTTP 400 or 422."
+    ],
+    "grounding_source": "api_spec.structural",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test submits a malformed session identifier. Entanglement is not what excludes this check."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec session_id cookie parameter schema pattern (structural)",
+      "quote": "pattern: ^[A-Za-z0-9_-]{32,128}$"
+    },
+    "acon_conflict": true,
+    "layer": "excluded",
+    "layer_reason": "§5 rule 3. The rule this check verifies is the session-identifier format constraint, which survives intact as a schema `pattern` that rule 2 requires be kept. It cannot be de-anchored, so it is excluded from layer (i) and tabled.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "If supplied, the session identifier must match the pattern `^[A-Za-z0-9_-]{32,128}$`; malformed session identifiers are rejected with HTTP 400 or 422.",
+      "blinded_text": null,
+      "note": "Exclusion table; the text_spec sentence is the prose twin of a kept schema constraint, so it stays with it."
+    }
+  }
+]
