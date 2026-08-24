@@ -49,6 +49,15 @@ def parse_args():
     parser.add_argument("--env", default="Python-FastAPI")
     parser.add_argument("--n-samples", type=int, default=1)
     parser.add_argument(
+        "--temperature",
+        default="0",
+        help=(
+            "Sampling temperature passed to BaxBench. At 0 the backend returns "
+            "one distinct completion however many samples are asked for, so "
+            "repeats are near-identical; above 0 they are independent."
+        ),
+    )
+    parser.add_argument(
         "--phase", choices=["all", "generate", "test", "evaluate"], default="all"
     )
     parser.add_argument("--timeout", type=int, default=300)
@@ -70,7 +79,7 @@ def main():
         "--models",
         args.model,
         "--temperature",
-        "0",
+        str(args.temperature),
         "--n_samples",
         str(args.n_samples),
         "--envs",

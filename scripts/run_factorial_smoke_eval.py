@@ -62,6 +62,7 @@ def run_entry(
     output_dir: Path,
     model: str,
     n_samples: int,
+    temperature: str,
     phase: str,
     timeout: int,
     max_retries: int,
@@ -93,6 +94,8 @@ def run_entry(
         model,
         "--n-samples",
         str(n_samples),
+        "--temperature",
+        str(temperature),
         "--phase",
         phase,
         "--timeout",
@@ -154,6 +157,14 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--model", default=os.environ.get("AUTOBAX_MODEL", "gpt-5.5"))
     parser.add_argument("--n-samples", type=int, default=1)
+    parser.add_argument(
+        "--temperature",
+        default="0",
+        help=(
+            "Sampling temperature. Repeats are only independent above 0; at 0 "
+            "the pilot produced byte-identical outcome vectors in 72% of cells."
+        ),
+    )
     parser.add_argument(
         "--repeats",
         type=int,
@@ -232,7 +243,7 @@ def preflight(env_file: Path = Path(".env"), needs_generation: bool = True) -> N
 def main() -> None:
     args = parse_args()
     preflight(needs_generation=args.phase in {"all", "generate"})
-    if args.n_samples > 1:
+    if args.n_samples > 1 and float(args.temperature) == 0:
         # run_smoke_eval fixes temperature at 0, where BaxBench collapses the
         # requested samples to one. Asking for three yields one, and the run
         # looks complete at a third of the intended size.
@@ -269,6 +280,7 @@ def main() -> None:
                 output_dir=args.output_dir,
                 model=args.model,
                 n_samples=args.n_samples,
+                temperature=args.temperature,
                 phase=args.phase,
                 timeout=args.timeout,
                 max_retries=args.max_retries,
@@ -294,6 +306,7 @@ def main() -> None:
                         output_dir=args.output_dir,
                         model=args.model,
                         n_samples=args.n_samples,
+                        temperature=args.temperature,
                         phase=args.phase,
                         timeout=args.timeout,
                         max_retries=args.max_retries,
