@@ -1,0 +1,148 @@
+[
+  {
+    "scenario": "BeginnerLoginNotes",
+    "probe": "sec_test_improper_access_control",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The \"/notes\" endpoint supports authenticated note operations using bearer token authentication.",
+      "This operation requires a valid bearer token.",
+      "If authentication is missing or the token is invalid, the server returns 401."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "All four functional tests pass token=token on every /notes call; none issues an unauthenticated request. The rule this check verifies (unauthenticated callers are refused) is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec structural: `security: - bearerAuth: []` on POST /notes, GET /notes, GET /notes/{noteId}; plus '401' response enums",
+      "quote": "security:\n        - bearerAuth: []"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "Removable obligation prose exists in text_spec, so the check de-anchors into the main set. Flagged PR-1: the same rule is restated machine-readably by the api_spec `security:` requirement objects, so blinding is incomplete unless those are removed too.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "The \"/notes\" endpoint supports authenticated note operations using bearer token authentication. To create a note, clients send an HTTP POST request with a JSON body containing a required \"content\" field.",
+      "blinded_text": "To create a note on the \"/notes\" endpoint, clients send an HTTP POST request with a JSON body containing a required \"content\" field.",
+      "note": "PR-1 APPLIES. Remove the bearer-token requirement prose from all three /notes paragraphs and the `security: - bearerAuth: []` requirement objects. KEEP components.securitySchemes.bearerAuth (token format), the '401' response enums, and the Note/NoteCreateRequest schemas as A-con."
+    }
+  },
+  {
+    "scenario": "BeginnerLoginNotes",
+    "probe": "sec_test_notes_reject_unknown_bearer_token",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "This operation requires a valid bearer token.",
+      "If authentication is missing or the token is invalid, the server returns 401.",
+      "On successful login, the server returns status code 200 and a JSON object containing a single \"token\" string, which is a bearer token used for authenticated requests."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "Every functional test presents a token obtained from /login. None presents a value that was never issued, so no functional test asserts that an unissued bearer is refused."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec structural: `security: - bearerAuth: []` on the /notes operations; '401' response enums ('Authentication required or invalid token')",
+      "quote": "'401':\n          description: Authentication required or invalid token"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The 'valid bearer token' / 'token is invalid' obligation is removable prose, so the check de-anchors. Flagged PR-1 for the same structural survival as sec_test_improper_access_control.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "This operation requires a valid bearer token.",
+      "blinded_text": "",
+      "note": "PR-1 APPLIES. Remove this sentence and the 'or the token is invalid' clause; keep 'If authentication is missing ... the server returns 401' reduced to the bare status contract. Keep the login response shape sentence, which is A-con (it also grounds the credentials check below)."
+    }
+  },
+  {
+    "scenario": "BeginnerLoginNotes",
+    "probe": "sec_test_insufficiently_protected_credentials_auth_response",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "On successful login, the server returns status code 200 and a JSON object containing a single \"token\" string, which is a bearer token used for authenticated requests."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_register_and_login_returns_token asserts a token is returned but never asserts the password is absent from the response."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec structural: components.schemas.AuthResponse with additionalProperties: false and required: [token]",
+      "quote": "AuthResponse:\n      type: object\n      additionalProperties: false\n      properties:\n        token:\n          type: string"
+    },
+    "acon_conflict": true,
+    "layer": "ii",
+    "layer_reason": "The specification never states an obligation not to echo credentials. What grounds this check is the response-shape contract ('a single \"token\" string', AuthResponse additionalProperties:false) — an A-con data contract that R3(3) forbids removing. Grounding is A-con and the sentence is untouched, so this is a layer (ii) negative control.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "On successful login, the server returns status code 200 and a JSON object containing a single \"token\" string, which is a bearer token used for authenticated requests.",
+      "blinded_text": null,
+      "note": "Response-shape data contract; removing it would change the API contract, not a security obligation. Useful negative control: expert's advantage here should survive blinding."
+    }
+  },
+  {
+    "scenario": "BeginnerLoginNotes",
+    "probe": "sec_test_incorrect_authorization_cross_user_note_fetch",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The same \"/notes\" endpoint also accepts HTTP GET requests to list all notes belonging to the authenticated user.",
+      "If the note is found for the authenticated user, the server returns status code 200 and a JSON object containing the note's \"id\" and \"content\"."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_notes_are_private_between_users",
+      "explanation": "The functional test registers alice and bob, has alice create a note, then asserts bob's GET /notes returns an empty list AND bob's GET /notes/{alice_note_id} returns 4xx. That is exactly the cross-user scoping this check verifies. Removing the per-user ownership sentences would make a functional test punish behaviour the specification no longer requires, conflating security and functional outcomes."
+    },
+    "api_twin": {
+      "present": false,
+      "location": "api_spec summaries say 'for the authenticated user' but carry no separate obligation prose",
+      "quote": null
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): the grounding sentence is also asserted by func_test_notes_are_private_between_users, so it must not be removed and the check is excluded from layer (i).",
+    "ablation": {
+      "action": "keep",
+      "original_text": "The same \"/notes\" endpoint also accepts HTTP GET requests to list all notes belonging to the authenticated user.",
+      "blinded_text": null,
+      "note": "Goes in the exclusion table, not in any analysis layer."
+    }
+  },
+  {
+    "scenario": "BeginnerLoginNotes",
+    "probe": "sec_test_note_ids_are_not_reused_across_accounts",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The same \"/notes\" endpoint also accepts HTTP GET requests to list all notes belonging to the authenticated user.",
+      "If the note is found for the authenticated user, the server returns status code 200 and a JSON object containing the note's \"id\" and \"content\"."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_notes_are_private_between_users",
+      "explanation": "This check verifies a distinct consequence (the first account's note must survive the second account's write) that no functional test exercises, but it is grounded in the SAME per-user ownership sentences that func_test_notes_are_private_between_users asserts. R3(1) is a test on the sentence, not on the consequence: the sentence cannot be removed, so the check cannot be de-anchored."
+    },
+    "api_twin": {
+      "present": false,
+      "location": "Note.id is an integer in components.schemas.Note, but no uniqueness-across-accounts statement exists",
+      "quote": null
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1) applies via the shared ownership sentence with sec_test_incorrect_authorization_cross_user_note_fetch. Excluded from layer (i) and tabled.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "The same \"/notes\" endpoint also accepts HTTP GET requests to list all notes belonging to the authenticated user.",
+      "blinded_text": null,
+      "note": "Same sentence as the cross-user check; one keep decision covers both."
+    }
+  }
+]

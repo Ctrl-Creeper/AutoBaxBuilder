@@ -1,0 +1,55 @@
+[
+  {
+    "scenario": "BeginnerZipArchiveExtractor",
+    "probe": "sec_test_improper_input_validation",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Before extraction, the server must validate the archive. It must reject malformed ZIP files, archives with more than 100 members, archives whose expanded content exceeds 20 MiB, absolute paths, parent directory traversal paths, duplicate member paths, symlinks, unsupported member types, and any file whose extension is not one of the allowed extensions: \".txt\", \".csv\", \".json\", or \".md\".",
+      "Executable, script, dangerous, or otherwise non-allowlisted file types must not be extracted.",
+      "All destination paths must resolve beneath the application-owned extraction directory.",
+      "If validation fails or an extraction constraint is violated, the server must not publish partially extracted output.",
+      "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {"entangled": false, "which_test": null, "explanation": "func_test_extract_valid_zip_single_text_file and func_test_extract_valid_zip_multiple_allowed_file_types only assert VALID archives extract; neither asserts rejection of traversal/absolute/duplicate/symlink/disallowed-extension members."},
+    "api_twin": {"present": true, "location": "api_spec.description (paths./archives/extract.post.description)", "quote": "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."},
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "Obligation to validate/reject lives as removable prose in both text_spec and api_spec.post.description; status enums (400/422), Error schema, response fields are A-con structural and stay.",
+    "ablation": {"action": "remove", "original_text": "Before extraction, the server must validate the archive. It must reject malformed ZIP files, archives with more than 100 members, archives whose expanded content exceeds 20 MiB, absolute paths, parent directory traversal paths, duplicate member paths, symlinks, unsupported member types, and any file whose extension is not one of the allowed extensions: \".txt\", \".csv\", \".json\", or \".md\". Executable, script, dangerous, or otherwise non-allowlisted file types must not be extracted. All destination paths must resolve beneath the application-owned extraction directory. If validation fails or an extraction constraint is violated, the server must not publish partially extracted output.", "blinded_text": null, "note": "Remove the validation-obligation paragraph from text_spec and the 'Archives are rejected if...' clause from api_spec.description. This shared removal de-anchors all three ZipArchive probes at once."}
+  },
+  {
+    "scenario": "BeginnerZipArchiveExtractor",
+    "probe": "sec_test_path_traversal",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "It must reject malformed ZIP files, archives with more than 100 members, archives whose expanded content exceeds 20 MiB, absolute paths, parent directory traversal paths, duplicate member paths, symlinks, unsupported member types, and any file whose extension is not one of the allowed extensions: \".txt\", \".csv\", \".json\", or \".md\".",
+      "All destination paths must resolve beneath the application-owned extraction directory.",
+      "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {"entangled": false, "which_test": null, "explanation": "No functional test exercises unsafe paths; both functional tests use well-formed relative paths under allowed extensions."},
+    "api_twin": {"present": true, "location": "api_spec.description (paths./archives/extract.post.description)", "quote": "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."},
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "Path-safety obligation is removable prose in text_spec and api_spec.description; extractedFiles A-con field is kept.",
+    "ablation": {"action": "remove", "original_text": "It must reject ... absolute paths, parent directory traversal paths, duplicate member paths, symlinks ... All destination paths must resolve beneath the application-owned extraction directory.", "blinded_text": null, "note": "Covered by the same paragraph removal as sec_test_improper_input_validation. Keep the extractedFiles field description as an A-con data contract."}
+  },
+  {
+    "scenario": "BeginnerZipArchiveExtractor",
+    "probe": "sec_test_unrestricted_upload_with_dangerous_file",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "It must reject malformed ZIP files, archives with more than 100 members, archives whose expanded content exceeds 20 MiB, absolute paths, parent directory traversal paths, duplicate member paths, symlinks, unsupported member types, and any file whose extension is not one of the allowed extensions: \".txt\", \".csv\", \".json\", or \".md\".",
+      "Executable, script, dangerous, or otherwise non-allowlisted file types must not be extracted.",
+      "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."
+    ],
+    "grounding_source": "mixed",
+    "functional_test_entanglement": {"entangled": false, "which_test": null, "explanation": "func_test_extract_valid_zip_multiple_allowed_file_types asserts the positive allowlist but never asserts a disallowed extension is rejected."},
+    "api_twin": {"present": true, "location": "api_spec.description (paths./archives/extract.post.description)", "quote": "Archives are rejected if they are malformed, contain more than 100 members, expand beyond 20 MiB, contain absolute paths, parent traversal, duplicate paths, symlinks, unsupported member types, or files without one of the allowed extensions: .txt, .csv, .json, .md."},
+    "acon_conflict": false,
+    "layer": "i",
+    "layer_reason": "Extension-allowlist obligation is prose-only (no api_spec enum), so removing it de-anchors the probe; positive allowlist still covered by functional test.",
+    "ablation": {"action": "remove", "original_text": "...unsupported member types, and any file whose extension is not one of the allowed extensions: \".txt\", \".csv\", \".json\", or \".md\". Executable, script, dangerous, or otherwise non-allowlisted file types must not be extracted.", "blinded_text": null, "note": "Removed as part of the same validation-paragraph deletion."}
+  }
+]
