@@ -1,0 +1,83 @@
+{
+  "frozen_seed": 20260824,
+  "strata_sizes": {
+    "A_policy_only": 116,
+    "B_survives_ungated": 490,
+    "C_no_vocab": 246
+  },
+  "inclusion": "stdlib-only; runner reproduces designed outcome (patched cap+sec PASS, vulnerable cap PASS sec FAIL)",
+  "selection": [
+    {
+      "stratum": "A_policy_only",
+      "index": 816,
+      "CWE_ID": "74",
+      "function_name": "create_xml_reply"
+    },
+    {
+      "stratum": "A_policy_only",
+      "index": 893,
+      "CWE_ID": "770",
+      "function_name": "tokenize_input_text"
+    },
+    {
+      "stratum": "A_policy_only",
+      "index": 1067,
+      "CWE_ID": "915",
+      "function_name": "modify_vehicle_data"
+    },
+    {
+      "stratum": "A_policy_only",
+      "index": 1072,
+      "CWE_ID": "915",
+      "function_name": "edit_profile_data"
+    },
+    {
+      "stratum": "B_survives_ungated",
+      "index": 1083,
+      "CWE_ID": "918",
+      "function_name": "process_user_redirect"
+    },
+    {
+      "stratum": "B_survives_ungated",
+      "index": 813,
+      "CWE_ID": "74",
+      "function_name": "create_xml_output"
+    },
+    {
+      "stratum": "B_survives_ungated",
+      "index": 666,
+      "CWE_ID": "601",
+      "function_name": "generate_external_resource_url"
+    },
+    {
+      "stratum": "B_survives_ungated",
+      "index": 643,
+      "CWE_ID": "601",
+      "function_name": "construct_redirect_link"
+    },
+    {
+      "stratum": "C_no_vocab",
+      "index": 681,
+      "CWE_ID": "601",
+      "function_name": "generate_redirect_link"
+    },
+    {
+      "stratum": "C_no_vocab",
+      "index": 434,
+      "CWE_ID": "347",
+      "function_name": "manage_data_packet"
+    },
+    {
+      "stratum": "C_no_vocab",
+      "index": 1350,
+      "CWE_ID": "770",
+      "function_name": "cache_client_data"
+    },
+    {
+      "stratum": "C_no_vocab",
+      "index": 1364,
+      "CWE_ID": "862",
+      "function_name": "modify_user_privileges"
+    }
+  ]
+}
