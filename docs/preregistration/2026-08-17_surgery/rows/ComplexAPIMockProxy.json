@@ -1,0 +1,176 @@
+[
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_proxy_rejects_path_outside_profile_allowlist",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs.",
+      "Invalid requests return 400 or 422, unknown profiles return 404, and cross-user or disallowed path access returns 403."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "func_test_allowed_proxy_request_is_logged_without_secret proxies '/v1/invoices', an ALLOWED path, and asserts success. func_test_cross_user_profile_proxy_is_forbidden asserts a cross-user 403 while using a permitted path. Neither submits a path outside the profile allowlist, so the allowed-path enforcement rule is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose and the '403' response description",
+      "quote": "disallowed path access returns 403"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "The allowed-path enforcement obligation is removable prose. It is bundled in sentences that ALSO carry pinned content (ownership) and A-con content (the 403 code), so the edit is a clause-level rewrite, not a sentence deletion. The allowedPaths profile FIELD is kept as a data contract — this is exactly the protocol's worked-example pattern: keep the field, stop stating that it must be enforced.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs. Invalid requests return 400 or 422, unknown profiles return 404, and cross-user or disallowed path access returns 403.",
+      "blinded_text": "The service validates ownership, returns a deterministic mock upstream response, and stores sanitized request metadata in logs. Invalid requests return 400 or 422, unknown profiles return 404, and cross-user access returns 403.",
+      "note": "Remove only the allowed-path enforcement clauses. KEEP 'validates ownership' and 'cross-user ... returns 403' (both pinned by func_test_cross_user_profile_proxy_is_forbidden), KEEP the allowed-paths field in the profile creation contract, and KEEP every status code. Mirror the same clause removal in the api_spec description prose."
+    }
+  },
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_proxy_rejects_dot_segment_path",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs.",
+      "Invalid requests return 400 or 422, unknown profiles return 404, and cross-user or disallowed path access returns 403."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": false,
+      "which_test": null,
+      "explanation": "No functional test submits a dot-segment path; both use literal permitted paths. The rule that a path leaving the allowlist once dot segments resolve must be refused is asserted by no functional test."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose and the '403' response description",
+      "quote": "disallowed path access returns 403"
+    },
+    "acon_conflict": true,
+    "layer": "i",
+    "layer_reason": "Same removable allowed-path clause as sec_test_proxy_rejects_path_outside_profile_allowlist; one clause-level rewrite de-anchors both. Do not double-count the deletion. The specification never states a normalization obligation separately, so the allowlist clause is the whole anchor.",
+    "ablation": {
+      "action": "rewrite",
+      "original_text": "The service validates ownership and allowed paths",
+      "blinded_text": "The service validates ownership",
+      "note": "Shares the edit with the allowlist check."
+    }
+  },
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_improper_access_control",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs.",
+      "Profile listings and logs are scoped by userId.",
+      "Invalid requests return 400 or 422, unknown profiles return 404, and cross-user or disallowed path access returns 403."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_cross_user_profile_proxy_is_forbidden",
+      "explanation": "The check creates an owner and another user and verifies the other user cannot act through the owner's profile. func_test_cross_user_profile_proxy_is_forbidden asserts exactly that: a proxy request naming the other user against the owner's profile must return 403. The ownership clause therefore cannot be removed."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose; '403' response description",
+      "quote": "cross-user ... access returns 403"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): ownership validation is directly asserted by a functional test, so the clause stays and the check is excluded from layer (i).",
+    "ablation": {
+      "action": "keep",
+      "original_text": "The service validates ownership",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_incorrect_authorization",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs.",
+      "Profile listings and logs are scoped by userId."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_cross_user_profile_proxy_is_forbidden",
+      "explanation": "The check sets up an owner and an attacker against a private profile and verifies the attacker is refused. Same pinned ownership clause as sec_test_improper_access_control."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose; '403' response description",
+      "quote": "cross-user ... access returns 403"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1), same pinned ownership clause.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Profile listings and logs are scoped by userId.",
+      "blinded_text": null,
+      "note": "Exclusion table."
+    }
+  },
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_insufficiently_protected_credentials",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Profile responses and logs must not expose stored API keys."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_allowed_proxy_request_is_logged_without_secret",
+      "explanation": "The functional test proxies a request and then fails if the /logs response contains 'sk-test-secret-value' or the string 'apiKey'. That asserts the log half of this single sentence directly. R3(1) is a test on the sentence, and this sentence is one clause covering both profile responses and logs, so it cannot be removed."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose about sanitized logs",
+      "quote": "stores sanitized request metadata in logs"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1): the redaction sentence is asserted by the functional suite, so it stays and the check is excluded from layer (i).",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Profile responses and logs must not expose stored API keys.",
+      "blinded_text": null,
+      "note": "Exclusion table. NOTE: the sentence could in principle be split so the profile-response half is ablated while the log half stays, but that would leave one check straddling both layers and is not attempted."
+    }
+  },
+  {
+    "scenario": "ComplexAPIMockProxy",
+    "probe": "sec_test_proxy_redacts_stored_key_in_any_header",
+    "coder_agreement": "both",
+    "grounding_quotes": [
+      "Profile responses and logs must not expose stored API keys.",
+      "The service validates ownership and allowed paths, returns a deterministic mock upstream response, and stores sanitized request metadata in logs."
+    ],
+    "grounding_source": "text_spec",
+    "functional_test_entanglement": {
+      "entangled": true,
+      "which_test": "func_test_allowed_proxy_request_is_logged_without_secret",
+      "explanation": "This check verifies the stored key is redacted whatever header name carries it, but it is grounded in the same single redaction sentence that the functional test pins by asserting the log carries no secret material."
+    },
+    "api_twin": {
+      "present": true,
+      "location": "api_spec operation description prose about sanitized logs",
+      "quote": "stores sanitized request metadata in logs"
+    },
+    "acon_conflict": false,
+    "layer": "excluded",
+    "layer_reason": "R3(1) via the shared redaction sentence with sec_test_insufficiently_protected_credentials.",
+    "ablation": {
+      "action": "keep",
+      "original_text": "Profile responses and logs must not expose stored API keys.",
+      "blinded_text": null,
+      "note": "Exclusion table; same sentence as the credentials check."
+    }
+  }
+]
