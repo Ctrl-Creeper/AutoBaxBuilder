@@ -1,0 +1,80 @@
+{
+  "missing_task": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "removed task ['W05']"
+    ]
+  },
+  "unknown_task_id": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "added task ['W99']"
+    ]
+  },
+  "security_policy_in_spec": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "non_editable_smuggled": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "missing_key_not_defaulted": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W02 mutated"
+    ]
+  },
+  "untraceable_edit_original": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "undeclared_removal": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "replacement_absent_from_candidate": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "bad_failure_code": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "failure_with_empty_candidate": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W03 mutated"
+    ]
+  },
+  "coder_vocabulary": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "W01 mutated"
+    ]
+  },
+  "schema_version_mismatch": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "schema_version -> 'round1-writer-v0'"
+    ]
+  },
+  "empty_writer_id": {
+    "expected": "NOT ACCEPTED (hard failure)",
+    "mutation": [
+      "writer_id -> ''"
+    ]
+  }
+}

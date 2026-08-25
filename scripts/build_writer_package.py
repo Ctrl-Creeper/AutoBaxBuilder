@@ -33,6 +33,7 @@ from secodeplt_task_runner import load  # noqa: E402
 
 SEL = Path("docs/preregistration/2026-08-25_round2_selection/round2_selection.json")
 OUT = Path("docs/preregistration/2026-08-25_writer_handoff")
+SCHEMA_VERSION = "round2-writer-v1"
 PKG = OUT / "writer_package"
 
 _DUMP = ('\nimport json\nprint("###" + json.dumps([{"situation": s, "input": repr(k), '
@@ -111,8 +112,10 @@ def main() -> None:
             "edits": [], "sufficiency_evidence": [], "failure": None, "notes": "",
         }
 
+    # schema_version is a constant the writer leaves untouched; it lets the
+    # validator refuse an output produced against a different frozen contract.
     (PKG / "output_template.json").write_text(
-        json.dumps({"writer_id": "", "tasks": tmpl}, indent=2))
+        json.dumps({"schema_version": SCHEMA_VERSION, "writer_id": "", "tasks": tmpl}, indent=2))
     (OUT / "sealed" / "_KEY_DO_NOT_SHOW_WRITER.json").write_text(
         json.dumps({"order_seed_derivation": f"int(protocol_sha256[8:16], 16) = {int(protocol[8:16], 16)}",
                     "protocol": protocol, "mapping": key}, indent=2))

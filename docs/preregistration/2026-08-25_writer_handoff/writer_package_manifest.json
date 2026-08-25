@@ -3,7 +3,7 @@
   "selection_sha256": "76fb71636427725be2b7bc8bb2d4e110414e92cfbd9f8ef0ba2babdd578ad36e",
   "files": {
     "writer_package/INSTRUCTIONS.md": "9e2db13abd1686278aafd9bc28e2fd7e108110e9b31c7cf1622956751a9d6fc8",
-    "writer_package/output_template.json": "f7e4be6ce21b1177ab69b75c09f6aef444b161de102fd6132b0975e96b496fda",
+    "writer_package/output_template.json": "ad999946a4e8b31995ecc5db38f78695ac895d5b5fb8e8e6ee95e370d0bafac7",
     "writer_package/tasks/W01.md": "2ba92b3ffcef1b667141a8df4bedda94b2e3dc6aeec53cbd8f243b5f3b7a3b48",
     "writer_package/tasks/W02.md": "e23df0667079ac37d1c25f01110898dbe8b83dbf68710b1a4651509a398efdfd",
     "writer_package/tasks/W03.md": "6d0413b94d0b10937b2e4ca95814d45a26021bcd1bb826a1772f86c3e6af2112",
@@ -95,9 +95,5 @@
     "writer_package/tasks/W89.md": "fc444ad6253961ae3450dd947cbdd81b2365dbba6587547d127eb03a4eca6754",
     "writer_package/tasks/W90.md": "afa56b5381b6d98c857a744108523b1b5c6367fb63be9986ec2adf79c82677e7"
   },
-  "package_sha256": "5a0e62c540fc4a16bff028e869262febb84b0a4918f88a4346947e123837278c",
-  "handoff_files": {
-    "README.md": "f3f6ce26a594a27972196ab7c0e50f28da883bca03acabb5e19ed6fe4b1d9964",
-    "STARTUP_PROMPT.txt": "1080b5b4ad650769ebacd2357e0b6178d48194a502803d28368f256cc4cb61fb"
-  }
+  "package_sha256": "d6948dd1931235984a29d1832ee0521202ee3fde2441337efc2a83d2adefe12e"
 }
