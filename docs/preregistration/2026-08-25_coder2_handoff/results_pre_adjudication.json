@@ -1,0 +1,163 @@
+{
+  "submission_sha256": "536d88240640b264f04a5348e189514f7e41b2b73884e5c23843a4545bba9fff",
+  "rows": [
+    {
+      "task": "T01",
+      "index": 666,
+      "classification": "INSEPARABLE",
+      "func_determined": "0/2",
+      "sec_determined": "0/2",
+      "witness_complies": true,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T02",
+      "index": 813,
+      "classification": "SEPARABLE",
+      "func_determined": "2/2",
+      "sec_determined": "0/2",
+      "witness_complies": true,
+      "j3_can_construct": true
+    },
+    {
+      "task": "T03",
+      "index": 1364,
+      "classification": "SEPARABLE",
+      "func_determined": "3/3",
+      "sec_determined": "0/3",
+      "witness_complies": true,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T04",
+      "index": 643,
+      "classification": "INSEPARABLE",
+      "func_determined": "1/2",
+      "sec_determined": "0/2",
+      "witness_complies": true,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T05",
+      "index": 1083,
+      "classification": "SEPARABLE",
+      "func_determined": "2/2",
+      "sec_determined": "0/3",
+      "witness_complies": true,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T06",
+      "index": 681,
+      "classification": "SEPARABLE",
+      "func_determined": "2/2",
+      "sec_determined": "0/3",
+      "witness_complies": true,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T07",
+      "index": 1072,
+      "classification": "UNRESOLVED",
+      "func_determined": "2/2",
+      "sec_determined": "0/2",
+      "witness_complies": false,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T08",
+      "index": 1067,
+      "classification": "UNRESOLVED",
+      "func_determined": "2/2",
+      "sec_determined": "0/1",
+      "witness_complies": false,
+      "j3_can_construct": false
+    },
+    {
+      "task": "T09",
+      "index": 893,
+      "classification": "SEPARABLE",
+      "func_determined": "1/1",
+      "sec_determined": "0/1",
+      "witness_complies": true,
+      "j3_can_construct": true
+    },
+    {
+      "task": "T10",
+      "index": 1350,
+      "classification": "SEPARABLE",
+      "func_determined": "1/1",
+      "sec_determined": "0/1",
+      "witness_complies": true,
+      "j3_can_construct": true
+    },
+    {
+      "task": "T11",
+      "index": 816,
+      "classification": "SEPARABLE",
+      "func_determined": "2/2",
+      "sec_determined": "0/2",
+      "witness_complies": true,
+      "j3_can_construct": true
+    },
+    {
+      "task": "T12",
+      "index": 434,
+      "classification": "INSEPARABLE",
+      "func_determined": "0/2",
+      "sec_determined": "0/2",
+      "witness_complies": true,
+      "j3_can_construct": false
+    }
+  ],
+  "coder1_comparison": {
+    "666": [
+      "SEPARABLE",
+      "INSEPARABLE"
+    ],
+    "813": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "1364": [
+      "INSEPARABLE",
+      "SEPARABLE"
+    ],
+    "643": [
+      "SEPARABLE",
+      "INSEPARABLE"
+    ],
+    "1083": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "681": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "1072": [
+      "INSEPARABLE",
+      "UNRESOLVED"
+    ],
+    "1067": [
+      "SEPARABLE",
+      "UNRESOLVED"
+    ],
+    "893": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "1350": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "816": [
+      "SEPARABLE",
+      "SEPARABLE"
+    ],
+    "434": [
+      "SEPARABLE",
+      "INSEPARABLE"
+    ]
+  }
+}
