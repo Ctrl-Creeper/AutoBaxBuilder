@@ -27,8 +27,8 @@ rate, and reported as the induced intra-task correlation:
 | 1.0 | 0.173 | 0.144 | 0.145 |
 | 1.5 | 0.294 | 0.268 | 0.266 |
 
-**κ̂ computed from pooled marginals is upward biased under clustering.** Recovered mean κ̂ against the
-true value:
+**Under this DGP, κ̂ computed from pooled marginals showed a positive bias that grew with clustering.**
+Recovered mean κ̂ against the true value:
 
 | true κ | τ=0.0 | τ=0.5 | τ=1.0 | τ=1.5 |
 |---|---|---|---|---|
@@ -36,14 +36,17 @@ true value:
 | 0.70 | 0.698 | 0.712 | 0.745 | **0.781** |
 | 0.80 | 0.798 | 0.808 | 0.830 | **0.854** |
 
-Unbiased at τ=0, as it should be. At an ICC of 0.29 a true κ of 0.60 reads as 0.709 — a benchmark
-that fails the substantial-agreement threshold would be reported as clearing it comfortably. The
-mechanism is ordinary: heterogeneous task-level rates depress the chance-agreement term computed from
-pooled marginals, inflating the ratio.
+Unbiased at τ=0, as it should be. At an ICC of 0.29 a true κ of 0.60 is recovered as 0.709 — a
+displacement of roughly a tenth of the scale, large enough to change how a reader would characterise
+the estimate. The mechanism is ordinary: heterogeneous task-level rates depress the chance-agreement
+term computed from pooled marginals, inflating the ratio.
 
-This is why the τ > 0 rows in §2 appear to need *fewer* tasks. That is not an efficiency gain from
-clustering; it is precision around an inflated estimand. The consequence is C8 of protocol v2: the
-pooled κ is reported as an upper bound and the primary figure is clustering-corrected.
+This is why the τ > 0 rows in §2 appear to need *fewer* tasks. Under this DGP that is not an
+efficiency gain from clustering; it is precision around an inflated estimand. The consequence is C8
+of protocol v2: **pooled κ is a descriptive sensitivity statistic only**, and primary inference uses a
+task-cluster-aware κ with a task-level cluster bootstrap CI. The bias is an observation under this
+generative model, not a general property of pooled κ, and Round 2 does not assume real disagreement
+behaves this way.
 
 ---
 
@@ -88,14 +91,19 @@ the wrong quantity:
 
 > true κ = 0.60, marginal determination rate 0.80, τ = 0 → **88 tasks, ~410 case judgements per run**
 
-κ = 0.60 is the right lower bound to have precision at: it is the threshold the round exists to
-decide, so the design must be able to resolve it, not merely to resolve some higher value.
+κ = 0.60 here is a **planning reference value**, not a boundary of adequate reliability and not a
+threshold this round tests against. It was chosen because it sits in the middle of the range the
+design has to be able to resolve, and because requirements rise as κ falls, so sizing at 0.60 is
+conservative against the higher values.
 
-**Round-2 calibration sample: 90 tasks** — 88 rounded up. Approximately 420 case judgements per
-coding run, 840 across the two.
+**Round-2 calibration sample: exactly 90 tasks** — 88 rounded up. Approximately 420 case judgements
+per coding run, 840 across the two. **This is a fixed count, not a minimum**; see C7 of protocol v2,
+which forbids augmentation and preregisters no expansion rule.
 
-Half-width 0.10 rather than 0.15: at 0.15, an observed κ̂ of 0.75 gives [0.60, 0.90], which touches
-the threshold and settles nothing. At 0.10 it gives [0.65, 0.85].
+Half-width 0.10 rather than 0.15 for the width itself: ±0.15 spans nearly a third of the usable range
+of κ and would leave most of that range compatible with the data whatever came back. ±0.10 is the
+coarsest width at which the estimate constrains anything. This concerns interval width alone and
+invokes no threshold.
 
 90 of the 840 eligible tasks is 10.7%, leaving 750 for the later measurement set, which must not
 overlap with either Round 1 or Round 2.
@@ -105,15 +113,19 @@ overlap with either Round 1 or Round 2.
 ## 4. Assumptions this rests on
 
 1. **The two runs have equal marginals.** Cohen's κ is sensitive to marginal asymmetry between
-   raters; the simulation assumes none. Asymmetry would increase the requirement, so 90 is a floor
-   under that assumption rather than a guarantee.
+   raters; the simulation assumes none. Asymmetry would increase the requirement, so the planned
+   precision holds only under that assumption.
 2. **The forced-agreement generative model.** κ is induced by a per-case Bernoulli(κ) that fixes
    agreement, and independent draws otherwise. Real disagreement is likely to concentrate on
-   particular *kinds* of case rather than being spread uniformly; concentrated disagreement is
-   generally harder, so again 90 is a floor.
+   particular *kinds* of case rather than being spread uniformly, and concentrated disagreement is
+   generally harder to estimate precisely.
 3. **Cases per task follow the corpus distribution.** True of a random draw; a stratified draw would
    change the mean and the count with it.
 4. **The scaling law.** κ̂'s SD falls as 1/√n_tasks. Verified at two anchors, not proved.
 
-None of these is checkable before Round 2 runs. Each pushes in the direction of needing *more* than
-90, not fewer, so 90 is stated as a minimum rather than a target.
+None of these is checkable before Round 2 runs, and each pushes in the direction of needing *more*
+than 90 rather than fewer. **The response is not to sample more.** The count is fixed at 90 by C7,
+augmentation after seeing results is forbidden, and no expansion rule is preregistered. The
+consequence of these assumptions failing is therefore a **wider achieved interval, reported as
+achieved precision** — which is the honest outcome, and which is why C9 fixes the whole reporting set
+in advance rather than leaving a single number to be rescued.

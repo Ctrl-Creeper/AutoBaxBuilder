@@ -1,6 +1,8 @@
 # Instrument Validation Protocol v2 — draft
 
-Status: **DRAFT.** Supersedes `84ec0d47…` on freezing. Not yet frozen; no coding under it.
+Status: **FROZEN 2026-08-25.** Supersedes `84ec0d47…`. Any change to this document changes its hash
+and voids codings made under it. Consistency check: `scripts/check_protocol_consistency.py`, 37 passed,
+0 failed at freezing.
 
 v1 governed Instrument Development Round 1, whose twelve tasks are permanently burned. v2 governs a
 **calibration round on a new sample**, drawn from tasks that took no part in developing either
@@ -107,33 +109,76 @@ usage rate was not recorded, so the blind discrimination result cannot be correc
 - Selection frozen by manifest and hash **before** any specification is authored.
 - The Round-1 coding run is ineligible.
 
-**Size and its basis.** 90 tasks, ~420 case judgements per run. Fixed by the sensitivity analysis in
-`round2_sample_size_sensitivity.md`, not chosen afterwards and not derived from any Round-1 rate. The
-worst *unbiased* cell — true κ = 0.60, marginal determination rate 0.80, no task clustering — requires
-88 tasks for a 95% CI half-width of 0.10 on κ. 90 is that figure rounded up.
+**Size: exactly 90 tasks**, ~420 case judgements per run. Fixed by the sensitivity analysis in
+`round2_sample_size_sensitivity.md`, not chosen afterwards and not derived from any Round-1 rate.
 
-Half-width 0.10 rather than 0.15 because the round has to decide whether κ clears a threshold: at
-0.15, an observed κ̂ of 0.75 yields [0.60, 0.90], which touches the threshold and settles nothing; at
-0.10 it yields [0.65, 0.85].
+**No augmentation.** 90 is not a minimum. Tasks may not be added after any result is seen, and no
+mechanical expansion rule is preregistered here, so none is available later. If the achieved interval
+is wider than planned — which the design assumptions in §4 of the sensitivity analysis make quite
+possible — that is **reported as the achieved precision**. It is not repaired by sampling more.
+
+**Planning reference value.** The count derives from the worst *unbiased* cell of the grid: a true κ
+of 0.60 at a marginal determination rate of 0.80 with no task clustering requires 88 tasks for a 95%
+CI half-width of 0.10. 90 is that figure rounded up.
+
+> κ = 0.60 is a **planning reference value only**, chosen because it sits in the middle of the range
+> the design must be able to resolve. It is **not** a natural boundary of reliability, and nothing in
+> this protocol treats it as one.
+
+**No pass/fail threshold.** Round 2 reports estimates and intervals. It does not classify the
+instrument as adequate or inadequate against any κ value, and no such threshold may be introduced
+after the estimates are seen. What follows Round 2 is decided from the reported set as a whole (C9),
+argued explicitly, and recorded — not read off a cut-point.
+
+**Precision target.** Half-width 0.10 rather than 0.15 for the width itself: an interval of ±0.15
+spans nearly a third of the usable range of κ and would leave most of that range compatible with the
+data, whichever value came back. ±0.10 is the coarsest width at which the estimate constrains
+anything. This is a statement about interval width, not about any threshold the interval might
+straddle.
 
 90 of 840 eligible tasks is 10.7%, leaving 750 for the later measurement set, which must not overlap.
 
-### C8 — κ must be reported clustering-corrected
+### C8 — Pooled κ is descriptive only; inference is cluster-aware
 
-**What the sensitivity analysis exposed.** Cohen's κ computed from pooled marginals is **upward
-biased** when the determination rate varies across tasks, because task heterogeneity depresses the
-chance-agreement term. Simulated: a true κ of 0.60 reads as 0.709 at an intra-task correlation of
-0.29; 0.80 reads as 0.854. The bias grows with clustering and is present at every marginal rate.
+**What the sensitivity analysis observed.** **Under the prespecified simulation DGP of
+`round2_sample_size_sensitivity.md`** — a task-level logit shift inducing intra-task correlation, with
+equal marginals across runs — Cohen's κ computed from pooled marginals showed a **positive bias** that
+grew with clustering: a true κ of 0.60 was recovered as 0.709 at an intra-task correlation of 0.29,
+and 0.80 as 0.854. The estimator was unbiased at zero clustering.
 
-**v2.** The headline reliability figure is **not** the pooled κ. Round 2 reports:
+This is an observation under one generative model, not a general property of pooled κ. Whether real
+disagreement in this corpus behaves that way is unknown, and Round 2 does not assume it.
 
-1. pooled κ, labelled as an upper bound;
-2. the between-task variance of the determination rate, and the implied intra-task correlation;
-3. a clustering-corrected κ — task-stratified, or with a task random effect — as the primary figure;
-4. the CI by cluster bootstrap over tasks, not over cases.
+**v2.** Pooled κ is therefore **a descriptive sensitivity statistic only** and carries no inferential
+weight. Primary inference uses a **task-cluster-aware κ** with a **task-level cluster bootstrap CI**.
+Reported alongside: the between-task variance of the determination rate and the implied intra-task
+correlation, so the discrepancy between the pooled and cluster-aware figures is legible rather than
+hidden.
 
-Had this gone unchecked, Round 2 would have reported a κ that looked substantial while the true value
-sat below the threshold.
+### C9 — Reliability is reported as a preregistered set of statistics
+
+**Why.** A single reliability number invites selection after the fact, and κ in particular is
+unstable where marginals are skewed — which §2 of the sensitivity analysis shows is the binding
+regime here. Fixing the whole set in advance removes the choice.
+
+Round 2 reports **all** of the following, always together, regardless of what any one of them shows:
+
+| statistic | role |
+|---|---|
+| **task-cluster-aware Cohen's κ**, CI by task-level cluster bootstrap | primary inferential estimate |
+| **pooled Cohen's κ** | descriptive sensitivity statistic only (C8) |
+| **raw agreement** on case determination | uncorrected, marginal-free |
+| **Gwet's AC1**, same cluster bootstrap | sensitivity to the skewed-marginal instability κ is subject to |
+| **quote / evidence concordance** — among cases both runs call determined, whether they cite the same sentence of *S* | agreement on the reasoning, not only the label |
+| **tie-break rate** — share of cases marked `tie_break` under C6, per run | how much of the agreement rests on the default |
+
+**AC1 is not interpreted against Cohen κ's verbal thresholds.** Landis–Koch and similar scales were
+constructed for κ and do not transfer; AC1 is reported as a number with its interval and compared to
+κ only in direction, never mapped onto "substantial", "almost perfect", or any equivalent.
+
+Quote concordance is reported separately from label agreement throughout. Two runs reaching the same
+label from different sentences of *S* is weaker evidence that the procedure is reproducible than the
+label agreement alone suggests.
 
 ---
 
