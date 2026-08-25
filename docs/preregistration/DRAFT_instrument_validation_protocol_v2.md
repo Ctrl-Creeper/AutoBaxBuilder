@@ -4,8 +4,9 @@ Status: **DRAFT.** Supersedes `84ec0d47…` on freezing. Not yet frozen; no codi
 
 v1 governed Instrument Development Round 1, whose twelve tasks are permanently burned. v2 governs a
 **calibration round on a new sample**, drawn from tasks that took no part in developing either
-protocol, coded per case by two independent coders, to obtain the inter-rater reliability v1 could
-not produce.
+protocol, coded per case by two independent blinded coding runs, to obtain the reliability estimate
+v1 could not produce. Whether that estimate is run-level or human-level is a matter of how the runs
+are staffed, and is reported as such — see C5.
 
 Round 1's twelve tasks are **not** recoded under v2. Round 1 stands as recorded.
 
@@ -74,14 +75,22 @@ three coders answered "no" while holding an *S* that already had the property.
 > give one that does, or name the single element of the signature, the setup code, or the declared
 > return type that prevents any from existing.
 
-### C5 — Per-case output from **both** coders
+### C5 — Per-case output from both coding runs, described at the level actually executed
 
 **v1 defect.** κ was pre-specified and turned out to be uncomputable: the first-coder round recorded
 per-task gate outcomes, never per-case determinations.
 
-**v2.** Both coders are issued the identical packet and the identical answer template, and both
-produce per-case J1. Neither authors the specifications they code. Specification authoring is a
-**third** role, performed before either coder is engaged, and the author does not code.
+**v2.** Both runs are issued the identical packet and the identical answer template, and both
+produce per-case J1. Neither codes specifications it authored. Specification authoring is a **third**
+role, performed before either coding run is engaged, and the author does not code.
+
+**Independence is described at the level actually executed.** Where the two codings are produced by
+separate sessions or agents rather than by different people, they are reported as **independent
+blinded coding runs**, never as independent human coders, and every reliability figure carries that
+qualifier. Runs sharing a model or a prompt lineage are not independent in the sense human coders
+are, and correlated error cannot be excluded. A human replication, if it becomes available later, is
+a **higher grade of validation** and is reported as such rather than merged with the run-level
+figure.
 
 ### C6 — The tie-break is recorded, not just applied
 
@@ -91,13 +100,40 @@ usage rate was not recorded, so the blind discrimination result cannot be correc
 **v2.** The tie-break stands, but each case carries a required `confidence` field — `clear` or
 `tie_break`. The discrimination check is reported twice: over all cases, and over `clear` cases only.
 
-### C7 — The calibration sample
+### C7 — The calibration sample: **90 tasks**
 
 - Drawn from tasks that took **no** part in developing v1 or v2, and never inspected during either.
 - Round 1's twelve are excluded by `INSTRUMENT_DEVELOPMENT_ROUND_1.md`.
 - Selection frozen by manifest and hash **before** any specification is authored.
-- Size fixed at freezing from the target precision on κ, not chosen afterwards.
-- Coder 2 of Round 1 is ineligible for the calibration round.
+- The Round-1 coding run is ineligible.
+
+**Size and its basis.** 90 tasks, ~420 case judgements per run. Fixed by the sensitivity analysis in
+`round2_sample_size_sensitivity.md`, not chosen afterwards and not derived from any Round-1 rate. The
+worst *unbiased* cell — true κ = 0.60, marginal determination rate 0.80, no task clustering — requires
+88 tasks for a 95% CI half-width of 0.10 on κ. 90 is that figure rounded up.
+
+Half-width 0.10 rather than 0.15 because the round has to decide whether κ clears a threshold: at
+0.15, an observed κ̂ of 0.75 yields [0.60, 0.90], which touches the threshold and settles nothing; at
+0.10 it yields [0.65, 0.85].
+
+90 of 840 eligible tasks is 10.7%, leaving 750 for the later measurement set, which must not overlap.
+
+### C8 — κ must be reported clustering-corrected
+
+**What the sensitivity analysis exposed.** Cohen's κ computed from pooled marginals is **upward
+biased** when the determination rate varies across tasks, because task heterogeneity depresses the
+chance-agreement term. Simulated: a true κ of 0.60 reads as 0.709 at an intra-task correlation of
+0.29; 0.80 reads as 0.854. The bias grows with clustering and is present at every marginal rate.
+
+**v2.** The headline reliability figure is **not** the pooled κ. Round 2 reports:
+
+1. pooled κ, labelled as an upper bound;
+2. the between-task variance of the determination rate, and the implied intra-task correlation;
+3. a clustering-corrected κ — task-stratified, or with a task random effect — as the primary figure;
+4. the CI by cluster bootstrap over tasks, not over cases.
+
+Had this gone unchecked, Round 2 would have reported a κ that looked substantial while the true value
+sat below the threshold.
 
 ---
 
@@ -112,13 +148,13 @@ and the rule that no outcome is a failure of the phase.
 
 ## Open, to settle before freezing
 
-1. **Sample size.** C7 defers it to a precision target for κ. That target has not been chosen, and
-   choosing it needs an expected marginal rate for `determined`. Round 1 gives 18/23 and 0/24, but
-   Round 1 is burned and its rates cannot be used as an estimate. Either accept a rate assumed from
-   outside the corpus, or draw a small throwaway pre-sample that is itself burned.
-2. **Third role feasibility.** C5 requires an author, two coders, and an adjudicator — four
-   independent parties. If only sessions are available rather than people, the independence claim is
-   weaker than the design implies and should be stated as such rather than assumed away.
-3. **Whether STRUCTURALLY CARRIED and INSEPARABLE should be reported as one category.** They differ
-   in whether functional sufficiency survives, which matters for instrument construction but may not
-   matter for the eventual claim.
+1. *(settled)* **Sample size** is fixed at 90 tasks by C7, over a prespecified grid of marginal
+   rates, with no Round-1 rate used as an input.
+2. *(settled by C5)* **Role independence** is reported at the level actually executed. Four roles are
+   still required — author, two coding runs, adjudicator — but where they are sessions rather than
+   people the finding is reported as run-level, not human-level, reliability.
+3. *(settled)* **STRUCTURALLY CARRIED and INSEPARABLE are not merged at the label level.** They
+   remain distinct underlying classes and their separate proportions are reported in every analysis.
+   A presentation may use a prespecified superordinate class aggregating the two, provided the
+   aggregation is registered before the data are seen and the component proportions appear alongside
+   it. No figure may show only the aggregate.
