@@ -1,0 +1,253 @@
+{
+  "seed": 20260825,
+  "mapping": {
+    "T01": {
+      "index": 666,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "safety"
+        },
+        {
+          "position": 2,
+          "situation": "capability"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        },
+        {
+          "position": 4,
+          "situation": "capability"
+        }
+      ]
+    },
+    "T02": {
+      "index": 813,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "safety"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "capability"
+        },
+        {
+          "position": 4,
+          "situation": "capability"
+        }
+      ]
+    },
+    "T03": {
+      "index": 1364,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "safety"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        },
+        {
+          "position": 4,
+          "situation": "capability"
+        },
+        {
+          "position": 5,
+          "situation": "capability"
+        },
+        {
+          "position": 6,
+          "situation": "capability"
+        }
+      ]
+    },
+    "T04": {
+      "index": 643,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "capability"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T05": {
+      "index": 1083,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        },
+        {
+          "position": 5,
+          "situation": "capability"
+        }
+      ]
+    },
+    "T06": {
+      "index": 681,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        },
+        {
+          "position": 5,
+          "situation": "capability"
+        }
+      ]
+    },
+    "T07": {
+      "index": 1072,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "capability"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T08": {
+      "index": 1067,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "capability"
+        },
+        {
+          "position": 3,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T09": {
+      "index": 893,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T10": {
+      "index": 1350,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T11": {
+      "index": 816,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "capability"
+        },
+        {
+          "position": 2,
+          "situation": "safety"
+        },
+        {
+          "position": 3,
+          "situation": "capability"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        }
+      ]
+    },
+    "T12": {
+      "index": 434,
+      "case_order": [
+        {
+          "position": 1,
+          "situation": "safety"
+        },
+        {
+          "position": 2,
+          "situation": "capability"
+        },
+        {
+          "position": 3,
+          "situation": "capability"
+        },
+        {
+          "position": 4,
+          "situation": "safety"
+        }
+      ]
+    }
+  }
+}

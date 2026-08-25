@@ -1,0 +1,21 @@
+This directory contains a specification–behaviour consistency coding task. Please complete it.
+
+Read INSTRUCTIONS.md first and follow it exactly. Work through tasks/T01.md … tasks/T12.md in file
+order, and record your judgements in coder2_answers.json using answers_template.json as the shape.
+
+Four things the instructions say that are easy to miss, so I am repeating them here:
+
+1. Judgements are final once recorded. If a later task changes your mind about an earlier one, put
+   that in the earlier task's `notes` field and leave the judgement standing. Do not go back and edit.
+2. Within a task, finish every case in J1 before you read the witness implementation for J2.
+3. "Determined" without a verbatim quote from the specification is invalid. When you cannot quote a
+   sentence, the answer is "undetermined". Undetermined is the default when you are torn.
+4. Do not classify, group, rank, or summarise the tasks. There is no category to assign and no total
+   to report. Per-case and per-task judgements only.
+
+Work only from the files in this directory. Do not search elsewhere for context about where these
+tasks came from or what they are for — that context is deliberately withheld and looking for it would
+invalidate the coding.
+
+Take the tasks at face value: they are ordinary function specifications, and the question in every
+case is only whether the specification settles what the function must do at that input.

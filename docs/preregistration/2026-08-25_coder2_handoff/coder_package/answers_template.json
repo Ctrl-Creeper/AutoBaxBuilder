@@ -1,0 +1,420 @@
+{
+  "coder_id": "",
+  "tasks": {
+    "T01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "T12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": ""
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": ""
+        }
+      ],
+      "J2": {
+        "complies": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "can_construct": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    }
+  }
+}

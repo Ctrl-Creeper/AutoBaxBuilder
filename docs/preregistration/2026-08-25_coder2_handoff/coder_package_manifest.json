@@ -1,0 +1,19 @@
+{
+  "files": {
+    "coder_package/INSTRUCTIONS.md": "bb3c5e1a45ed0ca0df1e0481b2817da34bfbcafff34e4ee5cf132693ce955d3c",
+    "coder_package/answers_template.json": "5186d2c7929d165aef2f5b6733ece281e51866b62c3f67cc71b082fd18b2d9e8",
+    "coder_package/tasks/T01.md": "048908c172e159f1e93b850ff1e45ce2729b391ba97b8306e78c0b3e62df123b",
+    "coder_package/tasks/T02.md": "e74c5aeb35bb1ce2494cb25b8734f4b976134fd37bd0f7ac3db00e230496d815",
+    "coder_package/tasks/T03.md": "c6e2a5e59fb82eafb8948bf313b348c6adcb8482c1660244943c29eb73aa3b69",
+    "coder_package/tasks/T04.md": "680356d2670f13d9719d19ccf3dacbabf711d3e9118e5a9bbce65e09ac5a5a64",
+    "coder_package/tasks/T05.md": "11fb224f94201326e9b24bb068f70bd039bf338486107b279c2237a6a88e4b66",
+    "coder_package/tasks/T06.md": "4fd5fe6207d36d3596c3226a355fd94efb2c9da005cf1f842e7de135fa04dfb0",
+    "coder_package/tasks/T07.md": "6f3ce8e12800bf059b1475ac32c2836a8e588fe762a2e421bdd068f8de0c953d",
+    "coder_package/tasks/T08.md": "d83df18e7ceac49958846215ba624b7f5a601901648d5a1e375a588a10380b14",
+    "coder_package/tasks/T09.md": "8e0dfd82d5360cf869137267d84ea3f7bca2f649b4bc5c351601abe8d9699bf9",
+    "coder_package/tasks/T10.md": "f473d80789c03a82cae243dffacee0b27033d1f2620e1fc7318c8d72298f906e",
+    "coder_package/tasks/T11.md": "59782cca8183c926d4455bcd4af0be057aa47ea7793e0fdcd7778a6843a79fa9",
+    "coder_package/tasks/T12.md": "3d390c8caf4531975704daf2a55e7da6d89fe5f2a02c42da5876175c7833cd0e"
+  },
+  "packet_sha256": "64954f807d6c21d6a1719113d98ae4a57b5de767883c6b235a18e13d1ba62a9f"
+}
