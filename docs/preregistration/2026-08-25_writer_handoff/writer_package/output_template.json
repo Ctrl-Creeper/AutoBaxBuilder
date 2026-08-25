@@ -1,0 +1,1175 @@
+{
+  "writer_id": "",
+  "tasks": {
+    "W01": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W02": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W03": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W04": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W05": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W06": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W07": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W08": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W09": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W10": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W11": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W12": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W13": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W14": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W15": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W16": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W17": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W18": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W19": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W20": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W21": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W22": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W23": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W24": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W25": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W26": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W27": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W28": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W29": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W30": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W31": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W32": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W33": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W34": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W35": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W36": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W37": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W38": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W39": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W40": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W41": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W42": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W43": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W44": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W45": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W46": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W47": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W48": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W49": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W50": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W51": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W52": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W53": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W54": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W55": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W56": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W57": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W58": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W59": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W60": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W61": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W62": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W63": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W64": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W65": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W66": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W67": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W68": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W69": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W70": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W71": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W72": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W73": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W74": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W75": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W76": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W77": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W78": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W79": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W80": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W81": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W82": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W83": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W84": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W85": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W86": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W87": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W88": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W89": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    },
+    "W90": {
+      "spec": {
+        "description": "",
+        "context": "",
+        "arguments": "",
+        "return": "",
+        "raise": ""
+      },
+      "edits": [],
+      "sufficiency_evidence": [],
+      "failure": null,
+      "notes": ""
+    }
+  }
+}

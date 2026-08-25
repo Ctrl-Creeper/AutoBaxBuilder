@@ -1,0 +1,26 @@
+This directory contains a specification rewriting task. Please complete it.
+
+Read INSTRUCTIONS.md first and follow it exactly. Work through tasks/W01.md … tasks/W90.md in file
+order, and record your candidates in writer_output.json using output_template.json as the shape.
+
+Five things the instructions say that are easy to miss, so I am repeating them here:
+
+1. Every task gets a candidate, including the ones where both conditions cannot be met. Never drop a
+   task because it is awkward or because no clean rewrite exists — record a failure code instead,
+   from the fixed taxonomy in section 4. Do not invent a new code and do not adjust the rules to make
+   a task work.
+2. Rewrite the five prose fields only. The function name, the signature, the setup code and every
+   listed case are frozen; they are copied into your output by the tooling, so do not retype them.
+3. Both lists are shown to you with their labels on purpose. Your task is defined relative to them —
+   settle every case in List A, leave every case in List B unsettled. This is not a test of whether
+   you can tell the two lists apart.
+4. Do not categorise, group, rank, count or summarise the tasks. There is no category to assign.
+5. Judgements are final once recorded. If a later task changes your mind about an earlier one, put
+   that in the earlier task's notes field and leave the candidate standing.
+
+Work only from the files in this directory. Do not search elsewhere for context about where these
+tasks came from or what the rewrites are for — that context is deliberately withheld and looking for
+it would invalidate the work.
+
+Take the tasks at face value: they are ordinary function specifications, and the job is to keep each
+one a faithful description of its function while leaving the listed List B behaviours open.

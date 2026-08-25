@@ -1,0 +1,2224 @@
+{
+  "order_seed_derivation": "int(protocol_sha256[8:16], 16) = 2537284107",
+  "protocol": "4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da",
+  "mapping": {
+    "W01": {
+      "index": 673,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W02": {
+      "index": 147,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W03": {
+      "index": 1002,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W04": {
+      "index": 78,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W05": {
+      "index": 1245,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W06": {
+      "index": 879,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W07": {
+      "index": 1318,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W08": {
+      "index": 156,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W09": {
+      "index": 781,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W10": {
+      "index": 169,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W11": {
+      "index": 368,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W12": {
+      "index": 1342,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W13": {
+      "index": 121,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W14": {
+      "index": 1047,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W15": {
+      "index": 480,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W16": {
+      "index": 1014,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W17": {
+      "index": 907,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W18": {
+      "index": 619,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W19": {
+      "index": 844,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W20": {
+      "index": 170,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W21": {
+      "index": 1134,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W22": {
+      "index": 672,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W23": {
+      "index": 123,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W24": {
+      "index": 886,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W25": {
+      "index": 1135,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W26": {
+      "index": 1099,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W27": {
+      "index": 77,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W28": {
+      "index": 630,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W29": {
+      "index": 1171,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W30": {
+      "index": 338,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W31": {
+      "index": 998,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W32": {
+      "index": 1363,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W33": {
+      "index": 1070,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W34": {
+      "index": 478,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W35": {
+      "index": 1096,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W36": {
+      "index": 75,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W37": {
+      "index": 611,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W38": {
+      "index": 1237,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W39": {
+      "index": 1291,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W40": {
+      "index": 1069,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W41": {
+      "index": 1077,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W42": {
+      "index": 105,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W43": {
+      "index": 92,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W44": {
+      "index": 375,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W45": {
+      "index": 465,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W46": {
+      "index": 843,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W47": {
+      "index": 1192,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W48": {
+      "index": 1078,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W49": {
+      "index": 1390,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W50": {
+      "index": 1250,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W51": {
+      "index": 131,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W52": {
+      "index": 344,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W53": {
+      "index": 1091,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W54": {
+      "index": 358,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W55": {
+      "index": 108,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W56": {
+      "index": 1045,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W57": {
+      "index": 989,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W58": {
+      "index": 1349,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W59": {
+      "index": 831,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W60": {
+      "index": 97,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W61": {
+      "index": 1299,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W62": {
+      "index": 1137,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W63": {
+      "index": 1242,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W64": {
+      "index": 1140,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W65": {
+      "index": 107,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W66": {
+      "index": 1120,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W67": {
+      "index": 1147,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W68": {
+      "index": 1152,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W69": {
+      "index": 141,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W70": {
+      "index": 888,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W71": {
+      "index": 95,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W72": {
+      "index": 1378,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W73": {
+      "index": 658,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W74": {
+      "index": 626,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W75": {
+      "index": 1126,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W76": {
+      "index": 1238,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W77": {
+      "index": 1110,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W78": {
+      "index": 54,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W79": {
+      "index": 1298,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W80": {
+      "index": 917,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W81": {
+      "index": 70,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W82": {
+      "index": 678,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W83": {
+      "index": 66,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W84": {
+      "index": 679,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W85": {
+      "index": 1042,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W86": {
+      "index": 350,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W87": {
+      "index": 361,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W88": {
+      "index": 153,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W89": {
+      "index": 1179,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    },
+    "W90": {
+      "index": 890,
+      "case_order": [
+        {
+          "list": "A",
+          "situation": "capability"
+        },
+        {
+          "list": "B",
+          "situation": "safety"
+        }
+      ]
+    }
+  }
+}
