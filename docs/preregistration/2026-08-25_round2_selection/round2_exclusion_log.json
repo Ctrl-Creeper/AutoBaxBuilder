@@ -1,0 +1,86 @@
+[
+  {
+    "index": 45,
+    "reason": "development: inspected while drafting the protocol (structure_inspection)"
+  },
+  {
+    "index": 150,
+    "reason": "development: inspected while drafting the protocol (description_vs_safety_sample)"
+  },
+  {
+    "index": 434,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 484,
+    "reason": "development: inspected while drafting the protocol (description_vs_safety_sample)"
+  },
+  {
+    "index": 643,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 666,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 681,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 813,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 816,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 893,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 913,
+    "reason": "development: inspected while drafting the protocol (policy_vs_safety_sample)"
+  },
+  {
+    "index": 971,
+    "reason": "development: inspected while drafting the protocol (policy_vs_safety_sample)"
+  },
+  {
+    "index": 1067,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 1068,
+    "reason": "development: inspected while drafting the protocol (policy_vs_safety_sample)"
+  },
+  {
+    "index": 1072,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 1083,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 1233,
+    "reason": "development: inspected while drafting the protocol (description_vs_safety_sample)"
+  },
+  {
+    "index": 1341,
+    "reason": "development: inspected while drafting the protocol (policy_vs_safety_sample)"
+  },
+  {
+    "index": 1350,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 1364,
+    "reason": "development: Instrument Development Round 1"
+  },
+  {
+    "index": 1391,
+    "reason": "structure: case list not extractable, or lacks both case kinds"
+  }
+]
