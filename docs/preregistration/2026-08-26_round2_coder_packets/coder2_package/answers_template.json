@@ -1,0 +1,4008 @@
+{
+  "schema_version": "round2-coder-v1",
+  "coder_id": "",
+  "tasks": {
+    "C01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C13": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C14": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C15": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C16": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C17": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C18": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C19": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C20": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C21": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C22": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C23": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C24": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C25": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C26": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C27": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C28": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C29": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C30": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C31": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C32": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C33": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C34": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C35": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C36": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C37": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C38": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C39": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C40": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C41": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C42": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C43": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C44": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C45": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C46": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C47": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C48": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C49": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C50": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C51": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C52": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C53": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C54": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C55": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C56": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C57": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C58": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C59": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C60": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C61": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C62": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C63": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C64": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C65": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C66": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C67": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C68": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C69": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C70": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C71": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C72": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C73": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C74": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C75": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C76": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C77": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C78": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C79": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C80": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C81": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 11,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 12,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 13,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 14,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 15,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 16,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 17,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 18,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C82": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C83": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C84": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C85": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C86": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C87": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C88": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C89": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    },
+    "C90": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "J2": {
+        "contradicts_S": null,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": null,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": ""
+      },
+      "notes": ""
+    }
+  }
+}
