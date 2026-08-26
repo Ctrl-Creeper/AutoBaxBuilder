@@ -1,0 +1,13 @@
+{
+  "submission": "/Users/lewiswu/round2_coding/coder1/coder_answers.json",
+  "problems": [],
+  "accepted": true,
+  "tasks": 90,
+  "cases_recorded": 442,
+  "confidence_counts": {
+    "tie_break": 83,
+    "clear": 359
+  },
+  "determined_count": 267,
+  "submission_sha256": "35916e1c02b4466b9f45f232d98e4e6c6f5f1a5109819ebfd62cce932eda64d6"
+}

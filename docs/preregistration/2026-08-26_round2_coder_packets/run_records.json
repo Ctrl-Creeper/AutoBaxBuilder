@@ -6,12 +6,18 @@
     "canonical_payload_sha256": "20c105adf3328d8b9100aec6047a547533b524ff92fecafa479b97dfd9a48b43",
     "startup_prompt_sha256": "41bf76b963741394a40a01c30b4f968386908180e97c9a3e6078e66f54af2f52",
     "instructions_sha256": "8113b8f29ecf98ab539493a54eb491fb11b966d01e093feba87bba719b44c177",
-    "started_at": null,
-    "completed_at": null,
-    "model": null,
-    "submission_sha256": null,
-    "validation_report": null,
-    "execution_deviations": []
+    "started_at": "not recorded — the runs were launched outside this session",
+    "completed_at": "2026-08-26T21:00:31+08:00",
+    "model": "coder1",
+    "submission_sha256": "35916e1c02b4466b9f45f232d98e4e6c6f5f1a5109819ebfd62cce932eda64d6",
+    "validation_report": "submissions/coder1_validation_report.json",
+    "execution_deviations": [],
+    "coder_id_reported": "coder1",
+    "completed_at_source": "file mtime of the submission; not an authoritative wall-clock record",
+    "validation_result": "SCHEMA AND COMPLETENESS OK",
+    "tasks": 90,
+    "cases_recorded": 442,
+    "package_integrity_at_completion": "92 frozen files byte-identical"
   },
   "coder2": {
     "run_identifier": "round2-coder2",
@@ -20,13 +26,21 @@
     "canonical_payload_sha256": "20c105adf3328d8b9100aec6047a547533b524ff92fecafa479b97dfd9a48b43",
     "startup_prompt_sha256": "41bf76b963741394a40a01c30b4f968386908180e97c9a3e6078e66f54af2f52",
     "instructions_sha256": "8113b8f29ecf98ab539493a54eb491fb11b966d01e093feba87bba719b44c177",
-    "started_at": null,
-    "completed_at": null,
-    "model": null,
-    "submission_sha256": null,
-    "validation_report": null,
-    "execution_deviations": []
+    "started_at": "not recorded — the runs were launched outside this session",
+    "completed_at": "2026-08-26T21:01:03+08:00",
+    "model": "coder2-session-2026-08-26",
+    "submission_sha256": "1f254579d2d4c36f28e3f3e86a45ea2c492460071d05759a6b3c653edc5f6789",
+    "validation_report": "submissions/coder2_validation_report.json",
+    "execution_deviations": [],
+    "coder_id_reported": "coder2-session-2026-08-26",
+    "completed_at_source": "file mtime of the submission; not an authoritative wall-clock record",
+    "validation_result": "SCHEMA AND COMPLETENESS OK",
+    "tasks": 90,
+    "cases_recorded": 442,
+    "package_integrity_at_completion": "92 frozen files byte-identical"
   },
   "_note": "Filled in as the runs proceed. No field here is a research observation; model and timing are recorded only where the environment reports them reliably.",
-  "_prepared_at": "2026-08-26T19:19:51+08:00"
+  "_prepared_at": "2026-08-26T19:19:51+08:00",
+  "_frozen_at": "2026-08-26T21:03:54+08:00",
+  "_stop_rule": "Both submissions are now independently frozen. Reveal, scoring, adjudication and any cross-run comparison remain unperformed."
 }

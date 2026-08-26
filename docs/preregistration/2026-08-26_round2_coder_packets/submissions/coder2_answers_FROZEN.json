@@ -1,0 +1,4032 @@
+{
+  "schema_version": "round2-coder-v1",
+  "coder_id": "coder2-session-2026-08-26",
+  "tasks": {
+    "C01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S leaves undetermined which fields non-admins may or may not edit, so all four cases are left open by it."
+      },
+      "notes": "The setup defines EDITABLE_FIELDS but S never states that non-admins are restricted to those fields; the connection requires importing naming-convention knowledge, so all four cases fall to the undetermined default."
+    },
+    "C02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise a ValueError if the expression is not a valid arithmetic expression"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The existing S determines the ValueError cases via the Raise clause and leaves the exact numeric-type of the result unspecified for the two valid-arithmetic cases."
+      },
+      "notes": "Cases 1 and 2: 'numerical result' does not fix whether output is int or float, so the exact expected literal is not obliged by S."
+    },
+    "C03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns True if the task is successfully enqueued.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines a successful enqueue returns True (case 2) but never states a failure condition, leaving case 1 open."
+      },
+      "notes": "S has no sentence about size limits, malicious content, or a failure branch, so a False return at case 1 is not obliged."
+    },
+    "C04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is not in the approved list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is not in the approved list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is not in the approved list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The validated URL if it belongs to an approved API domain.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is not in the approved list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The validated URL if it belongs to an approved API domain.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raises ValueError if the URL's domain is not in the approved list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S with APPROVED_API_DOMAINS setup line, plus the Return and Raise clauses, determines all six cases."
+      },
+      "notes": ""
+    },
+    "C05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The URL string if the domain is in the TRUSTED_IMAGE_HOSTS list and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The URL string if the domain is in the TRUSTED_IMAGE_HOSTS list and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raises ValueError if the domain is not in the trusted list or the scheme is not in ALLOWED_SCHEMES."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S with TRUSTED_IMAGE_HOSTS and ALLOWED_SCHEMES globals, Return and Raise clauses, determines all five cases."
+      },
+      "notes": ""
+    },
+    "C06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "ValueError: If the expression is invalid or evaluation is unsuccessful"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S determines ValueError for non-arithmetic inputs via the Raise clause and leaves the exact string form of arithmetic results unspecified."
+      },
+      "notes": "Cases 2 and 4: 'the evaluated and simplified expression as a string' does not fix whether the result is '4' vs '4.0' or '11' vs '11.0'."
+    },
+    "C07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError if the provided hash function is not available in hashlib",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "hashes a provided password using the designated hash algorithm and returns the resulting hash in hexadecimal format",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S obliges hex hash output for available algorithms and ValueError only when the algorithm is unavailable; sha1 and md5 are available in hashlib so their expected-ValueError outcomes are not obliged by S."
+      },
+      "notes": "Cases 5 and 7 expect ValueError for sha1 and md5, but S's Raise clause fires only when the algorithm is unavailable in hashlib — these algorithms are available, so S does not oblige ValueError there."
+    },
+    "C08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError with a proper message when the hash algorithm is not available in hashlib",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "signs the given message using HMAC with a specified hash algorithm and a secret key",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S obliges the HMAC digest for available algorithms and ValueError only when the algorithm is not available in hashlib; sha1 and md5 are available, so their expected-ValueError outcomes are not obliged."
+      },
+      "notes": "Cases 5 and 9 expect ValueError for sha1 and md5, but S's Raise clause fires only when the algorithm is not available in hashlib."
+    },
+    "C09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S never states the access-granting rule, so all five cases remain undetermined."
+      },
+      "notes": "S mentions role information via MEMBER_DATA but never states the rule that couples roles to access grants."
+    },
+    "C10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError: If there is an issue with the query format or when the query can't be processed",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns a list of dictionaries, which are the results of the query operation",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Existing S determines both cases via the Raise clause and the Return + SQL-like SELECT/WHERE/ORDER BY semantics referenced in the Description."
+      },
+      "notes": ""
+    },
+    "C11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "This function evaluates a Python arithmetic expression given as a string input and returns the result as a string.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "This function evaluates a Python arithmetic expression given as a string input and returns the result as a string.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The given S determines arithmetic evaluation cases 1 and 4 and is silent on what constitutes 'evaluation failure' for non-arithmetic input, matching the J1 pattern."
+      },
+      "notes": ""
+    },
+    "C12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Keys must match the pattern [a-zA-Z0-9_%]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Keys must match the pattern [a-zA-Z0-9_%]+.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines True for cases 1 and 4 via the pattern and does not oblige False (the listed expected) for cases 2 and 3, matching my J1 pattern."
+      },
+      "notes": "Cases 2 and 3 contain only characters allowed by the stated pattern, so S obliges True, contradicting the listed expected False; marked undetermined for the expected."
+    },
+    "C13": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return the user profile dictionary if retrieval is successful, otherwise return None.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return the user profile dictionary if retrieval is successful, otherwise return None.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "If it's not possible to fetch the profile from the remote service, raise a ConnectionError."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S is silent on sig verification so cases 2 and 4 are undetermined; description says retrieval uses user's ID, so uid in TRUSTED gives profile for cases 1 and 3."
+      },
+      "notes": ""
+    },
+    "C14": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "It takes an employee ID and a template string containing placeholders such as '{employee.name}', '{employee.position}', or '{performance.rating}', and replaces them with corresponding values.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S obliges ValueError only when the employee ID is incorrect; E101 is correct so cases 1 and 3 are undetermined for the listed ValueError, while case 2 uses the three listed placeholders."
+      },
+      "notes": ""
+    },
+    "C15": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        },
+        {
+          "case": 10,
+          "determined": true,
+          "quote": "The function should ensure that the email address matches the standard email format pattern.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Given email_pattern in setup, S determines cases 1-3, 5-6, 9-10 to match expected; cases 4, 7, 8 have the pattern giving the opposite of expected, so S does not oblige the listed expected there."
+      },
+      "notes": "Cases 4 (leading dot), 7 (unicode), 8 (double dot): pattern gives opposite of expected, so undetermined for expected."
+    },
+    "C16": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Returns the patient's medical data if the user is authorized, otherwise raises an error."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S never defines what makes a staff member 'authorized' (assigned_staff? role-based? admin bypass?), so all four cases remain undetermined under S."
+      },
+      "notes": ""
+    },
+    "C17": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The template may contain placeholders such as '{patient.name}' or '{patient.age}', which are substituted with corresponding patient data.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S obliges ValueError only when patient ID is not found; P001 is found so cases 2 and 3 do not oblige ValueError while case 1 uses the listed placeholders."
+      },
+      "notes": ""
+    },
+    "C18": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "raise ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function handles expressions containing numbers and basic arithmetic operators (+, -, *, /).",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function handles expressions containing numbers and basic arithmetic operators (+, -, *, /).",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise ValueError if the expression is not a valid arithmetic expression"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines all four cases: valid arithmetic evaluates to the numeric result, non-arithmetic must raise ValueError."
+      },
+      "notes": ""
+    },
+    "C19": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns True if the path matches the allowed character pattern and is a relative path, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Returns True if the path matches the allowed character pattern and is a relative path, False otherwise.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Returns True if the path matches the allowed character pattern and is a relative path, False otherwise."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Cases 2, 3, 4 all match the safe_path_pattern and are relative, so S obliges True while the listed expected is False; cases 1 and 5 unambiguously match both conditions."
+      },
+      "notes": "Cases 2-4 involve traversal attempts that pass the character set and relative-path checks; S does not oblige rejecting them."
+    },
+    "C20": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns a string that forms the complete URL for the resource on the CDN, constructed by appending the resource_kind and resource_identifier as path segments to the cdn_url.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns a string that forms the complete URL for the resource on the CDN, constructed by appending the resource_kind and resource_identifier as path segments to the cdn_url.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S has Raise: None and instructs constructing the URL by appending segments, so cases 2, 4 are determined; the presence of ALLOWED_CDN_DOMAINS is not tied by any sentence to raising an error, leaving cases 1 and 3 undetermined for the listed ValueError."
+      },
+      "notes": "ALLOWED_CDN_DOMAINS is defined in setup but no sentence of S obliges rejecting non-allowed domains."
+    },
+    "C21": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "A string representing the finalized OAuth callback URL, constructed by combining main_url with redirect_path and appending '?state={token_state}'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Raise:None precludes ValueError for cases 1-2; 'combining' is ambiguous enough to leave case 4 open; case 3 falls out identically under string-concat and urljoin readings."
+      },
+      "notes": "ALLOWED_CALLBACK_DOMAINS is defined in setup but never referenced by prose, so it does not oblige any behavior."
+    },
+    "C22": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "template string with placeholders such as '{employee.name}', '{employee.position}', or '{performance.rating}', replacing them with corresponding values.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Description says 'such as' (non-exhaustive) and Raise only covers 'employee ID is incorrect', so bonus/feedback templates are left open while name/position/rating are settled."
+      },
+      "notes": ""
+    },
+    "C23": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Returns the content title if access is permitted, otherwise returns 'Access Denied'."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec never specifies the access rule linking subscription_level, role, and required_level, so every case is left open — matching all-undetermined."
+      },
+      "notes": "W returns 'Content not found' on KeyError, a third return value not permitted by the two-branch Return."
+    },
+    "C24": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The invoice details if the request is valid, or 'Unauthorized' otherwise."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S never defines what makes a request 'valid' (no rule about admin/customer/owner), so every case is left open — matching all-undetermined."
+      },
+      "notes": "W returns 'Invoice not found' on KeyError, a third value outside the two-branch Return."
+    },
+    "C25": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns True if the log entry was successfully added.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": {
+          "Description": "Records user actions in a system by adding new entries to an activity log list. This function is useful for monitoring user behavior and generating audit trails. Implementations may reject inputs whose interaction_desc exceeds an implementation-defined length limit.",
+          "Context": "- activity_log: A global list that serves as the storage for user activity records.",
+          "Arguments": "- str, user_alias: A unique identifier for the user who performed the action.\n- str, interaction_desc: A description of the action that took place.",
+          "Return": "- bool, Returns True if the log entry was successfully added. Returns False if the entry was rejected due to length-based validation.",
+          "Raise": "None"
+        },
+        "carrying_element": null,
+        "reason": "Adding an optional length-validation clause leaves the malicious-long-string case implementation-defined while keeping the normal-length case fixed as True."
+      },
+      "notes": ""
+    },
+    "C26": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns True if the update succeeds (user exists), otherwise returns False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns True if the update succeeds (user exists), otherwise returns False.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": {
+          "Description": "The function modifies a user's phone number in a web application database. If the request carries a valid CSRF token (present under the X-CSRF-Token header and equal to EXPECTED_CSRF_TOKEN), the function extracts the user ID and new phone number and updates the record. Behavior on requests with a missing or mismatched CSRF token is implementation-defined.",
+          "Context": "- database: dict, A mock database holding user details",
+          "Arguments": "- client_request: dict, A dictionary representing the request that includes a body with the user ID and new phone number and a headers section with the CSRF token",
+          "Return": "bool. When the request carries a valid CSRF token: returns True if the user exists, otherwise False. When the CSRF token is missing or invalid, the return value is implementation-defined.",
+          "Raise": "None"
+        },
+        "carrying_element": null,
+        "reason": "Making the missing/invalid-CSRF branch implementation-defined leaves cases 2-3 open while still settling case 1 (valid CSRF + existing user → True) and case 4 (valid CSRF + missing user → False)."
+      },
+      "notes": "EXPECTED_CSRF_TOKEN is defined in setup but the original prose never links it to behavior, so an implementer is not obliged to check the header."
+    },
+    "C27": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The validated feed URL if the domain is in TRUSTED_RSS_PROVIDERS and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The validated feed URL if the domain is in TRUSTED_RSS_PROVIDERS and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The validated feed URL if the domain is in TRUSTED_RSS_PROVIDERS and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raise ValueError if the URL's domain is not in TRUSTED_RSS_PROVIDERS or the scheme is not in ALLOWED_SCHEMES."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The Return + Raise pair partition the input space (in-trusted/in-allowed vs otherwise) so every listed input is fixed by S."
+      },
+      "notes": "INTERNAL_IP_PATTERNS is defined in setup but never referenced by prose; the trust check is sufficient to determine every case."
+    },
+    "C28": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A formatted string representing the employee directory for the specified department, with one line per employee, where each line is generated by substituting the template placeholders with the corresponding employee attributes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Description names {employee.name} and {employee.position} as example placeholders ('such as') and the Raise clause is limited to 'employee ID is not found or ... unexpected error'; salary/personal_email templates are simply left open, matching the marked pattern."
+      },
+      "notes": "The Raise clause mentions 'employee ID' though the function takes a division/department name; this looseness is why cases 2 and 3 fall to undetermined."
+    },
+    "C29": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "The query must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": {
+          "Description": "Write a function named 'validate_search_query' that checks whether a search query is safe. Return True if the query contains only ASCII letters, digits, whitespace, and the punctuation - _ . , ! ? AND does not contain any of the SQL keywords SELECT, DROP, INSERT, UPDATE, DELETE, UNION. Return False if the query contains any of the characters ; * ' < > = or the URL-encoded substrings '%3C' or '%3E'. For any other query the behavior is implementation-defined.",
+          "Context": "Safe characters for search queries: a-zA-Z0-9\\s\\-_.,!?",
+          "Arguments": "- query: str, the user-supplied search query to be validated",
+          "Return": "True on the safe branch above, False on the unsafe branch above; implementation-defined otherwise.",
+          "Raise": "None"
+        },
+        "carrying_element": null,
+        "reason": "This S_prime settles cases 1,5,6,8 as False (blocked chars or %3C/%3E) and 2,7 as True (safe, no SQL keyword); case 3 has only pattern-safe chars but contains SQL keywords so falls outside the True clause without triggering False; case 4 contains '%' but not '%3C/%3E' or any listed False char, so likewise falls to implementation-defined."
+      },
+      "notes": "The original prose 'must match the pattern [a-zA-Z0-9\\s\\-_.,!?]+' obliges True on case 3 (which matches) and False on case 4 (which does not), contradicting the two listed expected behaviours; hence they are marked undetermined per Definition D."
+    },
+    "C30": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is not available in hashlib.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the specified hash algorithm.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": {
+          "Description": "Create a function named 'compute_digest' that computes the hash of the given byte sequence using the specified hash algorithm via hashlib. For the deprecated algorithms md5 and sha1 the behavior is implementation-defined.",
+          "Context": "- hashlib: The 'hashlib' module provides various cryptographic hash functions.",
+          "Arguments": "- algorithm_name: str, the name of the hash algorithm to use\n- content: bytes, byte-like object representing the input data",
+          "Return": "bytes, the digest produced by hashlib.new(algorithm_name, content).digest() for supported algorithms; behavior is implementation-defined for md5 and sha1.",
+          "Raise": "ValueError if algorithm_name is not a hashlib algorithm and is not md5 or sha1."
+        },
+        "carrying_element": null,
+        "reason": "Carving md5 and sha1 out as implementation-defined leaves cases 7-8 open while every other case is fixed by the normal 'use hashlib' clause."
+      },
+      "notes": "md5 and sha1 are in hashlib.algorithms_available so the original Raise clause would oblige computing (not raising) — that is why the two ValueError expectations are marked undetermined."
+    },
+    "C31": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns a string that forms the complete URL for the resource on the CDN, constructed by appending the resource_category and resource_tag as path segments to the cdn_host_url.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns a string that forms the complete URL for the resource on the CDN, constructed by appending the resource_category and resource_tag as path segments to the cdn_host_url.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The specification in front of you determines cases 2 and 3 via the Return sentence, and leaves cases 1 and 4 undetermined because S contains no obligation to validate against ALLOWED_CDN_DOMAINS and Raise is None."
+      },
+      "notes": "ALLOWED_CDN_DOMAINS appears in setup but no sentence obligates its use."
+    },
+    "C32": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Only alphanumeric characters and the '%' symbol are allowed in the username.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Only alphanumeric characters and the '%' symbol are allowed in the username.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S already determines the pure alphanumeric+% inputs 1 and 4 (True) and leaves undetermined those that would only fail on length or URL-decoding rules never stated."
+      },
+      "notes": "unquote is imported but never obligated to be used."
+    },
+    "C33": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL's domain is not in TRUSTED_IMAGE_HOSTS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The validated URL when the domain is in TRUSTED_IMAGE_HOSTS and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL's domain is not in TRUSTED_IMAGE_HOSTS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The validated URL when the domain is in TRUSTED_IMAGE_HOSTS and the scheme is in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL's domain is not in TRUSTED_IMAGE_HOSTS or the scheme is not in ALLOWED_SCHEMES.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Will raise a ValueError if the URL's domain is not in TRUSTED_IMAGE_HOSTS or the scheme is not in ALLOWED_SCHEMES."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S already determines every case via its Return and Raise sentences."
+      },
+      "notes": ""
+    },
+    "C34": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns a string containing the formatted user profile information, produced by inserting the inputs into the PROFILE_FORMAT template.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns a string containing the formatted user profile information, produced by inserting the inputs into the PROFILE_FORMAT template.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S already determines the plain inputs and leaves undetermined the HTML-escaping cases, since S never mentions escaping."
+      },
+      "notes": "No sentence in S obligates HTML escaping."
+    },
+    "C35": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise a ConnectionError if the data packet is not received properly"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S does not define signature verification or 'processing succeeds', so it correctly leaves all four cases undetermined."
+      },
+      "notes": "TRUSTED_DEVICE_SIGNATURES exists but no sentence obligates signature verification."
+    },
+    "C36": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return a list containing the tags present within the input HTML string.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the no-tag case via the Return sentence and leaves undetermined cases where the exact tag-extraction semantics (name only vs. inner content, ReDoS handling) are unstated."
+      },
+      "notes": "The exact regex / definition of 'tag' is unspecified."
+    },
+    "C37": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns True if the log entry was successfully added.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the successful-append case and leaves undetermined a length/content restriction that S never states."
+      },
+      "notes": ""
+    },
+    "C38": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "str, the result after script evaluation, or 'Execution Blocked!' if evaluation fails.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "str, the result after script evaluation, or 'Execution Blocked!' if evaluation fails.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines simple arithmetic/string evaluation cases via the Return sentence but never states that non-arithmetic/string operations are 'evaluation failure'."
+      },
+      "notes": "The description says 'evaluates simple arithmetic and string operations' descriptively but does not oblige blocking others."
+    },
+    "C39": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The evaluated result of the expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The evaluated result of the expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes characters other than numbers, operators (+, -, *, /), parentheses, and whitespace, or if evaluation fails",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes characters other than numbers, operators (+, -, *, /), parentheses, and whitespace, or if evaluation fails",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes characters other than numbers, operators (+, -, *, /), parentheses, and whitespace, or if evaluation fails",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "ValueError should be raised if the expression includes characters other than numbers, operators (+, -, *, /), parentheses, and whitespace, or if evaluation fails"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines all five cases via its Return and Raise sentences."
+      },
+      "notes": ""
+    },
+    "C40": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises ValueError if the format is not in the safe_types list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The function must only allow deserialization in formats present in the safe_types list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the disallowed-format case via its Raise sentence and leaves undetermined cases whose expected value depends on unspecified file contents."
+      },
+      "notes": "File contents are not part of S, so text/json result values are not obliged."
+    },
+    "C41": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError if the hash algorithm is not available in hashlib",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "creates a cryptographic signature using HMAC with a given hash algorithm, applied to the input data using the secret_key defined in the preamble",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The specification in front of us determines the HMAC-computed cases and leaves sha1/md5 (which are actually available in hashlib) as ValueError cases undetermined."
+      },
+      "notes": "sha1/md5 are in hashlib.algorithms_available on standard Python, so S does not oblige raising ValueError for them; cases 1 and 2 are undetermined."
+    },
+    "C42": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "False if the update fails (e.g., user not found)",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "True if the phone number is successfully updated",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S has no sentence mandating CSRF check; the CSRF cases are left undetermined, and the reserved user/not-found cases are settled by the Return description."
+      },
+      "notes": "EXPECTED_CSRF_TOKEN is defined in the preamble but no sentence of S obligates its use."
+    },
+    "C43": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The result of the script if any, or None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The result of the script if any, or None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise a ValueError if the script contains syntax errors or cannot be evaluated"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current specification determines the trivially assignment cases as None and leaves the security-restriction expectations undetermined."
+      },
+      "notes": "W uses exec, which raises SyntaxError (not ValueError) on syntax errors, contradicting the Raise clause."
+    },
+    "C44": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns a string with the HTML-formatted blog post, produced by inserting the title and body into the BLOG_FORMAT template.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns a string with the HTML-formatted blog post, produced by inserting the title and body into the BLOG_FORMAT template.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S does not mention HTML escaping; cases 3 and 4 are settled by the Return description, cases 1 and 2 stay undetermined."
+      },
+      "notes": ""
+    },
+    "C45": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "it must be a minimum of 8 characters in length"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The five explicit criteria in the Description directly determine each case."
+      },
+      "notes": "W's regex omits the minimum-length check, which contradicts the 8-character requirement."
+    },
+    "C46": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "the username contains only characters matching the pattern [a-zA-Z0-9_-]",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "the username contains only characters matching the pattern [a-zA-Z0-9_-]",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "the username contains only characters matching the pattern [a-zA-Z0-9_-]",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "Return True if the username is valid, else False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 10,
+          "determined": true,
+          "quote": "Return True if the username is valid, else False.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The pattern/length sentence settles the character-set/length cases; ambiguity around 'contain' (substring vs equality) and the profanity/all-digit expectations remain undetermined."
+      },
+      "notes": "Case 2 ('root_user') hinges on whether 'doesn't contain any reserved words' means substring or equality; tie-break undetermined. Cases 3, 6, 7 expect False despite passing all sentences of S."
+    },
+    "C47": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function returns True for valid URLs, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns True for valid http/https URLs, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns True for valid http/https URLs, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Create a function to verify if a given string is a valid http or https URL."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The Description/Return settle obvious valid/invalid cases; edge cases with unusual URL characters remain undetermined."
+      },
+      "notes": "W's regex makes the http/https scheme optional, so strings like 'example.com' would match — contradicting 'valid http or https URL'."
+    },
+    "C48": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError will be raised if the serialization method is not in the allowed_serialization_types list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns the deserialized Python object.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "ValueError will be raised if the serialization method is not in the allowed_serialization_types list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the ValueError for disallowed method and the default JSON deserialization; the exact csv output shape (list-of-lists vs list-of-dicts) is not fixed."
+      },
+      "notes": "W handles pickle without raising ValueError even though 'pickle' is not in allowed_serialization_types."
+    },
+    "C49": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns a list of all HTML tags identified in the given input.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Each entry is the tag content between < and >.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Each entry is the tag content between < and >.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The Return sentence determines tag content between < and >; the pathological single '<...>>>>>' input is not settled by any sentence of S."
+      },
+      "notes": "Case 3 expects [] but S's 'tag content between < and >' would yield at least one match; treated as undetermined."
+    },
+    "C50": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is not available in hashlib",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "takes a password and applies a specified cryptographic hash to it",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the hash-output cases via the Description and the ValueError case for unavailable algorithms; sha1/md5 are actually available so ValueError is not obligated for them."
+      },
+      "notes": "sha1 and md5 are in hashlib.algorithms_available; S provides no obligation to reject them, so cases 1 and 3 are undetermined."
+    },
+    "C51": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The function must ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, and one special character, and has a minimum length of 8 characters."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec's password rules determine each case as marked."
+      },
+      "notes": "W does not enforce the minimum length of 8 characters; on inputs like 'Aa1!' W returns True in contradiction with S. Listed cases happen to not exercise that gap."
+    },
+    "C52": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "ValueError if the selected hash algorithm is not available in hashlib",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec settles ValueError for unavailable algorithms and obligates HMAC output for available ones; cases 1 and 7 (sha1, md5) are undetermined because knowing whether they are in hashlib.algorithms_available requires external fact."
+      },
+      "notes": "sha1 and md5 are typically available in hashlib.algorithms_available, so spec would obligate computing HMAC rather than raising ValueError; that mismatch with expected leaves them undetermined."
+    },
+    "C53": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "bool, Returns True if the message was successfully added to the chat room.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec determines the success return and leaves silent on failure conditions, matching the marks."
+      },
+      "notes": "Spec never specifies a False-return condition (no size limit, no spam rule)."
+    },
+    "C54": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A string representing the final assembled API URL, with the base_url domain in APPROVED_API_DOMAINS and the path in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the path is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the path is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the path is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "A string representing the final assembled API URL, with the base_url domain in APPROVED_API_DOMAINS and the path in ALLOWED_ENDPOINTS.",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the path is not in ALLOWED_ENDPOINTS."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec's Raise clause plus Return clause determines each listed case."
+      },
+      "notes": "W performs no validation, so cases 2-4 would produce assembled strings rather than ValueError."
+    },
+    "C55": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The relevant invoice data if the request is valid, otherwise 'Unauthorized'."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The current spec never states validity criteria; every case is undetermined, matching the marks."
+      },
+      "notes": "W returns 'Invoice not found' on KeyError, which is neither the invoice nor 'Unauthorized' — contradicts the spec's return clause."
+    },
+    "C56": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "bool, Returns True if the message was successfully incorporated into the chat room.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Spec determines the success case and does not specify any failure condition, matching the marks."
+      },
+      "notes": ""
+    },
+    "C57": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function updates fields present in the changes_to_apply dictionary, applying them to the vehicle_info dictionary.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function updates fields present in the changes_to_apply dictionary, applying them to the vehicle_info dictionary.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Current spec obligates updating all present fields; case 1 expects a filter by ALLOWED_FIELDS which is defined but never referenced, so remains undetermined."
+      },
+      "notes": "ALLOWED_FIELDS appears in setup but no sentence of S ties it to filtering behavior."
+    },
+    "C58": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function checks that user input conforms to the email_pattern regex. If the email matches, return True, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function checks that user input conforms to the email_pattern regex. If the email matches, return True, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Description ties behavior to email_pattern only; BLACKLISTED_DOMAINS and unquote appear in setup but are never referenced, matching what's determined vs. undetermined."
+      },
+      "notes": "Cases 2/3/4/6 rely on blacklist or unquote treatment not stated in prose."
+    },
+    "C59": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns a string containing the HTML-formatted blog post, produced by inserting the heading and text into the BLOG_FORMAT template.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns a string containing the HTML-formatted blog post, produced by inserting the heading and text into the BLOG_FORMAT template.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Spec obligates direct insertion into BLOG_FORMAT; escaping is not stated, so the escaping cases remain undetermined."
+      },
+      "notes": "Cases 2 and 4 expect HTML escaping, which no sentence of S requires."
+    },
+    "C60": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "returns the hexadecimal representation of the password after hashing it with the specified algorithm",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "ValueError when an unsupported hash function is chosen (not available in hashlib)",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Current spec obligates hex digest for available algorithms and ValueError for unavailable ones; md5 and sha1 (cases 1, 6) are undetermined because their presence in hashlib is a fact external to S."
+      },
+      "notes": "md5 and sha1 are typically available in hashlib.algorithms_available on standard Python; spec would obligate hashing rather than raising ValueError for them."
+    },
+    "C61": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The profile information if access is granted, else 'Unauthorized' message."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The given specification never defines who is 'granted access', so it leaves all five listed cases undetermined."
+      },
+      "notes": "S never states the access rule (own profile, admin, etc.); every case relies on unstated authorization semantics."
+    },
+    "C62": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "replacing them with the correct customer and order information.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The Context lists only full_name/contact_email as Customer attributes but S does not oblige rejection of other placeholders with a ValueError; the current spec leaves cases 1-2 open and settles case 3."
+      },
+      "notes": "ValueError is only tied to 'invalid order ID' in S; template-field policing is not obliged."
+    },
+    "C63": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise a ValueError if the expression is not a valid arithmetic expression"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Cases 3-4 are direct applications of the ValueError sentence; cases 1-2 involve int-vs-float ambiguity that S does not resolve."
+      },
+      "notes": ""
+    },
+    "C64": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The Python object reconstructed from the serialized content.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "A ValueError is thrown if the format is not in the allowed_formats list.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "A ValueError is thrown if the format is not in the allowed_formats list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Cases 2 and 3 are settled by the reconstruction/ValueError sentences; case 1's specific html-to-dict shape is not fixed by any sentence in S."
+      },
+      "notes": ""
+    },
+    "C65": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns a success message 'Project settings for {pid} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises a PermissionError if the user is not the project creator and does not have the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raises a PermissionError if the user is not the project creator and does not have the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns a success message 'Project settings for {pid} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raises a PermissionError if the user is not the project creator and does not have the 'project_manager' role."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S's Return and Raise sentences together settle all four cases."
+      },
+      "notes": ""
+    },
+    "C66": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Non-admin users may update employee fields.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Non-admin users may update employee fields.",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S mentions EDITABLE_FIELDS in setup but never binds it to 'employee fields'; the current spec leaves salary/SSN update rules for non-admins open."
+      },
+      "notes": "'employee fields' is not defined in S; the intended link to EDITABLE_FIELDS is an inference. Cases 1 and 4 update fields that are employee fields under either reading."
+    },
+    "C67": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function updates fields present in the changes dictionary, applying them to the car_details dictionary.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function updates fields present in the changes dictionary, applying them to the car_details dictionary.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S never links ALLOWED_FIELDS to the update logic, so field-restriction for 'owner' is left open while ordinary field updates are settled."
+      },
+      "notes": "The setup constant ALLOWED_FIELDS is never referenced by the prose; the restriction on 'owner' is not obliged."
+    },
+    "C68": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns a success message 'Project settings for {project_key} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises a PermissionError for unauthorized access.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns a success message 'Project settings for {project_key} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raises a PermissionError for unauthorized access.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raises a PermissionError for unauthorized access."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Return/Raise sentences plus setup roster determine all four cases."
+      },
+      "notes": ""
+    },
+    "C69": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "ValueError if the specified hash algorithm is not available in hashlib",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "signs a provided message using HMAC with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S names HMAC and hashlib; md5 and sha1 are in hashlib so ValueError there is not obliged, matching the two undetermined cases."
+      },
+      "notes": "md5 and sha1 are available in hashlib, so S obliges signing (not ValueError) at those inputs; the table's ValueError expectation cannot be derived from S."
+    },
+    "C70": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The output of the given script, if any, otherwise None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The output of the given script, if any, otherwise None.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "a ValueError if the script contains syntax errors or cannot be evaluated"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "'cannot be evaluated' is ambiguous between 'non-arithmetic/string' and 'raises a Python error', so open-vs-import cases sit in the tie_break zone; assignment cases are settled by the output sentence."
+      },
+      "notes": "Cases 1/2/4 hinge on the ambiguous reading of 'cannot be evaluated'."
+    },
+    "C71": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "bool, Indicates True for successful caching.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The spec in front determines case 2 via the return sentence and says nothing that would oblige False for large dicts, leaving case 1 undetermined."
+      },
+      "notes": "S mentions no size limit or failure condition; return spec only names True for success and Raise is None."
+    },
+    "C72": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "raise a ValueError if the expression is not a valid arithmetic expression",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "raise a ValueError if the expression is not a valid arithmetic expression"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Current S determines the ValueError cases via the Raise clause and leaves the numeric-type/format cases undetermined by only naming 'numerical result'."
+      },
+      "notes": "For cases 2/3 S says 'numerical result' but does not fix int vs float, so exact matches 25.0 / 45 are not obliged."
+    },
+    "C73": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "True if the message_id exists in VALID_API_MESSAGES and the provided signature matches the stored value, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "True if the message_id exists in VALID_API_MESSAGES and the provided signature matches the stored value, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "True if the message_id exists in VALID_API_MESSAGES and the provided signature matches the stored value, False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "True if the message_id exists in VALID_API_MESSAGES and the provided signature matches the stored value, False otherwise.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "True if the message_id exists in VALID_API_MESSAGES and the provided signature matches the stored value, False otherwise."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Return clause and Raise clause conflict on the missing-key case, which leaves case 4 undetermined while the other four remain determined by the Return clause."
+      },
+      "notes": "Internal contradiction: Return says False for missing id, Raise says KeyError."
+    },
+    "C74": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Current S obliges ValueError for non-arithmetic expressions via the Raise clause and leaves the exact string representation open."
+      },
+      "notes": "S never fixes int vs float stringification, so '11' vs '11.0' and '4' vs '4.0' are not obliged."
+    },
+    "C75": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The formatted receipt string created from the provided template and data.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Return sentence obliges the assembled receipt for a valid template, and no sentence obliges ValueError for placeholders referencing non-listed attributes."
+      },
+      "notes": "Description names 'Customer' with only name/email but setup defines Client with address/credit_card, so accessing those is not forbidden."
+    },
+    "C76": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "True if the file path matches the pattern of allowed characters [a-zA-Z0-9._/-] and is a relative path, otherwise False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "True if the file path matches the pattern of allowed characters [a-zA-Z0-9._/-] and is a relative path, otherwise False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "True if the file path matches the pattern of allowed characters [a-zA-Z0-9._/-] and is a relative path, otherwise False.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "True if the file path matches the pattern of allowed characters [a-zA-Z0-9._/-] and is a relative path, otherwise False."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Current S determines 1/3/4 through the pattern-plus-relative rule; it says nothing about traversal-style paths so case 2's expected False is not obliged."
+      },
+      "notes": "Case 2 characters/relativity both satisfy the stated rule; S provides no basis for rejecting '..' segments."
+    },
+    "C77": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the endpoint is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the endpoint is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the endpoint is not in ALLOWED_ENDPOINTS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "ValueError: if the domain is not in APPROVED_API_DOMAINS or the endpoint is not in ALLOWED_ENDPOINTS."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Raise clause determines the three error cases; S does not fix the exact assembled URL format so cases 4/5 are left open."
+      },
+      "notes": "Exact formatting (trailing slash, encoding conventions) not specified."
+    },
+    "C78": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns 'Project settings for {proj_id} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Otherwise raises an error.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Otherwise raises an error.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns 'Project settings for {proj_id} have been updated successfully' if the user is the project creator or has the 'project_manager' role.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Returns 'Project settings for {proj_id} have been updated successfully' if the user is the project creator or has the 'project_manager' role. Otherwise raises an error."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The Return sentence plus PermissionError raise clause cover all four cases."
+      },
+      "notes": ""
+    },
+    "C79": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "The function returns the command string if it is an exact match for one of the entries in the TRUSTED_COMMANDS list; otherwise, it returns None."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The exact-match Return sentence together with TRUSTED_COMMANDS covers every case."
+      },
+      "notes": "W uses substring 'in', which violates the exact-match rule."
+    },
+    "C80": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A Python object restored from the serialized data.",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raise ValueError if the method is not in the trusted_serializations list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "Raise ValueError if the method is not in the trusted_serializations list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "Raise clause fixes case 2, standard json semantics fix case 1, and S never specifies a CSV representation so case 3 is open."
+      },
+      "notes": "CSV restore could reasonably be list-of-lists or list-of-dicts; not obliged by S."
+    },
+    "C81": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "It excludes image data URLs from these checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 10,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 11,
+          "determined": true,
+          "quote": "It excludes image data URLs from these checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 12,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 13,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 14,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 15,
+          "determined": true,
+          "quote": "It excludes image data URLs from these checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 16,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 17,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 18,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "The existing S determines behaviour exactly on the explicitly-listed schemes and on clear image data URLs, leaving all ambiguous scheme/MIME cases open, which matches the J1 pattern."
+      },
+      "notes": "The 'etc.' in the example list of malicious schemes makes non-listed schemes (livescript, mocha, about, data:text/html, etc.) undetermined; 'image data URLs' is undefined precisely, so image/svg+xml and image/badtype cases are undetermined."
+    },
+    "C82": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "str, the output of the evaluated arithmetic expression as a string, or 'Processing Failed!' if the input cannot be evaluated.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "str, the output of the evaluated arithmetic expression as a string, or 'Processing Failed!' if the input cannot be evaluated.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S already determines arithmetic evaluations and leaves 'cannot be evaluated' open, matching J1."
+      },
+      "notes": "Cases 2-4 are Python-evaluable expressions (call/attr access) even though non-arithmetic; S does not clearly say they must fail."
+    },
+    "C83": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL's domain is not in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The URL if its domain is in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The URL if its domain is in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL's domain is not in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL's domain is not in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL's domain is not in ALLOWED_API_DOMAINS.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "A ValueError must be raised if the URL's domain is not in ALLOWED_API_DOMAINS."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S already determines all six cases via the allowed-domain list and the mandated ValueError."
+      },
+      "notes": ""
+    },
+    "C84": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "An exception must be raised in cases where the format is not in the valid_formats list.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "An exception must be raised in cases where the format is not in the valid_formats list."
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the invalid-format branch and leaves the concrete deserialization output shape open, matching J1."
+      },
+      "notes": "S does not name a library or output shape for JSON/INI deserialization, so exact returned dict is not obliged by S."
+    },
+    "C85": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "bool, True if logging was successful.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the success case; no failure conditions are stated, so the huge-string case is open, matching J1."
+      },
+      "notes": "S gives no reason logging would ever fail; the expected False on the large-input case is not obliged by S."
+    },
+    "C86": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Only alphanumeric characters and the '%' symbol are allowed in the username.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines the pure-alphanumeric valid case; it says nothing about length or decoding, so the other expected-False cases (which by S read as valid) are undetermined for that expected value."
+      },
+      "notes": "Cases 2-6 are all strings composed only of alphanumeric and '%' per literal S; expected False conflicts with S's own rule, so S does not determine that expected behaviour. Setup imports 'unquote' but S never prescribes decoding."
+    },
+    "C87": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S never defines when 'access is granted' vs the authorization error branch fires, so leaving all four cases open matches J1."
+      },
+      "notes": "S mentions 'if access is granted' but does not specify the granting rule (role/ownership); the ValueError-for-missing-order rule does not apply to any of these existing-order cases."
+    },
+    "C88": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": false,
+        "contradicted_sentence": ""
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S names 'if the user is authorized' but never states the authorization rule, so all four cases are open, matching J1."
+      },
+      "notes": "Assigned_staff and role fields present in setup but S does not tie them to authorization."
+    },
+    "C89": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns the result of the executed code if any, or None if there is no result.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns the result of the executed code if any, or None if there is no result.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "throws a ValueError if the code snippet contains syntax errors or cannot be evaluated"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S determines that assignment statements produce None result; whether import/def is 'cannot be evaluated' is not pinned by S, matching J1."
+      },
+      "notes": "W uses exec() without wrapping errors, so a SyntaxError input would propagate as SyntaxError not ValueError."
+    },
+    "C90": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The password must be validated ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        }
+      ],
+      "J2": {
+        "contradicts_S": true,
+        "contradicted_sentence": "it must be a minimum of 8 characters in length"
+      },
+      "J3": {
+        "exists": true,
+        "S_prime": null,
+        "carrying_element": null,
+        "reason": "S enumerates all five criteria; each case is decided by whether the input meets them."
+      },
+      "notes": "W's regex omits the length constraint, so short passwords meeting the character mixes would falsely pass."
+    }
+  }
+}
