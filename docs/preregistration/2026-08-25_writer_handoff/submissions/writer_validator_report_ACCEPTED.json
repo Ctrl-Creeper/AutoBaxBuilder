@@ -1,0 +1,12 @@
+{
+  "hard_failures": [],
+  "diagnostics": [
+    "candidate/original prose length ratio: median 0.88, min 0.53, max 1.16",
+    "tasks whose prose shrank below 40% of the original: 0 []",
+    "edits per task: median 4.0, max 6, tasks with none 1",
+    "empty editable fields across the submission: 40",
+    "failure codes recorded: {'F1_LIST_COUPLING': 25, 'F3_PREAMBLE_CARRIER': 12}"
+  ],
+  "accepted": true,
+  "submission_sha256": "86e2ef6b54a49502035813f91c3fde412533e4374e901931ba838d155f589379"
+}
