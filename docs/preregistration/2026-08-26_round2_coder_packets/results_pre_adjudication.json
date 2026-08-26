@@ -1,0 +1,624 @@
+{
+  "n_tasks": 90,
+  "n_cases": 442,
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 716450661,
+    "seed_derivation": "int(coder1_sha[:8],16) XOR int(coder2_sha[:8],16)",
+    "unit": "task, with replacement; all cases of a drawn task retained"
+  },
+  "warnings": [],
+  "raw_agreement": 0.9366515837104072,
+  "pooled_kappa_descriptive_only": 0.8693660410817201,
+  "cluster_aware_kappa_primary": 0.8041501515504781,
+  "cluster_aware_kappa_ci95": [
+    0.7083045268657552,
+    0.8930127609295592
+  ],
+  "gwet_ac1_sensitivity": 0.8771295818275685,
+  "gwet_ac1_ci95": [
+    0.8082193895980132,
+    0.9361472438572902
+  ],
+  "ac1_interpretation_note": "AC1 is reported as a number with its interval. Cohen kappa's verbal scales were not built for it and are not applied.",
+  "marginals": {
+    "coder1_determined_rate": 0.6040723981900452,
+    "coder2_determined_rate": 0.5723981900452488
+  },
+  "icc": {
+    "coder1": 0.41160533768199226,
+    "coder2": 0.3604874288114806
+  },
+  "between_task_variance": {
+    "coder1": 0.10029948178631305,
+    "coder2": 0.08926459381191891
+  },
+  "quote_concordance": {
+    "cases_both_determined": 246,
+    "exact_normalised_match": 173,
+    "not_mechanically_comparable": 0,
+    "rate": 0.7032520325203252,
+    "definition": "exact match after whitespace collapse and lowercasing; no similarity threshold was invented"
+  },
+  "tie_break_rate": {
+    "coder1": {
+      "tie_break": 83,
+      "clear": 359,
+      "rate": 0.18778280542986425
+    },
+    "coder2": {
+      "tie_break": 106,
+      "clear": 336,
+      "rate": 0.2398190045248869
+    }
+  },
+  "derived_class_table": [
+    {
+      "task": "C01",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C02",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C03",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C04",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C05",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C06",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C07",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C08",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C09",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C10",
+      "coder1": "SEPARABLE",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": false
+    },
+    {
+      "task": "C11",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C12",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C13",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C14",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C15",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C16",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C17",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C18",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": false
+    },
+    {
+      "task": "C19",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C20",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C21",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C22",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C23",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C24",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C25",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C26",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C27",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C28",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C29",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C30",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C31",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C32",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C33",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C34",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C35",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C36",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C37",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C38",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C39",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C40",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C41",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "SEPARABLE",
+      "agree": false
+    },
+    {
+      "task": "C42",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C43",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C44",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C45",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C46",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C47",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C48",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C49",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C50",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "SEPARABLE",
+      "agree": false
+    },
+    {
+      "task": "C51",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C52",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C53",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C54",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C55",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C56",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C57",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C58",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C59",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C60",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C61",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C62",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C63",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C64",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C65",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C66",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C67",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C68",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C69",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C70",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "SEPARABLE",
+      "agree": false
+    },
+    {
+      "task": "C71",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C72",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C73",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C74",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C75",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C76",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C77",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "OVER_STRIPPED",
+      "agree": false
+    },
+    {
+      "task": "C78",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C79",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C80",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C81",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C82",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C83",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    },
+    {
+      "task": "C84",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C85",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C86",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C87",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C88",
+      "coder1": "OVER_STRIPPED",
+      "coder2": "OVER_STRIPPED",
+      "agree": true
+    },
+    {
+      "task": "C89",
+      "coder1": "SEPARABLE",
+      "coder2": "SEPARABLE",
+      "agree": true
+    },
+    {
+      "task": "C90",
+      "coder1": "NOT_YET_BLINDED",
+      "coder2": "NOT_YET_BLINDED",
+      "agree": true
+    }
+  ],
+  "derived_class_marginals": {
+    "coder1": {
+      "NOT_YET_BLINDED": 27,
+      "SEPARABLE": 43,
+      "OVER_STRIPPED": 20
+    },
+    "coder2": {
+      "OVER_STRIPPED": 24,
+      "SEPARABLE": 45,
+      "NOT_YET_BLINDED": 21
+    }
+  },
+  "derived_class_agreement": {
+    "tasks_agreeing": 78,
+    "n_tasks": 90,
+    "rate": 0.8666666666666667
+  },
+  "note_structural_classes": "STRUCTURALLY_CARRIED and INSEPARABLE are reported separately and are never merged at the label level.",
+  "aggregate_disagreement_counts": {
+    "cases_disagreeing": 28,
+    "coder1_determined_only": 21,
+    "coder2_determined_only": 7,
+    "tasks_with_any_case_disagreement": 16,
+    "j2_disagreements": 7,
+    "j3_disagreements": 0
+  },
+  "scoring_script_sha256": "8e21b03162dc238619723bc6556bafa95cd2d883494f720aef1f22449730e2be"
+}
