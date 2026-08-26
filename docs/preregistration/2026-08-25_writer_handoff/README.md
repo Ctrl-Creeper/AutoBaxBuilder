@@ -7,7 +7,7 @@ it what the study is about or how any task is expected to turn out.
 |---|---|
 | Round-2 protocol | `4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da` |
 | Round-2 selection | `76fb71636427725be2b7bc8bb2d4e110414e92cfbd9f8ef0ba2babdd578ad36e` |
-| Writer package | `5a0e62c540fc4a16bff028e869262febb84b0a4918f88a4346947e123837278c` |
+| Writer package | `d6948dd1931235984a29d1832ee0521202ee3fde2441337efc2a83d2adefe12e` |
 
 ---
 
