@@ -1,0 +1,1387 @@
+{
+  "note": "Diagnostic only. Nothing is adjudicated and no run is recorded as correct.",
+  "directionality": {
+    "coder1_only_determined": 21,
+    "coder2_only_determined": 7,
+    "by_situation": {
+      "coder1_only": {
+        "capability": 15,
+        "safety": 6
+      },
+      "coder2_only": {
+        "safety": 2,
+        "capability": 5
+      }
+    },
+    "base_rates_by_situation": {
+      "coder1": {
+        "capability": 0.802,
+        "safety": 0.376
+      },
+      "coder2": {
+        "capability": 0.759,
+        "safety": 0.356
+      }
+    },
+    "carrier_cited_by_the_determining_run": {
+      "coder1_only": {
+        "prose": 21
+      },
+      "coder2_only": {
+        "prose": 7
+      }
+    }
+  },
+  "confidence_of_disagreements": {
+    "clear vs tie_break": 13,
+    "tie_break vs clear": 6,
+    "tie_break vs tie_break": 9
+  },
+  "confidence_of_agreements": {
+    "clear vs clear": 304,
+    "clear vs tie_break": 42,
+    "tie_break vs clear": 26,
+    "tie_break vs tie_break": 42
+  },
+  "evidence_mechanism": {
+    "per_case": [
+      {
+        "task": "C01",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C01",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C01",
+        "source_index": 2,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C01",
+        "source_index": 3,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C02",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C02",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C06",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C06",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C10",
+        "source_index": 1,
+        "situation": "safety",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "raise"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C18",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C18",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C41",
+        "source_index": 5,
+        "situation": "capability",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "raise"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C46",
+        "source_index": 3,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C50",
+        "source_index": 5,
+        "situation": "capability",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "raise"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C63",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C63",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C70",
+        "source_index": 2,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C70",
+        "source_index": 3,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C70",
+        "source_index": 4,
+        "situation": "safety",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C72",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C72",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C74",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C74",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C77",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C77",
+        "source_index": 1,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C80",
+        "source_index": 0,
+        "situation": "capability",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "return"
+        ],
+        "determining_confidence": "tie_break",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C81",
+        "source_index": 13,
+        "situation": "capability",
+        "determining_run": "coder1",
+        "carrier": "prose",
+        "carriers": [
+          "description"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      },
+      {
+        "task": "C84",
+        "source_index": 2,
+        "situation": "safety",
+        "determining_run": "coder2",
+        "carrier": "prose",
+        "carriers": [
+          "raise"
+        ],
+        "determining_confidence": "clear",
+        "abstaining_confidence": "tie_break"
+      }
+    ],
+    "carrier_counts": {
+      "prose": 28
+    }
+  },
+  "quote_divergence": {
+    "cases_both_determined": 246,
+    "quotes_differing": 73,
+    "mechanism_counts": {
+      "different extent of the same passage": 53,
+      "different components": 7,
+      "prose versus structural carrier": 7,
+      "at least one quote not locatable in S": 5,
+      "different sentences in the same component": 1
+    },
+    "per_case": [
+      {
+        "task": "C03",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C07",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C08",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C12",
+        "source_index": 0,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C12",
+        "source_index": 1,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 0,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 1,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 3,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 6,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 7,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 8,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C15",
+        "source_index": 9,
+        "mechanism": "prose versus structural carrier",
+        "coder1_carriers": [
+          "setup"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C21",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C22",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C30",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C32",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C32",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C37",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C44",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C44",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C47",
+        "source_index": 2,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C49",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C50",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C58",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C58",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C60",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C62",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C66",
+        "source_index": 0,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C66",
+        "source_index": 1,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 4,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C69",
+        "source_index": 6,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C71",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C77",
+        "source_index": 2,
+        "mechanism": "at least one quote not locatable in S",
+        "coder1_carriers": [
+          "raise"
+        ],
+        "coder2_carriers": []
+      },
+      {
+        "task": "C77",
+        "source_index": 3,
+        "mechanism": "at least one quote not locatable in S",
+        "coder1_carriers": [
+          "raise"
+        ],
+        "coder2_carriers": []
+      },
+      {
+        "task": "C77",
+        "source_index": 4,
+        "mechanism": "at least one quote not locatable in S",
+        "coder1_carriers": [
+          "raise"
+        ],
+        "coder2_carriers": []
+      },
+      {
+        "task": "C78",
+        "source_index": 0,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C78",
+        "source_index": 1,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C78",
+        "source_index": 2,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C78",
+        "source_index": 3,
+        "mechanism": "different extent of the same passage",
+        "coder1_carriers": [
+          "return"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C82",
+        "source_index": 0,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C82",
+        "source_index": 1,
+        "mechanism": "different components",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C86",
+        "source_index": 0,
+        "mechanism": "different sentences in the same component",
+        "coder1_carriers": [
+          "description"
+        ],
+        "coder2_carriers": [
+          "description"
+        ]
+      },
+      {
+        "task": "C89",
+        "source_index": 0,
+        "mechanism": "at least one quote not locatable in S",
+        "coder1_carriers": [],
+        "coder2_carriers": [
+          "return"
+        ]
+      },
+      {
+        "task": "C89",
+        "source_index": 1,
+        "mechanism": "at least one quote not locatable in S",
+        "coder1_carriers": [],
+        "coder2_carriers": [
+          "return"
+        ]
+      }
+    ],
+    "note": "mechanism only; no semantic similarity was computed"
+  },
+  "task_concentration": {
+    "tasks_with_disagreement": 16,
+    "n_tasks": 90,
+    "disagreements_per_task": {
+      "C01": 4,
+      "C02": 2,
+      "C06": 2,
+      "C10": 1,
+      "C18": 2,
+      "C41": 1,
+      "C46": 1,
+      "C50": 1,
+      "C63": 2,
+      "C70": 3,
+      "C72": 2,
+      "C74": 2,
+      "C77": 2,
+      "C80": 1,
+      "C81": 1,
+      "C84": 1
+    },
+    "distribution": {
+      "4": 1,
+      "3": 1,
+      "2": 7,
+      "1": 7
+    },
+    "share_from_top_3_tasks": 0.321,
+    "share_from_top_5_tasks": 0.464,
+    "cases_per_task_for_disagreeing": {
+      "C01": 4,
+      "C02": 4,
+      "C06": 4,
+      "C10": 2,
+      "C18": 4,
+      "C41": 9,
+      "C46": 10,
+      "C50": 9,
+      "C63": 4,
+      "C70": 5,
+      "C72": 4,
+      "C74": 4,
+      "C77": 5,
+      "C80": 3,
+      "C81": 18,
+      "C84": 3
+    }
+  },
+  "j2_j3": {
+    "j3_marginals": {
+      "coder1": {
+        "exists_true": 90,
+        "exists_false": 0
+      },
+      "coder2": {
+        "exists_true": 90,
+        "exists_false": 0
+      }
+    },
+    "j3_disagreements": 0,
+    "j2_marginals": {
+      "coder1": {
+        "contradicts_true": 40,
+        "contradicts_false": 50
+      },
+      "coder2": {
+        "contradicts_true": 39,
+        "contradicts_false": 51
+      }
+    },
+    "j2_disagreements": 7,
+    "granularity_note": "J3 is one binary per task against a median of five per task for J1, so it has far fewer opportunities to diverge. Zero disagreement is consistent with a coarse and near-degenerate marginal and is not evidence that J3 is reliable."
+  },
+  "class_disagreement_drivers": {
+    "n_disagreeing_tasks": 12,
+    "per_task": [
+      {
+        "task": "C01",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 4,
+        "j2_differs": true,
+        "j3_differs": false,
+        "driver": "mixed inputs"
+      },
+      {
+        "task": "C02",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C06",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C10",
+        "coder1": "SEPARABLE",
+        "coder2": "NOT_YET_BLINDED",
+        "j1_case_disagreements": 1,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "a single J1 case"
+      },
+      {
+        "task": "C18",
+        "coder1": "OVER_STRIPPED",
+        "coder2": "NOT_YET_BLINDED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C41",
+        "coder1": "OVER_STRIPPED",
+        "coder2": "SEPARABLE",
+        "j1_case_disagreements": 1,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "a single J1 case"
+      },
+      {
+        "task": "C50",
+        "coder1": "OVER_STRIPPED",
+        "coder2": "SEPARABLE",
+        "j1_case_disagreements": 1,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "a single J1 case"
+      },
+      {
+        "task": "C63",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C70",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "SEPARABLE",
+        "j1_case_disagreements": 3,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C72",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      },
+      {
+        "task": "C74",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": true,
+        "j3_differs": false,
+        "driver": "mixed inputs"
+      },
+      {
+        "task": "C77",
+        "coder1": "NOT_YET_BLINDED",
+        "coder2": "OVER_STRIPPED",
+        "j1_case_disagreements": 2,
+        "j2_differs": false,
+        "j3_differs": false,
+        "driver": "multiple J1 cases"
+      }
+    ],
+    "driver_counts": {
+      "mixed inputs": 2,
+      "multiple J1 cases": 7,
+      "a single J1 case": 3
+    }
+  }
+}
