@@ -1,0 +1,32 @@
+{
+  "coder1": {
+    "run_identifier": "round2-coder1",
+    "working_directory": "/Users/lewiswu/round2_coding/coder1",
+    "package_sha256": "d93ec1c317e6e767b6bb573ee447c14c65097b36d725f040ce7a36f9d72006ec",
+    "canonical_payload_sha256": "20c105adf3328d8b9100aec6047a547533b524ff92fecafa479b97dfd9a48b43",
+    "startup_prompt_sha256": "41bf76b963741394a40a01c30b4f968386908180e97c9a3e6078e66f54af2f52",
+    "instructions_sha256": "8113b8f29ecf98ab539493a54eb491fb11b966d01e093feba87bba719b44c177",
+    "started_at": null,
+    "completed_at": null,
+    "model": null,
+    "submission_sha256": null,
+    "validation_report": null,
+    "execution_deviations": []
+  },
+  "coder2": {
+    "run_identifier": "round2-coder2",
+    "working_directory": "/Users/lewiswu/round2_coding/coder2",
+    "package_sha256": "689549758001b31c1a4a92d4d1b547dc3364e4abdc56cede31c7da7a9a8b0997",
+    "canonical_payload_sha256": "20c105adf3328d8b9100aec6047a547533b524ff92fecafa479b97dfd9a48b43",
+    "startup_prompt_sha256": "41bf76b963741394a40a01c30b4f968386908180e97c9a3e6078e66f54af2f52",
+    "instructions_sha256": "8113b8f29ecf98ab539493a54eb491fb11b966d01e093feba87bba719b44c177",
+    "started_at": null,
+    "completed_at": null,
+    "model": null,
+    "submission_sha256": null,
+    "validation_report": null,
+    "execution_deviations": []
+  },
+  "_note": "Filled in as the runs proceed. No field here is a research observation; model and timing are recorded only where the environment reports them reliably.",
+  "_prepared_at": "2026-08-26T19:19:51+08:00"
+}
