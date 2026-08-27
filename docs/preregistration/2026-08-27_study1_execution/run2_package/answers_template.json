@@ -1,0 +1,3109 @@
+{
+  "schema_version": "study1-run-v1",
+  "coder_id": "",
+  "packet_fingerprint_sha256": "",
+  "tasks": {
+    "P01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P13": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P14": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P15": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P16": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P17": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P18": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P19": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P20": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P21": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P22": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P23": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P24": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P25": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P26": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P27": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P28": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P29": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P30": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P31": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P32": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P33": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P34": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 11,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 12,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 13,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 14,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 15,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 16,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 17,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 18,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P35": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P36": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P37": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P38": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P39": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P40": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P41": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P42": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P43": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P44": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P45": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P46": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P47": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P48": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P49": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P50": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P51": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P52": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P53": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P54": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P55": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P56": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P57": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P58": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P59": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P60": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P61": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P62": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P63": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P64": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P65": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P66": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P67": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P68": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P69": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P70": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P71": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P72": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P73": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P74": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P75": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P76": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P77": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P78": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P79": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P80": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P81": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P82": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P83": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P84": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P85": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P86": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 10,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P87": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 6,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 7,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 8,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 9,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P88": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P89": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 5,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    },
+    "P90": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 2,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 3,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        },
+        {
+          "case": 4,
+          "determined": null,
+          "quote": "",
+          "confidence": null
+        }
+      ],
+      "notes": ""
+    }
+  }
+}

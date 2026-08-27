@@ -1,0 +1,16 @@
+{
+  "protocol_sha256": "e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b",
+  "selection_sha256": "76fb71636427725be2b7bc8bb2d4e110414e92cfbd9f8ef0ba2babdd578ad36e",
+  "seeds": {
+    "task_order": 3839918896,
+    "run1_cases": 2045152187,
+    "run2_cases": 1833623879
+  },
+  "n_tasks": 90,
+  "n_cases": 442,
+  "canonical_payload_sha256": {
+    "run1": "3ca5f64e7ab07c01b59c4cca8e9105daad2cc67dcd6ec58604b1151478eac691",
+    "run2": "3ca5f64e7ab07c01b59c4cca8e9105daad2cc67dcd6ec58604b1151478eac691"
+  },
+  "checks_failed": []
+}

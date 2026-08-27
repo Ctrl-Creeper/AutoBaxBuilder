@@ -1,0 +1,2153 @@
+{
+  "protocol_sha256": "e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b",
+  "selection_manifest_sha256": "76fb71636427725be2b7bc8bb2d4e110414e92cfbd9f8ef0ba2babdd578ad36e",
+  "instruct_py_sha256": "f4cd8d8540b4cd19995d1aacfaac197655505c5908b2769c569011ace8bb0dc1",
+  "seeds": {
+    "task_order": 3839918896,
+    "run1_cases": 2045152187,
+    "run2_cases": 1833623879
+  },
+  "seed_derivation": "int(study1_protocol_sha256[0:8|8:16|16:24], 16)",
+  "tasks": {
+    "P01": {
+      "index": 989,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        1,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        3,
+        0,
+        1,
+        2
+      ]
+    },
+    "P02": {
+      "index": 156,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1
+      ]
+    },
+    "P03": {
+      "index": 1250,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        3,
+        0,
+        1,
+        2
+      ]
+    },
+    "P04": {
+      "index": 95,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        5,
+        4,
+        1,
+        3
+      ],
+      "run2_case_order": [
+        3,
+        1,
+        4,
+        2,
+        0,
+        5
+      ]
+    },
+    "P05": {
+      "index": 1152,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        0,
+        2,
+        1,
+        4
+      ],
+      "run2_case_order": [
+        0,
+        4,
+        3,
+        2,
+        1
+      ]
+    },
+    "P06": {
+      "index": 781,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        0,
+        6,
+        2,
+        7,
+        4,
+        1,
+        5
+      ],
+      "run2_case_order": [
+        2,
+        1,
+        5,
+        3,
+        0,
+        7,
+        6,
+        4
+      ]
+    },
+    "P07": {
+      "index": 131,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1,
+        3
+      ]
+    },
+    "P08": {
+      "index": 75,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        2,
+        1,
+        4
+      ],
+      "run2_case_order": [
+        4,
+        0,
+        1,
+        3,
+        2
+      ]
+    },
+    "P09": {
+      "index": 170,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    "P10": {
+      "index": 1096,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        2,
+        0,
+        1,
+        3
+      ],
+      "run2_case_order": [
+        4,
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "P11": {
+      "index": 673,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        3,
+        1,
+        2
+      ]
+    },
+    "P12": {
+      "index": 907,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P13": {
+      "index": 1091,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        3,
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        3,
+        1,
+        4,
+        0
+      ]
+    },
+    "P14": {
+      "index": 77,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        4,
+        3,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        2,
+        0,
+        1,
+        3,
+        4
+      ]
+    },
+    "P15": {
+      "index": 1171,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        4,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        1,
+        2,
+        4,
+        0
+      ]
+    },
+    "P16": {
+      "index": 844,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        3,
+        0,
+        2,
+        1
+      ]
+    },
+    "P17": {
+      "index": 1245,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "P18": {
+      "index": 1318,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P19": {
+      "index": 344,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        6,
+        2,
+        4,
+        7,
+        3,
+        0,
+        8,
+        5,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        6,
+        3,
+        2,
+        1,
+        5,
+        4,
+        8,
+        7
+      ]
+    },
+    "P20": {
+      "index": 1120,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        7,
+        3,
+        5,
+        6,
+        0,
+        4,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        5,
+        3,
+        2,
+        7,
+        4,
+        6,
+        1
+      ]
+    },
+    "P21": {
+      "index": 886,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P22": {
+      "index": 1291,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        8,
+        0,
+        6,
+        7,
+        5,
+        3,
+        4,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        4,
+        1,
+        6,
+        2,
+        3,
+        7,
+        5,
+        0,
+        8
+      ]
+    },
+    "P23": {
+      "index": 350,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        7,
+        0,
+        5,
+        6,
+        2,
+        8,
+        4,
+        3
+      ],
+      "run2_case_order": [
+        8,
+        4,
+        6,
+        5,
+        1,
+        7,
+        2,
+        0,
+        3
+      ]
+    },
+    "P24": {
+      "index": 1047,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        5,
+        0,
+        4,
+        2,
+        1,
+        3
+      ],
+      "run2_case_order": [
+        5,
+        1,
+        2,
+        0,
+        3,
+        4
+      ]
+    },
+    "P25": {
+      "index": 831,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        1
+      ]
+    },
+    "P26": {
+      "index": 1242,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        3,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        3,
+        0,
+        2,
+        1
+      ]
+    },
+    "P27": {
+      "index": 1147,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        3,
+        4,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        4,
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "P28": {
+      "index": 619,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P29": {
+      "index": 169,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        2
+      ]
+    },
+    "P30": {
+      "index": 97,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        4,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        3,
+        4,
+        0,
+        1
+      ]
+    },
+    "P31": {
+      "index": 1349,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P32": {
+      "index": 1078,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        0,
+        3
+      ],
+      "run2_case_order": [
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "P33": {
+      "index": 1099,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        4,
+        5,
+        0,
+        2,
+        3
+      ],
+      "run2_case_order": [
+        3,
+        1,
+        5,
+        4,
+        0,
+        2
+      ]
+    },
+    "P34": {
+      "index": 1342,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        1,
+        10,
+        0,
+        9,
+        13,
+        11,
+        12,
+        8,
+        16,
+        14,
+        2,
+        15,
+        6,
+        17,
+        7,
+        5,
+        4
+      ],
+      "run2_case_order": [
+        16,
+        0,
+        10,
+        6,
+        13,
+        9,
+        17,
+        1,
+        8,
+        15,
+        3,
+        4,
+        5,
+        2,
+        7,
+        12,
+        14,
+        11
+      ]
+    },
+    "P35": {
+      "index": 1110,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        5,
+        3,
+        2,
+        0,
+        4,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        4,
+        5,
+        0,
+        2,
+        1
+      ]
+    },
+    "P36": {
+      "index": 843,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    "P37": {
+      "index": 1237,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        3,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        2,
+        0,
+        1
+      ]
+    },
+    "P38": {
+      "index": 70,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    "P39": {
+      "index": 478,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        2,
+        3,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "P40": {
+      "index": 998,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "P41": {
+      "index": 1042,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        4,
+        1,
+        3,
+        2,
+        5
+      ],
+      "run2_case_order": [
+        1,
+        5,
+        2,
+        3,
+        4,
+        0
+      ]
+    },
+    "P42": {
+      "index": 630,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        1,
+        0
+      ]
+    },
+    "P43": {
+      "index": 358,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        8,
+        7,
+        1,
+        5,
+        6,
+        3,
+        2,
+        4,
+        0
+      ],
+      "run2_case_order": [
+        3,
+        4,
+        6,
+        1,
+        5,
+        8,
+        7,
+        2,
+        0
+      ]
+    },
+    "P44": {
+      "index": 1045,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        5,
+        4,
+        1,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        5,
+        1,
+        4,
+        3,
+        2
+      ]
+    },
+    "P45": {
+      "index": 107,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        1,
+        2,
+        0,
+        5,
+        6,
+        3,
+        7
+      ],
+      "run2_case_order": [
+        5,
+        2,
+        0,
+        4,
+        1,
+        7,
+        6,
+        3
+      ]
+    },
+    "P46": {
+      "index": 888,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P47": {
+      "index": 679,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0,
+        3,
+        2,
+        4
+      ],
+      "run2_case_order": [
+        3,
+        4,
+        2,
+        1,
+        0
+      ]
+    },
+    "P48": {
+      "index": 147,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    "P49": {
+      "index": 1134,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        3,
+        2,
+        0,
+        1
+      ]
+    },
+    "P50": {
+      "index": 1135,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        0,
+        2
+      ]
+    },
+    "P51": {
+      "index": 1298,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        4,
+        1,
+        2,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        4,
+        2,
+        3,
+        0
+      ]
+    },
+    "P52": {
+      "index": 678,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        3,
+        0,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        4,
+        1,
+        0,
+        3,
+        2
+      ]
+    },
+    "P53": {
+      "index": 465,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1,
+        3,
+        2
+      ],
+      "run2_case_order": [
+        0,
+        3,
+        2,
+        1
+      ]
+    },
+    "P54": {
+      "index": 153,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        2,
+        0
+      ]
+    },
+    "P55": {
+      "index": 611,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    "P56": {
+      "index": 626,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1
+      ]
+    },
+    "P57": {
+      "index": 141,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0,
+        2
+      ],
+      "run2_case_order": [
+        1,
+        2,
+        0
+      ]
+    },
+    "P58": {
+      "index": 92,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        3,
+        1,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        2,
+        0
+      ]
+    },
+    "P59": {
+      "index": 1014,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        2,
+        3,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        1,
+        4,
+        3,
+        0
+      ]
+    },
+    "P60": {
+      "index": 1140,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        2,
+        0
+      ]
+    },
+    "P61": {
+      "index": 123,
+      "case_situations_source_order": [
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        5,
+        4,
+        2,
+        0,
+        3
+      ],
+      "run2_case_order": [
+        5,
+        4,
+        2,
+        3,
+        0,
+        1
+      ]
+    },
+    "P62": {
+      "index": 1070,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        1,
+        0
+      ]
+    },
+    "P63": {
+      "index": 108,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        6,
+        7,
+        1,
+        8,
+        3,
+        2,
+        9,
+        0,
+        5,
+        4
+      ],
+      "run2_case_order": [
+        5,
+        1,
+        0,
+        9,
+        4,
+        8,
+        3,
+        7,
+        2,
+        6
+      ]
+    },
+    "P64": {
+      "index": 480,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        3,
+        1
+      ]
+    },
+    "P65": {
+      "index": 1363,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        2,
+        3,
+        4,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        3,
+        1,
+        0,
+        4
+      ]
+    },
+    "P66": {
+      "index": 1238,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1,
+        3
+      ]
+    },
+    "P67": {
+      "index": 1077,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        2,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        3,
+        2
+      ]
+    },
+    "P68": {
+      "index": 375,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        6,
+        8,
+        7,
+        3,
+        4,
+        5,
+        0,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        4,
+        0,
+        6,
+        7,
+        3,
+        2,
+        8,
+        1,
+        5
+      ]
+    },
+    "P69": {
+      "index": 1069,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        2,
+        0
+      ],
+      "run2_case_order": [
+        2,
+        0,
+        1
+      ]
+    },
+    "P70": {
+      "index": 1299,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1,
+        3
+      ]
+    },
+    "P71": {
+      "index": 658,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        0,
+        3,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "P72": {
+      "index": 1192,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1,
+        2,
+        4,
+        3
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        2,
+        4,
+        0
+      ]
+    },
+    "P73": {
+      "index": 1002,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        2,
+        0
+      ]
+    },
+    "P74": {
+      "index": 368,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        7,
+        6,
+        5,
+        0,
+        3,
+        1,
+        8,
+        2
+      ],
+      "run2_case_order": [
+        2,
+        4,
+        0,
+        1,
+        7,
+        3,
+        6,
+        8,
+        5
+      ]
+    },
+    "P75": {
+      "index": 338,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        3,
+        8,
+        0,
+        6,
+        7,
+        2,
+        5,
+        4
+      ],
+      "run2_case_order": [
+        2,
+        3,
+        5,
+        0,
+        4,
+        1,
+        8,
+        7,
+        6
+      ]
+    },
+    "P76": {
+      "index": 78,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        4,
+        2,
+        1,
+        3
+      ],
+      "run2_case_order": [
+        4,
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "P77": {
+      "index": 672,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        0,
+        3
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        2,
+        3
+      ]
+    },
+    "P78": {
+      "index": 54,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        3,
+        0,
+        2
+      ]
+    },
+    "P79": {
+      "index": 1390,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        2,
+        1,
+        3
+      ],
+      "run2_case_order": [
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "P80": {
+      "index": 917,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P81": {
+      "index": 1137,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        3,
+        1,
+        2,
+        0
+      ]
+    },
+    "P82": {
+      "index": 121,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        5,
+        0,
+        2,
+        1,
+        3,
+        4
+      ],
+      "run2_case_order": [
+        2,
+        5,
+        0,
+        1,
+        4,
+        3
+      ]
+    },
+    "P83": {
+      "index": 890,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        1
+      ]
+    },
+    "P84": {
+      "index": 879,
+      "case_situations_source_order": [
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        1,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        0
+      ]
+    },
+    "P85": {
+      "index": 1126,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        2,
+        1,
+        3,
+        0
+      ],
+      "run2_case_order": [
+        1,
+        0,
+        2,
+        3
+      ]
+    },
+    "P86": {
+      "index": 105,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        6,
+        5,
+        2,
+        8,
+        1,
+        7,
+        0,
+        4,
+        3,
+        9
+      ],
+      "run2_case_order": [
+        0,
+        2,
+        1,
+        7,
+        6,
+        4,
+        8,
+        5,
+        3,
+        9
+      ]
+    },
+    "P87": {
+      "index": 361,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "capability",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        6,
+        0,
+        2,
+        8,
+        1,
+        5,
+        3,
+        4,
+        7
+      ],
+      "run2_case_order": [
+        2,
+        0,
+        6,
+        4,
+        5,
+        8,
+        1,
+        3,
+        7
+      ]
+    },
+    "P88": {
+      "index": 1378,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        4,
+        3,
+        0,
+        2,
+        1
+      ],
+      "run2_case_order": [
+        1,
+        2,
+        4,
+        3,
+        0
+      ]
+    },
+    "P89": {
+      "index": 1179,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "safety",
+        "safety",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        2,
+        4,
+        0,
+        1
+      ],
+      "run2_case_order": [
+        2,
+        4,
+        1,
+        0,
+        3
+      ]
+    },
+    "P90": {
+      "index": 66,
+      "case_situations_source_order": [
+        "capability",
+        "capability",
+        "capability",
+        "safety"
+      ],
+      "run1_case_order": [
+        3,
+        1,
+        2,
+        0
+      ],
+      "run2_case_order": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "canonical_payload_sha256": {
+    "run1": "3ca5f64e7ab07c01b59c4cca8e9105daad2cc67dcd6ec58604b1151478eac691",
+    "run2": "3ca5f64e7ab07c01b59c4cca8e9105daad2cc67dcd6ec58604b1151478eac691"
+  }
+}
