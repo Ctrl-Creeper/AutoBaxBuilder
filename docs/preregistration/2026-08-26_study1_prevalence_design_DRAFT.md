@@ -1,7 +1,10 @@
 # Study 1 — Formal determination prevalence: design (DRAFT, nothing executed)
 
 **Status.** Design for a decision. Not a frozen protocol: no packet is built, no run is started, no
-benchmark sample is drawn, no case is coded. Where the design depends on a fact not yet verified at
+benchmark sample is drawn, no case is coded. *Revised 2026-08-27: §3's `security_policy` secondary
+analysis restated as a partial-identification estimand; §6's second-benchmark question resolved by
+an outcome-blind compatibility table. Design principles accepted by decision of 2026-08-27; freeze
+still pending.* Where the design depends on a fact not yet verified at
 source, that fact is flagged as a **freeze-time verification item** rather than assumed. Companion
 to the architecture draft (`e3fcad18…`) and the interpretation memo (`8aef7785…`).
 
@@ -87,11 +90,29 @@ The estimands are case-weighted rates over the population:
   specification is *for*; high θ_cap is expected and is not the defect).
 - **θ_all** — overall.
 - Secondary, derived and labelled brittle: task-level P(any safety case determined).
-- **Prespecified secondary (carrier split):** among determined safety cases, the fraction whose
-  quotes locate (mechanically, by the frozen normalised-containment rule) **only in
-  `security_policy`** versus elsewhere. This upgrades the exploratory "one-line ablation blinds only
-  ~14%" finding to formal grade: it is exactly the fraction of determination the benchmark's own
-  switch could remove.
+- **Prespecified secondary (`security_policy` analysis), stated strictly.** The instrument records
+  **one quote per determined case** — a single witness of obligation, not an exhaustive inventory of
+  carriers. Quote location therefore supports claims about *citation*, never about *unique source*,
+  and the analysis is worded and computed accordingly:
+  - Mechanical classes over determined safety cases, by the frozen normalised-containment rule,
+    multi-field location allowed: **(a)** the quote locates only in `security_policy`; **(b)** the
+    quote locates in at least one field other than `security_policy` (whether or not it also locates
+    there); (c) not locatable — excluded by the new validator check.
+  - The quantity of interest — *the fraction of determined safety cases whose determination would
+    survive removal of the `security_policy` field* — is **partially identified** by these classes:
+    - **lower bound = class (b) rate**: the cited obliging sentence persists verbatim after removal,
+      under a stated modularity assumption (the persisting sentence retains its obliging force when
+      `security_policy` is deleted);
+    - **upper bound = 1**: a policy-only citation does not show that no other field determines the
+      case — the single-quote design cannot rule out redundant carriers.
+  - Equivalently, the benchmark's own ablation switch can remove **at most** the class-(a) fraction
+    of determined safety cases; that "at most" is the formal successor of the exploratory ~14%
+    finding, and is the only directional claim made.
+  - Point-identifying the survival fraction would require a second blinded coding pass on
+    policy-ablated specifications — a different study, explicitly not part of Study 1.
+  - Language discipline throughout: quotes *cite* and *locate*; they are never described as the
+    *cause* or *the source* of determination. Reported per run, with a both-agree conservative
+    variant; descriptive, no confirmatory threshold.
 
 **Measurement rule without adjudication.** Two runs, no consensus step:
 
@@ -160,9 +181,29 @@ them mentions leakage:**
   selection time. For CWEval that is the frozen structural count (62/119) — structural, never
   per-case coding. For PurpleLlama, its structural audit.
 
-Applied today: CWEval satisfies B1–B5 (B1 via its own `_test_functionality` / `_test_security`
-split); PurpleLlama fails B1 (no functional oracle; the linter is the oracle). The decision to add
-a second benchmark is **deferred** and does not gate Study 1.
+**Outcome-blind compatibility table (assessed 2026-08-27).** Each cell records a structural fact of
+the shipped harness, verified at source; no specification content was read for leakage, and
+prominence played no part. CyberSecEval is judged on its secure-code-generation suites
+(instruct/autocomplete), the ones cited as its secure-coding measurement.
+
+| structural check | CWEval | CyberSecEval (PurpleLlama) | BaxBench |
+|---|---|---|---|
+| model-visible S exists | **yes** — function signature + docstring (task file above `BEGIN SOLUTION`) | yes — instruction prompt | yes — `api_spec` + `text_spec` + `scenario_instructions` |
+| case-level oracle behaviour *b* | **yes** — `pytest.param(inputs…, expected_output)` lists; per-input expected outputs, side-condition asserts included | **no** — oracle is `insecure_code_detector` static patterns over emitted text; no execution, no behaviour at an input | partial — `functional_tests` / `security_tests` are bool-returning *procedures* against a live app; *b* must be extracted from each test body by a frozen rule, not read off a declared expected output |
+| benchmark's own security/functionality metadata | **yes** — shipped `pytest.mark.functionality` / `pytest.mark.security` marks | **no** — no functional oracle exists at all, so no such distinction | yes — separate `functional_tests` and `security_tests` fields |
+| Definition D applies unchanged | **yes** — ⟨docstring-spec, expected output at input *i*⟩, the SeCodePLT shape; witness = shipped reference solution, and the harness already encodes the Gate-2 self-check (reference passes all, unsafe variant must fail security cases) | **no** — D is defined over oracle *behaviour*; a lint pattern over code text is a different construct (determination of code shape, not of behaviour) | strained — construct arguably unchanged, but the case unit is a procedure and *b* is implicit in assertion code; application needs an extraction layer that is itself a fresh instrument decision |
+| task-clustered case-level prevalence estimand | **yes** — cases within task files; clustering rule to freeze: language variants of one task share spec content, so cluster = task family (or restrict the frame to `core/py`) | no — no cases | weak — specs are identical across the 14 frameworks, so the effective sample is 28 scenario clusters with ~1 functional + 1–3 security procedures each; the estimand exists but with very low precision |
+| B2 development independence | yes — no part in developing Definition D or any protocol | yes (fails on B1, not B2) | **no** — AutoBaxBuilder *is* a BaxBench-format generator; the programme's exploratory origin (spec-grounding 89–91%, entanglement 35%, the 08-06/08-17 protocols) ran on this task family and harness |
+| B5 prior exposure to declare | structural classifier over all 119 test files (the 62/119 count); the `cwe_943_0` family read at case level during the classifier audit and this scan — **excluded from any formal frame** | structural audit only | extensive and disqualifying (see B2) |
+
+**Ruling.** Only **CWEval** satisfies B1–B5; if a second formal benchmark is added, it is CWEval, and
+the `cwe_943_0` family is excluded from its frame as examined material. **CyberSecEval fails B1 on
+three of five checks and is assigned to complementary characterization** — its prominence does not
+buy back a missing case-level oracle, and forcing D onto a linter would change the construct.
+**BaxBench is assigned to complementary characterization / origin material**: even setting aside the
+extraction-layer strain on B1, its entanglement with our own generator lineage (B2/B5) would turn a
+"transportability" claim circular — it is the family the construct was discovered on. Whether to
+*run* CWEval as the second formal benchmark remains **deferred** and does not gate Study 1.
 
 ## 7. Execution order (when approved — not now)
 
