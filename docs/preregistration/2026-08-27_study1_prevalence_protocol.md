@@ -1,12 +1,18 @@
-# Study 1 — Formal determination prevalence: design (DRAFT, nothing executed)
+# Study 1 — Formal determination prevalence protocol (FROZEN 2026-08-27)
 
-**Status.** Design for a decision. Not a frozen protocol: no packet is built, no run is started, no
-benchmark sample is drawn, no case is coded. *Revised 2026-08-27: §3's `security_policy` secondary
-analysis restated as a partial-identification estimand; §6's second-benchmark question resolved by
-an outcome-blind compatibility table. Second revision, same date: §3's model-visible-S boundary
-mechanically verified against the benchmark's `get_prompt` — no open items remain; §6.1 added,
-pinning CWEval as an unconditionally planned independent replication with fixed execution order.
-Design principles accepted by decision of 2026-08-27; freeze still pending.* Where the design depends on a fact not yet verified at
+**Status.** **Frozen protocol.** Approved and frozen 2026-08-27 after a mechanical consistency
+check (`scripts/study1_protocol_consistency_check.py`). From this point the estimand, the *S_t*
+boundary, the 90-task eligibility ruling, the coding rule, the inference plan, the
+`security_policy` secondary analysis, the CWEval inclusion decision, the execution order, and the
+CWEval replication parameters are not modified; any change is a dated addendum, never an edit.
+**Execution has not started**: no packet is built, no run is started, no benchmark sample is drawn,
+no case is coded, no prevalence is computed.
+
+*Drafted 2026-08-26. Revised 2026-08-27: §3's `security_policy` secondary analysis restated as a
+partial-identification estimand; §6 resolved by an outcome-blind compatibility table; §3's
+model-visible-S boundary mechanically verified against the benchmark's `get_prompt`; §6.1 added,
+pinning CWEval as an unconditionally planned replication with fixed execution order and fixed
+paper wording.* Where the design depends on a fact not yet verified at
 source, that fact is flagged as a **freeze-time verification item** rather than assumed. Companion
 to the architecture draft (`e3fcad18…`) and the interpretation memo (`8aef7785…`).
 
@@ -172,6 +178,12 @@ boundary that ±0.09 straddles it, the number is reported with its interval and 
 
 ## 6. Second formal benchmark
 
+**Decision (2026-08-27, recorded here): CWEval is adopted as the second formal benchmark, as an
+unconditionally planned replication under §6.1. CyberSecEval is assigned to complementary
+characterization; BaxBench to origin / design-family comparison. B1–B5 were not relaxed for any
+candidate's prominence.** The two paragraphs below are the retained rationale that preceded the
+decision.
+
 **Not required for the minimal publishable version.** The central claim is measurement-theoretic;
 industry-wide *structure* is carried by the frozen exploratory tier (CWEval 62/119 shared oracles,
 PurpleLlama's linter-as-oracle, SeCodePLT's ablation gap), and the formal prevalence claim is
@@ -211,8 +223,9 @@ prominence played no part. CyberSecEval is judged on its secure-code-generation 
 | B2 development independence | yes — no part in developing Definition D or any protocol | yes (fails on B1, not B2) | **no** — AutoBaxBuilder *is* a BaxBench-format generator; the programme's exploratory origin (spec-grounding 89–91%, entanglement 35%, the 08-06/08-17 protocols) ran on this task family and harness |
 | B5 prior exposure to declare | structural classifier over all 119 test files (the 62/119 count); the `cwe_943_0` family read at case level during the classifier audit and this scan — **excluded from any formal frame** | structural audit only | extensive and disqualifying (see B2) |
 
-**Ruling.** Only **CWEval** satisfies B1–B5; if a second formal benchmark is added, it is CWEval, and
-the `cwe_943_0` family is excluded from its frame as examined material. **CyberSecEval fails B1 on
+**Ruling.** Only **CWEval** satisfies B1–B5; by the decision recorded at the head of this section it
+is the second formal benchmark, and the `cwe_943_0` family is excluded from its frame as examined
+material. **CyberSecEval fails B1 on
 three of five checks and is assigned to complementary characterization** — its prominence does not
 buy back a missing case-level oracle, and forcing D onto a linter would change the construct.
 **BaxBench is assigned to complementary characterization / origin–design-family comparison**: even
@@ -254,8 +267,13 @@ design opportunity taken with SeCodePLT results in hand:
 - **Sample size:** by the frozen precision rule — worst-case 95% half-width ≤ 0.10 on the safety
   stratum — computed at CWEval protocol-freeze time with the then-available ICC planning values;
   the rule is fixed here, only its arithmetic remains.
+- **Paper wording, fixed now:** the CWEval arm is described as a *"preregistered cross-benchmark
+  replication using an independently developed benchmark."* The benchmark is independently
+  developed (B2); the *coding* is not described as fully independent, because prior exposure exists
+  and is disclosed (the structural classifier over all 119 test files, and the `cwe_943_0` family —
+  §6 table, B5 row). No stronger independence claim than this sentence may appear in the paper.
 
-## 7. Execution order (when approved — not now)
+## 7. Execution order (frozen; execution not yet started)
 
 freeze eligibility ruling + the §3 verified extraction rule → freeze packet builder, validator,
 analysis code, this design as protocol → build packets → isolation preflight → two blinded runs →
