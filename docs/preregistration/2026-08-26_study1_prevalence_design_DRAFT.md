@@ -3,8 +3,10 @@
 **Status.** Design for a decision. Not a frozen protocol: no packet is built, no run is started, no
 benchmark sample is drawn, no case is coded. *Revised 2026-08-27: §3's `security_policy` secondary
 analysis restated as a partial-identification estimand; §6's second-benchmark question resolved by
-an outcome-blind compatibility table. Design principles accepted by decision of 2026-08-27; freeze
-still pending.* Where the design depends on a fact not yet verified at
+an outcome-blind compatibility table. Second revision, same date: §3's model-visible-S boundary
+mechanically verified against the benchmark's `get_prompt` — no open items remain; §6.1 added,
+pinning CWEval as an unconditionally planned independent replication with fixed execution order.
+Design principles accepted by decision of 2026-08-27; freeze still pending.* Where the design depends on a fact not yet verified at
 source, that fact is flagged as a **freeze-time verification item** rather than assumed. Companion
 to the architecture draft (`e3fcad18…`) and the interpretation memo (`8aef7785…`).
 
@@ -71,14 +73,27 @@ Six mechanisms, all checkable:
 
 **Population.** The eligible SeCodePLT frame (864 tasks) under the frozen Round-2 eligibility rules.
 
-**The measured object.** For task *t*, the specification *S_t* is **the benchmark's default
-model-facing prompt content**: the seven `task_description` fields (`function_name`, `description`,
-`security_policy` — which ships on by default — `context`, `arguments`, `return`, `raise`) as the
-benchmark's default template renders them, plus the function signature.
-*Freeze-time verification item:* whether the default prompt also shows the `unittest.setup` code
-must be verified against the benchmark's own eval code, and the extraction rule frozen accordingly.
-The estimand is *the benchmark as shipped*, so nothing the model is shown may be dropped and nothing
-it is not shown may be added.
+**The measured object — mechanically verified against the benchmark's own prompt-construction code
+(no open items).** For task *t*, *S_t* is **the verbatim output of
+`SecodepltPythonInstruct.get_prompt(doc)`** with the shipped default `include_security_policy=True`
+(`virtue_code_eval/code_tasks/safety/generation/secodeplt/text_to_code/instruct.py`, default at
+line 41, prompt assembly lines 73–97). That output is, in order:
+
+1. six labelled prose fields — `Function Name`, `Description`, `Context (global variables and
+   imported packages)`, `Arguments`, `Return`, `Raise`;
+2. a `Security Policy:` line — present under the default, emitted only when the flag is on and the
+   field exists (lines 93–94);
+3. **the full `unittest.setup` block, rendered unconditionally as a fenced `Setup Code` section
+   (line 95) — the setup/preamble IS part of the default model-visible S**, and it remains visible
+   even under the benchmark's own `security_policy` ablation, which touches only item 2;
+4. the fixed closing instruction sentence (line 96).
+
+Two consequences are frozen with this boundary: **no rendered function signature exists in S_t** —
+no `def` line is shown; signature information reaches the model only through the prose fields — so
+the carrier components for quote attribution are exactly the seven labelled fields plus the setup
+block, and "signature" is not a separate visible carrier in Study 1. And the estimand is *the
+benchmark as shipped*: nothing the model is shown may be dropped, nothing it is not shown may be
+added.
 
 **Parameter.** For case *i* of task *t* (the benchmark's own `capability` / `safety` labels), let
 D(t,i) ∈ {0,1} be determination of the oracle behaviour at *i* by *S_t* per frozen Definition D.
@@ -200,14 +215,50 @@ prominence played no part. CyberSecEval is judged on its secure-code-generation 
 the `cwe_943_0` family is excluded from its frame as examined material. **CyberSecEval fails B1 on
 three of five checks and is assigned to complementary characterization** — its prominence does not
 buy back a missing case-level oracle, and forcing D onto a linter would change the construct.
-**BaxBench is assigned to complementary characterization / origin material**: even setting aside the
-extraction-layer strain on B1, its entanglement with our own generator lineage (B2/B5) would turn a
-"transportability" claim circular — it is the family the construct was discovered on. Whether to
-*run* CWEval as the second formal benchmark remains **deferred** and does not gate Study 1.
+**BaxBench is assigned to complementary characterization / origin–design-family comparison**: even
+setting aside the extraction-layer strain on B1, its entanglement with our own generator lineage
+(B2/B5) would turn a "transportability" claim circular — it is the family the construct was
+discovered on.
+
+### 6.1 CWEval as planned independent replication — decision taken now, outcome-blind
+
+**The CWEval replication is planned unconditionally, by this protocol, before any SeCodePLT
+prevalence number exists.** No SeCodePLT result — high, low, or awkward — is a permissible input to
+any go/no-go, scope, or design decision about CWEval. If the replication is ever abandoned, the
+grounds must be independent of every prevalence value and recorded in a dated deviation note.
+
+**Fixed execution order.** CWEval formal sampling and coding may start only after SeCodePLT's
+formal prevalence is complete: both original-S blinded runs validated and frozen by hash, and
+pre-adjudication scoring finished with the pre-committed code. Nothing CWEval-related other than
+the parameters pinned below is prepared before that point.
+
+**Parameters pinned now**, so the later CWEval protocol freeze is mechanical rather than a fresh
+design opportunity taken with SeCodePLT results in hand:
+
+- **Model-visible S, mechanically verified against CWEval's own code:** the default pipeline slices
+  each `*_task.*` file from the `BEGIN PROMPT` anchor to the `BEGIN SOLUTION` line — imports,
+  function signature, and docstring (`cweval/generate.py:43-44,117-129`) — and wraps that slice in
+  the fixed `DirectPrompt.PPT` template with the per-language instruction (`cweval/ppt/__init__.py`,
+  default `ppt='direct'` in `Gener.__init__`). *S_t* is that rendered prompt, verbatim. CWEval's
+  `SecurePrompt` variant (which appends "Your code should be secure…") is a non-default
+  security-framing switch and is **excluded** from *S_t*.
+- **Case unit and metadata:** one `pytest.param(inputs…, expected_output)` entry; the benchmark's
+  own `pytest.mark.functionality` / `pytest.mark.security` marks define the strata.
+- **Frame:** all shipped task files, minus the `cwe_943_0` family (examined material, §6 table).
+- **Clustering:** cluster = task family (CWE id + variant number) across language variants, since
+  language variants share specification content; task-level bootstrap over families.
+- **Estimand, coding, and reporting:** identical to §3–§5 — θ_saf headline, θ_cap, θ_all, case
+  weighting, two fresh blinded J1 runs with frozen v2 wording verbatim, own reliability reported,
+  two-run mean + measurement-disagreement interval, cluster bootstrap. (The `security_policy`
+  secondary analysis has no CWEval analogue — no such field exists — and is not ported.)
+- **Sample size:** by the frozen precision rule — worst-case 95% half-width ≤ 0.10 on the safety
+  stratum — computed at CWEval protocol-freeze time with the then-available ICC planning values;
+  the rule is fixed here, only its arithmetic remains.
 
 ## 7. Execution order (when approved — not now)
 
-freeze eligibility ruling + extraction rule (incl. the setup-visibility verification) → freeze
-packet builder, validator, analysis code, this design as protocol → build packets → isolation
-preflight → two blinded runs → validate + freeze both submissions → reveal, align, score with
-pre-committed code. Any deviation is recorded, never patched silently.
+freeze eligibility ruling + the §3 verified extraction rule → freeze packet builder, validator,
+analysis code, this design as protocol → build packets → isolation preflight → two blinded runs →
+validate + freeze both submissions → reveal, align, score with pre-committed code → **only then**
+the CWEval replication per §6.1: mechanical protocol freeze from the pinned parameters → sample →
+two blinded runs → score. Any deviation is recorded, never patched silently.
