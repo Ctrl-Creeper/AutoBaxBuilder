@@ -1,0 +1,33 @@
+{
+  "rule": "worst-case (p=0.5) 95% half-width <= 0.10 on the safety stratum",
+  "cluster": "family",
+  "frame": {
+    "families": 35,
+    "security_cases": 186,
+    "mean_security_cases_per_family": 5.314285714285714
+  },
+  "icc_planning_values": [
+    0.577,
+    0.572
+  ],
+  "n_eff_needed": 96.03999999999998,
+  "by_icc": {
+    "0.577": {
+      "design_effect": 3.489342857142857,
+      "security_cases_required": 335.1164879999999,
+      "families_required": 64,
+      "families_available": 35,
+      "target_attainable": false,
+      "census_achieved_worst_case_half_width": 0.13422747663526632
+    },
+    "0.572": {
+      "design_effect": 3.467771428571428,
+      "security_cases_required": 333.04476799999986,
+      "families_required": 63,
+      "families_available": 35,
+      "target_attainable": false,
+      "census_achieved_worst_case_half_width": 0.13381193029088265
+    }
+  },
+  "conclusion": "The frozen precision target is NOT attainable on this benchmark: 64 families would be required and 35 exist. The mechanical resolution is a census of the entire eligible frame; the achieved worst-case planning half-width is \u00b10.134. Recorded as GAP-1 in the protocol: \u00a76.1 fixed the precision rule but did not prescribe the insufficient-frame branch; census is the only choice-free completion."
+}

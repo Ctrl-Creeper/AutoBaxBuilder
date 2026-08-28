@@ -1,0 +1,1719 @@
+{
+  "benchmark_repo": "/Users/lewiswu/\u7f51\u7edc\u5b89\u5168/CWEval",
+  "enumeration_rule": "generate.py _get_cases: '*_task' stem, extension in LANGS, skip __pycache__",
+  "langs": [
+    "c",
+    "cpp",
+    "go",
+    "py",
+    "js"
+  ],
+  "pipeline_pins": {
+    "cweval/generate.py": "02d1ac46a031df8127ee0733c4aca00f81fae53999d8472399ddbb01a9081e1a",
+    "cweval/ppt/__init__.py": "85114932435a3f522a0b8523491aa6a5e48ca6908b2410d3a3d3b8eaec1c80c8",
+    "cweval/commons.py": "7dde102128db9a0642b31b05f2aaa1155ef0a65bdc80d46fcd0aab966a927adf"
+  },
+  "excluded_families": {
+    "cwe_943_0": [
+      "benchmark/core/c/cwe_943_0_c_task.c",
+      "benchmark/core/cpp/cwe_943_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_943_0_go_task.go",
+      "benchmark/core/js/cwe_943_0_js_task.js",
+      "benchmark/core/py/cwe_943_0_task.py"
+    ]
+  },
+  "exclusion_rule": "cwe_943_0 family: prior exposure disclosed and pre-excluded in the frozen Study-1 protocol \u00a76",
+  "n_task_files_enumerated": 119,
+  "n_task_files_eligible": 114,
+  "n_families_eligible": 35,
+  "case_totals_eligible": {
+    "functionality": 248,
+    "security": 186
+  },
+  "files_with_structural_issues": [],
+  "families": {
+    "cwe_020_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 20,
+      "n_security": 8,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_020_0_c_task.c",
+          "task_sha256": "127373927808f0eb028c8bc78416324cddc59a6ea32ce4c4b4fe75ac9bcdcd72",
+          "lang": "c",
+          "family": "cwe_020_0",
+          "test_file": "benchmark/core/c/cwe_020_0_c_test.py",
+          "test_sha256": "8779409922165789fa37a1fa5b34628c2f35389799ca9fe199b8585fe21816ac",
+          "n_functionality_marks": 4,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_020_0_cpp_task.cpp",
+          "task_sha256": "6b7f4eb83cbe70dc877882ea9630f42386cfa4b8b9670ee32f3a0561ed37719e",
+          "lang": "cpp",
+          "family": "cwe_020_0",
+          "test_file": "benchmark/core/cpp/cwe_020_0_cpp_test.py",
+          "test_sha256": "8779409922165789fa37a1fa5b34628c2f35389799ca9fe199b8585fe21816ac",
+          "n_functionality_marks": 4,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_020_0_go_task.go",
+          "task_sha256": "3457e416fad3bb0e2cf4326c6a517b5bfeb7ba1cd5d1f76398d7ad11e580ceb8",
+          "lang": "go",
+          "family": "cwe_020_0",
+          "test_file": "benchmark/core/go/cwe_020_0_go_test.py",
+          "test_sha256": "0d7c09291969ac653d412c846d5a8eed05f2441e99ff6788879d2cbac3fb7a3d",
+          "n_functionality_marks": 4,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_020_0_js_task.js",
+          "task_sha256": "089cc89d266063f4eda286bd2e6d08f902603e38d5ee0bfbf566386380822470",
+          "lang": "js",
+          "family": "cwe_020_0",
+          "test_file": "benchmark/core/js/cwe_020_0_js_test.py",
+          "test_sha256": "722db4002e5cf92041bc522754db6f1fa9048339518185a3ac377e6ecbbaf2bd",
+          "n_functionality_marks": 4,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_020_0_task.py",
+          "task_sha256": "f1a8965c94d80f65fa5bf386efef2f795ac12cf3df5dcc33ec7acde2c54e586a",
+          "lang": "py",
+          "family": "cwe_020_0",
+          "test_file": "benchmark/core/py/cwe_020_0_test.py",
+          "test_sha256": "68d81f3265bd444217539c936b3260f33550ad8ecd50765721e1e8e11e3b7326",
+          "n_functionality_marks": 4,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_022_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 25,
+      "n_security": 11,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_022_0_c_task.c",
+          "task_sha256": "df8ec2796f99ea4c472d7474ce012ae59db645c12c955c99540c131b531b464a",
+          "lang": "c",
+          "family": "cwe_022_0",
+          "test_file": "benchmark/core/c/cwe_022_0_c_test.py",
+          "test_sha256": "9fe435d55e11badf5552eb7a3448d7f739f5df1a0ca85aa6664d2ef22fe0c12e",
+          "n_functionality_marks": 5,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_022_0_cpp_task.cpp",
+          "task_sha256": "b7f89f86d6c71deee0adce78c80c594b5448300ee9332f9eded4cfcf7181938f",
+          "lang": "cpp",
+          "family": "cwe_022_0",
+          "test_file": "benchmark/core/cpp/cwe_022_0_cpp_test.py",
+          "test_sha256": "9fe435d55e11badf5552eb7a3448d7f739f5df1a0ca85aa6664d2ef22fe0c12e",
+          "n_functionality_marks": 5,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_022_0_go_task.go",
+          "task_sha256": "4374985d4749a5f9c7ca6919b0e895061e807077e1be14177775bdd3d6384aa0",
+          "lang": "go",
+          "family": "cwe_022_0",
+          "test_file": "benchmark/core/go/cwe_022_0_go_test.py",
+          "test_sha256": "9fe435d55e11badf5552eb7a3448d7f739f5df1a0ca85aa6664d2ef22fe0c12e",
+          "n_functionality_marks": 5,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_022_0_js_task.js",
+          "task_sha256": "f3f1bdf7803f216a72cf5d2052973f178864a999bfe44478e37a62a860de12e2",
+          "lang": "js",
+          "family": "cwe_022_0",
+          "test_file": "benchmark/core/js/cwe_022_0_js_test.py",
+          "test_sha256": "f0216ccab4b78c0b6931f392c7ecf25107c3803ca678a9ac83731ae817e50117",
+          "n_functionality_marks": 5,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_022_0_task.py",
+          "task_sha256": "884e7c68831093fc7dd17410f3f0cafc8ccadeb3a14cc3dbafdb01024fade7d3",
+          "lang": "py",
+          "family": "cwe_022_0",
+          "test_file": "benchmark/core/py/cwe_022_0_test.py",
+          "test_sha256": "9eb8ada4382d32c0393efb4504f77277efa7d7cc31c858d48fcecf50145acb26",
+          "n_functionality_marks": 5,
+          "n_security_marks": 3,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_022_2": {
+      "n_task_files": 4,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "py"
+      ],
+      "n_functionality": 8,
+      "n_security": 8,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_022_2_c_task.c",
+          "task_sha256": "8ae6b933696897991553ee021789894fd86a109cfd56ee0dddaaaf58c01be62d",
+          "lang": "c",
+          "family": "cwe_022_2",
+          "test_file": "benchmark/core/c/cwe_022_2_c_test.py",
+          "test_sha256": "46fb92a386417cecd917d1f04068e67f6e1491aef80e46e8dd90fa00200ea928",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_022_2_cpp_task.cpp",
+          "task_sha256": "e40aa1518a14bc916f525ad4bc61473e3af2cc4d051dfe78336cefdd7cf8dcea",
+          "lang": "cpp",
+          "family": "cwe_022_2",
+          "test_file": "benchmark/core/cpp/cwe_022_2_cpp_test.py",
+          "test_sha256": "46fb92a386417cecd917d1f04068e67f6e1491aef80e46e8dd90fa00200ea928",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_022_2_go_task.go",
+          "task_sha256": "f2d8f751264bf712a8926f5ae91c9f1849e978130bfee1f06b1b281ad9457afd",
+          "lang": "go",
+          "family": "cwe_022_2",
+          "test_file": "benchmark/core/go/cwe_022_2_go_test.py",
+          "test_sha256": "ca669114c3186086d47e9be1a08ca4f153231ec7319df13ba896da60be8123df",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_022_2_task.py",
+          "task_sha256": "5cc3d557a3266c2bae8b2cae2bade4327772f9e19a0f340e93033e2f2e7da81d",
+          "lang": "py",
+          "family": "cwe_022_2",
+          "test_file": "benchmark/core/py/cwe_022_2_test.py",
+          "test_sha256": "81d05615bfb639847c2a359a300b225c4b1fd927878f42a01297005f494fa19d",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_078_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 15,
+      "n_security": 20,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_078_0_c_task.c",
+          "task_sha256": "c6715b39ae9a67721c27a75281a79797f24bcee4b7dfb4458638b5a45f73f002",
+          "lang": "c",
+          "family": "cwe_078_0",
+          "test_file": "benchmark/core/c/cwe_078_0_c_test.py",
+          "test_sha256": "e80c1135af217537d34870585f8dca0edc677a48495bb15f563fe0228993a680",
+          "n_functionality_marks": 3,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_078_0_cpp_task.cpp",
+          "task_sha256": "06377b2c770166e4e643421b4cac49d4f557090277ae2c0d48dcc5b2bd9d8ece",
+          "lang": "cpp",
+          "family": "cwe_078_0",
+          "test_file": "benchmark/core/cpp/cwe_078_0_cpp_test.py",
+          "test_sha256": "e80c1135af217537d34870585f8dca0edc677a48495bb15f563fe0228993a680",
+          "n_functionality_marks": 3,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_078_0_go_task.go",
+          "task_sha256": "f32fe59f25e75c327c1f05bf9cc8538ef2628c19c777a99899e8a8266c17bed5",
+          "lang": "go",
+          "family": "cwe_078_0",
+          "test_file": "benchmark/core/go/cwe_078_0_go_test.py",
+          "test_sha256": "ff50b6aa1c37a5fa19a8f9badbdac3746ad763336b72cc0e43e171e825869031",
+          "n_functionality_marks": 3,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_078_0_js_task.js",
+          "task_sha256": "55c5325c0294ec70f86a1a91517834d2b71594961decdc4893732b31d9d587d3",
+          "lang": "js",
+          "family": "cwe_078_0",
+          "test_file": "benchmark/core/js/cwe_078_0_js_test.py",
+          "test_sha256": "7caea776d4178c34afa638cb71ef802fd79adb2ef4e83e0bc3beb4dfb0c00b32",
+          "n_functionality_marks": 3,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_078_0_task.py",
+          "task_sha256": "96e57659b54197f18895820a4e412d36a14c4daee248b32169f475d05b1bec21",
+          "lang": "py",
+          "family": "cwe_078_0",
+          "test_file": "benchmark/core/py/cwe_078_0_test.py",
+          "test_sha256": "c5b2435486b3b125851977a4a708713ff06337932a5668ebb0839d2baacde292",
+          "n_functionality_marks": 3,
+          "n_security_marks": 4,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_079_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_079_0_c_task.c",
+          "task_sha256": "70c3628ee3b7f22dfaaef33a9847bdfb18bf16ff86848b5b114153d5f68b9ddb",
+          "lang": "c",
+          "family": "cwe_079_0",
+          "test_file": "benchmark/core/c/cwe_079_0_c_test.py",
+          "test_sha256": "ab75b15c49b57818f95d37da7ed1f9f5228dbb5b0d13e2a25a028bb006bc4ac9",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_079_0_cpp_task.cpp",
+          "task_sha256": "f9798b7a69ec0c7b1dbaf46662a7d16241370bac79cf25701734233d66a116f1",
+          "lang": "cpp",
+          "family": "cwe_079_0",
+          "test_file": "benchmark/core/cpp/cwe_079_0_cpp_test.py",
+          "test_sha256": "ab75b15c49b57818f95d37da7ed1f9f5228dbb5b0d13e2a25a028bb006bc4ac9",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_079_0_go_task.go",
+          "task_sha256": "b1da3efa65f06fa7dedf8e1c8d7bfdb654afbf141a83380b4d6396500ec8a7e2",
+          "lang": "go",
+          "family": "cwe_079_0",
+          "test_file": "benchmark/core/go/cwe_079_0_go_test.py",
+          "test_sha256": "ab75b15c49b57818f95d37da7ed1f9f5228dbb5b0d13e2a25a028bb006bc4ac9",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_079_0_js_task.js",
+          "task_sha256": "06ed7a7e54078ec19c1a6c4483650e091f281cb1e1ca9af9082052abcb6d2c7c",
+          "lang": "js",
+          "family": "cwe_079_0",
+          "test_file": "benchmark/core/js/cwe_079_0_js_test.py",
+          "test_sha256": "52427f49da0cda1cd2964078d7066af1050942aceb2fe2e08d89660b3c97a789",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_079_0_task.py",
+          "task_sha256": "8d4209124d090fc31cb1750a3938f379680bbc1727d1e9dd13b5e0acd1a858a9",
+          "lang": "py",
+          "family": "cwe_079_0",
+          "test_file": "benchmark/core/py/cwe_079_0_test.py",
+          "test_sha256": "950a0c70a73e1984e7ff6ee986214705b3aa4b03f1fbfc5193bcfd6124d83f9c",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_095_0": {
+      "n_task_files": 2,
+      "langs": [
+        "js",
+        "py"
+      ],
+      "n_functionality": 6,
+      "n_security": 4,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/js/cwe_095_0_js_task.js",
+          "task_sha256": "65e14a96ac7a77f911770ca3c922e9a68bfac32fbf383f76fe7613d5ed41930c",
+          "lang": "js",
+          "family": "cwe_095_0",
+          "test_file": "benchmark/core/js/cwe_095_0_js_test.py",
+          "test_sha256": "0f2f84acfaff39304f01b25a86dd8d5a881a4a1880eed6948d3afffd52748a4a",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_095_0_task.py",
+          "task_sha256": "d1084017a014185f8785f4bd799ba660117734adbe355a6eeebed7810a9e2d04",
+          "lang": "py",
+          "family": "cwe_095_0",
+          "test_file": "benchmark/core/py/cwe_095_0_test.py",
+          "test_sha256": "87bc4533e9536e7805579acd7cc079fc351a7ad377e8910c78661b161a82028f",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_113_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 20,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_113_0_c_task.c",
+          "task_sha256": "cb8d060f639527f15c460486d9d0ee1d9da344d07b234618599cdb97a3c73e8b",
+          "lang": "c",
+          "family": "cwe_113_0",
+          "test_file": "benchmark/core/c/cwe_113_0_c_test.py",
+          "test_sha256": "89291ec28fb14cee7abcc1a41f5f21edb170ab4c056acc6939af33fb3775d3d8",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_113_0_cpp_task.cpp",
+          "task_sha256": "c691f059024c259150872de2e149f6e23db94c85a6349e5c3aeaf137a051101a",
+          "lang": "cpp",
+          "family": "cwe_113_0",
+          "test_file": "benchmark/core/cpp/cwe_113_0_cpp_test.py",
+          "test_sha256": "89291ec28fb14cee7abcc1a41f5f21edb170ab4c056acc6939af33fb3775d3d8",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_113_0_go_task.go",
+          "task_sha256": "01a971b689d00dd3805c64ca0d234e9c2da35bd1cc804524dc523cafb0d29374",
+          "lang": "go",
+          "family": "cwe_113_0",
+          "test_file": "benchmark/core/go/cwe_113_0_go_test.py",
+          "test_sha256": "ff04ec7ce339755e2760cba1e3de3d4dc9c723809c2c85fc24fbfd5da579ca8e",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_113_0_js_task.js",
+          "task_sha256": "db112ae0ecd715d5643a0ce5d0c19112e0039286dfb382fd2e57e4120d2dac24",
+          "lang": "js",
+          "family": "cwe_113_0",
+          "test_file": "benchmark/core/js/cwe_113_0_js_test.py",
+          "test_sha256": "bb8ab59274ab6ce181431500ae18f1cf976dd9cfb225d8597077348075027380",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_113_0_task.py",
+          "task_sha256": "2e0de9e7a01fe2f2352e4c8964e5f207de72326276b435d11495fc0471bfc4c1",
+          "lang": "py",
+          "family": "cwe_113_0",
+          "test_file": "benchmark/core/py/cwe_113_0_test.py",
+          "test_sha256": "f00417790819334ada01654975cdfe8264360404cc8ab690b6c5df2f3cf2bf5d",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_117_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 10,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_117_0_c_task.c",
+          "task_sha256": "1335bcf732fc00124826daa764822dd09be335ff0fcf4eb2add5cecb6b56d2f1",
+          "lang": "c",
+          "family": "cwe_117_0",
+          "test_file": "benchmark/core/c/cwe_117_0_c_test.py",
+          "test_sha256": "b111d8c4dad235191740723ef243a181188806bbdde7947343f2616a33e4d6b0",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_117_0_cpp_task.cpp",
+          "task_sha256": "ac8d4fe25f02d5ad18d08ffd8e48f6446b7587474a6837f4b64cc9f6fbbdaf44",
+          "lang": "cpp",
+          "family": "cwe_117_0",
+          "test_file": "benchmark/core/cpp/cwe_117_0_cpp_test.py",
+          "test_sha256": "b111d8c4dad235191740723ef243a181188806bbdde7947343f2616a33e4d6b0",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_117_0_go_task.go",
+          "task_sha256": "8eee41a7355f1b8872a99287b7cc9cf8a431904f7d4109f0e5543597ac671b24",
+          "lang": "go",
+          "family": "cwe_117_0",
+          "test_file": "benchmark/core/go/cwe_117_0_go_test.py",
+          "test_sha256": "b111d8c4dad235191740723ef243a181188806bbdde7947343f2616a33e4d6b0",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_117_0_js_task.js",
+          "task_sha256": "f4c4384318862d8b17c3286ba06381f0b0a7c02e2616062b2e446b57d2e6d80d",
+          "lang": "js",
+          "family": "cwe_117_0",
+          "test_file": "benchmark/core/js/cwe_117_0_js_test.py",
+          "test_sha256": "f8a1486ec9f77c5b8dcc813ee3ae38153e62b730d51f870a4ad57ce883487f7d",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_117_0_task.py",
+          "task_sha256": "1245d7a28f079e9e3c37a0caaecc84485ab5a3c32f54476d2fb5593552a3c55d",
+          "lang": "py",
+          "family": "cwe_117_0",
+          "test_file": "benchmark/core/py/cwe_117_0_test.py",
+          "test_sha256": "b1ff5400a5eb4e54c380c02125447522cae7a521b6f262228d86dc2ad9754071",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_119_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_119_0_c_task.c",
+          "task_sha256": "204a373c54d0523bd670840bbeaf9f8962eeb3ab74c21e93f55e2ffb0eef935d",
+          "lang": "c",
+          "family": "cwe_119_0",
+          "test_file": "benchmark/lang/c/cwe_119_0_c_test.py",
+          "test_sha256": "ea0bc458ff669cef18100d2524f22fe7201a1066d032574453eccca18da99c86",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_120_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_120_0_c_task.c",
+          "task_sha256": "f235adb50114616ff3634ebd9488656594b059505fb17549e48bb73a62f68be1",
+          "lang": "c",
+          "family": "cwe_120_0",
+          "test_file": "benchmark/lang/c/cwe_120_0_c_test.py",
+          "test_sha256": "d2a5fc9ac53bd8251c0aca4f0c7016c2c2c4a7b971df0bd3a10bfe4004ad60c2",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_125_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_125_0_c_task.c",
+          "task_sha256": "77f65a8b015d0312084f75079bfccabbb4866c92791bd36353ff143fb67bcc16",
+          "lang": "c",
+          "family": "cwe_125_0",
+          "test_file": "benchmark/lang/c/cwe_125_0_c_test.py",
+          "test_sha256": "519b48e39e4b311feb39a17ce1dc98bd1f3b205366f975ddd843ed623eebbc92",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_131_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_131_0_c_task.c",
+          "task_sha256": "7c43dd94e2ecc79d69646467714b125b08b41ba43c8b1d57563b5bee13ee0539",
+          "lang": "c",
+          "family": "cwe_131_0",
+          "test_file": "benchmark/lang/c/cwe_131_0_c_test.py",
+          "test_sha256": "a0ea02c9816e23a3e45941c61cc52ec6e0718ce7903110151dd321fdf83d3811",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_1333_0": {
+      "n_task_files": 3,
+      "langs": [
+        "cpp",
+        "js",
+        "py"
+      ],
+      "n_functionality": 9,
+      "n_security": 6,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/cpp/cwe_1333_0_cpp_task.cpp",
+          "task_sha256": "a6f0d601b3e29d40b015d1ec3e0c7de09b120a0a560b7617a1831c7e00dba642",
+          "lang": "cpp",
+          "family": "cwe_1333_0",
+          "test_file": "benchmark/core/cpp/cwe_1333_0_cpp_test.py",
+          "test_sha256": "b7d5c429a5c58a288b6e412cad8421d066d714f58047fd10872770c6503fe0b7",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_1333_0_js_task.js",
+          "task_sha256": "4b961984972c7c6ba41a2b0065b04aba4c078522dfe36ace6d449a407b0c2447",
+          "lang": "js",
+          "family": "cwe_1333_0",
+          "test_file": "benchmark/core/js/cwe_1333_0_js_test.py",
+          "test_sha256": "dc1cacc1dd73860c98679d815579a07e4e949524f7dbe72a1c082c3a46167df1",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_1333_0_task.py",
+          "task_sha256": "bd03a0de3d191958e096857067a7d01da15a97f444113e0d66bea6f2e009b5a1",
+          "lang": "py",
+          "family": "cwe_1333_0",
+          "test_file": "benchmark/core/py/cwe_1333_0_test.py",
+          "test_sha256": "d9c61bf40f047ca1b8b052d297e23646fcbde49a3e0b58194afa036c7c073957",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_134_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_134_0_c_task.c",
+          "task_sha256": "7c3fcec73d6cc1fa534da75e0dc886b892e03325facfd902bb033e3e3f2604f1",
+          "lang": "c",
+          "family": "cwe_134_0",
+          "test_file": "benchmark/lang/c/cwe_134_0_c_test.py",
+          "test_sha256": "5ed44fb11062f748f833efbfae02d20cb933bd4a0075019cf423b00c287baf5e",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_170_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_170_0_c_task.c",
+          "task_sha256": "e62558b8acb697acf9a7cc83465e1f7cbf998460084d05746feee3a35b7c2f33",
+          "lang": "c",
+          "family": "cwe_170_0",
+          "test_file": "benchmark/lang/c/cwe_170_0_c_test.py",
+          "test_sha256": "99f42a2f80423a6506c487beb5d5f0da8ef1670f4722d04e75b79e42e5841260",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_190_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 1,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_190_0_c_task.c",
+          "task_sha256": "88fcb4214e9393dd0d165d3db08e280ed54aa48fab2e9677f1be8bddd6f14f30",
+          "lang": "c",
+          "family": "cwe_190_0",
+          "test_file": "benchmark/lang/c/cwe_190_0_c_test.py",
+          "test_sha256": "402969efa90df4215577d9f043e0ae9fa403578c767cb1b585a53ca470f82eef",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_326_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_326_0_c_task.c",
+          "task_sha256": "f7362fbf73fec1e4356817f09d433b7354022b41c021540ce95d50811bd7e12b",
+          "lang": "c",
+          "family": "cwe_326_0",
+          "test_file": "benchmark/core/c/cwe_326_0_c_test.py",
+          "test_sha256": "a19a29e8c69b50fa773da203a90005aab986967ad3e8e2da9e12911d58b976cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_326_0_cpp_task.cpp",
+          "task_sha256": "f93ee15026ac2a497898e4214571e5623db0f4a80381a534fa3ec42cbd9e1617",
+          "lang": "cpp",
+          "family": "cwe_326_0",
+          "test_file": "benchmark/core/cpp/cwe_326_0_cpp_test.py",
+          "test_sha256": "a19a29e8c69b50fa773da203a90005aab986967ad3e8e2da9e12911d58b976cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_326_0_go_task.go",
+          "task_sha256": "d7c77f65a470a4807593b3f23dc21bbd572e506d893a2d6e47db339a8e83edaf",
+          "lang": "go",
+          "family": "cwe_326_0",
+          "test_file": "benchmark/core/go/cwe_326_0_go_test.py",
+          "test_sha256": "a19a29e8c69b50fa773da203a90005aab986967ad3e8e2da9e12911d58b976cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_326_0_js_task.js",
+          "task_sha256": "6c296f51a69171eedb41f801990b6c2282c83ea87c716f9a9b2d60a9154c8d71",
+          "lang": "js",
+          "family": "cwe_326_0",
+          "test_file": "benchmark/core/js/cwe_326_0_js_test.py",
+          "test_sha256": "d857ab316e6f4e1ac244f35b845b6fa8ee1ae9763532fbc096a713cf12a67763",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_326_0_task.py",
+          "task_sha256": "cebafaf7883a89d1f99de450f2b656cfb0c8056a9d38bc02b57c29c61e8be655",
+          "lang": "py",
+          "family": "cwe_326_0",
+          "test_file": "benchmark/core/py/cwe_326_0_test.py",
+          "test_sha256": "f6d17d3d9522941747be849416852249cdab0b70060238831de0629878070467",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_326_1": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_326_1_c_task.c",
+          "task_sha256": "887c9ca9414c8fd7bc1fe9f0a89c4d83f9387f246eca704d8430d6d4082b59c8",
+          "lang": "c",
+          "family": "cwe_326_1",
+          "test_file": "benchmark/core/c/cwe_326_1_c_test.py",
+          "test_sha256": "975932f367af6535c77d88ad449bfcb0819ad69b07a7396b4553b68906804967",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_326_1_cpp_task.cpp",
+          "task_sha256": "e01dfdac9db946f8bafab90b19e98fb354f0ee914ce7b8d1ebb8f8d824715cef",
+          "lang": "cpp",
+          "family": "cwe_326_1",
+          "test_file": "benchmark/core/cpp/cwe_326_1_cpp_test.py",
+          "test_sha256": "975932f367af6535c77d88ad449bfcb0819ad69b07a7396b4553b68906804967",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_326_1_go_task.go",
+          "task_sha256": "59fcc8051882e6f7ff6e04b144bb6beede4bfdcb66d722b016eb03234dc2d725",
+          "lang": "go",
+          "family": "cwe_326_1",
+          "test_file": "benchmark/core/go/cwe_326_1_go_test.py",
+          "test_sha256": "975932f367af6535c77d88ad449bfcb0819ad69b07a7396b4553b68906804967",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_326_1_js_task.js",
+          "task_sha256": "777b325176aa5964949ed5d7de9aa41e8d7f85f262188b066f6060582fe69135",
+          "lang": "js",
+          "family": "cwe_326_1",
+          "test_file": "benchmark/core/js/cwe_326_1_js_test.py",
+          "test_sha256": "c3e462fcb61843e2f351d76a40ad196b7872b53bed3a00bee48a3e1b38f3862f",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_326_1_task.py",
+          "task_sha256": "1016d4df5d3fab1ffddf54e5f0baefe0aca659240bf4c4e35f4ad4f1edaa5ffb",
+          "lang": "py",
+          "family": "cwe_326_1",
+          "test_file": "benchmark/core/py/cwe_326_1_test.py",
+          "test_sha256": "c21de19881eab2eee80780c2dc06ccf0a9278f48d4cf824e852b29f74236d21b",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_327_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_327_0_c_task.c",
+          "task_sha256": "cb363cd603de6311fae6a478e60b26a9af3f47c9c32735224cf9f2e430b667d1",
+          "lang": "c",
+          "family": "cwe_327_0",
+          "test_file": "benchmark/core/c/cwe_327_0_c_test.py",
+          "test_sha256": "2da7689ddae87703b1a2723f7ea46407f4c8e694394b81e0a3a9d29b8a3f12cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_327_0_cpp_task.cpp",
+          "task_sha256": "c902b46e0d804052627b75688b4a1b63ef6f9f4607fcdcd937a23f323db89f2d",
+          "lang": "cpp",
+          "family": "cwe_327_0",
+          "test_file": "benchmark/core/cpp/cwe_327_0_cpp_test.py",
+          "test_sha256": "2da7689ddae87703b1a2723f7ea46407f4c8e694394b81e0a3a9d29b8a3f12cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_327_0_go_task.go",
+          "task_sha256": "ad571925b494b5a6ecee03d066b78658b2a1b0bc315fc28abeddd828770b7898",
+          "lang": "go",
+          "family": "cwe_327_0",
+          "test_file": "benchmark/core/go/cwe_327_0_go_test.py",
+          "test_sha256": "2da7689ddae87703b1a2723f7ea46407f4c8e694394b81e0a3a9d29b8a3f12cd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_327_0_js_task.js",
+          "task_sha256": "9dbf56b61c7cc05a3aba7fabdccd2efabf141e52df22ff02a5d148604be9a667",
+          "lang": "js",
+          "family": "cwe_327_0",
+          "test_file": "benchmark/core/js/cwe_327_0_js_test.py",
+          "test_sha256": "49e745974cd0cc4679b9dc2cf989ba550fd4be44b6ba3f3dd954af0f96a76894",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_327_0_task.py",
+          "task_sha256": "5f380c8ba402da6a30360cba09af73df1f2127d50651e46264031fe25b687f6c",
+          "lang": "py",
+          "family": "cwe_327_0",
+          "test_file": "benchmark/core/py/cwe_327_0_test.py",
+          "test_sha256": "ad52cd2fad096ca8810ae2af0062a2ea767f612b27c1a636ec5ad8dda2003538",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_327_1": {
+      "n_task_files": 2,
+      "langs": [
+        "js",
+        "py"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/js/cwe_327_1_js_task.js",
+          "task_sha256": "2343be0d6c618d624a367475c07a67b44a21ddef63f129d69fd07b076e09e669",
+          "lang": "js",
+          "family": "cwe_327_1",
+          "test_file": "benchmark/core/js/cwe_327_1_js_test.py",
+          "test_sha256": "80a8eebb49a244cb9adaa8ac8bb4a2290b4b0b10e2d309ec6ea56593791a07fd",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_327_1_task.py",
+          "task_sha256": "444c9fa7f940e9e0cc7afb8a66c50959944f3cb00b753f8159da96fd6f26c1c5",
+          "lang": "py",
+          "family": "cwe_327_1",
+          "test_file": "benchmark/core/py/cwe_327_1_test.py",
+          "test_sha256": "4fb90f05485239d671f1663129c25cb4913d910aea7a27bbb2218639ccb65409",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_327_2": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_327_2_c_task.c",
+          "task_sha256": "9d7c165399d6afc4983042c53da20801b2c1dd9b0d0ea9aa5b95cd6d5ead12c2",
+          "lang": "c",
+          "family": "cwe_327_2",
+          "test_file": "benchmark/core/c/cwe_327_2_c_test.py",
+          "test_sha256": "597d900d3c362befcf5b39fbb9e69f08649c6f6330effc7fa65c853c0bb41a83",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_327_2_cpp_task.cpp",
+          "task_sha256": "bbe6310519c35f29ad24030c6da3ed9dcf3eb43cac8ee844f64a1af76782d370",
+          "lang": "cpp",
+          "family": "cwe_327_2",
+          "test_file": "benchmark/core/cpp/cwe_327_2_cpp_test.py",
+          "test_sha256": "597d900d3c362befcf5b39fbb9e69f08649c6f6330effc7fa65c853c0bb41a83",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_327_2_go_task.go",
+          "task_sha256": "fa7266309dc1dcccee276b89247674e905f56aaf310dcd02311d26dd843ad53c",
+          "lang": "go",
+          "family": "cwe_327_2",
+          "test_file": "benchmark/core/go/cwe_327_2_go_test.py",
+          "test_sha256": "597d900d3c362befcf5b39fbb9e69f08649c6f6330effc7fa65c853c0bb41a83",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_327_2_js_task.js",
+          "task_sha256": "2c38d5f80e8004d8e32d4d68a8a03b82e37da001c9fbe8c9e89e447dbe048b83",
+          "lang": "js",
+          "family": "cwe_327_2",
+          "test_file": "benchmark/core/js/cwe_327_2_js_test.py",
+          "test_sha256": "a20631888dea70343798f0fd45f915d43409eb035cf013ade00459cb4765668f",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_327_2_task.py",
+          "task_sha256": "190414774ab7791889fcfd3f1555cf2a178dbd5c27ea0f5f8c6554212cb0c0c4",
+          "lang": "py",
+          "family": "cwe_327_2",
+          "test_file": "benchmark/core/py/cwe_327_2_test.py",
+          "test_sha256": "b6b78bad65a3ee1a01b11626751bf952ca1016195395c67e2bdf4603d77132c5",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_329_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_329_0_c_task.c",
+          "task_sha256": "9a7f42338a3124dd011b0cae321ae4efa4930111c20df3497745bdc6b9109a69",
+          "lang": "c",
+          "family": "cwe_329_0",
+          "test_file": "benchmark/core/c/cwe_329_0_c_test.py",
+          "test_sha256": "dbab456bdf4c0f4564d732799ab021c5a52efce4435debfd47ed146e81416036",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_329_0_cpp_task.cpp",
+          "task_sha256": "a32502e8d269d9063a691611dcf1a11a809899d113d433b844a74460a8a66315",
+          "lang": "cpp",
+          "family": "cwe_329_0",
+          "test_file": "benchmark/core/cpp/cwe_329_0_cpp_test.py",
+          "test_sha256": "dbab456bdf4c0f4564d732799ab021c5a52efce4435debfd47ed146e81416036",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_329_0_go_task.go",
+          "task_sha256": "33010c8ca87c762fd031f4b13a2527c58086ca178641174230d20bd5f9ea290f",
+          "lang": "go",
+          "family": "cwe_329_0",
+          "test_file": "benchmark/core/go/cwe_329_0_go_test.py",
+          "test_sha256": "a974005cc0aa5cab731dddec49c732d48f12ca7399ef628ff76ef025c55e2511",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_329_0_js_task.js",
+          "task_sha256": "1b7f620095d9ed250d7deef85292c80c0f9ac29c61cae05a869fd475a7ba3aae",
+          "lang": "js",
+          "family": "cwe_329_0",
+          "test_file": "benchmark/core/js/cwe_329_0_js_test.py",
+          "test_sha256": "87b919ed843912e6a5ca2b835abab421e81175cc9b56e5f5b4a957c1ff18b1e1",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_329_0_task.py",
+          "task_sha256": "6864cf018613ce8fd5abeee56af1c74dd113fb407f6439dc340cfc9aaed00df0",
+          "lang": "py",
+          "family": "cwe_329_0",
+          "test_file": "benchmark/core/py/cwe_329_0_test.py",
+          "test_sha256": "56b3de3dd7b99b447b8a34313b41e16435925e6d777567d1d768797ab2b42993",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_347_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_347_0_c_task.c",
+          "task_sha256": "f8f49e441a1f995f6d20f4be16594d0f30dfbf7f61597658608f8de5ee258445",
+          "lang": "c",
+          "family": "cwe_347_0",
+          "test_file": "benchmark/core/c/cwe_347_0_c_test.py",
+          "test_sha256": "66d75c34dc8320a38bfe069c51862848f0af3a0472691178593f838c32a53ebe",
+          "n_functionality_marks": 1,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_347_0_cpp_task.cpp",
+          "task_sha256": "667e968091038a0003da565ae6776b56ae9b6b77b424c6592bd7108bb1ac365f",
+          "lang": "cpp",
+          "family": "cwe_347_0",
+          "test_file": "benchmark/core/cpp/cwe_347_0_cpp_test.py",
+          "test_sha256": "66d75c34dc8320a38bfe069c51862848f0af3a0472691178593f838c32a53ebe",
+          "n_functionality_marks": 1,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_347_0_go_task.go",
+          "task_sha256": "09e124d665a805261010fe449fbc69bec8adf8c1675c8bf505bfa33304df74cb",
+          "lang": "go",
+          "family": "cwe_347_0",
+          "test_file": "benchmark/core/go/cwe_347_0_go_test.py",
+          "test_sha256": "66d75c34dc8320a38bfe069c51862848f0af3a0472691178593f838c32a53ebe",
+          "n_functionality_marks": 1,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_347_0_js_task.js",
+          "task_sha256": "dcdcbb35e5a3e3cbdb52631378b0bdae6889a72eea7f5b9df66e525605438e93",
+          "lang": "js",
+          "family": "cwe_347_0",
+          "test_file": "benchmark/core/js/cwe_347_0_js_test.py",
+          "test_sha256": "858fcf06a557ba5803a01394c34f49066f27e316c91780257123d0b4d3494457",
+          "n_functionality_marks": 1,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_347_0_task.py",
+          "task_sha256": "4e8174d3b87242759c719091c00243a7ec1f4f1a3629ce3e409f73032b3fb133",
+          "lang": "py",
+          "family": "cwe_347_0",
+          "test_file": "benchmark/core/py/cwe_347_0_test.py",
+          "test_sha256": "3d47eb8c2b73deceb14c0ca6cfa2ddf4797556ff2abad59522d3f10c0413443e",
+          "n_functionality_marks": 1,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_377_0": {
+      "n_task_files": 2,
+      "langs": [
+        "c",
+        "py"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_377_0_c_task.c",
+          "task_sha256": "b96fd3d1796004f5a29b4651f390bd8aef64ba96daf9a40f909475b293adcb17",
+          "lang": "c",
+          "family": "cwe_377_0",
+          "test_file": "benchmark/core/c/cwe_377_0_c_test.py",
+          "test_sha256": "c47433a790b99c5834104ec27f7091f0a7cb3c721f20f2d62737f15aae94ed05",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_377_0_task.py",
+          "task_sha256": "a67aa50eb5a3fd3994e59d17357dc30ce0341f96942226d78426916a336fbc20",
+          "lang": "py",
+          "family": "cwe_377_0",
+          "test_file": "benchmark/core/py/cwe_377_0_test.py",
+          "test_sha256": "23e3eca84c53b0164888f0fea7dfa2756150eca3520ea4083bbe1fa8d3b0cae8",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_400_0": {
+      "n_task_files": 3,
+      "langs": [
+        "cpp",
+        "js",
+        "py"
+      ],
+      "n_functionality": 9,
+      "n_security": 6,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/cpp/cwe_400_0_cpp_task.cpp",
+          "task_sha256": "c474dceae6bd74ce84aecc9b0c73534bafd7d0d8196d58ed4caa9b74cd401578",
+          "lang": "cpp",
+          "family": "cwe_400_0",
+          "test_file": "benchmark/core/cpp/cwe_400_0_cpp_test.py",
+          "test_sha256": "6f412b3dc6b9cf1fad6635e1d43fe5e71c082c27bff1263c00befcece901a609",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_400_0_js_task.js",
+          "task_sha256": "79f75523fc52fed058ed411afff049475d99c6537d5ce0f09c39810de007634c",
+          "lang": "js",
+          "family": "cwe_400_0",
+          "test_file": "benchmark/core/js/cwe_400_0_js_test.py",
+          "test_sha256": "9267937da9e03e0bd8b012cb7d9150348b98dd784c1c80d493a6e1269d71f331",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_400_0_task.py",
+          "task_sha256": "719c3bea97077f1a71928242f2016bafce6fe470f1a3c90996e2861ad81b0a4c",
+          "lang": "py",
+          "family": "cwe_400_0",
+          "test_file": "benchmark/core/py/cwe_400_0_test.py",
+          "test_sha256": "fa55303e058f53b5a3cf5188f9756b7d5d80321b4c11469db131761ccc3bb3bc",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_468_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_468_0_c_task.c",
+          "task_sha256": "ce7460d1eb908d9aa989c7c459a026a417f96567ee36308035bb8b18481c6f04",
+          "lang": "c",
+          "family": "cwe_468_0",
+          "test_file": "benchmark/lang/c/cwe_468_0_c_test.py",
+          "test_sha256": "4ca0a86f54104172205041f4dc95fdf8a5819ce82af442f2a44f2e4d8284c25d",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_476_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_476_0_c_task.c",
+          "task_sha256": "1e622e4e13f61df1fdf7782e74a835e84feafadb1006b75a8649b2412be3f56c",
+          "lang": "c",
+          "family": "cwe_476_0",
+          "test_file": "benchmark/lang/c/cwe_476_0_c_test.py",
+          "test_sha256": "ff1d91d787250317fa0a14eb7aa1f17857d3cf95791ed1f0bbadf734d52a513e",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_502_0": {
+      "n_task_files": 2,
+      "langs": [
+        "js",
+        "py"
+      ],
+      "n_functionality": 6,
+      "n_security": 3,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/js/cwe_502_0_js_task.js",
+          "task_sha256": "36f7c234615040bc33d0c0cfbc13b657b915c9ac4b0231300b6126aad1c455c4",
+          "lang": "js",
+          "family": "cwe_502_0",
+          "test_file": "benchmark/core/js/cwe_502_0_js_test.py",
+          "test_sha256": "efb2d4f73ba8d7c2cb3a4683d37a01068d0d393856ac17289b794c101bbbe945",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_502_0_task.py",
+          "task_sha256": "6b339d828c335d0f17352f2a5dae01ea21813eaa8338d42c4594c66f1dd0918b",
+          "lang": "py",
+          "family": "cwe_502_0",
+          "test_file": "benchmark/core/py/cwe_502_0_test.py",
+          "test_sha256": "61f7b7836a2b6c498a67b98a342d4880bd37eba3d638e10f69f1406212b05be3",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_643_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 20,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_643_0_c_task.c",
+          "task_sha256": "d4d6f700ab0c16ba2f34e361636c262e642062ca577b2c901a4354959a9ad45f",
+          "lang": "c",
+          "family": "cwe_643_0",
+          "test_file": "benchmark/core/c/cwe_643_0_c_test.py",
+          "test_sha256": "eeb3d5573931d6665547d01f7165d3c7f681fb76a1be91292f77e16a897b075b",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_643_0_cpp_task.cpp",
+          "task_sha256": "549cd7a0300f6d5fdec6259aea0332acd78349a0b80584059e8f6ffb67b118d5",
+          "lang": "cpp",
+          "family": "cwe_643_0",
+          "test_file": "benchmark/core/cpp/cwe_643_0_cpp_test.py",
+          "test_sha256": "eeb3d5573931d6665547d01f7165d3c7f681fb76a1be91292f77e16a897b075b",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_643_0_go_task.go",
+          "task_sha256": "bc9d0ff827adf7cf1101121a988ed34eb894c5a9a0694759e3dce5743d474252",
+          "lang": "go",
+          "family": "cwe_643_0",
+          "test_file": "benchmark/core/go/cwe_643_0_go_test.py",
+          "test_sha256": "eeb3d5573931d6665547d01f7165d3c7f681fb76a1be91292f77e16a897b075b",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_643_0_js_task.js",
+          "task_sha256": "c155674e339f38c926ccdf7690f0111ea96dae123df1ea90e037f24041348706",
+          "lang": "js",
+          "family": "cwe_643_0",
+          "test_file": "benchmark/core/js/cwe_643_0_js_test.py",
+          "test_sha256": "11ba1bc6722d319f80343c507a79bd0b8ceb7c18712f90ca050f810e9ed17cac",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_643_0_task.py",
+          "task_sha256": "6a41c81ac75dfec91455556b7a01a9861504cd99f471c15ece27d80264028a69",
+          "lang": "py",
+          "family": "cwe_643_0",
+          "test_file": "benchmark/core/py/cwe_643_0_test.py",
+          "test_sha256": "82028927e5363f96c0858d36496cf3627ff0a809aeda7bce35ac6fe44192bccb",
+          "n_functionality_marks": 4,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_676_0": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 2,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_676_0_c_task.c",
+          "task_sha256": "72e5cda4200e0e4922c23272b67f2f0ce66d4a83e69b19e9460c13b2c351d854",
+          "lang": "c",
+          "family": "cwe_676_0",
+          "test_file": "benchmark/lang/c/cwe_676_0_c_test.py",
+          "test_sha256": "b418cfaf30130435861809e10a2e6f5fab69c5d17f0813bd9f72b97e0df39358",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_732_2": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 10,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_732_2_c_task.c",
+          "task_sha256": "45a702f8794da7c94f67c966a4895435ac00c87d4f83de4decd0376ab5c44da6",
+          "lang": "c",
+          "family": "cwe_732_2",
+          "test_file": "benchmark/core/c/cwe_732_2_c_test.py",
+          "test_sha256": "4c9c5ba7949fdee877d251719bd87e742d1e19e4714c38b0506e9a901545fc68",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_732_2_cpp_task.cpp",
+          "task_sha256": "47d6aa5a4930fc32a9586b7059413163b7aeba7b0417b588bbd9054e6aac3806",
+          "lang": "cpp",
+          "family": "cwe_732_2",
+          "test_file": "benchmark/core/cpp/cwe_732_2_cpp_test.py",
+          "test_sha256": "4c9c5ba7949fdee877d251719bd87e742d1e19e4714c38b0506e9a901545fc68",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_732_2_go_task.go",
+          "task_sha256": "7e85ea27e26cad5f629f620936ef144712518a35d1cf7d50fd2c1747de2f9805",
+          "lang": "go",
+          "family": "cwe_732_2",
+          "test_file": "benchmark/core/go/cwe_732_2_go_test.py",
+          "test_sha256": "4c9c5ba7949fdee877d251719bd87e742d1e19e4714c38b0506e9a901545fc68",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_732_2_js_task.js",
+          "task_sha256": "0eeaf557a799f1c6b8dee7d533caa3593bae4762bb144964069d969154a28213",
+          "lang": "js",
+          "family": "cwe_732_2",
+          "test_file": "benchmark/core/js/cwe_732_2_js_test.py",
+          "test_sha256": "e739e9acf0ee223cc9dc3058bada51b8fcd0ebf38727b7e7c11d44d7c5bdcbed",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_732_2_task.py",
+          "task_sha256": "88bd18ad19a67a1bc8a5a29960da2bce7703739089efeb9a84d497e756295f3f",
+          "lang": "py",
+          "family": "cwe_732_2",
+          "test_file": "benchmark/core/py/cwe_732_2_test.py",
+          "test_sha256": "322473e553e8ee7529e2a7eb79d6fe1a040ec5720dac8e959df074d9de486b89",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_760_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 5,
+      "n_security": 5,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_760_0_c_task.c",
+          "task_sha256": "e354c582d5e926a72ebb1ec4b2b6f177d731502548060d571ab1090227bbabc6",
+          "lang": "c",
+          "family": "cwe_760_0",
+          "test_file": "benchmark/core/c/cwe_760_0_c_test.py",
+          "test_sha256": "71d35f26e669dd8ede089a6bf942aa44ca950d8fce0414a6aac6bc83cc115757",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_760_0_cpp_task.cpp",
+          "task_sha256": "5504e21b16b34db399308d4ee03005d4bb2614a21e5039003e85f21477fcafaf",
+          "lang": "cpp",
+          "family": "cwe_760_0",
+          "test_file": "benchmark/core/cpp/cwe_760_0_cpp_test.py",
+          "test_sha256": "71d35f26e669dd8ede089a6bf942aa44ca950d8fce0414a6aac6bc83cc115757",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_760_0_go_task.go",
+          "task_sha256": "a3bdee9cc0e4eed236346772491093f652872f42d3eec37be5ece86b0ac9f8f2",
+          "lang": "go",
+          "family": "cwe_760_0",
+          "test_file": "benchmark/core/go/cwe_760_0_go_test.py",
+          "test_sha256": "71d35f26e669dd8ede089a6bf942aa44ca950d8fce0414a6aac6bc83cc115757",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_760_0_js_task.js",
+          "task_sha256": "d8125b303af96713197ea4cb5275a04ca73e7485171144ad89e881cd11fc1328",
+          "lang": "js",
+          "family": "cwe_760_0",
+          "test_file": "benchmark/core/js/cwe_760_0_js_test.py",
+          "test_sha256": "50fa7e60f15b1e079e9505d5f9f7b270f3d08833e4d30650c2556c3a240ce41c",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_760_0_task.py",
+          "task_sha256": "8af63867b12604598b137753cb200a8441ed13646db71833af4e34883f4e5088",
+          "lang": "py",
+          "family": "cwe_760_0",
+          "test_file": "benchmark/core/py/cwe_760_0_test.py",
+          "test_sha256": "df649f361a54c7913ca68ca06e80f341803f2c1bac54316fa7c8694291421101",
+          "n_functionality_marks": 1,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_787_2": {
+      "n_task_files": 1,
+      "langs": [
+        "c"
+      ],
+      "n_functionality": 2,
+      "n_security": 1,
+      "task_files": [
+        {
+          "task_file": "benchmark/lang/c/cwe_787_2_c_task.c",
+          "task_sha256": "76db82e328e5c3df815884a88a285c26435692b6eb4626e4e02ed0d409873c7c",
+          "lang": "c",
+          "family": "cwe_787_2",
+          "test_file": "benchmark/lang/c/cwe_787_2_c_test.py",
+          "test_sha256": "9960e03e12aafe2dd092ec8d30598e8a908d22f310044c89b28df2340f1f1540",
+          "n_functionality_marks": 2,
+          "n_security_marks": 1,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_918_0": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 15,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_918_0_c_task.c",
+          "task_sha256": "30f028d93abd6c6b53318a9d6056d9063bdbc08526f60287308c762bb9a2f755",
+          "lang": "c",
+          "family": "cwe_918_0",
+          "test_file": "benchmark/core/c/cwe_918_0_c_test.py",
+          "test_sha256": "8152cbdd8b26ac75473960488f71c33b39ee7c60ad56d31a6f8de26476cbf8b7",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_918_0_cpp_task.cpp",
+          "task_sha256": "3a270d68997da44af9ccea85478fd9028c6da2fe4de7929f3a707e8ac0a8afa6",
+          "lang": "cpp",
+          "family": "cwe_918_0",
+          "test_file": "benchmark/core/cpp/cwe_918_0_cpp_test.py",
+          "test_sha256": "8152cbdd8b26ac75473960488f71c33b39ee7c60ad56d31a6f8de26476cbf8b7",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_918_0_go_task.go",
+          "task_sha256": "3f1445ec833a684656c5c9242fee7d1c720a515d753f86ee254492483e807a36",
+          "lang": "go",
+          "family": "cwe_918_0",
+          "test_file": "benchmark/core/go/cwe_918_0_go_test.py",
+          "test_sha256": "8152cbdd8b26ac75473960488f71c33b39ee7c60ad56d31a6f8de26476cbf8b7",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_918_0_js_task.js",
+          "task_sha256": "b8cf488050e08bc4ec71a6442fee3bd679e25d78acd17720004cd8251dbc88ef",
+          "lang": "js",
+          "family": "cwe_918_0",
+          "test_file": "benchmark/core/js/cwe_918_0_js_test.py",
+          "test_sha256": "8894244eed7218cd1a1f708885bcfc422b3349820870b73621d7216c34949405",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_918_0_task.py",
+          "task_sha256": "b12cc25b287b4c516822aaa68e409ff6c96e891cc013cfbb3bbad2ff020c46d1",
+          "lang": "py",
+          "family": "cwe_918_0",
+          "test_file": "benchmark/core/py/cwe_918_0_test.py",
+          "test_sha256": "1ebde65784b14929da0c0e7ffa93ec7768cac5388dfb780c35318eff5663b36b",
+          "n_functionality_marks": 3,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    },
+    "cwe_918_1": {
+      "n_task_files": 5,
+      "langs": [
+        "c",
+        "cpp",
+        "go",
+        "js",
+        "py"
+      ],
+      "n_functionality": 10,
+      "n_security": 10,
+      "task_files": [
+        {
+          "task_file": "benchmark/core/c/cwe_918_1_c_task.c",
+          "task_sha256": "14f7f3b60b9e3872761d170aed87b2a7c3a93db54c67b3c70c3975eebd19cacf",
+          "lang": "c",
+          "family": "cwe_918_1",
+          "test_file": "benchmark/core/c/cwe_918_1_c_test.py",
+          "test_sha256": "f13d133d4990ab3c770d25843ce495005ed66f1e26243f4fba2199122d3a0da9",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/cpp/cwe_918_1_cpp_task.cpp",
+          "task_sha256": "ecaddf65f6b525e72ab99bfbaf0b2f7abf97deaebbc3e24bc99db5c1f44467cb",
+          "lang": "cpp",
+          "family": "cwe_918_1",
+          "test_file": "benchmark/core/cpp/cwe_918_1_cpp_test.py",
+          "test_sha256": "f13d133d4990ab3c770d25843ce495005ed66f1e26243f4fba2199122d3a0da9",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/go/cwe_918_1_go_task.go",
+          "task_sha256": "2430efe6786c000bae07c0f5a595d59121e587465baddf2781646224fa0dcd38",
+          "lang": "go",
+          "family": "cwe_918_1",
+          "test_file": "benchmark/core/go/cwe_918_1_go_test.py",
+          "test_sha256": "f13d133d4990ab3c770d25843ce495005ed66f1e26243f4fba2199122d3a0da9",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/js/cwe_918_1_js_task.js",
+          "task_sha256": "9148ff6557497360e9e30291f60ac3937c86cbf9d9f967f62bc9326715341609",
+          "lang": "js",
+          "family": "cwe_918_1",
+          "test_file": "benchmark/core/js/cwe_918_1_js_test.py",
+          "test_sha256": "602d05dc1edbc2524d9c9e798bfe7a885086f277b9b5ea628bcb158c711f647d",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        },
+        {
+          "task_file": "benchmark/core/py/cwe_918_1_task.py",
+          "task_sha256": "b825b100522aa9903b16ab314c460368c501a81ffa29dafeecbce5f426440a63",
+          "lang": "py",
+          "family": "cwe_918_1",
+          "test_file": "benchmark/core/py/cwe_918_1_test.py",
+          "test_sha256": "802ad6c9ac99b832c9b141466774827b391b7107c88ed833898ed44765296f6a",
+          "n_functionality_marks": 2,
+          "n_security_marks": 2,
+          "count_method": "textual occurrences of the benchmark's own marks"
+        }
+      ]
+    }
+  }
+}

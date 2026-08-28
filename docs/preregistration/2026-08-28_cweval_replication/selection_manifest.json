@@ -1,0 +1,197 @@
+{
+  "protocol_sha256": "bab396d89c38941ab92aa7137832bc53ee6b39dd2bb65d6bcd29df4921cb54c1",
+  "frame_sha256": "f8ed8c2b3b65c5b5d03c4cad0b1fc81159e429fc5463a11f2f126c4873a72eb0",
+  "selection_rule": "census of the entire eligible frame (GAP-1 resolution; no selection randomisation exists or is needed)",
+  "n_families": 35,
+  "n_task_files": 114,
+  "case_totals": {
+    "functionality": 248,
+    "security": 186
+  },
+  "families": {
+    "cwe_020_0": [
+      "benchmark/core/c/cwe_020_0_c_task.c",
+      "benchmark/core/cpp/cwe_020_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_020_0_go_task.go",
+      "benchmark/core/js/cwe_020_0_js_task.js",
+      "benchmark/core/py/cwe_020_0_task.py"
+    ],
+    "cwe_022_0": [
+      "benchmark/core/c/cwe_022_0_c_task.c",
+      "benchmark/core/cpp/cwe_022_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_022_0_go_task.go",
+      "benchmark/core/js/cwe_022_0_js_task.js",
+      "benchmark/core/py/cwe_022_0_task.py"
+    ],
+    "cwe_022_2": [
+      "benchmark/core/c/cwe_022_2_c_task.c",
+      "benchmark/core/cpp/cwe_022_2_cpp_task.cpp",
+      "benchmark/core/go/cwe_022_2_go_task.go",
+      "benchmark/core/py/cwe_022_2_task.py"
+    ],
+    "cwe_078_0": [
+      "benchmark/core/c/cwe_078_0_c_task.c",
+      "benchmark/core/cpp/cwe_078_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_078_0_go_task.go",
+      "benchmark/core/js/cwe_078_0_js_task.js",
+      "benchmark/core/py/cwe_078_0_task.py"
+    ],
+    "cwe_079_0": [
+      "benchmark/core/c/cwe_079_0_c_task.c",
+      "benchmark/core/cpp/cwe_079_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_079_0_go_task.go",
+      "benchmark/core/js/cwe_079_0_js_task.js",
+      "benchmark/core/py/cwe_079_0_task.py"
+    ],
+    "cwe_095_0": [
+      "benchmark/core/js/cwe_095_0_js_task.js",
+      "benchmark/core/py/cwe_095_0_task.py"
+    ],
+    "cwe_113_0": [
+      "benchmark/core/c/cwe_113_0_c_task.c",
+      "benchmark/core/cpp/cwe_113_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_113_0_go_task.go",
+      "benchmark/core/js/cwe_113_0_js_task.js",
+      "benchmark/core/py/cwe_113_0_task.py"
+    ],
+    "cwe_117_0": [
+      "benchmark/core/c/cwe_117_0_c_task.c",
+      "benchmark/core/cpp/cwe_117_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_117_0_go_task.go",
+      "benchmark/core/js/cwe_117_0_js_task.js",
+      "benchmark/core/py/cwe_117_0_task.py"
+    ],
+    "cwe_119_0": [
+      "benchmark/lang/c/cwe_119_0_c_task.c"
+    ],
+    "cwe_120_0": [
+      "benchmark/lang/c/cwe_120_0_c_task.c"
+    ],
+    "cwe_125_0": [
+      "benchmark/lang/c/cwe_125_0_c_task.c"
+    ],
+    "cwe_131_0": [
+      "benchmark/lang/c/cwe_131_0_c_task.c"
+    ],
+    "cwe_1333_0": [
+      "benchmark/core/cpp/cwe_1333_0_cpp_task.cpp",
+      "benchmark/core/js/cwe_1333_0_js_task.js",
+      "benchmark/core/py/cwe_1333_0_task.py"
+    ],
+    "cwe_134_0": [
+      "benchmark/lang/c/cwe_134_0_c_task.c"
+    ],
+    "cwe_170_0": [
+      "benchmark/lang/c/cwe_170_0_c_task.c"
+    ],
+    "cwe_190_0": [
+      "benchmark/lang/c/cwe_190_0_c_task.c"
+    ],
+    "cwe_326_0": [
+      "benchmark/core/c/cwe_326_0_c_task.c",
+      "benchmark/core/cpp/cwe_326_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_326_0_go_task.go",
+      "benchmark/core/js/cwe_326_0_js_task.js",
+      "benchmark/core/py/cwe_326_0_task.py"
+    ],
+    "cwe_326_1": [
+      "benchmark/core/c/cwe_326_1_c_task.c",
+      "benchmark/core/cpp/cwe_326_1_cpp_task.cpp",
+      "benchmark/core/go/cwe_326_1_go_task.go",
+      "benchmark/core/js/cwe_326_1_js_task.js",
+      "benchmark/core/py/cwe_326_1_task.py"
+    ],
+    "cwe_327_0": [
+      "benchmark/core/c/cwe_327_0_c_task.c",
+      "benchmark/core/cpp/cwe_327_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_327_0_go_task.go",
+      "benchmark/core/js/cwe_327_0_js_task.js",
+      "benchmark/core/py/cwe_327_0_task.py"
+    ],
+    "cwe_327_1": [
+      "benchmark/core/js/cwe_327_1_js_task.js",
+      "benchmark/core/py/cwe_327_1_task.py"
+    ],
+    "cwe_327_2": [
+      "benchmark/core/c/cwe_327_2_c_task.c",
+      "benchmark/core/cpp/cwe_327_2_cpp_task.cpp",
+      "benchmark/core/go/cwe_327_2_go_task.go",
+      "benchmark/core/js/cwe_327_2_js_task.js",
+      "benchmark/core/py/cwe_327_2_task.py"
+    ],
+    "cwe_329_0": [
+      "benchmark/core/c/cwe_329_0_c_task.c",
+      "benchmark/core/cpp/cwe_329_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_329_0_go_task.go",
+      "benchmark/core/js/cwe_329_0_js_task.js",
+      "benchmark/core/py/cwe_329_0_task.py"
+    ],
+    "cwe_347_0": [
+      "benchmark/core/c/cwe_347_0_c_task.c",
+      "benchmark/core/cpp/cwe_347_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_347_0_go_task.go",
+      "benchmark/core/js/cwe_347_0_js_task.js",
+      "benchmark/core/py/cwe_347_0_task.py"
+    ],
+    "cwe_377_0": [
+      "benchmark/core/c/cwe_377_0_c_task.c",
+      "benchmark/core/py/cwe_377_0_task.py"
+    ],
+    "cwe_400_0": [
+      "benchmark/core/cpp/cwe_400_0_cpp_task.cpp",
+      "benchmark/core/js/cwe_400_0_js_task.js",
+      "benchmark/core/py/cwe_400_0_task.py"
+    ],
+    "cwe_468_0": [
+      "benchmark/lang/c/cwe_468_0_c_task.c"
+    ],
+    "cwe_476_0": [
+      "benchmark/lang/c/cwe_476_0_c_task.c"
+    ],
+    "cwe_502_0": [
+      "benchmark/core/js/cwe_502_0_js_task.js",
+      "benchmark/core/py/cwe_502_0_task.py"
+    ],
+    "cwe_643_0": [
+      "benchmark/core/c/cwe_643_0_c_task.c",
+      "benchmark/core/cpp/cwe_643_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_643_0_go_task.go",
+      "benchmark/core/js/cwe_643_0_js_task.js",
+      "benchmark/core/py/cwe_643_0_task.py"
+    ],
+    "cwe_676_0": [
+      "benchmark/lang/c/cwe_676_0_c_task.c"
+    ],
+    "cwe_732_2": [
+      "benchmark/core/c/cwe_732_2_c_task.c",
+      "benchmark/core/cpp/cwe_732_2_cpp_task.cpp",
+      "benchmark/core/go/cwe_732_2_go_task.go",
+      "benchmark/core/js/cwe_732_2_js_task.js",
+      "benchmark/core/py/cwe_732_2_task.py"
+    ],
+    "cwe_760_0": [
+      "benchmark/core/c/cwe_760_0_c_task.c",
+      "benchmark/core/cpp/cwe_760_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_760_0_go_task.go",
+      "benchmark/core/js/cwe_760_0_js_task.js",
+      "benchmark/core/py/cwe_760_0_task.py"
+    ],
+    "cwe_787_2": [
+      "benchmark/lang/c/cwe_787_2_c_task.c"
+    ],
+    "cwe_918_0": [
+      "benchmark/core/c/cwe_918_0_c_task.c",
+      "benchmark/core/cpp/cwe_918_0_cpp_task.cpp",
+      "benchmark/core/go/cwe_918_0_go_task.go",
+      "benchmark/core/js/cwe_918_0_js_task.js",
+      "benchmark/core/py/cwe_918_0_task.py"
+    ],
+    "cwe_918_1": [
+      "benchmark/core/c/cwe_918_1_c_task.c",
+      "benchmark/core/cpp/cwe_918_1_cpp_task.cpp",
+      "benchmark/core/go/cwe_918_1_go_task.go",
+      "benchmark/core/js/cwe_918_1_js_task.js",
+      "benchmark/core/py/cwe_918_1_task.py"
+    ]
+  }
+}
