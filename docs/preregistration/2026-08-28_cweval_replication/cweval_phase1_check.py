@@ -75,6 +75,17 @@ def main() -> None:
           and sorted(manifest["families"]) == sorted(frame["families"]),
           "manifest is the census of the frame (35 families / 114 files)")
 
+    # --- 1b. amended inferential interpretation (2026-08-28)
+    prot = (HERE / "cweval_replication_protocol.md").read_text()
+    check("finite-frame census prevalence" in prot,
+          "protocol states the census estimand as finite-frame prevalence")
+    check("superpopulation / generalization sensitivity" in prot,
+          "bootstrap intervals labelled superpopulation/generalization sensitivity")
+    check("0.134" not in prot and "±0.14" not in prot,
+          "no planning half-width presented as CWEval sampling precision")
+    check("no sampling CI exists or is reported" in prot,
+          "no-sampling-CI clause present for frame inference")
+
     # --- 2. data-flow scan
     for name in PHASE1:
         text = (HERE / name).read_text()

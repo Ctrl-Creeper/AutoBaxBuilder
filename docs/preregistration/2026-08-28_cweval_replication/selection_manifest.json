@@ -1,5 +1,5 @@
 {
-  "protocol_sha256": "bab396d89c38941ab92aa7137832bc53ee6b39dd2bb65d6bcd29df4921cb54c1",
+  "protocol_sha256": "76d19809b161f13bd0af6ca1f197fd6bdc8859d03a955a8353727b0536c14ea7",
   "frame_sha256": "f8ed8c2b3b65c5b5d03c4cad0b1fc81159e429fc5463a11f2f126c4873a72eb0",
   "selection_rule": "census of the entire eligible frame (GAP-1 resolution; no selection randomisation exists or is needed)",
   "n_families": 35,

@@ -5,6 +5,12 @@ parameters were pinned before any SeCodePLT prevalence number existed. **Executi
 started**: no packet is built, no run is started, no case is coded, no CWEval prevalence is
 computed. Any change after freezing is a dated addendum.
 
+*Amended 2026-08-28, before any tooling existed: §2's inferential interpretation corrected — the
+census estimand is the finite-frame prevalence, no sampling CI is reported for frame inference,
+measurement uncertainty is primary, and bootstrap intervals are superpopulation/generalization
+sensitivity only. The frame, Definition D, the coding procedure, the inclusion rules, and the
+planned-replication status are unchanged.*
+
 **Paper wording, binding:** this arm is a *"preregistered cross-benchmark replication using an
 independently developed benchmark."* The benchmark is independently developed (B2); the **coding is
 not described as fully independent**, because prior exposure exists and is disclosed: a structural
@@ -34,20 +40,33 @@ shipped `LANGS`, skip `__pycache__`), from the repo pinned in `cweval_frame.json
 **Cluster = family** (CWE id + variant number): language variants of a family share specification
 content, so the family is the independence unit. Families carry 1–5 language variants.
 
-## 2. Sample: census (GAP-1, recorded)
+## 2. Sample: census (GAP-1, recorded), and the census estimand
 
 The frozen precision rule — worst-case (p=0.5) 95% half-width ≤ 0.10 on the safety stratum,
 computed with the ICC planning values — requires 63–64 families; **35 exist**. §6.1 did not
 prescribe the insufficient-frame branch. **GAP-1 resolution: census of the entire eligible frame**,
-the only choice-free completion; arithmetic in `sample_size_arithmetic.json`.
+the only choice-free completion and one that introduces no post-result selection; the planning
+arithmetic that established infeasibility is preserved in `sample_size_arithmetic.json` as a
+record, not as a precision statement.
 
-- Achieved worst-case planning half-width: **±0.134** (both ICC values).
-- Claims discipline, adjusted accordingly: no confirmatory claim finer than **±0.14** is made from
-  this arm; it functions as a replication direction-and-magnitude check, not a precision estimate.
-- Because the sample is a census, **no selection randomisation exists or is needed**;
-  `selection_manifest.json` lists all 35 families / 114 files deterministically. Presentation
-  randomisation (task and case permutations) is a builder concern, seeded from this protocol's
-  hash exactly as in Study 1.
+**Inferential interpretation (amended 2026-08-28, before any tooling or coding).** Because every
+eligible family is coded, the formal CWEval estimand is the **finite-frame census prevalence** of
+the frozen 35-family eligible frame — not a sample estimate of that frame. Consequently:
+
+- **no sampling CI exists or is reported for inference to the eligible frame**, and no planning
+  half-width figure may be presented as the sampling precision of the CWEval prevalence;
+- **primary uncertainty is measurement uncertainty**, reported exactly as in Study 1: the two
+  blinded runs separately, their mean, the [both, either] measurement-disagreement interval, and
+  the preregistered reliability metrics (raw agreement, cluster-aware κ);
+- family-cluster bootstrap intervals are retained but are labelled, everywhere they appear,
+  **superpopulation / generalization sensitivity intervals** — sensitivity of the figures to
+  regarding the frame as a draw from a hypothetical population of similar task families. They may
+  **not** be used to claim uncertainty about the exact eligible-frame prevalence.
+
+Because the sample is a census, **no selection randomisation exists or is needed**;
+`selection_manifest.json` lists all 35 families / 114 files deterministically. Presentation
+randomisation (task and case permutations) is a builder concern, seeded from this protocol's
+hash exactly as in Study 1.
 
 ## 3. Estimand and measured object
 
@@ -73,9 +92,11 @@ Identical in form to Study-1 §3, with the benchmark's own boundaries:
 - Validator: schema / completeness / provenance (packet fingerprint) / quote locates in the
   presented S_t. No judgement of correctness.
 - Scoring, one pass after both submissions are independently frozen: per-run θ, two-run mean
-  (primary), measurement-disagreement interval [both, either], **family-cluster bootstrap**
-  (B=2000, seed = int(this protocol's sha256[:8], 16)), raw agreement and cluster-aware κ
-  (chance agreement within family, case-weighted), per-run ICC. No metric outside this list.
+  (primary), measurement-disagreement interval [both, either] — the primary uncertainty statement
+  per §2 — plus **family-cluster bootstrap intervals labelled as superpopulation / generalization
+  sensitivity intervals only** (B=2000, seed = int(this protocol's sha256[:8], 16); never
+  presented as finite-frame sampling CIs), raw agreement and cluster-aware κ (chance agreement
+  within family, case-weighted), per-run ICC. No metric outside this list.
 - Execution gates as in Study 1: tooling frozen with self-tests and a data-flow audit → explicit
   approval → packet build + audit → isolation preflight → runs → per-run independent validation
   and freeze → reveal + scoring. Deviations recorded, never patched.
