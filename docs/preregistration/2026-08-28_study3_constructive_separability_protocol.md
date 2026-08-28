@@ -1,9 +1,11 @@
-# Study 3 — Constructive separability: protocol DRAFT (nothing executed)
+# Study 3 — Constructive separability: protocol (FROZEN 2026-08-28)
 
-**Status.** Draft for a decision, produced by design reconciliation only. No task outcome is
-generated, no sample is drawn, no writer or coder session exists, no API evaluation runs. Two
-conditioning risks are flagged and **left undecided** (§9); the draft cannot be frozen until they
-are ruled on.
+**Status.** Frozen protocol. Integrates the CR-1 ruling (resource-fixed one-stage sampling,
+recorded verbatim-in-substance in §9) and the estimand–estimator audit (`c666d69c…`, commit
+`9547824`), whose verdicts are binding on §2 and §7. No task outcome is generated, no sample is
+drawn, no writer or coder session exists, no API evaluation runs. Study 4 remains closed. No TBD,
+no open decision, no adaptive branch, and no interface that permits a rule change after any
+outcome is observed.
 
 ---
 
@@ -14,7 +16,7 @@ Recovered verbatim-in-substance from frozen documents; nothing below is new:
 | commitment | source |
 |---|---|
 | Study 3 measures constructive separability via an evidence-producing procedure with outcomes DS / VO / UR; annotation of existence claims is retired | architecture draft `e3fcad18…` §3; J3 analysis `fa9fe398…` Part I |
-| σ = E[Sep(t)] defined via Definition D and a frozen constraint set **C**, independent of the procedure; identified set **[P(DS), 1−P(VO)]**, sharp under A-DS/A-VO; UR assumption-free; all hesitation flows into UR; Imbens–Manski-style inference | PI note `743da509…` §§1–4 |
+| σ = E[Sep(t)] defined via Definition D and a frozen constraint set **C**, independent of the procedure; identified set **[P(DS), 1−P(VO)]**, sharp under A-DS/A-VO; UR assumption-free; all hesitation flows into UR | PI note `743da509…` §§1–4 — the note's Imbens–Manski inference sketch is **superseded** by the estimand–estimator audit (`c666d69c…`, commit `9547824`): per-endpoint Clopper–Pearson adopted; bootstrap endpoint CIs and IM/combined intervals rejected (§2) |
 | A-DS conservative construction: DS only on the agreement of both blinded runs' profiles | PI note §3 |
 | Round-2 J3's constant TRUE is **instrument-development evidence only** — the reason measurement moved to witness/proof form; it is never a Study-3 outcome, and the 90 Round-2/Study-1 tasks are development material for constructibility work, permanently | interpretation memo `8aef7785…` §§1,5.2 |
 | Writer role: every task ships its best candidate; structured failure declarations (F1–F5 heritage) are recorded, never silently dropped | Round-2 writer INSTRUCTIONS §4 (package `d6948dd1…`) |
@@ -28,7 +30,9 @@ For each eligible task *t* under constraint set **C** (§4):
 
 - **DS (demonstrated-separable).** A concrete candidate S′ exists and passes the witness check:
   in **both** independent blinded J1 runs over S′, every capability case is determined and no
-  safety case is determined. The witness — S′ itself — is the deliverable.
+  safety case is determined. The witness — S′ itself — is the deliverable. **Writer output alone —
+  success, confidence, or declared failure — is never DS**: only the frozen two-run J1 criterion
+  on a concrete S′ establishes it.
 - **VO (verified-obstruction).** A certificate meeting a pre-defined proof standard (§6) is
   independently verified, sufficient to **exclude every** C-conforming S′. Writer failure is never
   a certificate; a certificate that cannot establish nonexistence is never VO.
@@ -45,33 +49,70 @@ and no safety case determined per Definition D. σ = E[Sep(t)] over the **eligib
 (a verified certificate proves nonexistence under C), σ ∈ **[P(DS), P(DS)+P(UR)] = [P(DS),
 1−P(VO)]**, sharp; without them, nothing narrows.
 
-Three uncertainty layers, named apart and never merged:
+**Primary descriptive result (fixed by the CR-1 ruling message):** the **sample identification
+region [P̂(DS), 1−P̂(VO)]** computed over the measured-eligible tasks. It is a descriptive
+identification statement — a finite-sample logical consequence of A-DS/A-VO — and is **never
+called, formatted, or interpreted as a confidence interval.** The estimand–estimator audit
+(`c666d69c…`, sim `090b191e…`, results `567e9a1f…`) demonstrated it exact under the assumptions
+(in-sample containment 1.0000 in every assumption-holding scenario, including the VO boundary and
+low yield) and assumption-bearing rather than tautological (a negative fixture violating A-DS
+drives containment to 0.0000).
 
-1. **identification width** — P(UR), irreducible by sample size;
-2. **sampling uncertainty** — Study 3 samples its subpopulation (unlike CWEval's census), so
-   task-cluster bootstrap CIs on both endpoints are legitimate finite-population-directed
-   inference here, combined Imbens–Manski-style;
-3. **measurement uncertainty** — the two J1 runs' disagreement, reported Study-1-style
-   ([both, either] on the underlying case rates). Study 1's [both, either] interval is
-   measurement uncertainty about a point-identified θ; Study 3's [P(DS), 1−P(VO)] is an
-   identification gap about a point σ. Same brackets, different epistemology, distinct names in
-   every table.
+Three uncertainty layers, named apart and never merged into any single overall interval:
+
+1. **L0 identification width** — P̂(UR), the width of the sample identification region;
+   irreducible by sample size.
+2. **L1 sampling uncertainty** — exactly two **per-endpoint Clopper–Pearson 95% intervals,
+   conditional on the realized m** (the measured-eligible count): one for π_DS, one for π_VO.
+   The targets are **procedure-inclusive**: π_DS and π_VO are the rates the ⟨SRSWOR sampling,
+   baseline screen, constructive procedure⟩ pipeline produces over the eligible subpopulation,
+   superscripted to the frozen eligibility rule of §3 — not procedure-free properties of tasks.
+   The SRSWOR finite-population correction is ignored, which is conservative. The audit adopted
+   Clopper–Pearson on demonstrated coverage (≥ 0.968 everywhere, 1.000 at the π_VO = 0 boundary,
+   holding at mean yield 19) and **rejected** the percentile bootstrap (π_VO coverage
+   0.933–0.940). **No percentile-bootstrap endpoint CI, no Imbens–Manski interval, and no
+   composite/combined overall interval of any kind is computed or reported.**
+3. **L2 measurement sensitivity** — prespecified descriptive contrasts of the two blinded runs:
+   the DS both-runs definition versus the either-run profile, and eligibility both-agree versus
+   either-agree. These are sensitivity descriptives with their own named rows; **the either-run
+   profile is never substituted for, or reported as, a confirmatory classification.** Study 1's
+   [both, either] interval is measurement uncertainty about a point-identified θ; Study 3's
+   sample identification region is an identification gap about a point σ. Same brackets,
+   different epistemology, distinct names in every table.
+
+**Role of the audit simulation, fixed:** the simulation validates estimator and procedure
+properties only (containment and coverage under stated scenarios). It does not and cannot
+establish the identification assumptions; **A-DS and A-VO are the substantive conditions under
+which the bounds hold**, defended by their conservative constructions (both-runs witness profile;
+decidable-certificates-only VO), not by simulation.
 
 ## 3. Task set and eligibility — selection/conditioning rule, pinned before any outcome is seen
 
 - **Sampling frame:** the frozen Round-2 frame (864, sha `3840d50f…`) **minus** every
   prior-exposure set: the 90 Round-2/Study-1 tasks, the 10-task ordered reserve (identities
   revealed by the frozen selection), the 12 IDR1 tasks, and the feasibility-study tasks. All
-  exclusions are enumerable from frozen manifests; the exclusion list is built mechanically and
-  frozen with the protocol.
-- **Fresh draw**, seed derived from this protocol's hash at freeze; single draw, no reroll, no
-  stratification on anything.
-- **Eligibility (the conditional subpopulation, per the pre-committed RQ3):** a drawn task enters
-  the Study-3 analysis set iff its **baseline stage** — two fresh independent blinded J1 runs over
-  its *original* S_t, the Study-1 machinery verbatim — finds **at least one safety case determined
-  in both runs** (both-agree: the measurement-conservative rule, fixed here a priori). Ineligible
-  tasks are reported as a count with their baseline profiles; they are the already-blind stratum,
-  and σ is explicitly *conditional* on baseline determination.
+  exclusions are enumerable from frozen manifests; the exclusion list is built mechanically
+  (`scripts/build_study3_frame.py`) and frozen with the protocol as `2026-08-28_study3_frame.json`.
+  Manifest arithmetic, verified at build: the 864 frame already excludes the 21
+  development-exposure tasks of the Round-2 exclusion log, and the 12 feasibility-study tasks are
+  index-identical to the 12 IDR1 tasks (both inside those 21), so the net Study-3 frame is
+  864 − 90 − 10 = **764 tasks**; the IDR1/feasibility subtractions are idempotent, applied anyway.
+  **The exclusion list and frame are fixed at freeze; no task is substituted, restored, or removed
+  in response to the remaining frame's content or to any outcome.**
+- **Fresh draw:** one SRSWOR draw of N = 90 (§9, CR-1 ruling), seed =
+  `int(sha256(frozen protocol file)[0:8], 16)`; single draw, no reroll, no stratification on
+  anything.
+- **Eligibility (the conditional subpopulation, per the pre-committed RQ3) — verbatim rule, fixed
+  a priori:** a drawn task enters the Study-3 analysis set iff its **baseline stage** — two fresh
+  independent blinded J1 runs over its *original* S_t, the Study-1 machinery verbatim — finds
+  **at least one safety case determined in both runs** (both-agree: the measurement-conservative
+  rule). What this rule produces is **measured eligibility**: an outcome of the baseline
+  measurement process, not a latent property read off the task. The realized eligible count **m is
+  a result, never a design target**; per the CR-1 ruling, nothing reacts to it — no supplemental
+  draw, no redraw, no extended recruitment, whatever m turns out to be. **If m = 0, every layer
+  reports "no eligible tasks" and the study reports the baseline profiles alone — prespecified, no
+  improvisation.** Ineligible tasks are reported as a count with their baseline profiles; they are
+  the already-blind stratum, and σ is explicitly *conditional* on baseline determination.
 - **Study-1 case-level outcomes never enter eligibility or selection.** The 90 tasks they exist
   for are excluded wholesale; for fresh tasks no Study-1 outcome exists. Baseline determination is
   measured inside Study 3, by a rule fixed in this section before any fresh-task outcome exists.
@@ -146,19 +187,28 @@ reconciled silently.
 
 ## 7. Reporting
 
-P(DS), P(VO), P(UR) with the identified set [P(DS), 1−P(VO)]; endpoint bootstrap CIs
-(task-cluster, seed from protocol hash) combined Imbens–Manski-style; per-run and both-agree
-witness-check profiles; baseline eligibility rate; writer declaration distribution; coupling-claim
-counts (descriptive); the DS witnesses themselves — the blinded specifications — released as the
-artifact deliverable. No metric beyond this list; no threshold anywhere.
+Over the measured-eligible tasks: counts and shares P̂(DS), P̂(VO), P̂(UR) with the **sample
+identification region [P̂(DS), 1−P̂(VO)]** (a descriptive identification statement; not a
+confidence interval). **L1:** exactly two Clopper–Pearson 95% intervals conditional on the
+realized m — one for π_DS, one for π_VO. **No percentile-bootstrap endpoint CI, no Imbens–Manski
+interval, and no combined overall interval is computed or reported.** **L2:** the
+measurement-sensitivity contrasts of §2, in their own named rows, never pooled into L0/L1 and
+never reported as confirmatory classifications. One table, three named layers, no merging.
+Also reported: baseline eligibility rate and realized m (a result, not a target; m = 0 branch per
+§3); ineligible count with baseline profiles; per-run and both-agree witness-check profiles;
+writer declaration distribution; coupling-claim counts (descriptive); the DS witnesses themselves
+— the blinded specifications — released as the artifact deliverable. No metric beyond this list;
+no threshold anywhere.
 
 ## 8. What Study 3 never does
 
-Reuses the 90 development tasks in the analysis set; treats any Round-2 J3 value as an outcome;
-asks any coder an existence question; scores VO from writer failure; adjudicates run
-disagreements; runs any model-evaluation API.
+Reuses the 90 development tasks in the analysis set; treats any Round-2 J3 value as an outcome,
+eligibility input, or inference input (J3 appears only as instrument-development rationale); asks
+any coder an existence question; scores DS from writer success or VO from writer failure;
+adjudicates run disagreements; runs any model-evaluation API — no model API evaluation is a
+Study-3 outcome, and Study 4 remains closed.
 
-## 9. Conditioning-risk register — flagged and stopped, not chosen
+## 9. Conditioning-risk register — all entries closed at freeze
 
 - **CR-1 (CLOSED by ruling, 2026-08-28).** **Resource-fixed one-stage sampling.** Baseline sample
   size fixed at **N = 90 tasks**, justified solely by the a-priori resource budget and the
