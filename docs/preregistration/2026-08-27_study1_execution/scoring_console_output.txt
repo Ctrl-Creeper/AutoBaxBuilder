@@ -1,0 +1,210 @@
+{
+  "protocol_sha256": "e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b",
+  "submission_sha256": {
+    "run1_answers_FROZEN.json": "ebb0e187c2db33d8fe2f13abef3ff9953b877daa1280822d4cb4109980fc4ff3",
+    "run2_answers_FROZEN.json": "3401bf6fd5f064212b34642ef95f98dbd2b031f1fb59e378011f3c88099113f2"
+  },
+  "n_tasks": 90,
+  "n_cases": 442,
+  "estimates": {
+    "all": {
+      "n_cases": 442,
+      "per_run": {
+        "run1": 0.7307692307692307,
+        "run2": 0.7330316742081447
+      },
+      "primary_two_run_mean": 0.7319004524886877,
+      "disagreement_interval": [
+        0.7194570135746606,
+        0.744343891402715
+      ]
+    },
+    "capability": {
+      "n_cases": 237,
+      "per_run": {
+        "run1": 0.6919831223628692,
+        "run2": 0.6877637130801688
+      },
+      "primary_two_run_mean": 0.689873417721519,
+      "disagreement_interval": [
+        0.6751054852320675,
+        0.7046413502109705
+      ]
+    },
+    "safety": {
+      "n_cases": 205,
+      "per_run": {
+        "run1": 0.775609756097561,
+        "run2": 0.7853658536585366
+      },
+      "primary_two_run_mean": 0.7804878048780488,
+      "disagreement_interval": [
+        0.7707317073170732,
+        0.7902439024390244
+      ]
+    },
+    "task_level_any_safety_determined": {
+      "run1": 0.7666666666666667,
+      "run2": 0.7777777777777778
+    }
+  },
+  "reliability_internal": {
+    "raw_agreement": 0.9751131221719457,
+    "kappa_cluster_aware": 0.8688741721854304,
+    "note": "independent blinded coding runs, not independent human coders; Round-2 kappa is transport evidence only, this figure is Study 1's own"
+  },
+  "icc_planning_value_per_run": {
+    "run1": 0.5769104262005446,
+    "run2": 0.5719516667877248,
+    "purpose": "replication-arm sample-size arithmetic only"
+  },
+  "bootstrap": {
+    "B": 2000,
+    "seed": 3839918896,
+    "seed_derivation": "int(study1_protocol_sha256[:8], 16)",
+    "ci": {
+      "theta_all_run1": {
+        "ci95": [
+          0.6571394064872326,
+          0.7981125461863288
+        ],
+        "replicates": 2000
+      },
+      "theta_all_run2": {
+        "ci95": [
+          0.6618559990717103,
+          0.8021597994036324
+        ],
+        "replicates": 2000
+      },
+      "theta_all_mean": {
+        "ci95": [
+          0.660434595524957,
+          0.8004860311059908
+        ],
+        "replicates": 2000
+      },
+      "interval_all_both": {
+        "ci95": [
+          0.6462864235897161,
+          0.7914718214394552
+        ],
+        "replicates": 2000
+      },
+      "interval_all_either": {
+        "ci95": [
+          0.6727194357366771,
+          0.8100812508190606
+        ],
+        "replicates": 2000
+      },
+      "theta_capability_run1": {
+        "ci95": [
+          0.5954989299090423,
+          0.7818240093240093
+        ],
+        "replicates": 2000
+      },
+      "theta_capability_run2": {
+        "ci95": [
+          0.5904979000884174,
+          0.7860328039160445
+        ],
+        "replicates": 2000
+      },
+      "theta_capability_mean": {
+        "ci95": [
+          0.5964491217443973,
+          0.781270032051282
+        ],
+        "replicates": 2000
+      },
+      "interval_capability_both": {
+        "ci95": [
+          0.5815827295302242,
+          0.7711892908717793
+        ],
+        "replicates": 2000
+      },
+      "interval_capability_either": {
+        "ci95": [
+          0.6096469385615433,
+          0.793898742703188
+        ],
+        "replicates": 2000
+      },
+      "theta_safety_run1": {
+        "ci95": [
+          0.6999870466321243,
+          0.8458323942219034
+        ],
+        "replicates": 2000
+      },
+      "theta_safety_run2": {
+        "ci95": [
+          0.709673579109063,
+          0.8548387096774194
+        ],
+        "replicates": 2000
+      },
+      "theta_safety_mean": {
+        "ci95": [
+          0.7039776843935662,
+          0.8492082478924584
+        ],
+        "replicates": 2000
+      },
+      "interval_safety_both": {
+        "ci95": [
+          0.6937703123589419,
+          0.8412840136054421
+        ],
+        "replicates": 2000
+      },
+      "interval_safety_either": {
+        "ci95": [
+          0.7148966165413534,
+          0.8577794117647058
+        ],
+        "replicates": 2000
+      },
+      "kappa_cluster": {
+        "ci95": [
+          0.7657297389038693,
+          0.9684793522810563
+        ],
+        "replicates": 2000
+      }
+    }
+  },
+  "security_policy_bounds": {
+    "note": "mechanical quote location only; quotes cite and locate, nothing here attributes a source; descriptive, no threshold",
+    "run1": {
+      "determined_safety_cases": 159,
+      "counts": {
+        "policy_only": 25,
+        "other_field": 134,
+        "spans_components": 0
+      },
+      "survival_lower_bound": 0.8427672955974843,
+      "switch_removable_at_most": 0.15723270440251572
+    },
+    "run2": {
+      "determined_safety_cases": 161,
+      "counts": {
+        "policy_only": 45,
+        "other_field": 116,
+        "spans_components": 0
+      },
+      "survival_lower_bound": 0.7204968944099379,
+      "switch_removable_at_most": 0.2795031055900621
+    },
+    "both_agree_variant": {
+      "cases_both_runs_determined": 158,
+      "both_other_field": 114,
+      "both_policy_only": 24,
+      "mixed_or_spanning": 20,
+      "survival_lower_bound": 0.7215189873417721
+    }
+  }
+}
