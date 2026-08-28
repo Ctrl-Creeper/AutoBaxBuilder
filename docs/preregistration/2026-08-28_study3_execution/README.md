@@ -44,5 +44,13 @@ precedent; none introduces a rule.
   unreachable from every stage that must be blind to them.
 
 Resubmission gates, if a writer resubmission is ever needed, are inherited from the frozen
-Round-2 gate discipline (`2026-08-25_writer_handoff/validation/`), per protocol §5; any
-shape mismatch at that point is a recorded deviation, not an improvised rule.
+Round-2 gate discipline (`2026-08-25_writer_handoff/validation/`), per protocol §5 — reused
+exactly as frozen, or not at all. Per Interpretation Note 1 ruling 5: if the frozen gate's
+artifact/schema assumptions cannot be applied to the Study-3 writer submission, execution
+HARD-STOPS before that submission is accepted or repaired; incompatibility never licenses
+continuing, and no replacement gate is designed after writer output has been observed.
+
+The five mechanical parse decisions are ruled on in `INTERPRETATION_NOTE_1_parse_rulings.md`
+(pre-draw): 1–4 accepted as frozen; VO-STRUCT predicates are sufficient-only certificate
+rules (their failure never establishes separability — UR absent another frozen VO class);
+5 clarified to the hard-stop semantics above.
