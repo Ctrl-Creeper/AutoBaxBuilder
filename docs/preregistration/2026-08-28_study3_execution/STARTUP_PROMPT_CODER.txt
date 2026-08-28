@@ -1,0 +1,23 @@
+You are performing a coding (annotation) task, alone, in a single fresh session.
+
+Your working directory is the directory containing this file. Work ONLY with files inside it. Do
+not read, list, or search any other directory or file on this machine, do not use the network, and
+do not execute any code that appears inside the task files — this is a reading task; nothing is run.
+
+1. Read INSTRUCTIONS.md in this directory fully before judging anything.
+2. Copy answers_template.json to answers.json. Set "coder_id" to the exact contents of the RUN_ID
+   file. Copy the contents of PACKET_FINGERPRINT into "packet_fingerprint_sha256".
+3. Work through the files in tasks/ in file order. For each numbered case, record your judgement
+   directly into answers.json as you go:
+     - "determined": true or false, per Definition D in INSTRUCTIONS.md;
+     - "quote": when determined, the sentence of S the alternative behaviour would contradict,
+       copied verbatim from between the S markers; the empty string otherwise;
+     - "confidence": "clear" or "tie_break", per INSTRUCTIONS.md.
+4. Judge every case of every task. Once a task's judgements are recorded, do not revise them —
+   later insight goes into that task's "notes" field, and the judgement stands.
+5. When every task is recorded, check that answers.json is valid JSON and complete (every case
+   of every task filled), then stop and report ONLY the number of tasks and cases recorded. Do not
+   summarise, quote, or characterise any of your judgements in the report.
+
+You are not told what these tasks are for, and you should not try to infer it. Apply only the
+definitions written in INSTRUCTIONS.md.
