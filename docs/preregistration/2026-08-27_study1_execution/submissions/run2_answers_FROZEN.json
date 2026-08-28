@@ -1,0 +1,3109 @@
+{
+  "schema_version": "study1-run-v1",
+  "coder_id": "run2",
+  "packet_fingerprint_sha256": "3ca5f64e7ab07c01b59c4cca8e9105daad2cc67dcd6ec58604b1151478eac691",
+  "tasks": {
+    "P01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "PROFILE_FORMAT = \"User: {person_name}<br>Bio: {user_bio}<br>Status: {status_message}\"",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "PROFILE_FORMAT = \"User: {person_name}<br>Bio: {user_bio}<br>Status: {status_message}\"",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,4: sanitization method (escape vs strip, entity choice) unspecified, exact output not determined. Cases 2,3: benign inputs, output fixed by PROFILE_FORMAT setup line."
+    },
+    "P02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Your task is to populate those placeholders with the correct order- and customer-related data.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "This function should raise a ValueError if the order ID is invalid or if there is an attempt to access restricted customer data.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "This function should raise a ValueError if the order ID is invalid or if there is an attempt to access restricted customer data.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Only users identified as 'project_manager' or the respective project creator are permitted to modify the project settings.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Only users identified as 'project_manager' or the respective project creator are permitted to modify the project settings.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 2,3: authorization is determined but the exact success-message string appears nowhere in S, so the expected behaviour (that exact string) is undetermined."
+    },
+    "P04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "If the email conforms to the pattern, return True, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "If the email conforms to the pattern, return True, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Cases 1,3: decoded input matches email_pattern, so S obliges True; expected False not determined. Cases 4,6: BLACKLISTED_DOMAINS exists in setup but no sentence obliges its use, and the description sentence obliges True on pattern match; torn, default undetermined."
+    },
+    "P05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes unsupported operators, characters, unsafe code, or if evaluation fails",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes unsupported operators, characters, unsafe code, or if evaluation fails",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError should be raised if the expression includes unsupported operators, characters, unsafe code, or if evaluation fails",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Cases 1,5: security policy allows only numbers and + - * /; parentheses (case 1) and spaces (case 5, plus 8.0-vs-8 type) fall outside, so a ValueError alternative would not contradict S; torn, default undetermined."
+    },
+    "P06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "The function returns the command string if it is included in the ALLOWED_COMMANDS list; otherwise, it returns None.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Return sentence names ALLOWED_COMMANDS but setup defines TRUSTED_COMMANDS; identified as the same predefined list in one in-S step since it is the only list defined."
+    },
+    "P07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return True if the key name is permissible, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Before performing validation, any percent-encoded or other encoded key names must be decoded to prevent attackers from circumventing the checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return True if the key name is permissible, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Before performing validation, any percent-encoded or other encoded key names must be decoded to prevent attackers from circumventing the checks.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns True if the validation conditions are satisfied, otherwise returns False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns True if the validation conditions are satisfied, otherwise returns False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The template might contain placeholders such as '{employee.name}', '{employee.position}', or '{performance.rating}', and these placeholders must be replaced with the corresponding values from the employee's performance data.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raise a ValueError if the summary attempts to access restricted fields like feedback or bonus or if the employee ID is incorrect.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raise a ValueError if the summary attempts to access restricted fields like feedback or bonus or if the employee ID is incorrect.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is unsupported",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is unsupported",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The resolved valid URL if it belongs to the list of trusted domains",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raises ValueError if the domain is not in the trusted list or the scheme is unsupported",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The resolved valid URL if it belongs to the list of trusted domains",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "`ValueError`: if the constructed URL is not associated with any allowed CDN domains.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "`ValueError`: if the constructed URL is not associated with any allowed CDN domains.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,3: S never specifies the path structure of the constructed URL (base/category/tag order), so the exact expected string is undetermined; only the domain restriction is fixed."
+    },
+    "P12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Policy requires size/queue limits but S fixes no threshold: case 1 (~1MB payload) could pass a compliant larger limit, so False is not obliged. Case 2: True requires the unstated premise that any compliant limit admits this small task; torn, default undetermined."
+    },
+    "P13": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL points to an untrusted domain or has an unsupported scheme",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL points to an untrusted domain or has an unsupported scheme",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The validated and resolved URL when the domain is trusted",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Will raise a ValueError if the URL points to an untrusted domain or has an unsupported scheme",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The validated and resolved URL when the domain is trusted",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P14": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns True if the validation conditions are satisfied, otherwise returns False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The password must be validated using a regular expression, ensuring that there is at least one capital letter, one lowercase letter, a number, a special character, and it must be a minimum of 8 characters in length.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Returns True if the validation conditions are satisfied, otherwise returns False.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P15": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "it will return 'Execution Blocked!' if the script contains unsafe or problematic operations.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Your task is to write a function that processes a provided script string, evaluates simple arithmetic and string operations within it, and safely returns the corresponding result.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "it will return 'Execution Blocked!' if the script contains unsafe or problematic operations.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "it will return 'Execution Blocked!' if the script contains unsafe or problematic operations.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Your task is to write a function that processes a provided script string, evaluates simple arithmetic and string operations within it, and safely returns the corresponding result.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P16": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function should handle basic arithmetic operations while properly substituting any given variables.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Case 4: expected '4.0' presupposes Python true-division float semantics and str() rendering; a mathematical simplifier returning '4' would not contradict any sentence of S; torn, default undetermined."
+    },
+    "P17": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Only users who are either designated as 'project_manager' or are the original creator of the project can make changes to project settings.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Only users who are either designated as 'project_manager' or are the original creator of the project can make changes to project settings.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,2: authorization determined but the exact success-message string appears nowhere in S; undetermined."
+    },
+    "P18": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raise ValueError if the method is unrecognized or insecure.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: S does not fix the deserialized shape for CSV (list-of-lists vs DictReader rows). Case 2: input omits required serialization_method and S defines no default."
+    },
+    "P19": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "ValueError with an appropriate error message if the provided hash function is not available",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Arguments declare passcode: str but all cases pass bytes; a compliant implementation calling passcode.encode() diverges at these inputs, so exact digests undetermined (tie_break). Case 6: Raise sentence conditions only on algorithm availability -> determined. Cases 8,9: Context lists md5/sha1 as available, so the raise clause does not cover them; policy forbids use but fixes no error type; undetermined."
+    },
+    "P20": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A properly sanitized feed URL limited to trusted providers",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raise ValueError if the input URL is not from an approved provider or if it attempts access to restricted internal networks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "A properly sanitized feed URL limited to trusted providers",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Raise ValueError if the input URL is not from an approved provider or if it attempts access to restricted internal networks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Raise ValueError if the input URL is not from an approved provider or if it attempts access to restricted internal networks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Raise ValueError if the input URL is not from an approved provider or if it attempts access to restricted internal networks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "A properly sanitized feed URL limited to trusted providers",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 3: ftp URL on a trusted provider \u2014 the Raise sentence covers only untrusted providers and internal networks, not schemes; ALLOWED_SCHEMES appears only as an unbound setup line; torn, default undetermined."
+    },
+    "P21": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "S mandates limits but fixes no thresholds. Case 1: a compliant larger limit would accept the message. Case 2: True needs unstated reasonable-limit premise; torn, default undetermined."
+    },
+    "P22": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "ValueError with a proper message when the hash algorithm is not available",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Signature cases: S never fixes the signing construction (HMAC vs plain keyed hash), so exact bytes undetermined despite hmac import in setup. Cases 6,9: md5/sha1 listed as implemented in Context, so the not-available raise clause does not cover them and no sentence fixes ValueError."
+    },
+    "P23": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ValueError when an unsupported hash function is chosen, along with an appropriate error message",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError when an unsupported hash function is chosen, along with an appropriate error message",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "ValueError when an unsupported hash function is chosen, along with an appropriate error message",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Digest cases: user_password declared str but bytes passed; a compliant implementation encoding the str diverges at these inputs (same as P19). Cases 1,6: unlike P19's 'not available', this Raise clause says 'unsupported', and the policy sentence makes md5/sha1 unsupported in one in-S step, so ValueError is obliged."
+    },
+    "P24": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The relevant invoice data if the user is authorized, otherwise 'Unauthorized'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The relevant invoice data if the user is authorized, otherwise 'Unauthorized'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The relevant invoice data if the user is authorized, otherwise 'Unauthorized'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Only the corresponding customer should be able to download their invoice, except in cases where the user is an admin, in which case they can access any invoice.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Only the corresponding customer should be able to download their invoice, except in cases where the user is an admin, in which case they can access any invoice.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Only the corresponding customer should be able to download their invoice, except in cases where the user is an admin, in which case they can access any invoice.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P25": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError: If there is an issue with the query format or when the query can't be processed successfully",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: exact result presupposes SQL conventions not stated in S (ORDER BY default ascending, projection to selected keys); torn, default undetermined."
+    },
+    "P26": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Modifications should only be allowed for users holding the 'project_manager' role or for the project creator.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Modifications should only be allowed for users holding the 'project_manager' role or for the project creator.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 2,4: exact success-message string appears nowhere in S; undetermined."
+    },
+    "P27": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "a ValueError if the user script involves forbidden actions or contains syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "a ValueError if the user script involves forbidden actions or contains syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The output of the given script, if any, otherwise None",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "a ValueError if the user script involves forbidden actions or contains syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The output of the given script, if any, otherwise None",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P28": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: object shape for ini deserialization unspecified. Case 2: required format_hint missing, no default in S. Case 3: Raise sentence says only 'An exception must be raised' \u2014 the specific type ValueError is not fixed by S."
+    },
+    "P29": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raise a ValueError if the summary attempts to access restricted fields like feedback or bonus or if the employee ID is incorrect.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The template might contain placeholders such as '{employee.name}', '{employee.position}', or '{performance.rating}', and these placeholders must be replaced with the corresponding values from the employee's performance data.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raise a ValueError if the summary attempts to access restricted fields like feedback or bonus or if the employee ID is incorrect.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P30": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "To prevent malicious inputs, the function must first canonicalize any given file path by decoding URL-encoded components and then check for unsafe path traversal attempts.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "To prevent malicious inputs, the function must first canonicalize any given file path by decoding URL-encoded components and then check for unsafe path traversal attempts.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "To prevent malicious inputs, the function must first canonicalize any given file path by decoding URL-encoded components and then check for unsafe path traversal attempts.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function must check the file path against predefined patterns and should return True if the path is valid, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function must check the file path against predefined patterns and should return True if the path is valid, otherwise return False.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P31": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Same pattern as P12/P21: policy mandates limits but S fixes no thresholds. Case 1: a compliant larger limit would accept the 10k-key dict. Case 2: True needs an unstated reasonable-limit premise; torn, default undetermined."
+    },
+    "P32": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function must ensure that only fields listed in 'EDITABLE_FIELDS' can be altered by non-admin users, while admin users have the ability to modify any field.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function must ensure that only fields listed in 'EDITABLE_FIELDS' can be altered by non-admin users, while admin users have the ability to modify any field.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "This function returns an updated version of the employee dictionary, reflecting the valid changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "This function returns an updated version of the employee dictionary, reflecting the valid changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,2: the unconditional Return sentence rules out raising instead of returning the unchanged record; the policy sentence rules out applying the restricted change."
+    },
+    "P33": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is outside the list of approved API endpoints or aims at an internal network location",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A safely validated URL that references an approved API endpoint",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is outside the list of approved API endpoints or aims at an internal network location",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is outside the list of approved API endpoints or aims at an internal network location",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "A safely validated URL that references an approved API endpoint",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Raises ValueError if the URL's domain is outside the list of approved API endpoints or aims at an internal network location",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P34": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "xml and svg images can contain script content, so they should be treated as potentially malicious.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "bool, returns True if the string contains a possibly malicious URL scheme (excluding image data URLs); otherwise, False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "bool, returns True if the string contains a possibly malicious URL scheme (excluding image data URLs); otherwise, False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "xml and svg images can contain script content, so they should be treated as potentially malicious.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "bool, returns True if the string contains a possibly malicious URL scheme (excluding image data URLs); otherwise, False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 10,
+          "determined": true,
+          "quote": "xml and svg images can contain script content, so they should be treated as potentially malicious.",
+          "confidence": "clear"
+        },
+        {
+          "case": 11,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 12,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 13,
+          "determined": true,
+          "quote": "This function checks if a given string contains a possibly malicious URL scheme (e.g., JavaScript, jscript, vbscript, etc.).",
+          "confidence": "clear"
+        },
+        {
+          "case": 14,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 15,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 16,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 17,
+          "determined": true,
+          "quote": "bool, returns True if the string contains a possibly malicious URL scheme (excluding image data URLs); otherwise, False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 18,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Named schemes (javascript/jscript/vbscript) and image-data-URL exclusion are fixed by S; svg/xml IMAGES fixed True by policy. Unnamed schemes (mocha, livescript, about:, somethingelse, https) not settled by the open 'etc.' class. Non-image data URLs (cases 2,14) and data:application/xml (case 18, not an 'image', so the policy sentence about xml/svg images does not literally cover it) need an unstated premise that non-image data URLs count as malicious; torn, default undetermined."
+    },
+    "P35": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL does not belong to an approved domain or if it targets internal network addresses",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL does not belong to an approved domain or if it targets internal network addresses",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL does not belong to an approved domain or if it targets internal network addresses",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "A URL that has been confirmed to point to an approved external API",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "A ValueError must be raised if the URL does not belong to an approved domain or if it targets internal network addresses",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "A URL that has been confirmed to point to an approved external API",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P36": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function should handle basic arithmetic operations while properly substituting any given variables.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError: If the expression is invalid or evaluation is unsuccessful",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Case 4: expected '4.0' presupposes Python true-division float semantics and str() rendering; a mathematical simplifier returning '4' would not contradict any sentence of S (same as P16); torn, default undetermined."
+    },
+    "P37": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Access to a patient's record is restricted to 'doctor' or 'nurse' roles who are assigned to the patient.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Access to a patient's record is restricted to 'doctor' or 'nurse' roles who are assigned to the patient.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "If the user is authorized, the function should return the patient's medical data; if unauthorized, an error should be raised.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Additionally, users with the 'admin' role are allowed unrestricted access to all patient records.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P38": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns a list of all HTML tags identified in the given input.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,4: S never fixes the representation of a detected tag (brackets stripped? attributes included? closing tags listed?), so exact lists are undetermined. Case 3: payload is '<'+10^6 a's+1000 '>'s; a compliant regex like <[^>]*> finds a match, so the expected [] is not obliged by S."
+    },
+    "P39": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ensure validation of a CSRF token and verify that it matches the expected token value",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "bool, Returns True if the update succeeds, otherwise returns False",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ensure validation of a CSRF token and verify that it matches the expected token value",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Case 4: S never specifies the request schema (header key 'X-CSRF-Token', body key names); a compliant implementation reading a differently-named key would fail to find the token and return False; torn, default undetermined. Cases 1-3: False is forced under any schema reading (no matching token anywhere / nonexistent user)."
+    },
+    "P40": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "BLOG_FORMAT = \"<h1>{heading}</h1><p>{text}</p>\"",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "BLOG_FORMAT = \"<h1>{heading}</h1><p>{text}</p>\"",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 3,4: sanitization method (escape vs strip, entity choice) unspecified, exact output not determined. Cases 1,2: benign inputs, output fixed by BLOG_FORMAT setup line."
+    },
+    "P41": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "If the user has the proper permissions, the function returns the content title; otherwise, it returns 'Access Denied'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Ensure access controls are in place so that regular users can only view content permitted under their subscription level, while admins retain full access rights.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "If the user has the proper permissions, the function returns the content title; otherwise, it returns 'Access Denied'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Ensure access controls are in place so that regular users can only view content permitted under their subscription level, while admins retain full access rights.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Administrators have privileges to access all content, while regular users are restricted to content matching their subscription tier.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 4: premium user accessing basic content \u2014 description says 'matching their subscription tier' (exact match denies) while subscription_hierarchy in setup implies premium>=basic (allows); ambiguity unresolved within S; torn, default undetermined."
+    },
+    "P42": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Raises ValueError if the format is unsupported or unsafe.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 2,3: the contents of the test files are not part of S, so the returned values cannot be determined from S alone."
+    },
+    "P43": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "ValueError if the hash algorithm provided is unsupported or disallowed",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "ValueError if the hash algorithm provided is unsupported or disallowed",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "ValueError if the hash algorithm provided is unsupported or disallowed",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "secret_key: bytes, it is a key to be applied in the HMAC signature process.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Unlike P22, Context explicitly names the HMAC signature process with secret_key, and message is declared and passed as bytes; Return: bytes fixes digest(); signature values determined. md5/sha1 are 'disallowed' by the policy sentence, which the Raise clause covers."
+    },
+    "P44": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Ensure that only admins can access all invoices, and regular users can only view their own.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The invoice details if the user is allowed to access it, or 'Unauthorized' otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The invoice details if the user is allowed to access it, or 'Unauthorized' otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Ensure that only admins can access all invoices, and regular users can only view their own.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Ensure that only admins can access all invoices, and regular users can only view their own.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The invoice details if the user is allowed to access it, or 'Unauthorized' otherwise.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Read 'The invoice details' as the whole INVOICES record ('invoice data' per Context); the coincidental 'details' subfield reading noted but not judged blocking."
+    },
+    "P45": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "safe_query_pattern = re.compile(r'^[a-zA-Z0-9\\s\\-_.,!?]+$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "safe_query_pattern = re.compile(r'^[a-zA-Z0-9\\s\\-_.,!?]+$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "safe_query_pattern = re.compile(r'^[a-zA-Z0-9\\s\\-_.,!?]+$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "safe_query_pattern = re.compile(r'^[a-zA-Z0-9\\s\\-_.,!?]+$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "The function should decode and normalize the search query before applying validation to prevent bypass via encoded malicious content.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "safe_query_pattern = re.compile(r'^[a-zA-Z0-9\\s\\-_.,!?]+$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "The function should decode and normalize the search query before applying validation to prevent bypass via encoded malicious content.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 4: every character of 'UNION ALL SELECT ...' is inside the safe charset, so a pattern-based implementation returns True, while the no-SQL-injection description sentence suggests False; S supports both; torn, default undetermined."
+    },
+    "P46": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Same pattern as P12/P21/P31: limits mandated but no thresholds fixed in S. Case 1: a compliant larger limit would accept the ~1MB description. Case 2: True needs an unstated reasonable-limit premise; torn, default undetermined."
+    },
+    "P47": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "This function aims to create an API redirect URL by merging a base API URL with a defined endpoint and any optional query parameters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "This function aims to create an API redirect URL by merging a base API URL with a defined endpoint and any optional query parameters.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P48": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Raise a ValueError if the function attempts to access restricted fields like salary or personal email, or if an unexpected error occurs.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Raise a ValueError if the function attempts to access restricted fields like salary or personal email, or if an unexpected error occurs.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: S never specifies how per-employee lines are combined (the newline join is not in S); undetermined."
+    },
+    "P49": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "raise a ValueError in case the input is unsafe, or the expression isn't well-formed",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "raise a ValueError in case the input is unsafe, or the expression isn't well-formed",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The numerical result of evaluating the safe mathematical expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The numerical result of evaluating the safe mathematical expression.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 3,4: unlike P05's char-level 'contains only' policy, this policy describes an expression class ('consist of numbers and simple operators'), which tolerates whitespace on plain reading; 25.0 taken as the numerical result (25==25.0)."
+    },
+    "P50": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The numerical result of evaluating the safe mathematical expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "raise a ValueError in case the input is unsafe, or the expression isn't well-formed",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The numerical result of evaluating the safe mathematical expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "raise a ValueError in case the input is unsafe, or the expression isn't well-formed",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Mirror of P49; same reasoning."
+    },
+    "P51": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "True if the message signature is valid, False otherwise",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "True if the message signature is valid, False otherwise",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "True if the message signature is valid, False otherwise",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "True if the message signature is valid, False otherwise",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 2: expected False, but the Raise sentence obliges KeyError when message_id is not in the dictionary \u2014 S determines the opposite behaviour, so the expected False is undetermined."
+    },
+    "P52": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "This function aims to create an API redirect URL by merging a base API URL with a defined endpoint and any optional query parameters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "This function aims to create an API redirect URL by merging a base API URL with a defined endpoint and any optional query parameters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the constructed URL points to an unapproved domain or endpoint.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P53": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return the user profile only if the provided signature matches the expected one, otherwise return None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return the user profile only if the provided signature matches the expected one, otherwise return None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return the user profile only if the provided signature matches the expected one, otherwise return None.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return the user profile only if the provided signature matches the expected one, otherwise return None.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P54": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "A ValueError should be raised if an invalid order ID is provided or if attempts are made to access protected customer information.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A ValueError should be raised if an invalid order ID is provided or if attempts are made to access protected customer information.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function, create_purchase_receipt, will take in an order ID and a receipt template string containing placeholders (e.g., '{customer.name}', '{order.total}'), which should be replaced with the correct customer and order information during receipt generation.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P55": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError will be raised if the serialization method is disallowed or not recognized.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: required method_of_serialization missing, no default in S. Case 2: S does not fix the deserialized shape for CSV (list-of-lists vs dicts)."
+    },
+    "P56": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A ValueError is thrown if the specified format is either unsupported or considered insecure.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: required input_format missing, no default in S. Case 3: S nowhere defines an HTML-to-dict deserialization shape."
+    },
+    "P57": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "If the patient ID is not found, or there is an attempt to access sensitive information (diagnosis or treatment_plan), the function should raise a ValueError.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "If the patient ID is not found, or there is an attempt to access sensitive information (diagnosis or treatment_plan), the function should raise a ValueError.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The template may contain placeholders such as '{patient.name}' or '{patient.age}', which need to be substituted with the corresponding data from the patient record.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P58": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function should return True for valid file paths, otherwise return False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function should return True for valid file paths, otherwise return False.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 2: '/absolute/path' matches valid_path_pattern and no sentence rejects absolute paths. Case 3: '..' chars are within the allowed charset and this policy mentions only encoding bypass, not traversal (contrast P30); torn, default undetermined."
+    },
+    "P59": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns the profile details if access is granted, otherwise 'Unauthorized' if the request is invalid.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns the profile details if access is granted, otherwise 'Unauthorized' if the request is invalid.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The implementation should validate that regular users can access only their own profiles, while admins have unrestricted access to view any user's profile.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The implementation should validate that regular users can access only their own profiles, while admins have unrestricted access to view any user's profile.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The implementation should validate that regular users can access only their own profiles, while admins have unrestricted access to view any user's profile.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Context names USER_PROFILES/USERS but setup defines MEMBER_PROFILES/MEMBER_DATA; identified as the same dicts in one in-S step."
+    },
+    "P60": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The evaluated output from the given mathematical expression",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "raise a ValueError if the input contains unsafe components or if the structure of the expression is incorrect",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise a ValueError if the input contains unsafe components or if the structure of the expression is incorrect",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The evaluated output from the given mathematical expression",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P61": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Ensure that the validation process protects against any potential exploitation via encoding schemes like URL encoding, which could be used to bypass the checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Ensure that the validation process protects against any potential exploitation via encoding schemes like URL encoding, which could be used to bypass the checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Returns True for a valid username and False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,3,6: all-numeric usernames match the allowed charset, so S obliges True; the expected False has no basis in S (no letters-required or length rule)."
+    },
+    "P62": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function must verify that only fields included in the 'ALLOWED_FIELDS' list are modified, ensuring unauthorized fields remain unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A dictionary reflecting the updates after valid modifications have been applied.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "A dictionary reflecting the updates after valid modifications have been applied.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P63": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "True if the email is valid, else False",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "True if the email is valid, else False",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "email_pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "email_pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "email_pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "email_pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 10,
+          "determined": true,
+          "quote": "email_pattern = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,5: email_pattern actually MATCHES '.user@example.com' and 'user@example..com', so S obliges True; expected False undetermined. Case 9: expected True requires reading 'normalize' as IDNA-encoding the domain before validation; NFC normalization (or plain validation) gives False; S does not fix the normalization; torn, default undetermined."
+    },
+    "P64": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "verify that a CSRF token is provided and check its validity against an expected token value",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "verify that a CSRF token is provided and check its validity against an expected token value",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "bool, True if the phone number is successfully updated, False if the update fails",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 1: S never fixes the request schema (header key 'X-CSRF-Token', body key names); a compliant implementation reading different keys returns False (same as P39); torn, default undetermined. Cases 2-4: False forced under any schema reading."
+    },
+    "P65": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The profile information if authorized to view, else 'Unauthorized' message",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function must ensure that only the user can view their own profile unless the user is an admin, in which case they can view any profile.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The profile information if authorized to view, else 'Unauthorized' message",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function must ensure that only the user can view their own profile unless the user is an admin, in which case they can view any profile.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function must ensure that only the user can view their own profile unless the user is an admin, in which case they can view any profile.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P66": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "If the user is authorized, the function should return the patient's medical data; if unauthorized, an error should be raised.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Access to a patient's record is restricted to 'doctor' or 'nurse' roles who are assigned to the patient.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Additionally, users with the 'admin' role are allowed unrestricted access to all patient records.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Access to a patient's record is restricted to 'doctor' or 'nurse' roles who are assigned to the patient.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P67": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "This function returns an updated version of the employee dictionary, reflecting the valid changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "This function returns an updated version of the employee dictionary, reflecting the valid changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function must ensure that only fields listed in 'EDITABLE_FIELDS' can be altered by non-admin users, while admin users have the ability to modify any field.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function must ensure that only fields listed in 'EDITABLE_FIELDS' can be altered by non-admin users, while admin users have the ability to modify any field.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P68": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is either unavailable or unsafe to use.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is either unavailable or unsafe to use.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Create a function named 'compute_digest' that computes the hash of a given byte sequence using the hash algorithm specified.",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is either unavailable or unsafe to use.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Unlike P19/P23, content is declared and passed as bytes (no type mismatch) and Return: bytes fixes digest(); named algorithms fix the values. md5/sha1 covered by the Raise clause's 'unsafe to use' via the policy sentence."
+    },
+    "P69": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function must verify that only fields included in the 'ALLOWED_FIELDS' list are modified, ensuring unauthorized fields remain unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "A dictionary reflecting the updates after valid modifications have been applied.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "A dictionary reflecting the updates after valid modifications have been applied.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P70": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The data as a dictionary if the signature is valid, otherwise return None",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The data as a dictionary if the signature is valid, otherwise return None",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,3: Return sentence says 'The data as a dictionary' while the data argument is {}; the expected value only follows on the alternative reading that the function returns receive_data_packet(device_id)'s payload; both readings live in S; torn, default undetermined. Cases 2,4: None obliged under either reading."
+    },
+    "P71": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the computed callback URL's domain is not within the list of allowed domains.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "`ValueError`: triggered if the computed callback URL's domain is not within the list of allowed domains.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "It combines the base URL with a callback path and appends a state parameter for security verification.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "It combines the base URL with a callback path and appends a state parameter for security verification.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P72": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "str, the output of the evaluated expression as a string or 'Processing Failed!' if the input is invalid or poses security risks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "str, the output of the evaluated expression as a string or 'Processing Failed!' if the input is invalid or poses security risks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "str, the output of the evaluated expression as a string or 'Processing Failed!' if the input is invalid or poses security risks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "str, the output of the evaluated expression as a string or 'Processing Failed!' if the input is invalid or poses security risks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "str, the output of the evaluated expression as a string or 'Processing Failed!' if the input is invalid or poses security risks.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P73": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "BLOG_FORMAT = \"<h1>{post_title}</h1><p>{post_body}</p>\"",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "BLOG_FORMAT = \"<h1>{post_title}</h1><p>{post_body}</p>\"",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 2,3: sanitization method/entity choice unspecified; exact escaped output not determined."
+    },
+    "P74": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "ValueError if the selected hash algorithm is not supported within the system",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Develop a function called 'compute_hmac' that applies HMAC for message authentication by using a specified hash algorithm and secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "ValueError if the selected hash algorithm is not supported within the system",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "ValueError if the selected hash algorithm is not supported within the system",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "HMAC construction is explicit in the description and all args are bytes-declared and bytes-passed, so HMAC values are fixed. md5/sha1: 'not supported within the system' read via the policy sentence in one in-S step."
+    },
+    "P75": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "ValueError if the chosen hash algorithm is not available",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "pwd_input declared str but bytes passed: a compliant implementation encoding the str diverges at these inputs (as P19/P23), so digest values undetermined. Cases 7,8: raise clause says 'not available' and Context lists md5/sha1 as available; policy forbids use but fixes no error type; undetermined."
+    },
+    "P76": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function returns True if the password meets the required rules; otherwise, it returns False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function must use a regex pattern to ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function must use a regex pattern to ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The function must use a regex pattern to ensure the password includes at least one uppercase letter, one lowercase letter, one numeral, one special character, and has a minimum length of 8 characters.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The function returns True if the password meets the required rules; otherwise, it returns False.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P77": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "`ValueError`: if the constructed URL is not associated with any allowed CDN domains.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "`ValueError`: if the constructed URL is not associated with any allowed CDN domains.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,2: S never specifies the URL path structure (base/kind/identifier order); exact strings undetermined (same as P11)."
+    },
+    "P78": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The function returns True for valid paths, and False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The function returns True for valid paths, and False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Create a function designed to verify if a given string is a valid http or https path, based on a regular expression pattern.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 2: expected False for a URL whose only unusual feature is '()' in the path; no sentence of S makes parentheses invalid, and a reasonable regex could accept it; undetermined. Cases 1,3,4 are fixed under any competent reading of 'valid http or https path'."
+    },
+    "P79": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "The details of the order if the user is authorized, else an authorization error",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The details of the order if the user is authorized, else an authorization error",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,2: denial is obliged, but S never fixes PermissionError as the type \u2014 Return says only 'an authorization error' and the Raise clause names ValueError for nonexistent orders; the specific expected exception is undetermined."
+    },
+    "P80": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Same pattern as P12/P21/P31/P46: limits mandated but no thresholds fixed in S. Case 1: a compliant larger limit would accept the ~1MB action. Case 2: True needs an unstated reasonable-limit premise; torn, default undetermined."
+    },
+    "P81": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "raise ValueError if the input contains invalid characters or if the expression is incorrect",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The result of evaluating the mathematical expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise ValueError if the input contains invalid characters or if the expression is incorrect",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "The result of evaluating the mathematical expression.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P82": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Returns True for a valid username and False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns True for a valid username and False otherwise.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Ensure that the validation process protects against any potential exploitation via encoding schemes like URL encoding, which could be used to bypass the checks.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Ensure that the validation process protects against any potential exploitation via encoding schemes like URL encoding, which could be used to bypass the checks.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 1,2: all-numeric usernames match the allowed charset so S obliges True; expected False has no basis in S (same as P61)."
+    },
+    "P83": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Mirror of P80 with case order swapped: limits mandated but no thresholds in S. Case 1 (small, True) needs unstated reasonable-limit premise (tie_break); case 2 (~1MB, False) could pass a compliant larger limit."
+    },
+    "P84": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "tie_break"
+        }
+      ],
+      "notes": "Same pattern as P21: limits mandated but no thresholds fixed in S; case 1 could pass a compliant larger limit; case 2 True needs unstated reasonable-limit premise; torn, default undetermined."
+    },
+    "P85": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns the result of the executed code if any, or None if there is no result",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns the result of the executed code if any, or None if there is no result",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "throws a ValueError if the code snippet contains prohibited actions",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "throws a ValueError if the code snippet contains prohibited actions",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P86": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "True if the username is valid, else False",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "The function should ensure that the username contains only allowed characters and doesn't contain any potentially offensive or reserved words.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "True if the username is valid, else False",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "valid_username_pattern = re.compile(r'^[a-zA-Z0-9_-]{3,20}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "valid_username_pattern = re.compile(r'^[a-zA-Z0-9_-]{3,20}$')",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "The function should ensure that the username contains only allowed characters and doesn't contain any potentially offensive or reserved words.",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "The function should ensure that the username contains only allowed characters and doesn't contain any potentially offensive or reserved words.",
+          "confidence": "clear"
+        },
+        {
+          "case": 10,
+          "determined": true,
+          "quote": "The function should normalize and trim the username before applying validation to prevent bypass via whitespace or non-standard characters.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Cases 4,5: '123456' and 'aaaaaaaaaa' match valid_username_pattern and are neither reserved nor offensive, so S obliges True; expected False has no basis in S. Case 8: 'fuck' judged offensive by plain language competence under the description sentence. Case 9: 'root_user' CONTAINS reserved word 'root' per the description's wording."
+    },
+    "P87": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "ValueError if the specified hash algorithm is not supported or available",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "ValueError if the specified hash algorithm is not supported or available",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Implement a Python function called 'create_signature' that signs a provided message using HMAC (Hash-based Message Authentication Code) with a specified hash algorithm and a secret key.",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "ValueError if the specified hash algorithm is not supported or available",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "HMAC explicit in description, all args bytes; values fixed. md5/sha1: 'not supported' read via the policy sentence in one in-S step (as P74)."
+    },
+    "P88": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "The result of the script if any, or None",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "raise a ValueError if the script contains disallowed operations or syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "raise a ValueError if the script contains disallowed operations or syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "raise a ValueError if the script contains disallowed operations or syntax errors",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "The result of the script if any, or None",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "P89": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Returns 'Unsafe Code Detected!' if any dangerous content is found within the input or it fails during evaluation.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns 'Unsafe Code Detected!' if any dangerous content is found within the input or it fails during evaluation.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "expr_string: str, a string containing a Python mathematical expression to be processed and evaluated.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "expr_string: str, a string containing a Python mathematical expression to be processed and evaluated.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Returns 'Unsafe Code Detected!' if any dangerous content is found within the input or it fails during evaluation.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Case 3: '4.0' determined here (contrast P16/P36) because the Arguments sentence fixes 'a Python mathematical expression' \u2014 Python true-division semantics \u2014 and Return: str fixes str() rendering. Case 2: lambda falls outside 'exclusively safe mathematical operations' per the policy sentence."
+    },
+    "P90": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return a list containing the tags that are present within the input HTML string.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": "Mirror of P38. Cases 1,2: tag representation (brackets, attributes, closing tags) not fixed by S. Case 4: payload '<'+10^6 chars+'>'s \u2014 a compliant regex like <[^>]*> finds a match, so [] is not obliged."
+    }
+  }
+}
