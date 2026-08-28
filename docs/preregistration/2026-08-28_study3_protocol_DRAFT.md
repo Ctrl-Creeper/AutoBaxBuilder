@@ -160,14 +160,15 @@ disagreements; runs any model-evaluation API.
 
 ## 9. Conditioning-risk register — flagged and stopped, not chosen
 
-- **CR-1 (open — stopped).** Fresh-draw size. Choosing how many tasks to draw so that the eligible
-  subsample reaches a target size requires an assumed baseline-determination rate. The only
-  non-arbitrary number available is Study-1's aggregate θ (a revealed outcome). Using it is
-  aggregate-level conditioning — it selects no task and biases no comparison, but it is a Study-1
-  outcome entering a Study-3 design constant, and the frozen rule says that decision is not mine.
-  Alternatives: (a) permit the aggregate for logistics only, recorded as such; (b) fix the draw
-  size by budget alone with no rate assumption; (c) two-stage draw (draw, run baseline, draw again
-  if short — requires a frozen stopping rule). **Undecided; protocol cannot freeze until ruled.**
+- **CR-1 (CLOSED by ruling, 2026-08-28).** **Resource-fixed one-stage sampling.** Baseline sample
+  size fixed at **N = 90 tasks**, justified solely by the a-priori resource budget and the
+  double-blinded coding batch scale already demonstrated executable — **not** described as
+  power-derived or precision-derived. One SRSWOR draw of 90 from the frozen Study-3 eligible
+  frame; baseline double-blinded J1 on all 90; every task meeting the frozen eligibility rule
+  proceeds to the constructive stage. **Whatever the eligible yield, no supplemental draw, no
+  redraw, no extended recruitment.** Study-1 θ and every other Study-1 outcome value are barred
+  from Study-3 selection, sample-size, eligibility, and stopping logic; outcome-dependent
+  supplemental sampling is barred.
 - **CR-2 (closed — documented).** The conditional-subpopulation estimand might look θ-informed; it
   is not: RQ3's conditional wording is frozen in the architecture draft, which predates every
   Study-1 outcome. Recorded to preempt the reviewer version of this question.

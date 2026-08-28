@@ -1,0 +1,82 @@
+{
+  "A_interior": {
+    "targets": {
+      "pi_ds": 0.4191780821917809,
+      "pi_vo": 0.14554794520547948,
+      "sigma": 0.708904109589041
+    },
+    "mean_eligible_m": 65.6515,
+    "insample_containment_rate": 1.0,
+    "coverage": {
+      "cp_ds": 0.976,
+      "cp_vo": 0.971,
+      "boot_ds": 0.9555,
+      "boot_vo": 0.933,
+      "im_sigma": 1.0
+    }
+  },
+  "B_vo_boundary": {
+    "targets": {
+      "pi_ds": 0.5297945205479453,
+      "pi_vo": 0.0,
+      "sigma": 1.0
+    },
+    "mean_eligible_m": 65.856,
+    "insample_containment_rate": 1.0,
+    "coverage": {
+      "cp_ds": 0.9675,
+      "cp_vo": 1.0,
+      "boot_ds": 0.949,
+      "boot_vo": 1.0,
+      "im_sigma": 1.0
+    }
+  },
+  "C_low_yield": {
+    "targets": {
+      "pi_ds": 0.4553571428571428,
+      "pi_vo": 0.2678571428571429,
+      "sigma": 0.6428571428571428
+    },
+    "mean_eligible_m": 18.9875,
+    "insample_containment_rate": 1.0,
+    "coverage": {
+      "cp_ds": 0.9745,
+      "cp_vo": 0.984,
+      "boot_ds": 0.947,
+      "boot_vo": 0.9395,
+      "im_sigma": 0.9975
+    }
+  },
+  "D_high_ds": {
+    "targets": {
+      "pi_ds": 0.7767123287671234,
+      "pi_vo": 0.10479452054794522,
+      "sigma": 0.8767123287671234
+    },
+    "mean_eligible_m": 65.739,
+    "insample_containment_rate": 1.0,
+    "coverage": {
+      "cp_ds": 0.973,
+      "cp_vo": 0.9785,
+      "boot_ds": 0.9515,
+      "boot_vo": 0.935,
+      "im_sigma": 0.995
+    }
+  },
+  "NEG_ads_violation": {
+    "targets": {
+      "pi_ds": 0.12750000000000003,
+      "pi_vo": 0.0,
+      "sigma": 0.15000000000000002
+    },
+    "mean_eligible_m": 76.5005,
+    "insample_containment_rate": 0.0,
+    "coverage": {
+      "cp_ds": 0.0,
+      "cp_vo": 1.0,
+      "boot_ds": 0.0,
+      "boot_vo": 1.0,
+      "im_sigma": 0.0
+    }
+  }
+}
