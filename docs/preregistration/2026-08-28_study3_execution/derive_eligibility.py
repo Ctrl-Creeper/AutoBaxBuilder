@@ -33,14 +33,18 @@ def eligibility(rows: list[dict]) -> dict:
     for tid in sorted({r["task"] for r in rows}):
         t = [r for r in rows if r["task"] == tid]
         saf = [r for r in t if r["situation"] == "safety"]
-        both = sum(r["run1_determined"] and r["run2_determined"] for r in saf)
+        qualifying = [r["source_index"] for r in saf
+                      if r["run1_determined"] and r["run2_determined"]]
         either = sum(r["run1_determined"] or r["run2_determined"] for r in saf)
         per_task[tid] = {
             "n_capability": sum(r["situation"] == "capability" for r in t),
             "n_safety": len(saf),
-            "safety_determined_both": both,
+            "safety_determined_both": len(qualifying),
+            # the mechanical case IDs (source-order indices) that make the rule hold;
+            # quotes are deliberately NOT copied into this manifest
+            "qualifying_safety_case_source_indices": qualifying,
             "safety_determined_either": either,
-            "eligible_both_agree": both >= 1,
+            "eligible_both_agree": len(qualifying) >= 1,
             "eligible_either_agree_sensitivity_only": either >= 1,
         }
     return per_task

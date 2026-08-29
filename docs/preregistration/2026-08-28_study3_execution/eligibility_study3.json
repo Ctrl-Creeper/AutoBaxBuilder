@@ -1,0 +1,1104 @@
+{
+ "rule": "measured-eligible iff >=1 safety case determined in both runs (case-level both-agree; frozen a priori, protocol §3)",
+ "m": 53,
+ "eligible_task_ids": [
+  "P02",
+  "P03",
+  "P08",
+  "P10",
+  "P12",
+  "P13",
+  "P15",
+  "P16",
+  "P17",
+  "P18",
+  "P19",
+  "P20",
+  "P21",
+  "P22",
+  "P25",
+  "P31",
+  "P33",
+  "P34",
+  "P35",
+  "P36",
+  "P38",
+  "P39",
+  "P42",
+  "P43",
+  "P44",
+  "P46",
+  "P47",
+  "P48",
+  "P50",
+  "P51",
+  "P52",
+  "P57",
+  "P61",
+  "P62",
+  "P63",
+  "P65",
+  "P66",
+  "P68",
+  "P69",
+  "P70",
+  "P71",
+  "P72",
+  "P75",
+  "P78",
+  "P79",
+  "P80",
+  "P81",
+  "P82",
+  "P83",
+  "P85",
+  "P86",
+  "P88",
+  "P90"
+ ],
+ "eligible_indices": {
+  "P02": 473,
+  "P03": 1089,
+  "P08": 1163,
+  "P10": 177,
+  "P12": 435,
+  "P13": 1170,
+  "P15": 1065,
+  "P16": 1369,
+  "P17": 675,
+  "P18": 1058,
+  "P19": 1189,
+  "P20": 1410,
+  "P21": 1053,
+  "P22": 780,
+  "P25": 1133,
+  "P31": 1082,
+  "P33": 1136,
+  "P34": 1218,
+  "P35": 144,
+  "P36": 1066,
+  "P38": 1080,
+  "P39": 433,
+  "P42": 1148,
+  "P43": 1101,
+  "P44": 1206,
+  "P46": 1118,
+  "P47": 1166,
+  "P48": 1027,
+  "P50": 165,
+  "P51": 168,
+  "P52": 775,
+  "P57": 1219,
+  "P61": 1305,
+  "P62": 457,
+  "P63": 113,
+  "P65": 485,
+  "P66": 452,
+  "P68": 600,
+  "P69": 447,
+  "P70": 454,
+  "P71": 503,
+  "P72": 1302,
+  "P75": 164,
+  "P78": 1020,
+  "P79": 74,
+  "P80": 137,
+  "P81": 660,
+  "P82": 102,
+  "P83": 1009,
+  "P85": 1405,
+  "P86": 652,
+  "P88": 1377,
+  "P90": 356
+ },
+ "either_agree_count_sensitivity_only": 56,
+ "n_drawn": 90,
+ "per_task": {
+  "P01": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P02": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P03": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P04": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P05": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P06": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P07": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P08": {
+   "n_capability": 2,
+   "n_safety": 4,
+   "safety_determined_both": 4,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "safety_determined_either": 4,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P09": {
+   "n_capability": 3,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P10": {
+   "n_capability": 1,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2,
+    3
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P11": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P12": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P13": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P14": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P15": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P16": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P17": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P18": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P19": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P20": {
+   "n_capability": 3,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    3
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P21": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P22": {
+   "n_capability": 5,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    5,
+    6,
+    7
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P23": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P24": {
+   "n_capability": 3,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P25": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P26": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 1,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P27": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P28": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P29": {
+   "n_capability": 3,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P30": {
+   "n_capability": 7,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P31": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P32": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P33": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P34": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P35": {
+   "n_capability": 1,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P36": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P37": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P38": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P39": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P40": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P41": {
+   "n_capability": 7,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P42": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P43": {
+   "n_capability": 2,
+   "n_safety": 4,
+   "safety_determined_both": 4,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "safety_determined_either": 4,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P44": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P45": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P46": {
+   "n_capability": 3,
+   "n_safety": 5,
+   "safety_determined_both": 4,
+   "qualifying_safety_case_source_indices": [
+    4,
+    5,
+    6,
+    7
+   ],
+   "safety_determined_either": 4,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P47": {
+   "n_capability": 2,
+   "n_safety": 4,
+   "safety_determined_both": 4,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "safety_determined_either": 4,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P48": {
+   "n_capability": 3,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    3,
+    4,
+    5
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P49": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P50": {
+   "n_capability": 1,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P51": {
+   "n_capability": 1,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P52": {
+   "n_capability": 5,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    5,
+    6,
+    7
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P53": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P54": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P55": {
+   "n_capability": 15,
+   "n_safety": 3,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 3,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P56": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P57": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P58": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P59": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P60": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P61": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P62": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P63": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3,
+    4
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P64": {
+   "n_capability": 3,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P65": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P66": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P67": {
+   "n_capability": 2,
+   "n_safety": 3,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P68": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    2
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P69": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P70": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P71": {
+   "n_capability": 3,
+   "n_safety": 2,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    4
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P72": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P73": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P74": {
+   "n_capability": 3,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P75": {
+   "n_capability": 1,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P76": {
+   "n_capability": 1,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P77": {
+   "n_capability": 7,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P78": {
+   "n_capability": 3,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    3,
+    4,
+    5
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P79": {
+   "n_capability": 4,
+   "n_safety": 1,
+   "safety_determined_both": 1,
+   "qualifying_safety_case_source_indices": [
+    4
+   ],
+   "safety_determined_either": 1,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P80": {
+   "n_capability": 1,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P81": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P82": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P83": {
+   "n_capability": 3,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    3,
+    4
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P84": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P85": {
+   "n_capability": 1,
+   "n_safety": 3,
+   "safety_determined_both": 3,
+   "qualifying_safety_case_source_indices": [
+    1,
+    2,
+    3
+   ],
+   "safety_determined_either": 3,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P86": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P87": {
+   "n_capability": 2,
+   "n_safety": 1,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 1,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P88": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    2,
+    3
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  },
+  "P89": {
+   "n_capability": 2,
+   "n_safety": 2,
+   "safety_determined_both": 0,
+   "qualifying_safety_case_source_indices": [],
+   "safety_determined_either": 0,
+   "eligible_both_agree": false,
+   "eligible_either_agree_sensitivity_only": false
+  },
+  "P90": {
+   "n_capability": 7,
+   "n_safety": 2,
+   "safety_determined_both": 2,
+   "qualifying_safety_case_source_indices": [
+    7,
+    8
+   ],
+   "safety_determined_either": 2,
+   "eligible_both_agree": true,
+   "eligible_either_agree_sensitivity_only": true
+  }
+ },
+ "baseline_submission_sha256": {
+  "run1_baseline_FROZEN.json": "0c4dc4f2c95a180fa6a1b8ea7d5ce951c95562f9b44d4ee874ec93e8a2b99cfb",
+  "run2_baseline_FROZEN.json": "46721c9903b3c8173942b3f2fe76fa1df1ff929250f852fbe3c9ed1873074983"
+ }
+}
