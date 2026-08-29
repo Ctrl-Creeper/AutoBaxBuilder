@@ -21,7 +21,8 @@ import json
 import sys
 from pathlib import Path
 
-from study3_pins import (SCHEMA_SPRIME, load_frozen_sums, sha256_file, sprime_record)
+from study3_pins import (SCHEMA_SPRIME, load_case_manifest, load_frozen_sums, sha256_file,
+                         sprime_record)
 from packet_build import build_packages
 
 HERE = Path(__file__).resolve().parent
@@ -50,6 +51,7 @@ def main() -> None:
         idx = key_w["tasks"][wid]["index"]
         sprime_records[idx] = sprime_record(records[idx], task)
 
+    cases_by_index = load_case_manifest()  # same frozen manifest as every other stage
     key = build_packages(
         sprime_records, sorted(sprime_records), HERE / "sprime",
         schema_version=SCHEMA_SPRIME,
@@ -57,7 +59,10 @@ def main() -> None:
         run_seed_names={"run1": "sprime_run1_cases", "run2": "sprime_run2_cases"},
         key_extra={"stage": "sprime",
                    "writer_output_sha256": frozen[wpath.name],
-                   "eligibility_manifest_sha256": sha256_file(HERE / "eligibility_study3.json")},
+                   "eligibility_manifest_sha256": sha256_file(HERE / "eligibility_study3.json"),
+                   "frozen_case_manifest_sha256":
+                       sha256_file(HERE / "sealed_materialization/FROZEN_CASE_MANIFEST.json")},
+        cases_by_index=cases_by_index,
         id_prefix="Q")
     n_cases = sum(len(v["case_situations_source_order"]) for v in key["tasks"].values())
     print(f"S′ packets built: {len(key['tasks'])} tasks, {n_cases} cases")

@@ -34,11 +34,17 @@ HERE = Path(__file__).resolve().parent
 
 EXECUTION_FILES = (
     "study3_pins.py", "select_study3_sample.py", "packet_build.py",
-    "build_study3_baseline_packets.py", "validate_study3_submission.py",
-    "derive_eligibility.py", "build_study3_writer_handoff.py",
-    "validate_study3_candidate.py", "build_study3_sprime_packets.py",
-    "derive_ds.py", "vo_certificates.py", "score_study3.py",
+    "materialize_cases.py", "build_study3_baseline_packets.py",
+    "validate_study3_submission.py", "derive_eligibility.py",
+    "build_study3_writer_handoff.py", "validate_study3_candidate.py",
+    "build_study3_sprime_packets.py", "derive_ds.py", "vo_certificates.py",
+    "score_study3.py",
 )
+
+# GAP-3 Amendment 2, clause 8: after materialization no component re-executes testcase
+# extraction — the extractor may be named ONLY by the materializer.
+EXTRACTOR_LITERAL = "extract_cases"
+EXTRACTOR_ALLOWED_IN = {"materialize_cases.py"}
 
 # banned in EVERY execution file: Study-1 data artifacts, Round-2 coding artifacts,
 # the Round-2 writer corpus, and the retired judgement names
@@ -55,7 +61,7 @@ BANNED_PATTERNS = [r"\bJ2\b", r"\bJ3\b"]
 
 # study3 writer artifacts: banned in the files that must be blind to the writer
 WRITER_LITERALS = ["study3_writer", "writer_handoff", "SHA256SUMS_WRITER"]
-WRITER_BLIND_FILES = ("select_study3_sample.py", "packet_build.py",
+WRITER_BLIND_FILES = ("select_study3_sample.py", "packet_build.py", "materialize_cases.py",
                       "build_study3_baseline_packets.py", "validate_study3_submission.py",
                       "derive_eligibility.py", "derive_ds.py", "vo_certificates.py",
                       "study3_pins.py")
@@ -65,8 +71,8 @@ SELECTION_EXTRA_BANS = ["secodeplt_task_runner", "eligibility", "ds_derivation",
                         "vo_certificates", "results_study3", "baseline", "sprime"]
 
 ALLOWED_IMPORTS = {
-    "__future__", "argparse", "collections", "hashlib", "inspect", "json", "pathlib",
-    "re", "subprocess", "sys", "tempfile", "types",
+    "__future__", "argparse", "collections", "hashlib", "inspect", "json", "locale",
+    "os", "pathlib", "platform", "re", "subprocess", "sys", "tempfile", "time", "types",
     "numpy", "scipy",
     "secodeplt_task_runner", "build_study1_packets",
     "study3_pins", "select_study3_sample", "packet_build",
@@ -103,6 +109,8 @@ def main() -> None:
             hits += [lit for lit in WRITER_LITERALS if lit in src]
         if name == "select_study3_sample.py":
             hits += [lit for lit in SELECTION_EXTRA_BANS if lit in src]
+        if name not in EXTRACTOR_ALLOWED_IN and EXTRACTOR_LITERAL in src:
+            hits += [EXTRACTOR_LITERAL]
         check(not hits, f"{name}: no banned literal or pattern (found {hits or 'none'})")
 
         allowed = SELECTION_ALLOWED if name == "select_study3_sample.py" else ALLOWED_IMPORTS

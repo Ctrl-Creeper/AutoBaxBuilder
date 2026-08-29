@@ -1,9 +1,16 @@
 """Post-build audit of the formal Study-3 baseline packets. Read-only.
 
 Every check recomputes from the pinned sources — frozen protocol (seed derivation), frozen
-frame, frozen selection manifest (hash-pinned), benchmark records, shipped get_prompt — and
-compares against what the builder wrote. No submission exists yet; nothing here reads a
-judgement, derives eligibility, or invokes the scorer.
+frame, frozen selection manifest (hash-pinned), benchmark records, shipped get_prompt, and
+the sealed FROZEN_CASE_MANIFEST — and compares against what the builder wrote. No
+submission exists yet; nothing here reads a judgement, derives eligibility, or invokes the
+scorer.
+
+GAP-3 Amendment 2 (clause 9): the former "fresh extraction must byte-equal packet cases"
+invariant is superseded. The invariant checked here is
+    packet case object ≡ FROZEN_CASE_MANIFEST case object
+byte-for-byte. This audit never re-executes testcase extraction (clause 8); a manifest
+mismatch is a hard stop and never a trigger for rematerialization (clause 10).
 
 Scan-scope rule (FAIL-2 ruling, 2026-08-28): the lexical banned-token scan applies to
 RESEARCHER-GENERATED material only — instructions, templates, fingerprints, filenames, and
@@ -34,9 +41,9 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 from study3_pins import (FRAME, FRAME_SHA, PROTOCOL_SHA, RUNS,  # noqa: E402
-                         SCHEMA_BASELINE, SEED_SLICES, sha256_file)
+                         SCHEMA_BASELINE, SEED_SLICES, load_case_manifest, sha256_file)
 from select_study3_sample import draw  # noqa: E402
-from packet_build import (BEGIN_S, END_S, extract_cases,  # noqa: E402
+from packet_build import (BEGIN_S, END_S,  # noqa: E402
                           load_shipped_get_prompt, render_task)
 from validate_study3_submission import J1_KEYS, TASK_KEYS  # noqa: E402
 
@@ -95,13 +102,21 @@ def main() -> None:  # noqa: C901
     records = {r["index"]: r for r in load(only_stdlib=False)}
     get_prompt = load_shipped_get_prompt()  # byte-verifies instruct.py against its pin
 
-    # --- per-task recomputation: S_t, cases, permutations, full file byte-equality
+    # --- frozen case manifest: pinned in the key, sole case source (Amendment 2)
+    manifest_sha = sha256_file(HERE / "sealed_materialization/FROZEN_CASE_MANIFEST.json")
+    check(key.get("frozen_case_manifest_sha256") == manifest_sha,
+          "key pins the sealed FROZEN_CASE_MANIFEST hash")
+    cases_by_index = load_case_manifest()  # verifies against SHA256SUMS_MATERIALIZATION
+    check(sorted(cases_by_index) == sorted(selection),
+          "manifest covers exactly the frozen selection")
+
+    # --- per-task recomputation: S_t, manifest cases, permutations, file byte-equality
     n_bad_s = n_bad_cases = n_bad_perm = n_bad_file = 0
     rngs = {run: np.random.default_rng(seeds[run]) for run in RUNS}
     for tid in sorted(assign):
         rec = records[assign[tid]]
         s_t = get_prompt(rec)
-        cases = extract_cases(rec)
+        cases = cases_by_index[assign[tid]]
         meta = key["tasks"][tid]
         if [c["situation"] for c in cases] != meta["case_situations_source_order"]:
             n_bad_cases += 1
@@ -116,9 +131,10 @@ def main() -> None:  # noqa: C901
                 n_bad_file += 1
     check(n_bad_s == 0, "every packet S block is byte-identical to shipped get_prompt output "
                         "(90 tasks × 2 packages)")
-    check(n_bad_cases == 0, "fresh case extraction matches the key's situations for all tasks")
+    check(n_bad_cases == 0, "manifest case situations match the key for all tasks")
     check(n_bad_perm == 0, "all 180 case permutations reproduce from the protocol-derived seeds")
-    check(n_bad_file == 0, "every task file is byte-identical to a from-source re-rendering")
+    check(n_bad_file == 0, "every task file is byte-identical to a re-rendering from "
+                           "get_prompt + FROZEN_CASE_MANIFEST (the Amendment-2 invariant)")
 
     # --- canonical payload recomputed from the package files themselves
     payload = {}
@@ -178,13 +194,13 @@ def main() -> None:  # noqa: C901
                      f"(hits: {leaks[:6] or 'none'})")
 
     # --- provenance of the lexically-exempt payload: each task file must byte-decompose
-    #     into the fixed template + shipped get_prompt output + case cells whose inputs
-    #     equal the frozen extractor's fresh output. Nothing else can occupy the exemption.
+    #     into the fixed template + shipped get_prompt output + case cells byte-equal to
+    #     the FROZEN_CASE_MANIFEST objects. Nothing else can occupy the exemption.
     n_bad_prov = 0
     for tid in sorted(assign):
         rec = records[assign[tid]]
         s_t = get_prompt(rec)
-        fresh_inputs = [c["input"] for c in extract_cases(rec)]
+        want_cells = [[c["input"], c["expected"]] for c in cases_by_index[assign[tid]]]
         meta = key["tasks"][tid]
         for run in RUNS:
             md = (BASE / f"{run}_package/tasks/{tid}.md").read_text()
@@ -193,15 +209,15 @@ def main() -> None:  # noqa: C901
             if len(rows) != len(order):
                 n_bad_prov += 1
                 continue
-            cases_src = [None] * len(order)
+            cells_src = [None] * len(order)
             for pos, o in enumerate(order):
-                cases_src[o] = {"input": rows[pos][0], "expected": rows[pos][1]}
-            if (md != render_task(tid, s_t, cases_src, order)
-                    or [c["input"] for c in cases_src] != fresh_inputs):
+                cells_src[o] = [rows[pos][0], rows[pos][1]]
+            cases_src = [{"input": a, "expected": b} for a, b in cells_src]
+            if md != render_task(tid, s_t, cases_src, order) or cells_src != want_cells:
                 n_bad_prov += 1
     check(n_bad_prov == 0,
           "exempt payload provenance: every task file byte-decomposes into template + "
-          "get_prompt output + extractor-derived case cells (inputs re-derived equal)")
+          "get_prompt output + manifest case cells (inputs AND expected byte-equal)")
 
     # --- sealed key lives outside both packages
     inside = [str(p) for run in RUNS

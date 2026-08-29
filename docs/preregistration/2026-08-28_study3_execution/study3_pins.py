@@ -165,3 +165,21 @@ def run_profile_ok(rows: list[dict], tid: str, run: str) -> bool:
 def load_frozen_sums(sums_path: Path) -> dict[str, str]:
     return dict(line.split()[::-1]
                 for line in sums_path.read_text().strip().splitlines())
+
+
+def load_case_manifest() -> dict[int, list[dict]]:
+    """GAP-3 Amendment 2: the ONLY source of case objects downstream of materialization.
+
+    Verifies the sealed FROZEN_CASE_MANIFEST against its hash frozen in
+    SHA256SUMS_MATERIALIZATION and returns {source_index: cases}. A mismatch is a hard
+    stop and never triggers rematerialization (clause 10). No caller may re-execute
+    testcase extraction to obtain or verify case values (clause 8).
+    """
+    manifest_p = HERE / "sealed_materialization/FROZEN_CASE_MANIFEST.json"
+    frozen = load_frozen_sums(HERE / "SHA256SUMS_MATERIALIZATION")
+    if sha256_file(manifest_p) != frozen["sealed_materialization/FROZEN_CASE_MANIFEST.json"]:
+        sys.exit("HARD STOP — FROZEN_CASE_MANIFEST does not match its frozen hash. "
+                 "The manifest is immutable; a mismatch is never repaired by "
+                 "rematerialization (Amendment 2, clause 10).")
+    doc = json.loads(manifest_p.read_text())
+    return {int(idx): t["cases"] for idx, t in doc["tasks"].items()}

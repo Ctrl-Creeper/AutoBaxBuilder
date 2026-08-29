@@ -19,8 +19,8 @@ import sys
 from pathlib import Path
 
 from select_study3_sample import draw
-from study3_pins import (FRAME, FRAME_SHA, N_DRAW, SCHEMA_BASELINE, seed_from_protocol,
-                         sha256_file, verify_pin)
+from study3_pins import (FRAME, FRAME_SHA, N_DRAW, SCHEMA_BASELINE, load_case_manifest,
+                         seed_from_protocol, sha256_file, verify_pin)
 from packet_build import build_packages
 
 HERE = Path(__file__).resolve().parent
@@ -45,13 +45,17 @@ def main() -> None:
     from secodeplt_task_runner import load  # noqa: E402  (benchmark loader only)
     records = {r["index"]: r for r in load(only_stdlib=False)}
 
+    cases_by_index = load_case_manifest()  # GAP-3 Amendment 2: sole case source
     key = build_packages(
         records, manifest["selection"], HERE / "baseline",
         schema_version=SCHEMA_BASELINE,
         task_seed_name="baseline_task_order",
         run_seed_names={"run1": "baseline_run1_cases", "run2": "baseline_run2_cases"},
         key_extra={"stage": "baseline",
-                   "selection_manifest_sha256": sha256_file(MANIFEST)})
+                   "selection_manifest_sha256": sha256_file(MANIFEST),
+                   "frozen_case_manifest_sha256":
+                       sha256_file(HERE / "sealed_materialization/FROZEN_CASE_MANIFEST.json")},
+        cases_by_index=cases_by_index)
     n_cases = sum(len(v["case_situations_source_order"]) for v in key["tasks"].values())
     print(f"baseline packets built: {len(key['tasks'])} tasks, {n_cases} cases")
     print(f"payload sha {key['canonical_payload_sha256']['run1'][:16]}… (identical across runs)")

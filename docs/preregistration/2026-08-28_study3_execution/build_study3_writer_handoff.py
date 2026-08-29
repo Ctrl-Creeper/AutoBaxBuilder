@@ -150,7 +150,8 @@ def main() -> None:
 
     from secodeplt_task_runner import load  # noqa: E402  (benchmark loader only)
     records = {r["index"]: r for r in load(only_stdlib=False)}
-    from packet_build import extract_cases  # frozen mechanical case extraction
+    from study3_pins import load_case_manifest
+    cases_by_index = load_case_manifest()  # GAP-3 Amendment 2: sole case source
 
     order = np.random.default_rng(seed_from_protocol("writer_ids")).permutation(len(eligible))
     assign = {f"W{p:02d}": eligible[int(i)] for p, i in enumerate(order, 1)}
@@ -164,7 +165,7 @@ def main() -> None:
         idx = elig["eligible_indices"][tid]
         rec = records[idx]
         (pkg / "tasks" / f"{wid}.md").write_text(
-            render_writer_task(wid, rec, extract_cases(rec)))
+            render_writer_task(wid, rec, cases_by_index[idx]))
         tmpl["tasks"][wid] = {"spec": {**{f: "" for f in EDITABLE_FIELDS},
                                        "security_policy": None},
                               "edits": [], "sufficiency_evidence": [],

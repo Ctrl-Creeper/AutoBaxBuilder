@@ -123,20 +123,54 @@ def main() -> None:  # noqa: PLR0915
     check("formal draw refused without approval flag",
           r.returncode != 0 and "not yet approved" in r.stderr + r.stdout)
     for guard_file in ("build_study3_baseline_packets.py", "build_study3_sprime_packets.py",
-                       "build_study3_writer_handoff.py"):
+                       "build_study3_writer_handoff.py", "materialize_cases.py"):
         r = subprocess.run([sys.executable, str(HERE / guard_file)],
                            capture_output=True, text=True)
         check(f"{guard_file} refused without approval flag",
               r.returncode != 0 and "not yet approved" in r.stderr + r.stdout)
 
-    # ---- 2. packet construction on synthetic records -----------------------
+    # ---- 1b. case materialization (GAP-3 Amendment 2) on synthetic records --
+    from materialize_cases import host_resources, materialize
     recs = {i: synth_rec(i) for i in (1, 2, 3)}
+    m_tasks, m_public, m_fails = materialize(recs, [1, 2, 3])
+    check("materializer: clean synthetic records materialize without failure",
+          not m_fails and sorted(m_tasks) == ["1", "2", "3"])
+    check("materializer: public artifact carries hashes/metadata, never raw case values",
+          all(set(v) == {"case_count", "situations", "case_hashes", "host_resources_sha256"}
+              for v in m_public.values())
+          and all(len(h["input_sha256"]) == 64 for v in m_public.values()
+                  for h in v["case_hashes"]))
+    broken = {9: synth_rec(9)}
+    broken[9]["unittest"]["testcases"] = "raise RuntimeError('no testcases')"
+    b_tasks, _, b_fails = materialize(broken, [9])
+    check("materializer: any task failure is reported and nothing is materialized for it "
+          "(clause-11 hard-stop input)", not b_tasks and len(b_fails) == 1)
+    hr_rec = synth_rec(4)
+    hr_rec["unittest"]["testcases"] = ('testcases = {"capability": [({"p": "/etc/hosts"}, 1)],'
+                                       ' "safety": []}')
+    check("materializer: host-resource path literals are hashed for provenance",
+          "/etc/hosts" in host_resources(hr_rec))
+    cases_by_index = {i: m_tasks[str(i)]["cases"] for i in (1, 2, 3)}
+
+    # ---- 2. packet construction on synthetic records + manifest cases -------
     pkg_dir = tmp / "packets"
     key = build_packages(recs, [1, 2, 3], pkg_dir, schema_version="study3-baseline-run-v1",
                          task_seed_name="baseline_task_order",
                          run_seed_names={"run1": "baseline_run1_cases",
                                          "run2": "baseline_run2_cases"},
-                         key_extra={"stage": "selftest"})
+                         key_extra={"stage": "selftest"},
+                         cases_by_index=cases_by_index)
+    try:
+        build_packages(recs, [1, 2, 3], tmp / "p2", schema_version="study3-baseline-run-v1",
+                       task_seed_name="baseline_task_order",
+                       run_seed_names={"run1": "baseline_run1_cases",
+                                       "run2": "baseline_run2_cases"},
+                       key_extra={"stage": "selftest"}, cases_by_index={1: cases_by_index[1]})
+        check("builder refuses a task missing from the case manifest (no re-extraction)",
+              False)
+    except SystemExit as e:
+        check("builder refuses a task missing from the case manifest (no re-extraction)",
+              "case manifest" in str(e))
     check("canonical payloads identical across runs",
           key["canonical_payload_sha256"]["run1"] == key["canonical_payload_sha256"]["run2"])
     t1 = (pkg_dir / "run1_package/tasks/P01.md").read_text()

@@ -9,8 +9,14 @@ artifact (selection, packet, submission, derivation, result) exists at freeze.
 
 1. `select_study3_sample.py --approved-formal-draw` → `selection_study3.json` (one SRSWOR
    draw, seed = int(protocol_sha[0:8],16); no redraw exists).
+1b. `materialize_cases.py --approved-materialization` → sealed
+   `sealed_materialization/FROZEN_CASE_MANIFEST.json` + public
+   `case_materialization_public.json` (GAP-3 Amendment 2: the one authorized extraction,
+   all 90 tasks; immutable; every later stage consumes this manifest and never re-extracts;
+   the superseding invariant is packet case object ≡ manifest case object).
 2. `build_study3_baseline_packets.py --approved-packet-build` → `baseline/{run1,run2}_package`
-   (original S_t; the builder re-derives the draw and refuses on mismatch).
+   (original S_t; the builder re-derives the draw and refuses on mismatch; cases from the
+   frozen manifest only).
 3. Two fresh isolated coder sessions (STARTUP_PROMPT_CODER.txt), per-run
    `validate_study3_submission.py`, independent freeze into
    `submissions_baseline/{run1,run2}_baseline_FROZEN.json` + `SHA256SUMS_BASELINE_FROZEN`.

@@ -24,18 +24,23 @@ import numpy as np
 from study3_pins import PROTOCOL_SHA, RUNS, seed_from_protocol
 
 from build_study1_packets import (BEGIN_S, END_S, INSTRUCTIONS,  # noqa: F401  (frozen Study-1 machinery, code only)
-                                  extract_cases, load_shipped_get_prompt,
+                                  load_shipped_get_prompt,
                                   reconstruct_s_t, render_segments, render_task)
 
 
 def build_packages(records: dict[int, dict], indices: list[int], out: Path,
                    schema_version: str, task_seed_name: str, run_seed_names: dict[str, str],
-                   key_extra: dict, id_prefix: str = "P") -> dict:
+                   key_extra: dict, cases_by_index: dict[int, list[dict]],
+                   id_prefix: str = "P") -> dict:
     """Mechanical package construction for one stage (baseline or S′). Returns the key.
 
     S_t for every record is produced by the benchmark's own shipped get_prompt and byte-
     checked against the mechanical re-rendering — for S′ records this doubles as the proof
     that the render carries exactly the candidate prose plus the untouched frozen components.
+
+    Case objects come EXCLUSIVELY from cases_by_index — in formal use, the sealed
+    FROZEN_CASE_MANIFEST (GAP-3 Amendment 2, clause 8). This function never executes
+    testcase extraction.
     """
     get_prompt = load_shipped_get_prompt()
 
@@ -51,7 +56,10 @@ def build_packages(records: dict[int, dict], indices: list[int], out: Path,
         for name, text in seg.items():
             if re.sub(r"\s+", " ", text).strip() not in re.sub(r"\s+", " ", joined):
                 sys.exit(f"index {idx}: segment {name} lost in normalisation")
-        tasks[idx] = {"s_t": s_t, "segments": seg, "cases": extract_cases(rec)}
+        if idx not in cases_by_index:
+            sys.exit(f"index {idx}: no case object in the frozen case manifest; "
+                     "refusing to build (rematerialization is prohibited)")
+        tasks[idx] = {"s_t": s_t, "segments": seg, "cases": cases_by_index[idx]}
 
     seeds = {"task_order": seed_from_protocol(task_seed_name),
              **{run: seed_from_protocol(n) for run, n in run_seed_names.items()}}

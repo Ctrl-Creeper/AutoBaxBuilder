@@ -135,15 +135,18 @@ def main() -> None:
     rows = align_runs(key, subs)
 
     from secodeplt_task_runner import load  # noqa: E402  (benchmark loader only)
-    from packet_build import extract_cases, render_segments
+    from packet_build import render_segments
+    from study3_pins import load_case_manifest
     records = {r["index"]: r for r in load(only_stdlib=False)}
+    cases_by_index = load_case_manifest()  # GAP-3 Amendment 2: sole case source
     segments_by_task, params_by_task, case_texts_by_task = {}, {}, {}
     for tid in elig["eligible_task_ids"]:
-        rec = records[key["tasks"][tid]["index"]]
+        idx = key["tasks"][tid]["index"]
+        rec = records[idx]
         segments_by_task[tid] = render_segments(rec)
         params_by_task[tid] = param_names(rec)
         case_texts_by_task[tid] = [f"{c['input']} {c['expected']}"
-                                   for c in extract_cases(rec)]
+                                   for c in cases_by_index[idx]]
 
     result = derive(rows, elig["eligible_task_ids"], segments_by_task, params_by_task,
                     case_texts_by_task, HERE / "vo_defect")
