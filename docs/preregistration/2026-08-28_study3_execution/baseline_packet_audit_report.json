@@ -10,10 +10,8 @@
   "n_tasks": 90,
   "n_cases": 394,
   "canonical_payload_sha256": {
-    "run1": "2387ee94800739a41bf9752f2239f1e0d63129a94861c633ee1a29d22ecd6b36",
-    "run2": "2387ee94800739a41bf9752f2239f1e0d63129a94861c633ee1a29d22ecd6b36"
+    "run1": "0f01179aaf3504f87cc1a5490371b5bd4b3eadf9f5e53fceff1e16f0ab16dd1b",
+    "run2": "0f01179aaf3504f87cc1a5490371b5bd4b3eadf9f5e53fceff1e16f0ab16dd1b"
   },
-  "checks_failed": [
-    "every task file is byte-identical to a from-source re-rendering"
-  ]
+  "checks_failed": []
 }

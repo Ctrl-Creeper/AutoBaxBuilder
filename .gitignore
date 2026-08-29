@@ -12,3 +12,4 @@ fixtures/**/__pycache__/
 # Study-3: quarantined prevalidation build and sealed raw-value manifests never enter git
 docs/preregistration/2026-08-28_study3_execution/baseline/
 docs/preregistration/2026-08-28_study3_execution/sealed_materialization/
+docs/preregistration/2026-08-28_study3_execution/quarantined_prevalidation_build/

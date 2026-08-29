@@ -156,8 +156,10 @@ def main() -> None:  # noqa: C901
                                       (BASE / f"{run}_package/tasks/{t}.md").read_text(),
                                       re.MULTILINE)) for t in sorted(assign))
               for run in RUNS}
-    check(n_rows["run1"] == n_rows["run2"] == n_cases,
-          f"each source case appears exactly once per run ({n_cases} rows per package)")
+    n_manifest = sum(len(cases_by_index[i]) for i in selection)
+    check(n_rows["run1"] == n_rows["run2"] == n_cases == n_manifest == 394,
+          f"each of the manifest's 394 cases appears exactly once per run "
+          f"(rows {n_rows['run1']}/{n_rows['run2']}, key {n_cases}, manifest {n_manifest})")
 
     # --- packages differ only in presentation
     same = all((BASE / f"run1_package/{f}").read_bytes() ==
@@ -169,7 +171,9 @@ def main() -> None:  # noqa: C901
     #     foreign-study/outcome traces. Benchmark-derived payload (S block, case cells)
     #     is exempt from the lexical scan; its provenance is proven mechanically below.
     hard_banned = ["writer", "round2", "round-2", "secodeplt", "selection", "_KEY_",
-                   "sealed", "study1", "study-1", "prevalence", "eligib"]
+                   "sealed", "study1", "study-1", "prevalence", "eligib",
+                   "materializ", "manifest", "amendment", "gap-3", "gap3", "quarantin",
+                   "host_resource", "frozen_case", "provenance"]
     hard_patterns = [r"\bJ2\b", r"\bJ3\b", r"\bDS\b", r"\bVO\b", r"\bUR\b"]
     label_banned = ["capability", "safety"]
     leaks = []
