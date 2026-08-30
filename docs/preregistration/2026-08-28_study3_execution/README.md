@@ -47,14 +47,21 @@ precedent; none introduces a rule.
 - `dataflow_audit.py` — per-file banned literals, AST import allowlists, runtime open
   trace: Study-1 results/judgements cannot enter selection, baseline, eligibility, or
   scoring; Round-2 J2/J3 tokens may not appear in execution code; writer artifacts are
-  unreachable from every stage that must be blind to them.
+  unreachable from every stage that must be blind to them; the Amendment-3 gate can name
+  only its three inputs (anchor, machine report, resubmission).
+- `test_resubmission_gate_study3.py` — Amendment 3 clause-7 adversarial fixtures
+  (synthetic only).
 
-Resubmission gates, if a writer resubmission is ever needed, are inherited from the frozen
-Round-2 gate discipline (`2026-08-25_writer_handoff/validation/`), per protocol §5 — reused
-exactly as frozen, or not at all. Per Interpretation Note 1 ruling 5: if the frozen gate's
-artifact/schema assumptions cannot be applied to the Study-3 writer submission, execution
-HARD-STOPS before that submission is accepted or repaired; incompatibility never licenses
-continuing, and no replacement gate is designed after writer output has been observed.
+Resubmission gates: Interpretation Note 1 ruling 5's hard-stop fired **before any writer
+output existed** — the pre-build mechanical check ordered with the writer-handoff approval
+found the Round-2 gate implementation incompatible with the Study-3 writer schema (GAP-4).
+Per the PI ruling, Amendment 3 (`AMENDMENT_3_study3_native_resubmission_gate.md`) reuses
+the frozen Round-2 resubmission *discipline*, implemented prospectively against the frozen
+Study-3 schema: `resubmission_gate_study3.py` (first submission = permanent substantive
+anchor; A1–A3 allowlist frozen once, no A4 ever; structured issue-code interface to the
+candidate validator; outcomes ACCEPT_FIRST / ACCEPT_REPAIRED / UNREPAIRABLE_FIRST_SUBMISSION).
+An unrepairable first submission permanently stands as the formal writer output; downstream
+handling per the protocol's own UR default and the open GAP-5 ruling (see Amendment 3).
 
 The five mechanical parse decisions are ruled on in `INTERPRETATION_NOTE_1_parse_rulings.md`
 (pre-draw): 1–4 accepted as frozen; VO-STRUCT predicates are sufficient-only certificate

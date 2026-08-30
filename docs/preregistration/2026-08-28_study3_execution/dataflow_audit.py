@@ -38,7 +38,7 @@ EXECUTION_FILES = (
     "validate_study3_submission.py", "derive_eligibility.py",
     "build_study3_writer_handoff.py", "validate_study3_candidate.py",
     "build_study3_sprime_packets.py", "derive_ds.py", "vo_certificates.py",
-    "score_study3.py",
+    "score_study3.py", "resubmission_gate_study3.py",
 )
 
 # GAP-3 Amendment 2, clause 8: after materialization no component re-executes testcase
@@ -70,6 +70,15 @@ WRITER_BLIND_FILES = ("select_study3_sample.py", "packet_build.py", "materialize
 SELECTION_EXTRA_BANS = ["secodeplt_task_runner", "eligibility", "ds_derivation",
                         "vo_certificates", "results_study3", "baseline", "sprime"]
 
+# Amendment 3 clause 8: the resubmission gate reads ONLY the first-submission anchor,
+# the candidate validator's machine report, and the resubmission — the §3 coder-side
+# artifacts, membership manifest, benchmark loader, case manifest, witness-check and
+# classification stages are all unnameable from it
+GATE_EXTRA_BANS = ["secodeplt_task_runner", "submissions_", "_KEY_DO_NOT_SHOW",
+                   "eligib", "qualifying", "baseline", "sprime", "ds_derivation",
+                   "vo_certificates", "results_study3", "load_case_manifest",
+                   "run1", "run2"]
+
 ALLOWED_IMPORTS = {
     "__future__", "argparse", "collections", "hashlib", "inspect", "json", "locale",
     "os", "pathlib", "platform", "re", "subprocess", "sys", "tempfile", "time", "types",
@@ -80,6 +89,9 @@ ALLOWED_IMPORTS = {
 # the selection tool's import set is far tighter
 SELECTION_ALLOWED = {"__future__", "argparse", "hashlib", "json", "pathlib", "sys",
                      "numpy", "study3_pins"}
+# so is the resubmission gate's (Amendment 3 clause 8)
+GATE_ALLOWED = {"__future__", "argparse", "hashlib", "json", "pathlib", "re", "sys",
+                "study3_pins"}
 
 fails: list[str] = []
 
@@ -109,11 +121,15 @@ def main() -> None:
             hits += [lit for lit in WRITER_LITERALS if lit in src]
         if name == "select_study3_sample.py":
             hits += [lit for lit in SELECTION_EXTRA_BANS if lit in src]
+        if name == "resubmission_gate_study3.py":
+            hits += [lit for lit in GATE_EXTRA_BANS if lit in src]
         if name not in EXTRACTOR_ALLOWED_IN and EXTRACTOR_LITERAL in src:
             hits += [EXTRACTOR_LITERAL]
         check(not hits, f"{name}: no banned literal or pattern (found {hits or 'none'})")
 
-        allowed = SELECTION_ALLOWED if name == "select_study3_sample.py" else ALLOWED_IMPORTS
+        allowed = (SELECTION_ALLOWED if name == "select_study3_sample.py"
+                   else GATE_ALLOWED if name == "resubmission_gate_study3.py"
+                   else ALLOWED_IMPORTS)
         illegal = imports_of(src) - allowed
         check(not illegal,
               f"{name}: imports within the allowlist (illegal: {sorted(illegal) or 'none'})")
