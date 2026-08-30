@@ -65,7 +65,8 @@ def classify(ds: bool, vo: bool) -> str:
     return "DS" if ds else "VO" if vo else "UR"
 
 
-def score(elig: dict, ds: dict, vo: dict, writer_declarations: dict | None) -> dict:
+def score(elig: dict, ds: dict, vo: dict, writer_declarations: dict | None,
+          procedure_invalid: frozenset | set = frozenset()) -> dict:
     m = elig["m"]
     results: dict = {
         "n_drawn": elig["n_drawn"],
@@ -82,7 +83,14 @@ def score(elig: dict, ds: dict, vo: dict, writer_declarations: dict | None) -> d
 
     per_task = {}
     for tid in elig["eligible_task_ids"]:
-        d = ds["per_task"][tid]["ds_both_runs"]
+        if tid in procedure_invalid:
+            if tid in ds.get("per_task", {}):
+                sys.exit(f"HARD STOP — {tid} is routed procedure-invalid (GAP-5 / "
+                         "Interpretation Note 2) yet appears in the S′ derivation: it "
+                         "entered verification runs it was barred from")
+            d = False  # GAP-5 clause 4: never DS
+        else:
+            d = ds["per_task"][tid]["ds_both_runs"]
         v = tid in vo["vo_tasks"]
         per_task[tid] = classify(d, v)
     k_ds = sum(1 for c in per_task.values() if c == "DS")
@@ -108,13 +116,19 @@ def score(elig: dict, ds: dict, vo: dict, writer_declarations: dict | None) -> d
     results["L2_measurement_sensitivity"] = {
         "ds_either_run_share_sensitivity_only":
             sum(ds["per_task"][t]["ds_either_run_sensitivity_only"]
-                for t in elig["eligible_task_ids"]) / m,
+                for t in elig["eligible_task_ids"] if t not in procedure_invalid) / m,
         "ds_both_runs_definition_share": k_ds / m,
         "eligibility_both_agree_m": m,
         "eligibility_either_agree_count_sensitivity_only":
             elig["either_agree_count_sensitivity_only"],
         "note": "sensitivity descriptives only; never a confirmatory classification"}
     results["descriptive"] = {
+        "procedure_invalid_candidate": {
+            "count": len(procedure_invalid),
+            "task_ids": sorted(procedure_invalid),
+            "note": "procedure diagnostic, not a fourth epistemic outcome (GAP-5 / "
+                    "Interpretation Note 2); these tasks remain in m, are never DS, and "
+                    "classify VO/UR via the independent certificate path"},
         "rejected_vo_claims": len(vo.get("rejected_claims", [])),
         "vo_classes": {c["class"]: sum(1 for x in vo["vo_tasks"].values()
                                        if x["class"] == c["class"])
@@ -140,17 +154,43 @@ def main() -> None:
     if elig["m"] == 0:
         results = score(elig, {}, {}, None)
     else:
-        ds = json.loads((HERE / "ds_derivation.json").read_text())
-        vo = json.loads((HERE / "vo_certificates.json").read_text())
-        ds_by_baseline_tid = map_ds_to_baseline(ds, elig)
-        writer = None
-        wpath = HERE / "writer_handoff/study3_writer_ACCEPTED.json"
-        if wpath.exists():
+        # GAP-5 / Interpretation Note 2: exactly one terminal state licenses scoring —
+        # an S′ derivation (accepted writer path) XOR a frozen unrepairable gate verdict.
+        ds_path = HERE / "ds_derivation.json"
+        gate_path = HERE / "writer_handoff/GATE_UNREPAIRABLE_FROZEN.json"
+        if ds_path.exists() and gate_path.exists():
+            sys.exit("HARD STOP — both an S′ derivation and a frozen unrepairable gate "
+                     "verdict exist; the terminal states are mutually exclusive")
+        if ds_path.exists():
+            ds = json.loads(ds_path.read_text())
+            ds_by_baseline_tid = map_ds_to_baseline(ds, elig)
+            procedure_invalid: frozenset = frozenset()
+            writer = None
+            wpath = HERE / "writer_handoff/study3_writer_ACCEPTED.json"
+            if wpath.exists():
+                frozen = load_frozen_sums(HERE / "writer_handoff/SHA256SUMS_WRITER_FROZEN")
+                if sha256_file(wpath) != frozen[wpath.name]:
+                    sys.exit("writer output does not match its frozen hash; refusing to score")
+                writer = json.loads(wpath.read_text())
+        elif gate_path.exists():
             frozen = load_frozen_sums(HERE / "writer_handoff/SHA256SUMS_WRITER_FROZEN")
-            if sha256_file(wpath) != frozen[wpath.name]:
-                sys.exit("writer output does not match its frozen hash; refusing to score")
-            writer = json.loads(wpath.read_text())
-        results = score(elig, ds_by_baseline_tid, vo, writer)
+            if sha256_file(gate_path) != frozen[gate_path.name]:
+                sys.exit("unrepairable gate verdict does not match its frozen hash; "
+                         "refusing to score")
+            if json.loads(gate_path.read_text()).get("verdict") \
+                    != "UNREPAIRABLE_FIRST_SUBMISSION":
+                sys.exit("frozen gate report exists but its verdict is not "
+                         "UNREPAIRABLE_FIRST_SUBMISSION; refusing to score")
+            ds_by_baseline_tid = {"per_task": {}}
+            procedure_invalid = frozenset(elig["eligible_task_ids"])
+            writer = None  # the formal writer output never passed the validator;
+            #                its declaration distribution is not parsed (Note 2)
+        else:
+            sys.exit("HARD STOP — neither an S′ derivation nor a frozen unrepairable "
+                     "gate verdict exists; missing data is never silently routed")
+        vo = json.loads((HERE / "vo_certificates.json").read_text())
+        results = score(elig, ds_by_baseline_tid, vo, writer,
+                        procedure_invalid=procedure_invalid)
 
     serialized = json.dumps(results, indent=1, ensure_ascii=False)
     hits = [b for b in BANNED_OUTPUT if b in serialized.lower()]

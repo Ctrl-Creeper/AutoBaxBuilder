@@ -413,6 +413,30 @@ def main() -> None:  # noqa: PLR0915
           r_w["classification"]["counts"]["UR"] == 10
           and r_w["descriptive"]["coupling_claims_F1"] == 1)
 
+    # GAP-5 / Interpretation Note 2 routing
+    r_pi = score(elig_fx(tids), {"per_task": {}},
+                 {"vo_tasks": {"P03": {"class": "VO-STRUCT"}}, "rejected_claims": []},
+                 None, procedure_invalid=frozenset(tids))
+    pi = r_pi["descriptive"]["procedure_invalid_candidate"]
+    check("procedure-invalid path: never DS, VO via certificate, remainder UR",
+          r_pi["classification"]["counts"] == {"DS": 0, "VO": 1, "UR": 9})
+    check("procedure_invalid_candidate is a diagnostic count, not a fourth class",
+          pi["count"] == 10
+          and "procedure_invalid" not in r_pi["classification"]["counts"]
+          and sum(r_pi["classification"]["counts"].values()) == 10)
+    check("procedure-invalid tasks stay in m (denominator unchanged)",
+          r_pi["m_measured_eligible"] == 10
+          and r_pi["L0_sample_identification_region"]["region"] == [0.0, 0.9])
+    try:
+        score(elig_fx(["P01"]), ds_fx(["P01"], set()),
+              {"vo_tasks": {}, "rejected_claims": []}, None,
+              procedure_invalid=frozenset(["P01"]))
+        check("procedure-invalid task inside the S′ derivation triggers the hard stop",
+              False)
+    except SystemExit as e:
+        check("procedure-invalid task inside the S′ derivation triggers the hard stop",
+              "HARD STOP" in str(e))
+
     check("CP boundaries: k=0 lower is 0, k=n upper is 1, n=0 is vacuous [0,1]",
           cp_interval(0, 10)[0] == 0.0 and cp_interval(10, 10)[1] == 1.0
           and cp_interval(0, 0) == [0.0, 1.0])
