@@ -1,0 +1,176 @@
+{
+  "gate": "study3-amendment3-v1",
+  "anchor_sha256": "2145816f8659544e1442e44e12ce4450063f15f4036a9a99638835ee7cf39c0d",
+  "verdict": "UNREPAIRABLE_FIRST_SUBMISSION",
+  "per_task": {
+    "W01": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W02": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W03": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W04": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W05": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W06": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W07": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W08": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W09": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W10": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W11": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W12": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W13": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W14": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W15": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W16": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W17": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W18": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W19": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W20": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W21": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W22": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W23": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W24": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W25": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W26": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W27": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W28": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W29": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W30": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W31": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W33": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W34": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W35": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W36": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W37": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W38": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W39": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W40": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W41": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W42": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W43": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W44": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W45": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W46": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W47": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W48": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W49": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W50": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W51": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W52": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    },
+    "W53": {
+      "outcome": "UNREPAIRABLE_FIRST_SUBMISSION"
+    }
+  },
+  "hard_failures": [
+    "flag(s) ['EMPTY_CANDIDATE_FIELD', 'PROVENANCE_VALUE_INVALID'] admit no frozen repair class; no A4 may be created (Amendment 3 clause 3) — the first submission stands, permanently, as the formal writer output; no task is deleted and nothing is auto-classified (downstream per protocol + GAP-5 ruling)"
+  ],
+  "accepted": false,
+  "codes": [
+    "EMPTY_CANDIDATE_FIELD",
+    "PROVENANCE_VALUE_INVALID"
+  ],
+  "licensed": [],
+  "unrepairable_codes": [
+    "EMPTY_CANDIDATE_FIELD",
+    "PROVENANCE_VALUE_INVALID"
+  ]
+}

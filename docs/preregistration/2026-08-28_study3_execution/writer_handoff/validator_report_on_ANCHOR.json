@@ -1,0 +1,503 @@
+{
+  "submission": "writer_handoff/submissions/FIRST_SUBMISSION_ANCHOR.json",
+  "problems": [
+    "W01: edits action 'modified' not in removed/rewritten",
+    "W02: spec.raise empty — a candidate always ships, failure or not",
+    "W03: spec.context empty — a candidate always ships, failure or not",
+    "W03: edits action 'modified' not in removed/rewritten",
+    "W04: spec.raise empty — a candidate always ships, failure or not",
+    "W05: spec.raise empty — a candidate always ships, failure or not",
+    "W05: edits action 'modified' not in removed/rewritten",
+    "W06: edits action 'modified' not in removed/rewritten",
+    "W07: spec.raise empty — a candidate always ships, failure or not",
+    "W08: edits action 'modified' not in removed/rewritten",
+    "W09: spec.raise empty — a candidate always ships, failure or not",
+    "W10: spec.raise empty — a candidate always ships, failure or not",
+    "W10: edits action 'modified' not in removed/rewritten",
+    "W11: edits action 'modified' not in removed/rewritten",
+    "W11: edits action 'modified' not in removed/rewritten",
+    "W12: spec.raise empty — a candidate always ships, failure or not",
+    "W13: spec.raise empty — a candidate always ships, failure or not",
+    "W14: spec.raise empty — a candidate always ships, failure or not",
+    "W14: edits action 'modified' not in removed/rewritten",
+    "W15: spec.raise empty — a candidate always ships, failure or not",
+    "W16: spec.raise empty — a candidate always ships, failure or not",
+    "W16: edits action 'modified' not in removed/rewritten",
+    "W17: spec.raise empty — a candidate always ships, failure or not",
+    "W18: spec.raise empty — a candidate always ships, failure or not",
+    "W19: spec.raise empty — a candidate always ships, failure or not",
+    "W20: edits action 'modified' not in removed/rewritten",
+    "W21: spec.raise empty — a candidate always ships, failure or not",
+    "W21: edits action 'modified' not in removed/rewritten",
+    "W22: spec.raise empty — a candidate always ships, failure or not",
+    "W22: edits action 'modified' not in removed/rewritten",
+    "W22: edits action 'modified' not in removed/rewritten",
+    "W23: spec.raise empty — a candidate always ships, failure or not",
+    "W23: edits action 'modified' not in removed/rewritten",
+    "W24: spec.raise empty — a candidate always ships, failure or not",
+    "W25: spec.raise empty — a candidate always ships, failure or not",
+    "W25: edits action 'modified' not in removed/rewritten",
+    "W26: spec.raise empty — a candidate always ships, failure or not",
+    "W26: edits action 'modified' not in removed/rewritten",
+    "W26: edits action 'modified' not in removed/rewritten",
+    "W27: spec.raise empty — a candidate always ships, failure or not",
+    "W27: edits action 'modified' not in removed/rewritten",
+    "W28: spec.raise empty — a candidate always ships, failure or not",
+    "W28: edits action 'modified' not in removed/rewritten",
+    "W29: edits action 'modified' not in removed/rewritten",
+    "W30: spec.raise empty — a candidate always ships, failure or not",
+    "W30: edits action 'modified' not in removed/rewritten",
+    "W31: spec.raise empty — a candidate always ships, failure or not",
+    "W33: spec.raise empty — a candidate always ships, failure or not",
+    "W33: edits action 'modified' not in removed/rewritten",
+    "W34: edits action 'modified' not in removed/rewritten",
+    "W35: spec.raise empty — a candidate always ships, failure or not",
+    "W36: edits action 'modified' not in removed/rewritten",
+    "W37: spec.raise empty — a candidate always ships, failure or not",
+    "W37: edits action 'modified' not in removed/rewritten",
+    "W38: spec.raise empty — a candidate always ships, failure or not",
+    "W38: edits action 'modified' not in removed/rewritten",
+    "W39: spec.raise empty — a candidate always ships, failure or not",
+    "W39: edits action 'modified' not in removed/rewritten",
+    "W40: edits action 'modified' not in removed/rewritten",
+    "W41: edits action 'modified' not in removed/rewritten",
+    "W42: edits action 'modified' not in removed/rewritten",
+    "W43: edits action 'modified' not in removed/rewritten",
+    "W44: spec.raise empty — a candidate always ships, failure or not",
+    "W44: edits action 'modified' not in removed/rewritten",
+    "W45: spec.raise empty — a candidate always ships, failure or not",
+    "W46: spec.raise empty — a candidate always ships, failure or not",
+    "W46: edits action 'modified' not in removed/rewritten",
+    "W47: edits action 'modified' not in removed/rewritten",
+    "W48: spec.raise empty — a candidate always ships, failure or not",
+    "W48: edits action 'modified' not in removed/rewritten",
+    "W48: edits action 'modified' not in removed/rewritten",
+    "W49: edits action 'modified' not in removed/rewritten",
+    "W49: edits action 'modified' not in removed/rewritten",
+    "W49: edits action 'modified' not in removed/rewritten",
+    "W50: spec.raise empty — a candidate always ships, failure or not",
+    "W50: edits action 'modified' not in removed/rewritten",
+    "W50: edits action 'modified' not in removed/rewritten",
+    "W51: spec.raise empty — a candidate always ships, failure or not",
+    "W51: edits action 'modified' not in removed/rewritten",
+    "W52: spec.raise empty — a candidate always ships, failure or not",
+    "W52: edits action 'modified' not in removed/rewritten",
+    "W53: edits action 'modified' not in removed/rewritten"
+  ],
+  "issues": [
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W01",
+      "message": "W01: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W02",
+      "message": "W02: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W03",
+      "message": "W03: spec.context empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W03",
+      "message": "W03: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W04",
+      "message": "W04: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W05",
+      "message": "W05: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W05",
+      "message": "W05: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W06",
+      "message": "W06: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W07",
+      "message": "W07: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W08",
+      "message": "W08: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W09",
+      "message": "W09: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W10",
+      "message": "W10: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W10",
+      "message": "W10: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W11",
+      "message": "W11: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W11",
+      "message": "W11: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W12",
+      "message": "W12: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W13",
+      "message": "W13: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W14",
+      "message": "W14: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W14",
+      "message": "W14: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W15",
+      "message": "W15: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W16",
+      "message": "W16: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W16",
+      "message": "W16: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W17",
+      "message": "W17: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W18",
+      "message": "W18: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W19",
+      "message": "W19: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W20",
+      "message": "W20: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W21",
+      "message": "W21: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W21",
+      "message": "W21: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W22",
+      "message": "W22: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W22",
+      "message": "W22: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W22",
+      "message": "W22: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W23",
+      "message": "W23: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W23",
+      "message": "W23: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W24",
+      "message": "W24: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W25",
+      "message": "W25: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W25",
+      "message": "W25: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W26",
+      "message": "W26: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W26",
+      "message": "W26: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W26",
+      "message": "W26: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W27",
+      "message": "W27: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W27",
+      "message": "W27: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W28",
+      "message": "W28: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W28",
+      "message": "W28: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W29",
+      "message": "W29: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W30",
+      "message": "W30: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W30",
+      "message": "W30: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W31",
+      "message": "W31: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W33",
+      "message": "W33: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W33",
+      "message": "W33: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W34",
+      "message": "W34: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W35",
+      "message": "W35: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W36",
+      "message": "W36: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W37",
+      "message": "W37: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W37",
+      "message": "W37: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W38",
+      "message": "W38: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W38",
+      "message": "W38: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W39",
+      "message": "W39: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W39",
+      "message": "W39: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W40",
+      "message": "W40: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W41",
+      "message": "W41: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W42",
+      "message": "W42: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W43",
+      "message": "W43: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W44",
+      "message": "W44: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W44",
+      "message": "W44: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W45",
+      "message": "W45: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W46",
+      "message": "W46: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W46",
+      "message": "W46: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W47",
+      "message": "W47: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W48",
+      "message": "W48: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W48",
+      "message": "W48: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W48",
+      "message": "W48: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W49",
+      "message": "W49: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W49",
+      "message": "W49: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W49",
+      "message": "W49: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W50",
+      "message": "W50: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W50",
+      "message": "W50: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W50",
+      "message": "W50: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W51",
+      "message": "W51: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W51",
+      "message": "W51: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "EMPTY_CANDIDATE_FIELD",
+      "task": "W52",
+      "message": "W52: spec.raise empty — a candidate always ships, failure or not"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W52",
+      "message": "W52: edits action 'modified' not in removed/rewritten"
+    },
+    {
+      "code": "PROVENANCE_VALUE_INVALID",
+      "task": "W53",
+      "message": "W53: edits action 'modified' not in removed/rewritten"
+    }
+  ],
+  "accepted": false,
+  "n_tasks": 53,
+  "submission_sha256": "2145816f8659544e1442e44e12ce4450063f15f4036a9a99638835ee7cf39c0d",
+  "failure_declarations": 3
+}
