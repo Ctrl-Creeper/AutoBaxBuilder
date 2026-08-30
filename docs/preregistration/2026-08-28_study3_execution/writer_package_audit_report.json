@@ -1,0 +1,69 @@
+{
+ "n_tasks": 53,
+ "eligibility_manifest_sha256": "a9db938ba633bc400ac035d9a200501c8bb7c70986f9b38c2e964885f483f3a6",
+ "instructions_sha256": "260a925e9ee3972efe7df285aab6445fb9a8bfef84aa1c0a7f45cdb9da51add3",
+ "template_sha256": "9eae55df33045bab2e0cb8fe42aa7a2a492d0a29b3717b7f57a91869ebae6fee",
+ "sealed_key_sha256": "3c9fc2925dd0511af5be6ebf27d2c1bf4ce6ab5b6d89937c5b74bffc73475106",
+ "checks": [
+  {
+   "name": "exactly 53 tasks in package, template and key",
+   "ok": true
+  },
+  {
+   "name": "membership equals the confirmatory eligible set, item by item",
+   "ok": true
+  },
+  {
+   "name": "zero sensitivity-only tasks in the package",
+   "ok": true
+  },
+  {
+   "name": "W-id namespaces align across tasks/, template and key",
+   "ok": true
+  },
+  {
+   "name": "every task file byte-equals its re-render from record + frozen case manifest (S_t and cases correct; nothing else can be present)",
+   "ok": true
+  },
+  {
+   "name": "every frozen case appears exactly once, in its labelled list",
+   "ok": true
+  },
+  {
+   "name": "template spec = five prose fields + security_policy, nothing more",
+   "ok": true
+  },
+  {
+   "name": "instructions carry the frozen-components table and F1\u2013F5 taxonomy",
+   "ok": true
+  },
+  {
+   "name": "packaged instructions byte-equal the frozen builder constant",
+   "ok": true
+  },
+  {
+   "name": "template schema_version matches the frozen writer schema",
+   "ok": true
+  },
+  {
+   "name": "gate substantive hashing runs over every template task",
+   "ok": true
+  },
+  {
+   "name": "frozen validator emits a gate-consumable machine report on the template (submission_sha256 + issues[].code)",
+   "ok": true
+  },
+  {
+   "name": "researcher framing free of study-artifact vocabulary ",
+   "ok": true
+  },
+  {
+   "name": "sealed key outside the writer-visible package, pinned to the frozen eligibility manifest",
+   "ok": true
+  },
+  {
+   "name": "no key-like file inside the package",
+   "ok": true
+  }
+ ]
+}

@@ -13,3 +13,5 @@ fixtures/**/__pycache__/
 docs/preregistration/2026-08-28_study3_execution/baseline/
 docs/preregistration/2026-08-28_study3_execution/sealed_materialization/
 docs/preregistration/2026-08-28_study3_execution/quarantined_prevalidation_build/
+docs/preregistration/2026-08-28_study3_execution/writer_handoff/writer_package/
+docs/preregistration/2026-08-28_study3_execution/writer_handoff/sealed/
