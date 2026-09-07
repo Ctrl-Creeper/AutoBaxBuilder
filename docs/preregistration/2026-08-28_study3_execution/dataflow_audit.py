@@ -37,8 +37,8 @@ EXECUTION_FILES = (
     "materialize_cases.py", "build_study3_baseline_packets.py",
     "validate_study3_submission.py", "derive_eligibility.py",
     "build_study3_writer_handoff.py", "validate_study3_candidate.py",
-    "build_study3_sprime_packets.py", "derive_ds.py", "vo_certificates.py",
-    "score_study3.py", "resubmission_gate_study3.py",
+    "run2_writer_input.py", "build_study3_sprime_packets.py", "derive_ds.py",
+    "vo_certificates.py", "score_study3.py", "resubmission_gate_study3.py",
 )
 
 # GAP-3 Amendment 2, clause 8: after materialization no component re-executes testcase
@@ -84,7 +84,7 @@ ALLOWED_IMPORTS = {
     "os", "pathlib", "platform", "re", "subprocess", "sys", "tempfile", "time", "types",
     "numpy", "scipy",
     "secodeplt_task_runner", "build_study1_packets",
-    "study3_pins", "select_study3_sample", "packet_build",
+    "study3_pins", "select_study3_sample", "packet_build", "run2_writer_input",
 }
 # the selection tool's import set is far tighter
 SELECTION_ALLOWED = {"__future__", "argparse", "hashlib", "json", "pathlib", "sys",
@@ -133,6 +133,36 @@ def main() -> None:
         illegal = imports_of(src) - allowed
         check(not illegal,
               f"{name}: imports within the allowlist (illegal: {sorted(illegal) or 'none'})")
+
+    # GAP-7: the accepted-writer interface is a single fixed Run-2 source. The loader may
+    # name its terminal manifest and accepted artifact, but no Run-1 candidate, validator
+    # report, outcome, eligibility decision, or prior-study material.
+    writer_input_src = (HERE / "run2_writer_input.py").read_text()
+    required_run2 = ["SHA256SUMS_WRITER_FROZEN_RUN2",
+                     "submissions/writer_output_ACCEPT_FIRST_RUN2.json",
+                     "f2b0e73ab1d8b5efcb22bb53c2b8d026446994992195d9b55b483d8de593b49e"]
+    forbidden_writer_input = ["study3_writer_ACCEPTED.json", "FIRST_SUBMISSION_ANCHOR",
+                              "validator_report", "GATE_UNREPAIRABLE", "GAP6",
+                              "eligible_task_ids", "eligible_indices", "either_agree",
+                              "qualifying", "submissions_baseline", "ds_derivation",
+                              "vo_certificates", "results_study3", "round2", "study1"]
+    check(all(x in writer_input_src for x in required_run2)
+          and not any(x in writer_input_src for x in forbidden_writer_input),
+          "GAP-7 writer input names only the fixed Run-2 manifest, artifact and hash")
+
+    sprime_src = (HERE / "build_study3_sprime_packets.py").read_text()
+    forbidden_sprime = ["study3_writer_ACCEPTED.json", "FIRST_SUBMISSION_ANCHOR",
+                        "validator_report", "GAP6", "eligible_task_ids", "eligible_indices",
+                        "either_agree", "qualifying", "submissions_baseline", "ds_derivation",
+                        "vo_certificates", "results_study3", "round2", "study1"]
+    check("load_authoritative_writer" in sprime_src
+          and not any(x in sprime_src for x in forbidden_sprime),
+          "S-prime builder reads no Run-1, baseline-judgment, eligibility-detail, or outcome path")
+
+    scorer_src = (HERE / "score_study3.py").read_text()
+    check("writer = load_authoritative_writer()" in scorer_src
+          and "study3_writer_ACCEPTED.json" not in scorer_src,
+          "scorer accepted branch uses the same fixed Run-2 writer input interface")
 
     trace_p = HERE / "selftest_open_trace.json"
     check(trace_p.exists(), "runtime open trace exists (self-test must run first)")

@@ -31,6 +31,7 @@ from pathlib import Path
 
 from scipy import stats
 
+from run2_writer_input import load_authoritative_writer
 from study3_pins import load_frozen_sums, sha256_file
 
 HERE = Path(__file__).resolve().parent
@@ -165,13 +166,7 @@ def main() -> None:
             ds = json.loads(ds_path.read_text())
             ds_by_baseline_tid = map_ds_to_baseline(ds, elig)
             procedure_invalid: frozenset = frozenset()
-            writer = None
-            wpath = HERE / "writer_handoff/study3_writer_ACCEPTED.json"
-            if wpath.exists():
-                frozen = load_frozen_sums(HERE / "writer_handoff/SHA256SUMS_WRITER_FROZEN")
-                if sha256_file(wpath) != frozen[wpath.name]:
-                    sys.exit("writer output does not match its frozen hash; refusing to score")
-                writer = json.loads(wpath.read_text())
+            writer = load_authoritative_writer()
         elif gate_path.exists():
             frozen = load_frozen_sums(HERE / "writer_handoff/SHA256SUMS_WRITER_FROZEN")
             if sha256_file(gate_path) != frozen[gate_path.name]:

@@ -24,7 +24,8 @@ artifact (selection, packet, submission, derivation, result) exists at freeze.
    result; m = 0 branch prespecified).
 5. `build_study3_writer_handoff.py --approved-writer-build` → `writer_handoff/writer_package`
    (eligible tasks only; STARTUP_PROMPT_WRITER.txt); `validate_study3_candidate.py`;
-   freeze `writer_handoff/study3_writer_ACCEPTED.json` + `SHA256SUMS_WRITER_FROZEN`.
+   the constructive input is the Run-2 `submissions/writer_output_ACCEPT_FIRST_RUN2.json`,
+   frozen by `SHA256SUMS_WRITER_FROZEN_RUN2` (GAP-7).
 6. `build_study3_sprime_packets.py --approved-packet-build` → `sprime/{run1,run2}_package`;
    two fresh sessions (disjoint from baseline sessions), per-run validation, freeze into
    `submissions_sprime/` + `SHA256SUMS_SPRIME_FROZEN`.

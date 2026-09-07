@@ -1,7 +1,7 @@
 """Study 3 — S′ verification packet builder (two fresh blinded J1 runs over the candidates).
 
-Consumes the frozen, validator-accepted writer output (hash-verified against
-writer_handoff/SHA256SUMS_WRITER_FROZEN) and the original benchmark records. For each
+Consumes the frozen, validator-accepted Writer Run-2 output (hash-verified against
+writer_handoff/SHA256SUMS_WRITER_FROZEN_RUN2) and the original benchmark records. For each
 measured-eligible task it assembles an S′ record via study3_pins.sprime_record — function
 name, setup, and every case copied from the original record object, only the prose fields
 (and optional security_policy) taken from the candidate — and renders it through the
@@ -21,8 +21,8 @@ import json
 import sys
 from pathlib import Path
 
-from study3_pins import (SCHEMA_SPRIME, load_case_manifest, load_frozen_sums, sha256_file,
-                         sprime_record)
+from run2_writer_input import ACCEPTED_SHA256, load_authoritative_writer
+from study3_pins import SCHEMA_SPRIME, load_case_manifest, sha256_file, sprime_record
 from packet_build import build_packages
 
 HERE = Path(__file__).resolve().parent
@@ -36,11 +36,7 @@ def main() -> None:
     if (HERE / "sprime" / "run1_package").exists():
         sys.exit("sprime/run1_package already exists; a frozen build is never overwritten")
 
-    frozen = load_frozen_sums(WRITER_DIR / "SHA256SUMS_WRITER_FROZEN")
-    wpath = WRITER_DIR / "study3_writer_ACCEPTED.json"
-    if sha256_file(wpath) != frozen[wpath.name]:
-        sys.exit("writer output does not match its frozen hash; refusing to build")
-    writer = json.loads(wpath.read_text())
+    writer = load_authoritative_writer()
     key_w = json.loads((WRITER_DIR / "sealed/_KEY_DO_NOT_SHOW_WRITER.json").read_text())
 
     from secodeplt_task_runner import load  # noqa: E402  (benchmark loader only)
@@ -58,7 +54,7 @@ def main() -> None:
         task_seed_name="sprime_task_order",
         run_seed_names={"run1": "sprime_run1_cases", "run2": "sprime_run2_cases"},
         key_extra={"stage": "sprime",
-                   "writer_output_sha256": frozen[wpath.name],
+                   "writer_output_sha256": ACCEPTED_SHA256,
                    "eligibility_manifest_sha256": sha256_file(HERE / "eligibility_study3.json"),
                    "frozen_case_manifest_sha256":
                        sha256_file(HERE / "sealed_materialization/FROZEN_CASE_MANIFEST.json")},
