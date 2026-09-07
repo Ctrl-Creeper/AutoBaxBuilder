@@ -1,0 +1,60 @@
+{
+ "schema_version": "study3-final-result-summary-v1",
+ "status": "FINAL_STUDY3_RESULT_FROZEN",
+ "population": {
+  "name": "realized measured-eligible confirmatory sample",
+  "m": 53,
+  "procedure_invalid_candidate_count": 0
+ },
+ "classification": {
+  "counts": {
+   "DS": 47,
+   "VO": 0,
+   "UR": 6
+  },
+  "shares": {
+   "P_hat_DS": 0.8867924528301887,
+   "P_hat_VO": 0.0,
+   "P_hat_UR": 0.11320754716981132
+  },
+  "exhaustive": true,
+  "mutually_exclusive": true,
+  "ds_vo_overlap_count": 0
+ },
+ "L0_sample_identification_region": {
+  "region": [
+   0.8867924528301887,
+   1.0
+  ],
+  "lower_endpoint_fraction": "47/53",
+  "upper_endpoint_fraction": "1",
+  "interpretation": "Sample identification region over the realized measured-eligible confirmatory sample. It is not a confidence interval, population interval, or whole-benchmark prevalence interval."
+ },
+ "L1_separate_endpoint_sampling_intervals": {
+  "method": "Clopper-Pearson 95%, conditional on realized m; endpoints remain separate",
+  "pi_DS": [
+   0.7697100836291368,
+   0.9573036050637262
+  ],
+  "pi_VO": [
+   0.0,
+   0.06723454630630113
+  ]
+ },
+ "L2_preregistered_measurement_sensitivity": {
+  "ds_either_run_share_sensitivity_only": 0.9811320754716981,
+  "ds_both_runs_definition_share": 0.8867924528301887,
+  "eligibility_both_agree_m": 53,
+  "eligibility_either_agree_count_sensitivity_only": 56,
+  "interpretation": "Measurement sensitivity only; separate from L0 and L1."
+ },
+ "vo_interpretation": {
+  "VO_DEFECT": "VO-DEFECT was not executed because its independent evidence-production and attestation procedure was insufficiently operationalized in the frozen instrument.",
+  "VO_zero_meaning": "No obstruction was established by the valid frozen VO procedure. This does not mean that no obstruction exists."
+ },
+ "source_artifacts": {
+  "results_study3_sha256": "180cfda6a62f0ea3e089dfca08a10039b18192b831748eb5f03b4e0abf16e34e",
+  "independent_audit_sha256": "932743f0e4d585afb5d908fead737c27454563e9c1f365039bf92c3858d49859",
+  "scorer_sha256": "0ed4fd477d233881c699f2b497a03e79e5358ad681c294cd0feae5e94a53b415"
+ }
+}

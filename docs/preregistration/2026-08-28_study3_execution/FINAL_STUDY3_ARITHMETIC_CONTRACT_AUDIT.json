@@ -1,0 +1,67 @@
+{
+ "checks": {
+  "01_m_matches_frozen_denominator": true,
+  "02_ds_count_matches_frozen_derivation": true,
+  "03_vo_count_matches_frozen_derivation": true,
+  "04_ur_count_matches_complement": true,
+  "05_classification_is_exhaustive": true,
+  "06_classification_is_mutually_exclusive": true,
+  "07_lower_endpoint_is_ds_over_m": true,
+  "08_upper_endpoint_is_one_minus_vo_over_m": true,
+  "09_ds_vo_overlap_zero": true,
+  "10_procedure_invalid_zero": true,
+  "11_cp_endpoints_match_frozen_definition": true,
+  "12_l2_matches_frozen_rule": true,
+  "13_no_combined_or_posthoc_interval": true,
+  "14_vo_defect_not_executed": true,
+  "15_substantive_function_hashes_unchanged": true,
+  "16_formal_state_is_run2_accepted": true
+ },
+ "fail_count": 0,
+ "independence": {
+  "imports_score_study3": false,
+  "prints_task_ids": false,
+  "uses_scorer_helpers": false
+ },
+ "observed_aggregates": {
+  "counts": {
+   "DS": 47,
+   "UR": 6,
+   "VO": 0
+  },
+  "ds_vo_overlap_count": 0,
+  "l0_sample_identification_region": [
+   0.8867924528301887,
+   1.0
+  ],
+  "l1_endpoint_intervals": {
+   "pi_ds_cp95": [
+    0.7697100836291368,
+    0.9573036050637262
+   ],
+   "pi_vo_cp95": [
+    0.0,
+    0.06723454630630113
+   ]
+  },
+  "l2_measurement_sensitivity": {
+   "ds_both_runs_definition_share": 0.8867924528301887,
+   "ds_either_run_share_sensitivity_only": 0.9811320754716981,
+   "eligibility_both_agree_m": 53,
+   "eligibility_either_agree_count_sensitivity_only": 56,
+   "note": "sensitivity descriptives only; never a confirmatory classification"
+  },
+  "m": 53,
+  "procedure_invalid_count": 0
+ },
+ "pass_count": 16,
+ "resolver_formal_state": "FORMAL_RUN2_ACCEPTED",
+ "schema_version": "study3-final-independent-audit-v1",
+ "status": "PASS",
+ "substantive_function_hashes": {
+  "classify": "d7dd69b6e933f229904c136737c470a68253a823aa2a791331322f3e3a0f4aff",
+  "cp_interval": "7525022292ad3693b063b5b9a814a3705330d1c3abc3f130ffd0844dd52bcf4a",
+  "map_ds_to_baseline": "0d7659e562c868dd217f9129a9c568d9f9444acbb95e2d393b917feeb3456b74",
+  "score": "51e2e4cdb394a8a07506309bd9c1cf0bdb82b5182f8da3979345ef88fc3582e6"
+ }
+}

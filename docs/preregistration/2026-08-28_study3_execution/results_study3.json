@@ -1,0 +1,114 @@
+{
+ "n_drawn": 90,
+ "m_measured_eligible": 53,
+ "m_note": "m is a result, not a target (CR-1: no supplemental draw whatever m is)",
+ "baseline_eligibility_rate": 0.5888888888888889,
+ "classification": {
+  "per_task": {
+   "P02": "DS",
+   "P03": "DS",
+   "P08": "DS",
+   "P10": "DS",
+   "P12": "DS",
+   "P13": "DS",
+   "P15": "UR",
+   "P16": "UR",
+   "P17": "DS",
+   "P18": "UR",
+   "P19": "DS",
+   "P20": "DS",
+   "P21": "UR",
+   "P22": "DS",
+   "P25": "DS",
+   "P31": "DS",
+   "P33": "DS",
+   "P34": "DS",
+   "P35": "DS",
+   "P36": "UR",
+   "P38": "DS",
+   "P39": "DS",
+   "P42": "DS",
+   "P43": "DS",
+   "P44": "DS",
+   "P46": "DS",
+   "P47": "DS",
+   "P48": "DS",
+   "P50": "DS",
+   "P51": "DS",
+   "P52": "DS",
+   "P57": "DS",
+   "P61": "DS",
+   "P62": "DS",
+   "P63": "DS",
+   "P65": "DS",
+   "P66": "DS",
+   "P68": "DS",
+   "P69": "DS",
+   "P70": "DS",
+   "P71": "DS",
+   "P72": "DS",
+   "P75": "DS",
+   "P78": "DS",
+   "P79": "UR",
+   "P80": "DS",
+   "P81": "DS",
+   "P82": "DS",
+   "P83": "DS",
+   "P85": "DS",
+   "P86": "DS",
+   "P88": "DS",
+   "P90": "DS"
+  },
+  "counts": {
+   "DS": 47,
+   "VO": 0,
+   "UR": 6
+  },
+  "shares": {
+   "P_hat_DS": 0.8867924528301887,
+   "P_hat_VO": 0.0,
+   "P_hat_UR": 0.11320754716981132
+  }
+ },
+ "L0_sample_identification_region": {
+  "region": [
+   0.8867924528301887,
+   1.0
+  ],
+  "statement": "descriptive identification statement over the measured-eligible sample; NOT a confidence interval; width = P_hat_UR (identification, irreducible by sample size)"
+ },
+ "L1_sampling_clopper_pearson": {
+  "pi_ds_cp95": [
+   0.7697100836291368,
+   0.9573036050637262
+  ],
+  "pi_vo_cp95": [
+   0.0,
+   0.06723454630630113
+  ],
+  "conditional_on_m": 53,
+  "targets": "procedure-inclusive pi_DS, pi_VO over the eligible subpopulation (frozen eligibility rule); FPC ignored (conservative); per-endpoint only, never merged with L0 or each other"
+ },
+ "L2_measurement_sensitivity": {
+  "ds_either_run_share_sensitivity_only": 0.9811320754716981,
+  "ds_both_runs_definition_share": 0.8867924528301887,
+  "eligibility_both_agree_m": 53,
+  "eligibility_either_agree_count_sensitivity_only": 56,
+  "note": "sensitivity descriptives only; never a confirmatory classification"
+ },
+ "descriptive": {
+  "procedure_invalid_candidate": {
+   "count": 0,
+   "task_ids": [],
+   "note": "procedure diagnostic, not a fourth epistemic outcome (GAP-5 / Interpretation Note 2); these tasks remain in m, are never DS, and classify VO/UR via the independent certificate path"
+  },
+  "rejected_vo_claims": 0,
+  "vo_classes": {},
+  "writer_declaration_distribution": {
+   "none": 52,
+   "F1_LIST_COUPLING": 1
+  },
+  "coupling_claims_F1": 1,
+  "note": "writer declarations are descriptive only; they enter no classification path"
+ }
+}

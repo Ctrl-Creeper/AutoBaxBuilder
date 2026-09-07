@@ -1,0 +1,54 @@
+{
+ "schema_version": "study3-final-execution-provenance-v1",
+ "status": "FINAL_SCORER_EXECUTED_ONCE_AND_AUDITED",
+ "execution_base_commit": "35c02693f6543421569a9e1d4f5e045ca2ccd06c",
+ "startup_pins": {
+  "gap8_amendment_manifest_sha256": "8eb434d1b0ed5a9f2f82c2a8e3d65c2a2766e32334fb804b8bb746f4c5e7deb5",
+  "gap8_amendment_manifest_entries": "9/9 PASS",
+  "tooling_manifest_sha256": "464560c5d85f1f8f762837a11e3e31b5bc2b4292fbab74902dd1d751c12457eb",
+  "tooling_manifest_entries": "33/33 PASS",
+  "ds_only_manifest_sha256": "a9dbd5ca69db9d447a72d0092d0b063465d13ff8f0c4aeac3e87b346aac9f206",
+  "ds_derivation_sha256": "3377d187c2c37177f37e1c9b5d648b34468d10bd4239404b971888c835e4efe7",
+  "vo_struct_manifest_sha256": "38d60bbb2e6fdf489ae47d6c345d143d1c590a3b16dd0c3bcdd21ed03c584803",
+  "vo_derivation_sha256": "cd2cc35b269a1d27d9093462685eae09ace6dc07d9fec95002f9cba55d3c0060",
+  "historical_run1_artifact_sha256": "357e241ea030ee598f8a091a4f9dacc2947f1f5de9249a9f1ce189cecf19f4c4",
+  "gap6_disposition": "WRITER_INSTRUMENT_CONTRACT_FAILURE; excluded from DS/VO/UR",
+  "run2_terminal": "ACCEPT_FIRST_RUN2",
+  "run2_accepted_artifact_sha256": "f2b0e73ab1d8b5efcb22bb53c2b8d026446994992195d9b55b483d8de593b49e",
+  "resolver_formal_state": "FORMAL_RUN2_ACCEPTED",
+  "scorer_sha256": "0ed4fd477d233881c699f2b497a03e79e5358ad681c294cd0feae5e94a53b415",
+  "substantive_scorer_function_hashes": "4/4 PASS",
+  "confirmatory_denominator_m": 53,
+  "procedure_invalid_candidate_count": 0,
+  "ds_vo_overlap_count": 0
+ },
+ "scorer_execution": {
+  "command": "python3 score_study3.py > FINAL_STUDY3_SCORER_RAW_OUTPUT.txt 2>&1",
+  "invocation_count": 1,
+  "started_at_utc": "2026-09-07T12:37:31Z",
+  "completed_at_utc": "2026-09-07T12:37:58Z",
+  "exit_code": 0,
+  "results_study3_sha256": "180cfda6a62f0ea3e089dfca08a10039b18192b831748eb5f03b4e0abf16e34e",
+  "raw_stdout_sha256": "b081beebb5828c10e50367f0fd50272cf507ffb21d36aa481d5d992f01aa3fa9"
+ },
+ "independent_audit": {
+  "imports_score_study3": false,
+  "uses_scorer_helpers": false,
+  "verdict": "16/16 PASS",
+  "artifact_sha256": "932743f0e4d585afb5d908fead737c27454563e9c1f365039bf92c3858d49859",
+  "tool_sha256": "acfa6c54ee073e5efdfbb6bd077a1cbba470e26ccb5eb6634466fe48c7093176",
+  "synthetic_fixture_sha256": "3720ea0267041949a5deea3bdf8d16e750909208a3673b99d90a8844a582c441",
+  "synthetic_fixture_verdict": "10/10 PASS"
+ },
+ "runtime": {
+  "python": "3.11.9",
+  "scipy": "1.16.0"
+ },
+ "vo_defect_disposition": "PERMANENTLY_CLOSED; not executed",
+ "non_substantive_diagnostic_incidents": [
+  "Before scorer execution, one aggregate startup-check command used an incorrect frozen-summary JSON key and exited with KeyError. The path was corrected, the full startup check passed, and no scorer invocation or research input change occurred before clearance."
+ ],
+ "hard_stop": false,
+ "protocol_deviation": false,
+ "final_scorer_rerun": false
+}
