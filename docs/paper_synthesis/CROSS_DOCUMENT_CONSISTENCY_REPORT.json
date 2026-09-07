@@ -1,0 +1,204 @@
+{
+  "base_commit": "8c39ad48f90f1369bf8729b3585cb17079349042",
+  "checks": [
+    {
+      "detail": "docs/paper_synthesis/paper_claim_evidence_matrix.md",
+      "name": "document_exists:matrix",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/analytical, not preregistration",
+      "name": "non_preregistration_status:matrix",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/paper_architecture_v1.md",
+      "name": "document_exists:architecture",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/analytical, not preregistration",
+      "name": "non_preregistration_status:architecture",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/reviewer_attack_audit.md",
+      "name": "document_exists:review",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/analytical, not preregistration",
+      "name": "non_preregistration_status:review",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/study4_decision_memo.md",
+      "name": "document_exists:decision",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/analytical, not preregistration",
+      "name": "non_preregistration_status:decision",
+      "pass": true
+    },
+    {
+      "detail": "e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b == e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b",
+      "name": "frozen_source_hash:study1_protocol",
+      "pass": true
+    },
+    {
+      "detail": "dd13be72a3a4e750032d63cef96d3ab68ab1371e2c665d94a442ccc572e81cfe == dd13be72a3a4e750032d63cef96d3ab68ab1371e2c665d94a442ccc572e81cfe",
+      "name": "frozen_source_hash:study1_results",
+      "pass": true
+    },
+    {
+      "detail": "4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da == 4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da",
+      "name": "frozen_source_hash:study2_protocol_v2",
+      "pass": true
+    },
+    {
+      "detail": "17300bb140cdce38a1d2e38f06adef57775ce7a172f88b5acfef55c18a68427a == 17300bb140cdce38a1d2e38f06adef57775ce7a172f88b5acfef55c18a68427a",
+      "name": "frozen_source_hash:study2_results",
+      "pass": true
+    },
+    {
+      "detail": "8aef7785f7a484279111eaf87e957dbffa242574a87eeb8d43543701a0339c3c == 8aef7785f7a484279111eaf87e957dbffa242574a87eeb8d43543701a0339c3c",
+      "name": "frozen_source_hash:study2_interpretation",
+      "pass": true
+    },
+    {
+      "detail": "548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7 == 548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7",
+      "name": "frozen_source_hash:study3_protocol",
+      "pass": true
+    },
+    {
+      "detail": "affc40415afc43246d5c3036e36d1faa03a87fe9ade59b9952c34e375a2b6234 == affc40415afc43246d5c3036e36d1faa03a87fe9ade59b9952c34e375a2b6234",
+      "name": "frozen_source_hash:study3_final_summary",
+      "pass": true
+    },
+    {
+      "detail": "fec1aa081de064074c46ef113b4a2c1325970ae3c673e11d0fa1bc5911a30cdc == fec1aa081de064074c46ef113b4a2c1325970ae3c673e11d0fa1bc5911a30cdc",
+      "name": "frozen_source_hash:cweval_termination",
+      "pass": true
+    },
+    {
+      "detail": "C1-C9 present",
+      "name": "matrix_required_claims",
+      "pass": true
+    },
+    {
+      "detail": "behavioral exploitation claim remains unsupported",
+      "name": "matrix_c9_boundary",
+      "pass": true
+    },
+    {
+      "detail": "six numbered paper sections",
+      "name": "architecture_six_sections",
+      "pass": true
+    },
+    {
+      "detail": "ten numbered reviewer objections",
+      "name": "review_ten_objections",
+      "pass": true
+    },
+    {
+      "detail": "Versions A, B, and C present",
+      "name": "decision_three_versions",
+      "pass": true
+    },
+    {
+      "detail": "Study 4 is an enhancement, not a validity prerequisite",
+      "name": "decision_recommends_stop",
+      "pass": true
+    },
+    {
+      "detail": "0.7805",
+      "name": "aggregate_token:study1_theta_saf",
+      "pass": true
+    },
+    {
+      "detail": "0.6899",
+      "name": "aggregate_token:study1_theta_cap",
+      "pass": true
+    },
+    {
+      "detail": "[0.7707, 0.7902]",
+      "name": "aggregate_token:study1_measurement_interval",
+      "pass": true
+    },
+    {
+      "detail": "0.804",
+      "name": "aggregate_token:study2_cluster_kappa",
+      "pass": true
+    },
+    {
+      "detail": "[0.708, 0.893]",
+      "name": "aggregate_token:study2_cluster_kappa_interval",
+      "pass": true
+    },
+    {
+      "detail": "DS = 47",
+      "name": "aggregate_token:study3_counts",
+      "pass": true
+    },
+    {
+      "detail": "VO = 0",
+      "name": "aggregate_token:study3_vo",
+      "pass": true
+    },
+    {
+      "detail": "UR = 6",
+      "name": "aggregate_token:study3_ur",
+      "pass": true
+    },
+    {
+      "detail": "[47/53, 1]",
+      "name": "aggregate_token:study3_l0",
+      "pass": true
+    },
+    {
+      "detail": "47/53 remains conditional on measured eligibility",
+      "name": "study3_population_scope",
+      "pass": true
+    },
+    {
+      "detail": "VO=0 is certificate failure, not nonexistence",
+      "name": "vo_zero_interpretation",
+      "pass": false
+    },
+    {
+      "detail": "terminated arm contributes structural portability only",
+      "name": "cweval_no_prevalence",
+      "pass": true
+    },
+    {
+      "detail": "run-level reliability is not represented as human-coder validation",
+      "name": "coding_run_scope",
+      "pass": false
+    },
+    {
+      "detail": "decision memo does not initiate a protocol",
+      "name": "study4_no_protocol",
+      "pass": true
+    }
+  ],
+  "checks_passed": 34,
+  "checks_total": 36,
+  "document_type": "non-preregistration synthesis audit",
+  "failures": [
+    {
+      "detail": "VO=0 is certificate failure, not nonexistence",
+      "name": "vo_zero_interpretation",
+      "pass": false
+    },
+    {
+      "detail": "run-level reliability is not represented as human-coder validation",
+      "name": "coding_run_scope",
+      "pass": false
+    }
+  ],
+  "generated_at_utc": "2026-09-07T13:18:58.669786+00:00",
+  "schema_version": "paper-synthesis-consistency-v1",
+  "status": "HARD_STOP",
+  "task_level_sources_parsed": false
+}
