@@ -1,0 +1,57 @@
+{
+  "schema_version": "study3-sprime-verification-terminal-v1",
+  "status": "BOTH_BLINDED_SUBMISSIONS_FROZEN",
+  "source_packet_freeze_commit": "d8d4f937b69f86db497a083bc76d5391a9ae8230",
+  "source_packet_freeze_manifest_sha256": "574632cd27e2317363d261d8c46e9d330fffeca3a65d14cf4f15dc3423fb21ab",
+  "canonical_semantic_payload_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+  "startup_prompt_sha256": "4ceda434d838c8eb12b70668827c15c390d4fb1c5492c31e474c0d225d8188fc",
+  "runs": {
+    "run1": {
+      "run_id": "study3-sprime-verifier-run1",
+      "tasks": 53,
+      "cases": 239,
+      "validator_verdict": "ACCEPTED",
+      "submission_sha256": "ab9015b427492cb3d6b237940e75e9e7bf9746041c1726d3216edc5260af08d9",
+      "submission_manifest_sha256": "adc83631e7a93883014fe2d094827ff70cf074bcba9b6c3149e25aeb8fb006ad",
+      "package_manifest_sha256": "7bb172404eb4abc46f4d4b3340784aa24c2ab5136cd8dd7d56285a40f9125168",
+      "packet_fingerprint_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+      "freeze_commit": "6d4dea5",
+      "interrupted_or_resumed": false,
+      "execution_deviation": false
+    },
+    "run2": {
+      "run_id": "study3-sprime-verifier-run2",
+      "tasks": 53,
+      "cases": 239,
+      "validator_verdict": "ACCEPTED",
+      "submission_sha256": "86e786cf95c6a47307264589b02658bb32efe2809a6a73803b6984f941d78e19",
+      "submission_manifest_sha256": "b634b42bf3550ba9b2312a0408d7adf259dae6c3e4778c50e5d5cbb5d18ddb76",
+      "package_manifest_sha256": "28b356ffb6b5a1c623458a241c372b5823cdd6155ab97f0c34b9f398093f35bb",
+      "packet_fingerprint_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+      "freeze_commit": "4b639dd",
+      "interrupted_or_resumed": false,
+      "execution_deviation": false
+    }
+  },
+  "isolation": {
+    "fresh_independent_sessions": true,
+    "repo_external_directories": true,
+    "run1_submission_hidden_from_run2": true,
+    "sealed_key_absent_from_both_directories": true,
+    "same_frozen_startup_prompt": true
+  },
+  "execution_events": {
+    "verifier_session_interruptions": 0,
+    "verifier_session_resumes": 0,
+    "execution_deviations": 0,
+    "coordinator_wait_call_interrupted_without_verifier_effect": 1
+  },
+  "outcome_firewall": {
+    "sealed_key_opened": false,
+    "submissions_manually_compared": false,
+    "agreement_computed": false,
+    "determined_rate_computed": false,
+    "scorer_run": false,
+    "ds_vo_ur_derived": false
+  }
+}
