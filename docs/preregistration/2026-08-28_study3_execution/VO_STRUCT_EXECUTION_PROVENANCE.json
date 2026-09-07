@@ -1,0 +1,74 @@
+{
+ "schema_version": "study3-vo-struct-execution-provenance-v1",
+ "gate": "formal VO-STRUCT execution over complete confirmatory universe",
+ "execution_base_commit": "6d7340b9be690ce25a269406f6929f6c65e28fc2",
+ "ds_only_ancestor_commit": "9a378e3c396ecf5f710002332193a1294897c6ec",
+ "formal_command": [
+  "python3",
+  "vo_certificates.py"
+ ],
+ "artifact_mtime_utc": "2026-09-07T08:06:32.773743+00:00",
+ "frozen_hashes": {
+  "protocol": "548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7",
+  "vo_tool": "6bc60024915a81b88b866300adb7e3c7ca255a0f82333d858a91462bcd05df4a",
+  "scorer": "2425c8d10938b9828a2bca625366483408ec69e28eb2a412e6db809bb48dd8db",
+  "executability_audit": "d4554d7a9706bcbd3736fed6c8544aa41d00a2b0a4c58b0b130fd1eaf15275ca"
+ },
+ "frozen_manifest_hashes": {
+  "SHA256SUMS_DS_ONLY": "a9dbd5ca69db9d447a72d0092d0b063465d13ff8f0c4aeac3e87b346aac9f206",
+  "SHA256SUMS_TOOLING": "224d634deca955bcabe8e8074eb5566b439217c09ae4f5aace677a99d3111ffb",
+  "SHA256SUMS_ELIGIBILITY": "58f43414c2fb5282d50a8af4b077d397fb5b5afaa61857a20b9c837188e0ba8c",
+  "SHA256SUMS_PACKETS": "887f883da33edf7ea0c8923c7d36042f5fcda88abfe89cfceef91fa21b5ddfdf",
+  "SHA256SUMS_MATERIALIZATION": "5636e76e52c090d44f2e9f32a56333ede0870664294b3ebe35425ac77f84a036",
+  "submissions_baseline/SHA256SUMS_BASELINE_FROZEN": "6e61f20dd76ad941d91e47281f90d26ecff1f737255b97c981340c7963326373",
+  "SHA256SUMS_VO_STRUCT_EXECUTABILITY_AUDIT": "27e27d10b50d765182c9f70e4ef0f063ca2ab6e7885ce5fbd748b980a29fff20"
+ },
+ "confirmatory_universe": {
+  "m": 53,
+  "processed_count": 53,
+  "membership_sha256": "abd6657118567dd2eff23e554100693bdd05e6766b5b9a6551f8d0164153130c",
+  "selection_rule": "complete frozen eligibility set; no DS-conditioned selection"
+ },
+ "formal_artifact": {
+  "path": "vo_certificates.json",
+  "sha256": "cd2cc35b269a1d27d9093462685eae09ace6dc07d9fec95002f9cba55d3c0060",
+  "n_vo_struct": 0,
+  "n_rejected_claims": 0
+ },
+ "outcome_firewall": {
+  "status": "PASS",
+  "allowed_inputs": [
+   "frozen eligibility manifest",
+   "frozen baseline submissions and sealed case-role mapping",
+   "frozen immutable benchmark materials and parameter names",
+   "frozen case materialization manifest",
+   "frozen protocol and tooling"
+  ],
+  "forbidden_inputs_not_named_by_derivation": [
+   "ds_derivation",
+   "submissions_sprime",
+   "run1_sprime",
+   "run2_sprime",
+   "ds_both_runs",
+   "candidate",
+   "writer_output",
+   "writer_handoff",
+   "results_study3"
+  ],
+  "ds_read_by_derivation": false,
+  "sprime_or_candidate_read_by_derivation": false,
+  "writer_outcome_read_by_derivation": false
+ },
+ "vo_defect": {
+  "status": "PERMANENTLY_CLOSED",
+  "input_directory_present": false,
+  "certificate_files_present": 0,
+  "attestation_files_present": 0,
+  "certificates_emitted": 0,
+  "rejected_claims_emitted": 0,
+  "evidence_path_executed": false,
+  "note": "The frozen missing-file guard had no VO-DEFECT evidence to consume; no certificate or attestation branch was entered."
+ },
+ "final_scorer_executed": false,
+ "execution_deviation": null
+}

@@ -1,0 +1,297 @@
+{
+ "schema_version": "study3-vo-struct-mechanical-audit-v1",
+ "formal_derivation_sha256": "cd2cc35b269a1d27d9093462685eae09ace6dc07d9fec95002f9cba55d3c0060",
+ "processed_count": 53,
+ "confirmatory_membership_sha256": "abd6657118567dd2eff23e554100693bdd05e6766b5b9a6551f8d0164153130c",
+ "n_vo_struct": 0,
+ "p_hat_vo_struct": 0.0,
+ "vo_struct_task_ids": [],
+ "per_task_certificate_status": {
+  "P02": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P03": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P08": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P10": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P12": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P13": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P15": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P16": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P17": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P18": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P19": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P20": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P21": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P22": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P25": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P31": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P33": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P34": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P35": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P36": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P38": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P39": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P42": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P43": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P44": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P46": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P47": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P48": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P50": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P51": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P52": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P57": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P61": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P62": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P63": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P65": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P66": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P68": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P69": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P70": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P71": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P72": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P75": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P78": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P79": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P80": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P81": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P82": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P83": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P85": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P86": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P88": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  },
+  "P90": {
+   "vo_struct_established": false,
+   "certificate_status": "VO_STRUCT_CERTIFICATE_NOT_ESTABLISHED",
+   "failure_interpretation": "uncertified only; not evidence of separability or absence of obstruction"
+  }
+ },
+ "ds_vo_struct_overlap_count": 0,
+ "ds_vo_struct_overlap_task_ids": [],
+ "vo_defect_status": "PERMANENTLY_CLOSED",
+ "checks": {
+  "01_exactly_53_tasks_processed": true,
+  "02_universe_equals_confirmatory_eligibility": true,
+  "03_no_ds_conditioned_selection": true,
+  "04_only_frozen_predefined_inputs": true,
+  "05_only_frozen_vo_struct_predicates": true,
+  "06_no_vo_defect_evidence_path": true,
+  "07_no_attestation_artifacts_created": true,
+  "08_no_sprime_or_writer_outcome_input": true,
+  "09_failure_semantics_remain_uncertified_only": true,
+  "10_tool_and_protocol_hashes_unchanged": true,
+  "11_ds_vo_struct_overlap_empty": true
+ },
+ "checks_passed": 11,
+ "checks_total": 11,
+ "failure_semantics": "VO-STRUCT predicate failure is uncertified only, never negative obstruction evidence",
+ "final_scorer_executed": false,
+ "execution_deviation": null
+}

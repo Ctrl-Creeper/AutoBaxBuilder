@@ -1,0 +1,9 @@
+{
+ "rule": "VO only via VO-STRUCT (mechanical immutable-carrier quote location, both baseline runs) or VO-DEFECT (independently attested incoherence certificate); writer failure, coupling claims, and failed witness searches have no input path here and every rejected claim is UR",
+ "vo_tasks": {},
+ "rejected_claims": [],
+ "baseline_submission_sha256": {
+  "run1_baseline_FROZEN.json": "0c4dc4f2c95a180fa6a1b8ea7d5ce951c95562f9b44d4ee874ec93e8a2b99cfb",
+  "run2_baseline_FROZEN.json": "46721c9903b3c8173942b3f2fe76fa1df1ff929250f852fbe3c9ed1873074983"
+ }
+}
