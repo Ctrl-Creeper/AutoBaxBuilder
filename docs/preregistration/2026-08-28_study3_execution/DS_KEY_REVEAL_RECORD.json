@@ -1,0 +1,30 @@
+{
+  "schema_version": "study3-ds-key-reveal-v1",
+  "status": "SEALED_KEY_REVEALED_FOR_FROZEN_DS_DERIVATION_ONLY",
+  "reveal_initiated_utc": "2026-09-07T07:13:02Z",
+  "derivation_completed_utc": "2026-09-07T07:13:02Z",
+  "terminal_freeze_commit": "fd209a9abce15cfeee62fb8b9c08c5eae6d0cd0f",
+  "packet_freeze_commit": "d8d4f937b69f86db497a083bc76d5391a9ae8230",
+  "sealed_key_path": "sprime/sealed/_KEY_DO_NOT_SHOW_CODERS.json",
+  "sealed_key_sha256": "ecfc89e3515f68e526f31f68c4db06ad73035fff3f919e3a6419923e60a31fb8",
+  "combined_submission_manifest_sha256": "2a642e79c48845a146c0dbedc061e8ddc9a13c0221b3c826b0daa70e1077794d",
+  "run1_submission_sha256": "ab9015b427492cb3d6b237940e75e9e7bf9746041c1726d3216edc5260af08d9",
+  "run2_submission_sha256": "86e786cf95c6a47307264589b02658bb32efe2809a6a73803b6984f941d78e19",
+  "derive_ds_tool_sha256": "f6ffcbbdf48c2834103ecf7e2b320b83e501d45c702b777dac82df6342955449",
+  "frozen_scorer_sha256": "2425c8d10938b9828a2bca625366483408ec69e28eb2a412e6db809bb48dd8db",
+  "reveal_scope": "anonymous task and case identity alignment plus frozen capability/safety labels for mechanical DS derivation",
+  "execution_boundaries": {
+    "submissions_manually_browsed_for_patterns": false,
+    "manual_adjudication": false,
+    "verifier_judgments_modified": false,
+    "case_labels_modified": false,
+    "task_membership_modified": false,
+    "ds_definition_modified": false,
+    "writer_obstruction_material_read": false,
+    "vo_struct_run": false,
+    "vo_defect_run": false,
+    "formal_scorer_run": false
+  },
+  "hard_stop": false,
+  "execution_deviation": false
+}

@@ -1,0 +1,498 @@
+{
+ "rule": "DS iff both runs' profiles = [all capability determined, no safety determined] on S′ (protocol §1/§5); either-run is L2 sensitivity only",
+ "per_task": {
+  "Q01": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q02": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q03": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q04": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q05": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q06": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q07": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q08": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q09": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q10": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q11": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q12": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q13": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q14": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q15": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q16": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q17": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q18": {
+   "run_profiles": {
+    "run1": false,
+    "run2": false
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": false
+  },
+  "Q19": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q20": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q21": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q22": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q23": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q24": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q25": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q26": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q27": {
+   "run_profiles": {
+    "run1": false,
+    "run2": true
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q28": {
+   "run_profiles": {
+    "run1": false,
+    "run2": true
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q29": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q30": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q31": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q32": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q33": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q34": {
+   "run_profiles": {
+    "run1": false,
+    "run2": true
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q35": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q36": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q37": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q38": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q39": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q40": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q41": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q42": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q43": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q44": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q45": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q46": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q47": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q48": {
+   "run_profiles": {
+    "run1": false,
+    "run2": true
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q49": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q50": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q51": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q52": {
+   "run_profiles": {
+    "run1": true,
+    "run2": true
+   },
+   "ds_both_runs": true,
+   "ds_either_run_sensitivity_only": true
+  },
+  "Q53": {
+   "run_profiles": {
+    "run1": false,
+    "run2": true
+   },
+   "ds_both_runs": false,
+   "ds_either_run_sensitivity_only": true
+  }
+ },
+ "task_index": {
+  "Q01": 144,
+  "Q02": 1101,
+  "Q03": 1118,
+  "Q04": 1027,
+  "Q05": 485,
+  "Q06": 447,
+  "Q07": 356,
+  "Q08": 433,
+  "Q09": 1080,
+  "Q10": 1405,
+  "Q11": 660,
+  "Q12": 775,
+  "Q13": 1206,
+  "Q14": 1089,
+  "Q15": 1136,
+  "Q16": 137,
+  "Q17": 1166,
+  "Q18": 74,
+  "Q19": 1377,
+  "Q20": 1009,
+  "Q21": 177,
+  "Q22": 1133,
+  "Q23": 164,
+  "Q24": 113,
+  "Q25": 652,
+  "Q26": 454,
+  "Q27": 1053,
+  "Q28": 1066,
+  "Q29": 600,
+  "Q30": 1148,
+  "Q31": 1219,
+  "Q32": 1410,
+  "Q33": 1305,
+  "Q34": 1065,
+  "Q35": 457,
+  "Q36": 1163,
+  "Q37": 675,
+  "Q38": 503,
+  "Q39": 102,
+  "Q40": 1082,
+  "Q41": 1170,
+  "Q42": 473,
+  "Q43": 165,
+  "Q44": 435,
+  "Q45": 780,
+  "Q46": 168,
+  "Q47": 1218,
+  "Q48": 1058,
+  "Q49": 1302,
+  "Q50": 452,
+  "Q51": 1020,
+  "Q52": 1189,
+  "Q53": 1369
+ },
+ "ds_count": 47,
+ "sprime_submission_sha256": {
+  "run1_sprime_FROZEN.json": "ab9015b427492cb3d6b237940e75e9e7bf9746041c1726d3216edc5260af08d9",
+  "run2_sprime_FROZEN.json": "86e786cf95c6a47307264589b02658bb32efe2809a6a73803b6984f941d78e19",
+  "run1_validator_status.json": "672c9549db0c0aafe43722bacf6f189139fbb69d4d222d18f0b023272347b427",
+  "run2_validator_status.json": "154bd828317ad566f63fcaec209f336a65c242d3c14d6dbf3b2ea908b1fe2264",
+  "SHA256SUMS_SPRIME_RUN1_FROZEN": "adc83631e7a93883014fe2d094827ff70cf074bcba9b6c3149e25aeb8fb006ad",
+  "SHA256SUMS_SPRIME_RUN2_FROZEN": "b634b42bf3550ba9b2312a0408d7adf259dae6c3e4778c50e5d5cbb5d18ddb76",
+  "SPRIME_VERIFICATION_TERMINAL_STATE.json": "b2adc7bfb5a2e0f528ba826740fadac1bdcd5c16283f06e2f7fd3948a541cd2b",
+  "../SHA256SUMS_SPRIME_RUN1_PACKAGE": "7bb172404eb4abc46f4d4b3340784aa24c2ab5136cd8dd7d56285a40f9125168",
+  "../SHA256SUMS_SPRIME_RUN2_PACKAGE": "28b356ffb6b5a1c623458a241c372b5823cdd6155ab97f0c34b9f398093f35bb",
+  "../SHA256SUMS_SPRIME_PACKET_BUILD": "574632cd27e2317363d261d8c46e9d330fffeca3a65d14cf4f15dc3423fb21ab",
+  "../STARTUP_PROMPT_CODER.txt": "4ceda434d838c8eb12b70668827c15c390d4fb1c5492c31e474c0d225d8188fc"
+ }
+}
