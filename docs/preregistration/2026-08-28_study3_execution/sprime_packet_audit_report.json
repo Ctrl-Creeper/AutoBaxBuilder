@@ -1,0 +1,159 @@
+{
+  "protocol_sha256": "548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7",
+  "checks_passed": 34,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "name": "eligibility manifest matches frozen hash",
+      "passed": true
+    },
+    {
+      "name": "FROZEN_CASE_MANIFEST matches frozen hash",
+      "passed": true
+    },
+    {
+      "name": "frozen builder and shared packet builder match tooling hashes",
+      "passed": true
+    },
+    {
+      "name": "authoritative writer loader has no caller-selected input",
+      "passed": true
+    },
+    {
+      "name": "Run-2 ACCEPT_FIRST artifact is the sole hash-pinned constructive input",
+      "passed": true
+    },
+    {
+      "name": "accepted writer task membership is exactly confirmatory eligibility",
+      "passed": true
+    },
+    {
+      "name": "packet population contains exactly 53 tasks",
+      "passed": true
+    },
+    {
+      "name": "packet membership equals the confirmatory eligible set",
+      "passed": true
+    },
+    {
+      "name": "zero either-only sensitivity tasks were added",
+      "passed": true
+    },
+    {
+      "name": "no redraw, replacement, supplement, or outcome filtering changed membership",
+      "passed": true
+    },
+    {
+      "name": "sealed key pins Run-2 writer, eligibility, and frozen cases",
+      "passed": true
+    },
+    {
+      "name": "no seed slice changed or was added",
+      "passed": true
+    },
+    {
+      "name": "sealed seeds equal the frozen S-prime seed slices",
+      "passed": true
+    },
+    {
+      "name": "shared anonymous task mapping reproduces from the frozen task seed",
+      "passed": true
+    },
+    {
+      "name": "run1 case order matches its frozen independent seed",
+      "passed": true
+    },
+    {
+      "name": "run2 case order matches its frozen independent seed",
+      "passed": true
+    },
+    {
+      "name": "the two runs share task mapping and use distinct frozen case permutations",
+      "passed": true
+    },
+    {
+      "name": "visible package file sets contain only the frozen instrument and 53 task files",
+      "passed": true
+    },
+    {
+      "name": "every candidate render is reconstructed from the authoritative Run-2 artifact",
+      "passed": true
+    },
+    {
+      "name": "every displayed case is byte-equal to FROZEN_CASE_MANIFEST",
+      "passed": true
+    },
+    {
+      "name": "all per-task presentation permutations match the sealed key",
+      "passed": true
+    },
+    {
+      "name": "every task file byte-rerenders from candidate plus frozen cases",
+      "passed": true
+    },
+    {
+      "name": "sealed case-identity mapping is item-equal to the frozen manifest",
+      "passed": true
+    },
+    {
+      "name": "each run contains exactly the frozen population's 239 cases",
+      "passed": true
+    },
+    {
+      "name": "two-run semantic payload is identical and matches the sealed hash",
+      "passed": true
+    },
+    {
+      "name": "both packet fingerprints equal the canonical semantic-payload hash",
+      "passed": true
+    },
+    {
+      "name": "run differences are limited to frozen case presentation and run metadata",
+      "passed": true
+    },
+    {
+      "name": "verification instructions are byte-identical to the frozen J1 instrument",
+      "passed": true
+    },
+    {
+      "name": "researcher-generated verifier-visible material contains no banned metadata",
+      "passed": true
+    },
+    {
+      "name": "sealed key is outside both verifier-visible packages",
+      "passed": true
+    },
+    {
+      "name": "blank templates implement only the frozen per-case J1 schema",
+      "passed": true
+    },
+    {
+      "name": "packet build has no testcase re-extraction path",
+      "passed": true
+    },
+    {
+      "name": "packet build imports no scorer, DS, VO, or outcome module",
+      "passed": true
+    },
+    {
+      "name": "packet build contains no Run-1 accepted-input fallback",
+      "passed": true
+    }
+  ],
+  "n_tasks": 53,
+  "n_cases_per_run": {
+    "run1": 239,
+    "run2": 239
+  },
+  "semantic_payload_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+  "packet_fingerprints": {
+    "run1": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+    "run2": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0"
+  },
+  "sealed_key_sha256": "ecfc89e3515f68e526f31f68c4db06ad73035fff3f919e3a6419923e60a31fb8",
+  "anonymous_mapping_sha256": "f8c615689c16c53f913706fc7f6a72fbaa39dfd4378f474492739ea7df83ee5f",
+  "case_order_sha256": {
+    "run1": "8025a077d73d0d5fe41e1b63a9131a3c52335f8edd47be39cea5412bcdc64c46",
+    "run2": "49a31293a52a67039e8e1c89bd0bcfc8ef653b6b8f77c949bb911b2dea85adf5"
+  }
+}
