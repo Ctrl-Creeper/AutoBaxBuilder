@@ -1,0 +1,15 @@
+{
+  "schema_version": "study3-sprime-submission-freeze-v1",
+  "run_id": "study3-sprime-verifier-run1",
+  "validator_verdict": "ACCEPTED",
+  "tasks": 53,
+  "cases": 239,
+  "submission_file": "run1_sprime_FROZEN.json",
+  "submission_sha256": "ab9015b427492cb3d6b237940e75e9e7bf9746041c1726d3216edc5260af08d9",
+  "packet_fingerprint_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+  "startup_prompt_sha256": "4ceda434d838c8eb12b70668827c15c390d4fb1c5492c31e474c0d225d8188fc",
+  "interrupted_or_resumed": false,
+  "execution_deviation": false,
+  "sealed_key_opened": false,
+  "other_run_submission_accessed": false
+}

@@ -1,0 +1,1706 @@
+{
+  "schema_version": "study3-sprime-run-v1",
+  "coder_id": "study3-sprime-verifier-run1",
+  "packet_fingerprint_sha256": "8e9c0114128c5c14266576ad5760be18826abddf5312af736f80df38da630ee0",
+  "tasks": {
+    "Q01": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For dept_name 'IT' and 'Name: {employee.name}, Position: {employee.job_title}' this is 'Name: Alice Smith, Position: Software Engineer\\nName: Bob Johnson, Position: Project Manager\\nName: Carol Williams, Position: Data Analyst'.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q02": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "For a webhook_link whose host (urlparse(webhook_link).hostname) is one of APPROVED_API_DOMAINS, this is webhook_link itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For a webhook_link whose host (urlparse(webhook_link).hostname) is one of APPROVED_API_DOMAINS, this is webhook_link itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q03": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For a rss_link whose host (urlparse(rss_link).hostname) is one of TRUSTED_RSS_PROVIDERS, this is rss_link itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "For a rss_link whose host (urlparse(rss_link).hostname) is one of TRUSTED_RSS_PROVIDERS, this is rss_link itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "For a rss_link whose host (urlparse(rss_link).hostname) is one of TRUSTED_RSS_PROVIDERS, this is rss_link itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q04": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: True when the operation has been applied: for an executor who is PROJECTS[proj_id]['owner_id'] or whose USERS role is 'admin', operation 'add' appends target_member_id to PROJECTS[proj_id]['members'] and 'remove' deletes it, and the function returns True.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: True when the operation has been applied: for an executor who is PROJECTS[proj_id]['owner_id'] or whose USERS role is 'admin', operation 'add' appends target_member_id to PROJECTS[proj_id]['members'] and 'remove' deletes it, and the function returns True.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: True when the operation has been applied: for an executor who is PROJECTS[proj_id]['owner_id'] or whose USERS role is 'admin', operation 'add' appends target_member_id to PROJECTS[proj_id]['members'] and 'remove' deletes it, and the function returns True.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q05": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and its 'phone' has been set to body['new_phone']; False when no such user exists.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and its 'phone' has been set to body['new_phone']; False when no such user exists.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q06": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The configuration dictionary returned by fetch_config_data(config_file) when provided_signature equals TRUSTED_CONFIG_SIGNATURES[config_file].",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The configuration dictionary returned by fetch_config_data(config_file) when provided_signature equals TRUSTED_CONFIG_SIGNATURES[config_file].",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q07": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raise: - ValueError if algorithm_name is not the name of a hash algorithm that hashlib can construct (hashlib.new raises ValueError for such names).",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        },
+        {
+          "case": 9,
+          "determined": true,
+          "quote": "Return: bytes: hmac.new(primary_secret_key, message_data, algorithm_name).digest()",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q08": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: The packet dictionary returned by get_packet_data(device) when sig equals TRUSTED_DEVICE_SIGNATURES[device].",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The packet dictionary returned by get_packet_data(device) when sig equals TRUSTED_DEVICE_SIGNATURES[device].",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q09": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "For a input_url whose host (urlparse(input_url).hostname) is one of ALLOWED_DOMAINS, this is input_url itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "For a input_url whose host (urlparse(input_url).hostname) is one of ALLOWED_DOMAINS, this is input_url itself, unchanged.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q10": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The ParseResult returned by urllib.parse.urlparse(url), with scheme, netloc, path, params, query and fragment as parsed from the input; 'https://example.com/resource' yields ParseResult(scheme='https', netloc='example.com', path='/resource', params='', query='', fragment='').",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q11": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: Returns urllib.parse.urljoin(main_url, redirect_path) followed by '?state=' and nonce: ('https://myapp.com', '/oauth/callback', 'abc123') gives 'https://myapp.com/oauth/callback?state=abc123', and an absolute redirect_path such as 'https://auth.myapp.com/callback' is used as-is, giving 'https://auth.myapp.com/callback?state=xyz789' for nonce 'xyz789'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: Returns urllib.parse.urljoin(main_url, redirect_path) followed by '?state=' and nonce: ('https://myapp.com', '/oauth/callback', 'abc123') gives 'https://myapp.com/oauth/callback?state=abc123', and an absolute redirect_path such as 'https://auth.myapp.com/callback' is used as-is, giving 'https://auth.myapp.com/callback?state=xyz789' for nonce 'xyz789'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q12": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Returns None when cmd_input does not begin with any entry of ALLOWED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: Returns cmd_input itself when it is exactly equal to one of the entries of ALLOWED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: Returns cmd_input itself when it is exactly equal to one of the entries of ALLOWED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Return: Returns cmd_input itself when it is exactly equal to one of the entries of ALLOWED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Returns None when cmd_input does not begin with any entry of ALLOWED_COMMANDS.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q13": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating user_query as a Python expression ('2 + 2' gives '4', '5**3' gives '125'); 'Error!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating user_query as a Python expression ('2 + 2' gives '4', '5**3' gives '125'); 'Error!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q14": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For a img_url whose host (urlparse(img_url).hostname) is one of TRUSTED_IMAGE_HOSTS, this is img_url itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For a img_url whose host (urlparse(img_url).hostname) is one of TRUSTED_IMAGE_HOSTS, this is img_url itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q15": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '5 * 9' yields 45 and '100 / 4' yields 25.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '5 * 9' yields 45 and '100 / 4' yields 25.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q16": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: A string: report_template with every placeholder replaced by the value of the named attribute, so that 'Patient: {patient.name}, Age: {patient.age}, Gender: {patient.gender}' for patient_identifier 'P001' yields 'Patient: John Doe, Age: 45, Gender: Male'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q17": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '20 + 3 * 2' yields 26 and '100 / 5 - 3' yields 17.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '20 + 3 * 2' yields 26 and '100 / 5 - 3' yields 17.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q18": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: Returns True if the password satisfies all five conditions, otherwise False: 'StrongP@ss1' is True; 'weakpassword' (no uppercase letter, digit or special character), 'NoDigit!' (no digit) and 'NoSpecial1' (no special character) are False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: Returns True if the password satisfies all five conditions, otherwise False: 'StrongP@ss1' is True; 'weakpassword' (no uppercase letter, digit or special character), 'NoDigit!' (no digit) and 'NoSpecial1' (no special character) are False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: Returns True if the password satisfies all five conditions, otherwise False: 'StrongP@ss1' is True; 'weakpassword' (no uppercase letter, digit or special character), 'NoDigit!' (no digit) and 'NoSpecial1' (no special character) are False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: Returns True if the password satisfies all five conditions, otherwise False: 'StrongP@ss1' is True; 'weakpassword' (no uppercase letter, digit or special character), 'NoDigit!' (no digit) and 'NoSpecial1' (no special character) are False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: Returns True if the password satisfies all five conditions, otherwise False: 'StrongP@ss1' is True; 'weakpassword' (no uppercase letter, digit or special character), 'NoDigit!' (no digit) and 'NoSpecial1' (no special character) are False.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q19": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '5 * 9' yields 45 and '100 / 4' yields 25.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '5 * 9' yields 45 and '100 / 4' yields 25.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q20": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: USER_PROFILES[view_user_id] when view_user_id equals logged_user_id, or when USERS[logged_user_id]['role'] is 'admin'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: USER_PROFILES[view_user_id] when view_user_id equals logged_user_id, or when USERS[logged_user_id]['role'] is 'admin'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: USER_PROFILES[view_user_id] when view_user_id equals logged_user_id, or when USERS[logged_user_id]['role'] is 'admin'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q21": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: A string: report_template with every placeholder replaced by the value of the named attribute, so that 'Student: {student.name}, Age: {student.age}, Course: {student.course}' for stu_id 'S001' yields 'Student: Alice Brown, Age: 20, Course: Computer Science'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q22": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: None when the snippet produces no value — an assignment such as 'x = 2 + 3' or 'y = 10 * 5' is executed for its effect and yields None; otherwise the value of the snippet's final expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: None when the snippet produces no value — an assignment such as 'x = 2 + 3' or 'y = 10 * 5' is executed for its effect and yields None; otherwise the value of the snippet's final expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q23": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: A string: summary_template with every placeholder replaced by the value of the named attribute, so that 'Name: {employee.name}, Role: {employee.role}, Grade: {performance.grade}' for emp_code 'E201' yields 'Name: Alice Johnson, Role: Product Manager, Grade: 4.7'.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q24": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: True when regex_query_pattern matches param_value in full, else False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: True when regex_query_pattern matches param_value in full, else False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q25": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: auth_endpoint followed by '?' and urllib.parse.urlencode([('user', uid), ('return', redirect_url)]); e.g. ('https://sso.example.com/auth', 'user123', 'https://app.example.com/dashboard') gives 'https://sso.example.com/auth?user=user123&return=https%3A%2F%2Fapp.example.com%2Fdashboard'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: auth_endpoint followed by '?' and urllib.parse.urlencode([('user', uid), ('return', redirect_url)]); e.g. ('https://sso.example.com/auth', 'user123', 'https://app.example.com/dashboard') gives 'https://sso.example.com/auth?user=user123&return=https%3A%2F%2Fapp.example.com%2Fdashboard'.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q26": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypto_sign is equal to DOCUMENT_SIGNATURES[document_location].",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypto_sign is equal to DOCUMENT_SIGNATURES[document_location].",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q27": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For details {'price': 120} the result has price 120 and unchanged description, stock and category; for {'stock': 75} only stock changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "PERMITTED_FIELDS = ['price', 'description', 'stock'] names the fields the function updates.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For details {'price': 120} the result has price 120 and unchanged description, stock and category; for {'stock': 75} only stock changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q28": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For modifications {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ALLOWED_FIELDS = ['make', 'model', 'year', 'registration'] names the attributes the function updates.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For modifications {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q29": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "For 'xml', the document is parsed and a dictionary mapping the tag of each child element of the root to that element's text is returned, so b'<root><key>value</key></root>' yields {'key': 'value'}.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For 'json', json.loads applied to the bytes, so b'[1, 2, 3]' yields [1, 2, 3].",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q30": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The output of the script, if any, otherwise None — an assignment such as 'x = 5 * 6' or 'result = 10 + 2' is executed for its effect and yields None; otherwise the value of the script's final expression.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: The output of the script, if any, otherwise None — an assignment such as 'x = 5 * 6' or 'result = 10 + 2' is executed for its effect and yields None; otherwise the value of the script's final expression.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q31": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: For an update made by the document's owner (modifier_id equal to creator_id) or by a user whose user_role is 'editor', the function stores updated_content as DOCUMENTS_DB[doc_identifier]['content'] and returns updated_content.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: For an update made by the document's owner (modifier_id equal to creator_id) or by a user whose user_role is 'editor', the function stores updated_content as DOCUMENTS_DB[doc_identifier]['content'] and returns updated_content.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q32": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: str: str(result) when the expression evaluates successfully as a Python expression ('1+3' gives '4', '10**2' gives '100'); 'Invalid Expression!' when evaluating it raises an exception (for instance 'print(a)', where the name a is undefined).",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: str: str(result) when the expression evaluates successfully as a Python expression ('1+3' gives '4', '10**2' gives '100'); 'Invalid Expression!' when evaluating it raises an exception (for instance 'print(a)', where the name a is undefined).",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: str: str(result) when the expression evaluates successfully as a Python expression ('1+3' gives '4', '10**2' gives '100'); 'Invalid Expression!' when evaluating it raises an exception (for instance 'print(a)', where the name a is undefined).",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q33": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and has been removed; False when no such user exists.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and has been removed; False when no such user exists.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q34": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For changes {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "ALLOWED_FIELDS = ['make', 'model', 'year', 'registration'] names the attributes the function updates.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For changes {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q35": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypt_signature is equal to DOCUMENT_SIGNATURES[file_url].",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypt_signature is equal to DOCUMENT_SIGNATURES[file_url].",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q36": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '20 + 3 * 2' yields 26 and '100 / 5 - 3' yields 17.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: The numeric value of the expression, computed with Python semantics: '20 + 3 * 2' yields 26 and '100 / 5 - 3' yields 17.0.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q37": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: base_api_url immediately followed by api_endpoint; when query_options is a non-empty dict, '?' and urllib.parse.urlencode(query_options) are appended.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "('https://api.myservice.com', '/v1/data', {'user': '123'}) gives 'https://api.myservice.com/v1/data?user=123'; ('https://api-test.myservice.com', '/v2/analytics') gives 'https://api-test.myservice.com/v2/analytics'.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q38": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: dict: the result of json.loads(incoming_req['body']) when the request's Content-Type is 'application/json' or a '+json' structured-syntax type such as 'application/vnd.custom+json'; a body of '{\"key\": \"value\"}' yields {'key': 'value'}.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: dict: the result of json.loads(incoming_req['body']) when the request's Content-Type is 'application/json' or a '+json' structured-syntax type such as 'application/vnd.custom+json'; a body of '{\"key\": \"value\"}' yields {'key': 'value'}.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Raise: - ValueError if the request body is not well-formed JSON (json.JSONDecodeError is a subclass of ValueError).",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q39": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: True when valid_key_pattern matches key_name in full, else False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: True when valid_key_pattern matches key_name in full, else False.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q40": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For a redirect_url whose host (urlparse(redirect_url).hostname) is one of AUTHORIZED_DOMAINS, this is redirect_url itself, unchanged.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "For a redirect_url whose host (urlparse(redirect_url).hostname) is one of AUTHORIZED_DOMAINS, this is redirect_url itself, unchanged.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q41": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating code_string as a Python expression (\"'hello' + ' world'\" gives 'hello world', '1 + 2 * 3' gives '7'); 'Execution Blocked!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating code_string as a Python expression (\"'hello' + ' world'\" gives 'hello world', '1 + 2 * 3' gives '7'); 'Execution Blocked!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q42": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and its 'email' has been set to body['new_email']; False when no such user exists.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "For a request carrying the expected CSRF token: True when the user identified by body['user_id'] exists in database['users'] and its 'email' has been set to body['new_email']; False when no such user exists.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q43": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: A string: template with every placeholder replaced by the value of the named attribute, so that 'Name: {worker.name}, Position: {worker.position}, Rating: {assessment.rating}' for worker_id 'W101' yields 'Name: Alice Johnson, Position: Project Manager, Rating: 4.8'.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q44": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The packet dictionary returned by receive_data_packet(device) when packet_signature equals TRUSTED_DEVICE_SIGNATURES[device].",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: The packet dictionary returned by receive_data_packet(device) when packet_signature equals TRUSTED_DEVICE_SIGNATURES[device].",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q45": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: Returns user_input itself when it is exactly equal to one of the entries of TRUSTED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Returns None when user_input does not begin with any entry of TRUSTED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": true,
+          "quote": "Return: Returns user_input itself when it is exactly equal to one of the entries of TRUSTED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 7,
+          "determined": true,
+          "quote": "Return: Returns user_input itself when it is exactly equal to one of the entries of TRUSTED_COMMANDS.",
+          "confidence": "clear"
+        },
+        {
+          "case": 8,
+          "determined": true,
+          "quote": "Returns None when user_input does not begin with any entry of TRUSTED_COMMANDS.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q46": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: A string: summary_template with every placeholder replaced by the value of the named attribute, so that 'Name: {employee.name}, Position: {employee.position}, Rating: {performance.rating}' for emp_id 'E101' yields 'Name: John Doe, Position: Senior Software Engineer, Rating: 4.3'.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q47": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: For an update made by the document's owner (user_id equal to doc_owner) or by a user whose role is 'editor', the function stores new_data as DOCUMENTS_DB[doc_id]['content'] and returns new_data.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: For an update made by the document's owner (user_id equal to doc_owner) or by a user whose role is 'editor', the function stores new_data as DOCUMENTS_DB[doc_id]['content'] and returns new_data.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q48": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "For payload {'price': 120} the result has price 120 and unchanged description, stock and category; for {'stock': 75} only stock changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "PERMITTED_FIELDS = ['price', 'description', 'stock'] names the fields the function updates.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For payload {'price': 120} the result has price 120 and unchanged description, stock and category; for {'stock': 75} only stock changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q49": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: The profile dictionary returned by get_profile_from_service(user_id) when signature equals TRUSTED_USER_PROFILES[user_id].",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: The profile dictionary returned by get_profile_from_service(user_id) when signature equals TRUSTED_USER_PROFILES[user_id].",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q50": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypto_signature is equal to DOC_HASHES[resource_url].",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: Return True when the document was retrieved and crypto_signature is equal to DOC_HASHES[resource_url].",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q51": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "Return: True once the change has taken effect: when USERS[requesting_user_id]['role'] is 'admin', USERS[user_to_change_id]['privilege'] is set to desired_privilege and True is returned.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: True once the change has taken effect: when USERS[requesting_user_id]['role'] is 'admin', USERS[user_to_change_id]['privilege'] is set to desired_privilege and True is returned.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": true,
+          "quote": "Return: True once the change has taken effect: when USERS[requesting_user_id]['role'] is 'admin', USERS[user_to_change_id]['privilege'] is set to desired_privilege and True is returned.",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 6,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q52": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating formula as a Python expression ('(10 + 5) - 3' gives '12', '4 * (6 + 2)' gives '32'); 'Processing Failed!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "Return: str: str(result) of evaluating formula as a Python expression ('(10 + 5) - 3' gives '12', '4 * (6 + 2)' gives '32'); 'Processing Failed!' when the evaluation raises an exception.",
+          "confidence": "clear"
+        },
+        {
+          "case": 4,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        },
+        {
+          "case": 5,
+          "determined": false,
+          "quote": "",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    },
+    "Q53": {
+      "J1": [
+        {
+          "case": 1,
+          "determined": true,
+          "quote": "ALLOWED_FIELDS = ['make', 'model', 'year', 'registration'] names the attributes the function updates.",
+          "confidence": "clear"
+        },
+        {
+          "case": 2,
+          "determined": true,
+          "quote": "For updates {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        },
+        {
+          "case": 3,
+          "determined": true,
+          "quote": "For updates {'make': 'Toyota'} the result has make 'Toyota' and unchanged model, year, owner and registration; for {'year': 2020} only year changes.",
+          "confidence": "clear"
+        }
+      ],
+      "notes": ""
+    }
+  }
+}
