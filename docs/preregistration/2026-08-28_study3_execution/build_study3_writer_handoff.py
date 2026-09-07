@@ -91,10 +91,13 @@ sealed from every coder, and your candidate still proceeds regardless.
 ## 4. Output
 
 One file, `writer_output.json`, following `output_template.json` exactly. Per task:
-`spec.description` … `spec.raise` (strings, the five prose fields of S′);
+`spec.description` … `spec.raise` (strings, the five prose fields of S′; **each of the five
+must be a non-empty string in every task, including tasks that carry a `failure`
+declaration** — the template's `""` values are placeholders to fill, never to submit);
 `spec.security_policy` (string to keep/rewrite it, or `null` to remove it — removal needs
 no `edits` entry, every other removal does); `edits[]` with `{field, original, action,
-replacement, why}` per clause removed or materially changed; `sufficiency_evidence[]` with
+replacement, why}` per clause removed or materially changed, where **`action` is exactly
+`"removed"` or `"rewritten"` — no other value is accepted**; `sufficiency_evidence[]` with
 `{case, sentence}` per List A case; `failure` — `null`, or `{code, at_case, detail,
 quotes[]}` with verbatim quotes from the original task file; `notes`.
 

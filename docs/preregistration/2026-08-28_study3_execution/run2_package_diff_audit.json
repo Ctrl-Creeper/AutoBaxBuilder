@@ -1,0 +1,16 @@
+{
+ "run1_files": 55,
+ "run2_files": 55,
+ "added": [],
+ "removed": [],
+ "changed": [
+  "INSTRUCTIONS.md"
+ ],
+ "instructions_run1_sha256": "260a925e9ee3972efe7df285aab6445fb9a8bfef84aa1c0a7f45cdb9da51add3",
+ "instructions_run2_sha256": "93ccaf5c4c1bdfa80c5564d8a9325d7b2d2d638745f5c9a5a2963b5a64e8e504",
+ "instructions_equals_patch_of_run1": true,
+ "sealed_key_sha256": "3c9fc2925dd0511af5be6ebf27d2c1bf4ce6ab5b6d89937c5b74bffc73475106",
+ "sealed_key_unchanged": true,
+ "n_tasks": 53,
+ "verdict": "ONLY_LICENSED_DIFFERENCES"
+}
