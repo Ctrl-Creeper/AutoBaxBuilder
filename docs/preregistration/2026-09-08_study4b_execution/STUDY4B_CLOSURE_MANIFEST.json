@@ -1,0 +1,144 @@
+{
+  "analyses_not_performed_at_closure": [
+    "subgroup analysis",
+    "task-level failure analysis",
+    "completion-content taxonomy",
+    "explanation mining"
+  ],
+  "artifacts_held_on_disk_only": {
+    "paths": [
+      "study4b_ds47_stimuli_SEALED.json",
+      "study4b_generation_stimuli_FROZEN.json",
+      "generation_calls/"
+    ],
+    "reason": "sealed stimuli carry the frozen hidden tests/oracle and generation_calls carry full specification prompts; both enter git as checksums only, matching the Study-3 convention",
+    "response_set_sha256": "07392d665a72bfc56f97367c52a6abfa59d19292479231bf129718ff46fa35d6"
+  },
+  "capability_guardrail": {
+    "ci_excludes_zero": true,
+    "endpoint": "CapabilityPass",
+    "observed_ci_95": [
+      -0.46828818863957566,
+      -0.23383947093489246
+    ],
+    "observed_delta": -0.35106382978723405,
+    "point_estimate_inside_margin": false,
+    "preregistered_equivalence_margin_pp": 5.0,
+    "status": "FAILED"
+  },
+  "endpoints": {
+    "capability": {
+      "ci_95": [
+        -0.46828818863957566,
+        -0.23383947093489246
+      ],
+      "delta": -0.35106382978723405,
+      "randomization_p_two_sided": 1.341104507446289e-07,
+      "rate_S": 0.601063829787234,
+      "rate_Sprime": 0.9521276595744681,
+      "task_difference_sd": 0.39925056991357977
+    },
+    "joint": {
+      "ci_95": [
+        0.10513698000588323,
+        0.42677791361113804
+      ],
+      "delta": 0.26595744680851063,
+      "randomization_p_two_sided": 0.0023431722074747086,
+      "rate_S": 0.5957446808510638,
+      "rate_Sprime": 0.32978723404255317,
+      "task_difference_sd": 0.5477331132652585
+    },
+    "security": {
+      "ci_95": [
+        0.37411104801555456,
+        0.636527249856786
+      ],
+      "delta": 0.5053191489361702,
+      "randomization_p_two_sided": 4.0745362639427185e-09,
+      "rate_S": 0.8723404255319149,
+      "rate_Sprime": 0.3670212765957447,
+      "task_difference_sd": 0.4468773349045953
+    }
+  },
+  "execution_record": {
+    "empty_completions": 0,
+    "generations_completed": 376,
+    "generations_planned": 376,
+    "max_token_truncations_by_condition": {
+      "S": 1,
+      "Sprime": 0
+    },
+    "max_token_truncations_total": 1,
+    "non_runnable_by_condition": {
+      "S": 7,
+      "Sprime": 0
+    },
+    "non_runnable_scoring": "zero on security, capability, and joint endpoints",
+    "non_runnable_total": 7,
+    "oracle_preflight_pass": 47,
+    "oracle_preflight_total": 47,
+    "request_artifacts_on_disk": 376,
+    "requests_with_retry": 0,
+    "response_artifacts_on_disk": 376,
+    "total_transport_attempts": 376,
+    "transport_failures": 0
+  },
+  "frozen_artifacts_sha256": {
+    "study4b_analysis_FROZEN.json": "5fd37dd6ec0e35370090f8ecb42a955e0fb3e33872356e3b9ef085c42b546cdd",
+    "study4b_ds47_stimuli_SEALED.json": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef",
+    "study4b_evaluation_FROZEN.json": "fba90188d0a10424bf60da8706717cd825f972708c18e6dc04c8cc222310a10b",
+    "study4b_execute.py": "4e1a8af4e434a1a3bed1c498b33c94a9927b7abbc06436d0711c35e958f07d9a",
+    "study4b_execution_manifest_FROZEN.json": "6dd078ae8b15523528ea1757f2269bf083f0945265972033faa8e3d1aa19b3ac",
+    "study4b_generation_completion_FROZEN.json": "113f92a74ff2ecde1279c1b3f32d1d703d95a898669e4a31fac9972776db8bf1",
+    "study4b_generation_stimuli_FROZEN.json": "f9373797e618e444b16568a71c9230694f2f9786c7122680830177e5a6ac7f23",
+    "study4b_prepare.py": "c36e10b4745180157faa0686e29c912ce89af4985e70ff1f493ece55ff0fd84e",
+    "study4b_readiness_manifest.json": "30b98c43abbb12e9d7eb4d9dfcff2e6a1c144c1c0d167ef59a741c3335e5edcd",
+    "study4b_request_schedule_FROZEN.json": "d5de92dc3925aa283183ea0fa5937af934ccb609931fa7408bab8c0c40abad93",
+    "test_study4b_execute.py": "479f936a37e657151c2737d08815df8f7e80a65b94a991e74bfb218768e29318",
+    "test_study4b_prepare.py": "06236c2df6b44c2648fe98edaefc8a941079cad83050f649a5a6df70b0a53850"
+  },
+  "git": {
+    "branch": "benchmark-v1-2-probe-coverage",
+    "head_at_closure": "1dda9cf5b3abdca8930900fdc8ac0d92234bb3b8"
+  },
+  "hard_stops": [],
+  "interpretation": {
+    "allowed": [
+      "On the 47 frozen Study-3 demonstrated-separable tasks, the model was substantially more likely to pass the security oracle under the original determining specification than under the frozen underdetermined specification.",
+      "However, the specification manipulation also produced a large capability-performance difference, despite capability determination having been preserved at the specification level. Therefore the observed security contrast cannot be interpreted as an isolated causal effect of removing safety-determining information while holding functional behavior constant."
+    ],
+    "not_allowed": [
+      "determination causes +50.5pp security score inflation",
+      "removing safety information alone causes the effect",
+      "capability was behaviorally held constant",
+      "the effect generalizes to SeCodePLT",
+      "Study 4B rescues or replaces the failed fresh Study 4",
+      "Study 3 was invalidated by the capability guardrail failure"
+    ],
+    "post_hoc_analysis_may_not_alter_this_block": true,
+    "preserved_distinction": "Study-3 capability-determination preservation is a specification-level construct; Study-4B CapabilityPass is a model-performance outcome. A change in the latter does not imply the former was validated incorrectly."
+  },
+  "line": "Study 4B confirmatory behavioral follow-up",
+  "procedural_deviations": [],
+  "schema": "study4b-closure-v1",
+  "scope": "Study-3 frozen demonstrated-separable subset (DS=47) only",
+  "status": "CLOSED",
+  "study_boundaries": {
+    "fresh_sample_study4": {
+      "artifacts": "docs/preregistration/2026-09-07_study4_calibration_execution/",
+      "result": "0/160 validated pairs; NO-GO before behavioral evaluation",
+      "status": "separately closed"
+    },
+    "paper_synthesis_unmodified": true,
+    "studies_1_to_3_unmodified": true,
+    "study4b_is_not_a_continuation_or_replacement": true
+  },
+  "upstream_checksum_verification": {
+    "SHA256SUMS_ANALYSIS": "OK",
+    "SHA256SUMS_EVALUATION": "OK",
+    "SHA256SUMS_EXECUTION_FREEZE": "OK",
+    "SHA256SUMS_READINESS": "OK",
+    "SHA256SUMS_RESPONSES": "OK"
+  }
+}

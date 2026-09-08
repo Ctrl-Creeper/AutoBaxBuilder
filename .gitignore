@@ -17,3 +17,10 @@ docs/preregistration/2026-08-28_study3_execution/quarantined_prevalidation_build
 docs/preregistration/2026-08-28_study3_execution/writer_handoff/writer_package/
 docs/preregistration/2026-08-28_study3_execution/writer_handoff/sealed/
 docs/preregistration/2026-08-28_study3_execution/writer_handoff/run1_writer_package/
+
+# Study-4B: sealed stimuli carry the frozen hidden tests/oracle, and generation_calls
+# carry full specification prompts; both stay on disk and enter git only as checksums
+docs/preregistration/2026-09-08_study4b_execution/study4b_ds47_stimuli_SEALED.json
+docs/preregistration/2026-09-08_study4b_execution/study4b_generation_stimuli_FROZEN.json
+docs/preregistration/2026-09-08_study4b_execution/generation_calls/
+docs/preregistration/2026-09-08_study4b_execution/.ruff_cache/

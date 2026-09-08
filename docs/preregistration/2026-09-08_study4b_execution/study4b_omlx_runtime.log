@@ -1,0 +1,1024 @@
+2026-09-08 08:41:25,062 - omlx.settings - INFO - Saved settings to /private/tmp/study4b-omlx-runtime-20260908/settings.json
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+2026-09-08 08:41:26,097 - omlx.scheduler - INFO - ChunkedKVCache patch: methods already present upstream, skipped: size
+2026-09-08 08:41:26,154 - omlx.settings - INFO - Saved settings to /private/tmp/study4b-omlx-runtime-20260908/settings.json
+2026-09-08 08:41:26,154 - omlx.server - INFO - Generated and saved new auth secret key
+2026-09-08 08:41:26,154 - omlx.server - INFO - CORS origins: ['*']
+2026-09-08 08:41:26,162 - omlx.model_discovery - INFO - Discovered model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit (type: vlm, engine: vlm, size: 19.95GB, text-only: 19.08GB)
+2026-09-08 08:41:26,165 - omlx.engine_pool - INFO - Discovered 1 models
+2026-09-08 08:41:26,165 - omlx.server - INFO - Server initialized with 1 models
+2026-09-08 08:41:26,165 - omlx.server - INFO - Default model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit
+2026-09-08 08:41:26,165 - omlx.server - INFO - Memory guard tier: aggressive (guard on)
+2026-09-08 08:41:26,165 - omlx.server - INFO - Default max tokens: 32768
+2026-09-08 08:41:26,165 - omlx.server - INFO - API key authentication: enabled
+2026-09-08 08:41:26,166 - omlx.server - INFO - HF Downloader initialized
+2026-09-08 08:41:26,189 - omlx.server - INFO - ModelScope Downloader initialized
+2026-09-08 08:41:26,190 - omlx.server - INFO - oQ Quantizer initialized
+2026-09-08 08:41:26,191 - omlx.server - INFO - HF Uploader initialized
+INFO:     Started server process [46875]
+INFO:     Waiting for application startup.
+2026-09-08 08:41:26,403 - omlx.settings - INFO - Saved settings to /private/tmp/study4b-omlx-runtime-20260908/settings.json
+2026-09-08 08:41:26,403 - omlx.server - INFO - Auto-detected server aliases: ['localhost', '127.0.0.1', 'Creeper-studio.local', '192.168.1.84', '192.168.1.104', '100.124.110.22', '198.18.0.1']
+2026-09-08 08:41:26,417 - omlx.process_memory_enforcer - WARNING - Metal cap (51.8GB, Apple max_recommended_working_set_size) is below the oMLX static ceiling (60.0GB); leaving Apple's default Metal cap active because iogpu.wired_limit_mb is unset. Raise it with: sudo sysctl iogpu.wired_limit_mb=61440
+2026-09-08 08:41:26,417 - omlx.process_memory_enforcer - INFO - Process memory enforcer started (tier=aggressive, ceiling=45.8GB, interval=1.0s)
+INFO:     Application startup complete.
+2026-09-08 08:42:01,272 - omlx.engine_pool - INFO - Loading model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit
+2026-09-08 08:42:01,274 - omlx.utils.model_loading - INFO - M5 sorted gather_qmm reroute installed (issue #2267)
+2026-09-08 08:42:01,289 - omlx.patches.mlx_lm_mtp.qwen35_model - INFO - Qwen3.5/3.6 MTP model patch applied (PR 990)
+2026-09-08 08:42:01,290 - omlx.patches.mlx_lm_mtp.nemotron_h_chain - INFO - nemotron_h MTP chain patch applied (depth-k drafting, sequential fused verify, replay-free rollback)
+2026-09-08 08:42:01,291 - omlx.patches.qwen35_verify_qmm - INFO - MTP verify qmm patch applied (M=2..6 affine 4/8-bit)
+2026-09-08 08:42:01,294 - omlx.patches.mlx_vlm_mtp.qwen35_vlm_model - INFO - Patched mlx_vlm.models.qwen3_5.Model.sanitize for MTP
+2026-09-08 08:42:01,294 - omlx.patches.mlx_vlm_mtp.qwen35_moe_vlm_model - INFO - Patched mlx_vlm.models.qwen3_5_moe.Model.sanitize for MTP
+2026-09-08 08:42:01,299 - omlx.patches.mlx_vlm_inkling_compat - INFO - Inkling mlx-vlm compatibility patch applied
+2026-09-08 08:42:01,299 - omlx.patches.mlx_vlm_mtp.qwen35_moe_vlm_runtime - INFO - mlx-vlm Qwen3.5-MoE runtime MTP patch applied
+2026-09-08 08:42:01,300 - omlx.patches.mlx_vlm_mtp.qwen35_vlm_runtime - INFO - mlx-vlm Qwen3.5 (dense) runtime MTP patch applied
+2026-09-08 08:42:01,309 - omlx.patches.gemma4_verify_attention - INFO - gemma4 small-L verify attention patch applied (kernel + per-token)
+2026-09-08 08:42:01,309 - omlx.patches.mlx_vlm_mtp.gemma4_vlm_runtime - INFO - mlx-vlm Gemma 4 runtime MTP patch applied
+2026-09-08 08:42:01,309 - omlx.patches.mlx_vlm_mtp.inkling_vlm_runtime - INFO - mlx-vlm inkling runtime MTP patch applied
+2026-09-08 08:42:01,309 - omlx.utils.model_loading - INFO - mlx-vlm runtime MTP patch applied for /Users/lewiswu/.omlx/models/PocketAiHub/Ornith-1.5-35B-A3B-Abliterated-MLX-4bit (config declares mtp heads but checkpoint ships no mtp.* weights; MTPModule attachment skipped to keep strict load_weights happy)
+2026-09-08 08:42:01,310 - omlx.engine_core - INFO - MLX executor thread initialized: generation_stream = ThreadLocalStream(Device(gpu, 0), 4)
+2026-09-08 08:42:01,327 - omlx.patches.mlx_vlm_pixtral_torch_free - INFO - Pixtral torch-free processor patch installed (mlx-vlm PR #1502 backport + TokenizersBackend pin)
+2026-09-08 08:42:08,143 - omlx.patches.qwen35_moe_gate_up - INFO - MoE gate+up fusion applied: 40 layers
+2026-09-08 08:42:08,143 - omlx.engine.vlm - INFO - Vision feature cache enabled (SSD: disabled)
+2026-09-08 08:42:09,303 - omlx.scheduler - INFO - Loaded 1 additional EOS token(s) from generation_config.json: {248044}
+2026-09-08 08:42:09,315 - omlx.scheduler - INFO - Decode KV cache materialization interval set to 256 tokens
+2026-09-08 08:42:09,315 - omlx.memory_monitor - INFO - MemoryMonitor initialized (estimator-only, eviction disabled)
+2026-09-08 08:42:09,323 - omlx.memory_monitor - INFO - Model info set: 40 layers (10 KVCache), 2 KV heads, 16 Q heads, 256 head_dim. Estimated memory per 64-token block: 1.25 MB
+2026-09-08 08:42:09,323 - omlx.scheduler - INFO - oMLX cache disabled (mlx-lm BatchGenerator manages KV internally)
+2026-09-08 08:42:09,323 - omlx.engine_core - INFO - Engine started
+2026-09-08 08:42:09,324 - omlx.patches.sdpa256_attention - INFO - sdpa256 attention patch applied (head_dim=256 prefill, kv_len>=8192, tiled only when unfused exceeds guard headroom)
+2026-09-08 08:42:09,395 - omlx.patches.qwen35_fa256_attention - INFO - Qwen FA-256 dispatch budget auto-calibrated: 1.02e+10 work/s -> 102015643 (target 10ms/dispatch)
+2026-09-08 08:42:09,396 - omlx.patches.qwen35_fa256_attention - INFO - Qwen3.5/3.6 FA-256 steel attention patch applied (min_kv_len=2048, q_block=32, k_block=8, dispatch_budget=102015643)
+2026-09-08 08:42:09,396 - omlx.patches.qwen35_gdn_prework - INFO - Qwen3.5/3.6 fused GDN verify prework patch applied
+2026-09-08 08:42:09,396 - omlx.patches.qwen35_verify_sdpa_split - INFO - Qwen3.5/3.6 verify-width causal vector attention patch applied
+2026-09-08 08:42:09,396 - omlx.patches.qwen35_gdn_chunked - INFO - Qwen3.5/3.6 GDN prefill kernel patch applied (Metal, impl=blocked_seq, min_t=64)
+2026-09-08 08:42:09,397 - omlx.patches.qwen35_q4_mlp - INFO - Qwen quantized MLP prefill patch applied (variant=8, min_tokens=2048, q8_min_tokens=16384)
+2026-09-08 08:42:09,397 - omlx.patches.qwen35_q4_mlp - INFO - Qwen quantized prefill linear patch applied (variant=8, min_tokens=2048, q8_min_tokens=16384)
+2026-09-08 08:42:09,397 - omlx.patches.qwen35_moe_router - INFO - Qwen MoE fused router top-k patch applied
+2026-09-08 08:42:09,398 - omlx.patches.qwen35_moe_weighted_sum - INFO - Qwen3.5/3.6 MoE weighted-sum patch applied (min_tokens=1024)
+2026-09-08 08:42:09,398 - omlx.patches.qwen35_ragged_decode - INFO - qwen3_5 ragged decode threadgroup fallback patch applied
+2026-09-08 08:42:09,442 - omlx.engine.vlm - INFO - VLM tool calling enabled: parser=qwen3_coder
+2026-09-08 08:42:09,445 - omlx.engine.vlm - INFO - VLMBatchedEngine loaded: /Users/lewiswu/.omlx/models/PocketAiHub/Ornith-1.5-35B-A3B-Abliterated-MLX-4bit
+2026-09-08 08:42:09,446 - omlx.engine_pool - INFO - Loaded model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit (actual: 19.68GB, local estimate: 19.95GB, full model: 19.95GB, total: 19.95GB)
+2026-09-08 08:42:09,764 - omlx.engine.vlm - INFO - GrammarCompiler initialized for /Users/lewiswu/.omlx/models/PocketAiHub/Ornith-1.5-35B-A3B-Abliterated-MLX-4bit
+2026-09-08 08:42:10,680 - omlx.scheduler - INFO - Prefill lm_head skip enabled: chunk logits are discarded, vocabulary projection deferred to first decode step.
+2026-09-08 08:42:11,841 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.0ms/1
+2026-09-08 08:42:11,841 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 2.06s (15.6 tok/s), prompt: 245, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:11,842 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:14,007 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.0ms/2
+2026-09-08 08:42:14,007 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 215 tokens in 4.23s (50.8 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:15,159 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.1ms/3
+2026-09-08 08:42:15,160 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.15s (31.4 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:15,162 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:16,055 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.1ms/4
+2026-09-08 08:42:16,055 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 112 tokens in 2.04s (54.8 tok/s), prompt: 403, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:17,857 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.1ms/5
+2026-09-08 08:42:17,859 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:17,966 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 116 tokens in 1.91s (60.8 tok/s), prompt: 329, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:18,891 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.1ms/6
+2026-09-08 08:42:18,892 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 204 tokens in 2.83s (72.0 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:20,404 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.2ms/7
+2026-09-08 08:42:20,404 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 83 tokens in 1.51s (55.0 tok/s), prompt: 347, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:20,405 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:21,184 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.2ms/8
+2026-09-08 08:42:21,185 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 147 tokens in 2.29s (64.2 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:22,688 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.2ms/9
+2026-09-08 08:42:22,691 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:22,704 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 71 tokens in 1.51s (46.9 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:26,449 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.2ms/10
+2026-09-08 08:42:26,450 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 381 tokens in 5.26s (72.4 tok/s), prompt: 425, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:27,479 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.2ms/11
+2026-09-08 08:42:27,480 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.03s (39.0 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:27,480 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:32,535 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.3ms/12
+2026-09-08 08:42:32,535 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 458 tokens in 6.08s (75.3 tok/s), prompt: 226, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:35,711 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.3ms/13
+2026-09-08 08:42:35,711 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:35,822 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 263 tokens in 3.28s (80.1 tok/s), prompt: 240, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:46,064 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.3ms/14
+2026-09-08 08:42:46,065 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1117 tokens in 13.53s (82.6 tok/s), prompt: 255, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:46,983 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.3ms/15
+2026-09-08 08:42:46,983 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 33 tokens in 0.91s (36.1 tok/s), prompt: 211, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:46,984 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:47,086 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.3ms/16
+2026-09-08 08:42:47,087 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.02s (39.3 tok/s), prompt: 237, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:48,107 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.4ms/17
+2026-09-08 08:42:48,107 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:48,121 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 46 tokens in 1.03s (44.7 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:52,272 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.4ms/18
+2026-09-08 08:42:52,273 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 397 tokens in 5.18s (76.6 tok/s), prompt: 226, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:53,412 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.4ms/19
+2026-09-08 08:42:53,414 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:53,522 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.24s (28.9 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:55,255 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.4ms/20
+2026-09-08 08:42:55,255 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 193 tokens in 2.98s (64.8 tok/s), prompt: 418, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:56,624 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.5ms/21
+2026-09-08 08:42:56,624 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.36s (43.3 tok/s), prompt: 427, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:42:56,626 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:42:58,693 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.5ms/22
+2026-09-08 08:42:58,693 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 234 tokens in 3.43s (68.2 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:00,106 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.5ms/23
+2026-09-08 08:43:00,107 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.41s (41.9 tok/s), prompt: 427, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:00,109 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:02,478 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.5ms/24
+2026-09-08 08:43:02,478 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 259 tokens in 3.78s (68.5 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:03,837 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.6ms/25
+2026-09-08 08:43:03,838 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 76 tokens in 1.36s (56.1 tok/s), prompt: 223, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:03,838 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:04,607 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.6ms/26
+2026-09-08 08:43:04,608 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 144 tokens in 2.13s (67.7 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:07,063 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.6ms/27
+2026-09-08 08:43:07,063 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 131 tokens in 2.45s (53.5 tok/s), prompt: 613, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:07,065 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:08,968 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.6ms/28
+2026-09-08 08:43:08,968 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 311 tokens in 4.36s (71.4 tok/s), prompt: 553, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:14,674 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.7ms/29
+2026-09-08 08:43:14,674 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 407 tokens in 5.70s (71.4 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:14,676 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:18,861 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.7ms/30
+2026-09-08 08:43:18,862 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 694 tokens in 9.89s (70.2 tok/s), prompt: 229, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:23,707 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.7ms/31
+2026-09-08 08:43:23,707 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 399 tokens in 4.84s (82.5 tok/s), prompt: 240, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:23,707 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:38,369 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.7ms/32
+2026-09-08 08:43:38,370 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1553 tokens in 19.50s (79.6 tok/s), prompt: 255, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:39,517 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.8ms/33
+2026-09-08 08:43:39,517 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:39,530 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.16s (31.2 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:41,786 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.8ms/34
+2026-09-08 08:43:41,787 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 227 tokens in 3.41s (66.5 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:43,455 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.8ms/35
+2026-09-08 08:43:43,457 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:43,471 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 83 tokens in 1.68s (49.4 tok/s), prompt: 388, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:48,055 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.8ms/36
+2026-09-08 08:43:48,056 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 450 tokens in 6.26s (71.8 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:49,617 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.9ms/37
+2026-09-08 08:43:49,617 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.56s (41.1 tok/s), prompt: 487, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:49,619 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:53,862 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.9ms/38
+2026-09-08 08:43:53,862 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 424 tokens in 5.80s (73.1 tok/s), prompt: 484, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:54,924 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.9ms/39
+2026-09-08 08:43:54,924 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 37 tokens in 1.06s (35.0 tok/s), prompt: 339, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:54,926 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:56,933 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.9ms/40
+2026-09-08 08:43:56,934 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 202 tokens in 3.07s (65.9 tok/s), prompt: 295, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:43:58,101 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=0.9ms/41
+2026-09-08 08:43:58,102 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:43:58,209 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 33 tokens in 1.27s (26.0 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:00,962 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.0ms/42
+2026-09-08 08:44:00,962 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 262 tokens in 4.02s (65.1 tok/s), prompt: 413, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:02,302 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.0ms/43
+2026-09-08 08:44:02,303 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 56 tokens in 1.34s (41.9 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:02,304 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:08,617 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.0ms/44
+2026-09-08 08:44:08,618 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 564 tokens in 7.65s (73.7 tok/s), prompt: 341, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:09,746 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.0ms/45
+2026-09-08 08:44:09,747 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 52 tokens in 1.12s (46.2 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:09,749 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:12,048 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.1ms/46
+2026-09-08 08:44:12,049 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 247 tokens in 3.43s (72.1 tok/s), prompt: 212, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:12,838 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.1ms/47
+2026-09-08 08:44:12,838 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 18 tokens in 0.79s (22.9 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:12,839 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:13,552 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.1ms/48
+2026-09-08 08:44:13,553 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 79 tokens in 1.50s (52.7 tok/s), prompt: 223, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:14,876 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.1ms/49
+2026-09-08 08:44:14,876 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 49 tokens in 1.32s (37.2 tok/s), prompt: 438, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:14,877 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:14,944 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.1ms/50
+2026-09-08 08:44:14,944 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 53 tokens in 1.39s (38.2 tok/s), prompt: 451, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:17,601 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.2ms/51
+2026-09-08 08:44:17,602 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:17,710 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 181 tokens in 2.76s (65.5 tok/s), prompt: 480, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:22,918 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.2ms/52
+2026-09-08 08:44:22,918 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 627 tokens in 7.97s (78.7 tok/s), prompt: 432, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:24,540 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.2ms/53
+2026-09-08 08:44:24,542 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:24,555 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 104 tokens in 1.63s (63.7 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:26,601 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.2ms/54
+2026-09-08 08:44:26,601 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 279 tokens in 3.68s (75.8 tok/s), prompt: 212, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:27,547 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.3ms/55
+2026-09-08 08:44:27,548 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:27,655 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.05s (30.5 tok/s), prompt: 245, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:29,681 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.3ms/56
+2026-09-08 08:44:29,681 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 215 tokens in 3.08s (69.9 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:31,095 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.3ms/57
+2026-09-08 08:44:31,095 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 58 tokens in 1.41s (41.2 tok/s), prompt: 433, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:31,097 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:31,383 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.3ms/58
+2026-09-08 08:44:31,383 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 82 tokens in 1.70s (48.3 tok/s), prompt: 426, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:33,147 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.3ms/59
+2026-09-08 08:44:33,148 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 109 tokens in 1.76s (61.9 tok/s), prompt: 335, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:33,150 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:35,085 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.4ms/60
+2026-09-08 08:44:35,086 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 272 tokens in 3.70s (73.6 tok/s), prompt: 283, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:36,881 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.4ms/61
+2026-09-08 08:44:36,881 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 110 tokens in 1.79s (61.4 tok/s), prompt: 335, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:36,883 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:39,006 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.4ms/62
+2026-09-08 08:44:39,007 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 291 tokens in 3.92s (74.3 tok/s), prompt: 283, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:40,362 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.4ms/63
+2026-09-08 08:44:40,363 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 58 tokens in 1.35s (42.9 tok/s), prompt: 433, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:40,365 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:40,805 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.5ms/64
+2026-09-08 08:44:40,806 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 94 tokens in 1.79s (52.4 tok/s), prompt: 426, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:41,914 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.5ms/65
+2026-09-08 08:44:41,914 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.10s (37.1 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:41,916 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:43,830 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.5ms/66
+2026-09-08 08:44:43,831 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 204 tokens in 3.02s (67.5 tok/s), prompt: 294, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:45,128 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.5ms/67
+2026-09-08 08:44:45,128 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 56 tokens in 1.29s (43.3 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:45,130 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:51,946 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.6ms/68
+2026-09-08 08:44:51,946 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 611 tokens in 8.11s (75.3 tok/s), prompt: 341, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:53,039 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.6ms/69
+2026-09-08 08:44:53,039 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 44 tokens in 1.09s (40.4 tok/s), prompt: 230, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:53,041 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:57,567 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.6ms/70
+2026-09-08 08:44:57,567 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 431 tokens in 5.62s (76.7 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:44:58,519 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.6ms/71
+2026-09-08 08:44:58,519 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:44:58,628 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 30 tokens in 1.06s (28.4 tok/s), prompt: 246, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:00,474 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.7ms/72
+2026-09-08 08:45:00,474 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 184 tokens in 2.90s (63.4 tok/s), prompt: 273, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:02,021 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.7ms/73
+2026-09-08 08:45:02,021 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.54s (41.5 tok/s), prompt: 487, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:02,023 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:04,878 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.7ms/74
+2026-09-08 08:45:04,879 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 273 tokens in 4.40s (62.1 tok/s), prompt: 484, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:07,612 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.7ms/75
+2026-09-08 08:45:07,612 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 207 tokens in 2.73s (75.8 tok/s), prompt: 204, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:07,613 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:09,511 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.8ms/76
+2026-09-08 08:45:09,511 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 355 tokens in 4.63s (76.7 tok/s), prompt: 249, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:10,537 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.8ms/77
+2026-09-08 08:45:10,539 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:10,552 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.04s (39.5 tok/s), prompt: 242, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:11,348 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.8ms/78
+2026-09-08 08:45:11,348 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 109 tokens in 1.83s (59.5 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:12,417 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.8ms/79
+2026-09-08 08:45:12,417 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:12,430 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 42 tokens in 1.08s (38.9 tok/s), prompt: 238, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:23,139 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.8ms/80
+2026-09-08 08:45:23,139 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 915 tokens in 11.79s (77.6 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:24,494 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.9ms/81
+2026-09-08 08:45:24,494 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 55 tokens in 1.35s (40.8 tok/s), prompt: 415, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:24,496 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:26,005 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.9ms/82
+2026-09-08 08:45:26,006 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 183 tokens in 2.86s (64.0 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:28,640 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.9ms/83
+2026-09-08 08:45:28,640 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 167 tokens in 2.63s (63.5 tok/s), prompt: 584, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:28,642 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:32,097 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=1.9ms/84
+2026-09-08 08:45:32,098 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 441 tokens in 6.09s (72.5 tok/s), prompt: 522, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:45:35,871 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.0ms/85
+2026-09-08 08:45:35,872 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:45:35,887 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 310 tokens in 3.78s (81.9 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:01,133 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.0ms/86
+2026-09-08 08:46:01,134 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 2269 tokens in 29.03s (78.2 tok/s), prompt: 219, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:03,982 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.0ms/87
+2026-09-08 08:46:03,983 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:03,997 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 216 tokens in 2.86s (75.6 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:05,000 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.0ms/88
+2026-09-08 08:46:05,000 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 301 tokens in 3.86s (78.0 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:07,648 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.1ms/89
+2026-09-08 08:46:07,648 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 149 tokens in 2.64s (56.4 tok/s), prompt: 432, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:07,649 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:08,056 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.1ms/90
+2026-09-08 08:46:08,057 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 181 tokens in 3.05s (59.3 tok/s), prompt: 480, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:09,172 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.1ms/91
+2026-09-08 08:46:09,173 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:09,272 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.21s (33.8 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:11,057 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.1ms/92
+2026-09-08 08:46:11,058 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 193 tokens in 3.00s (64.4 tok/s), prompt: 294, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:16,433 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.1ms/93
+2026-09-08 08:46:16,435 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:16,537 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 462 tokens in 5.48s (84.4 tok/s), prompt: 247, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:28,625 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.2ms/94
+2026-09-08 08:46:28,626 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1392 tokens in 17.56s (79.3 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:29,791 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.2ms/95
+2026-09-08 08:46:29,791 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.16s (31.0 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:29,793 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:31,601 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.2ms/96
+2026-09-08 08:46:31,602 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 187 tokens in 2.97s (62.9 tok/s), prompt: 403, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:34,976 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.2ms/97
+2026-09-08 08:46:34,978 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:34,991 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 274 tokens in 3.39s (80.9 tok/s), prompt: 232, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:39,953 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.3ms/98
+2026-09-08 08:46:39,954 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 670 tokens in 8.35s (80.3 tok/s), prompt: 225, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:41,851 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.3ms/99
+2026-09-08 08:46:41,853 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:41,953 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 103 tokens in 1.99s (51.7 tok/s), prompt: 434, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:42,395 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.3ms/100
+2026-09-08 08:46:42,395 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 149 tokens in 2.44s (61.2 tok/s), prompt: 402, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:44,524 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.3ms/101
+2026-09-08 08:46:44,525 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:44,625 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 139 tokens in 2.23s (62.5 tok/s), prompt: 329, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:45,193 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.3ms/102
+2026-09-08 08:46:45,193 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 195 tokens in 2.79s (69.8 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:46,626 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.4ms/103
+2026-09-08 08:46:46,628 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:46,641 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.44s (40.9 tok/s), prompt: 427, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:48,830 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.4ms/104
+2026-09-08 08:46:48,830 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 234 tokens in 3.63s (64.4 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:50,307 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.4ms/105
+2026-09-08 08:46:50,308 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:50,407 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.57s (40.7 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:52,437 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.4ms/106
+2026-09-08 08:46:52,437 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 241 tokens in 3.60s (66.9 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:53,646 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.5ms/107
+2026-09-08 08:46:53,646 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.20s (29.9 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:53,648 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:46:56,015 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.5ms/108
+2026-09-08 08:46:56,015 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 228 tokens in 3.57s (63.8 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:57,599 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.5ms/109
+2026-09-08 08:46:57,599 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 71 tokens in 1.58s (44.9 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:46:57,601 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:00,567 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.5ms/110
+2026-09-08 08:47:00,567 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 304 tokens in 4.55s (66.9 tok/s), prompt: 425, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:01,678 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.6ms/111
+2026-09-08 08:47:01,678 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.11s (28.9 tok/s), prompt: 362, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:01,680 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:05,973 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.6ms/112
+2026-09-08 08:47:05,973 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 363 tokens in 5.40s (67.2 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:09,251 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.6ms/113
+2026-09-08 08:47:09,251 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 261 tokens in 3.27s (79.7 tok/s), prompt: 232, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:09,253 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:10,554 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.6ms/114
+2026-09-08 08:47:10,554 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 368 tokens in 4.58s (80.4 tok/s), prompt: 225, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:15,875 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.7ms/115
+2026-09-08 08:47:15,876 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 453 tokens in 5.32s (85.2 tok/s), prompt: 247, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:15,877 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:15,926 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.7ms/116
+2026-09-08 08:47:15,926 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 455 tokens in 5.37s (84.8 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:16,886 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.7ms/117
+2026-09-08 08:47:16,886 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:16,900 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 30 tokens in 0.97s (31.0 tok/s), prompt: 246, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:18,754 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.7ms/118
+2026-09-08 08:47:18,755 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 184 tokens in 2.82s (65.2 tok/s), prompt: 273, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:19,703 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.8ms/119
+2026-09-08 08:47:19,704 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:19,718 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 34 tokens in 0.96s (35.4 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:19,785 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.8ms/120
+2026-09-08 08:47:19,785 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.03s (39.9 tok/s), prompt: 242, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:21,132 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.8ms/121
+2026-09-08 08:47:21,132 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 49 tokens in 1.34s (36.5 tok/s), prompt: 438, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:21,133 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:21,176 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.8ms/122
+2026-09-08 08:47:21,176 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 53 tokens in 1.39s (38.2 tok/s), prompt: 451, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:22,738 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.8ms/123
+2026-09-08 08:47:22,739 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:22,754 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 83 tokens in 1.57s (52.8 tok/s), prompt: 347, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:24,023 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.9ms/124
+2026-09-08 08:47:24,023 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 192 tokens in 2.84s (67.5 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:27,277 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.9ms/125
+2026-09-08 08:47:27,277 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 268 tokens in 3.25s (82.5 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:27,277 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:49,177 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.9ms/126
+2026-09-08 08:47:49,178 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1939 tokens in 25.15s (77.1 tok/s), prompt: 219, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:50,288 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=2.9ms/127
+2026-09-08 08:47:50,288 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.11s (29.0 tok/s), prompt: 362, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:50,290 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:53,997 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.0ms/128
+2026-09-08 08:47:53,997 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 324 tokens in 4.81s (67.3 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:55,075 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.0ms/129
+2026-09-08 08:47:55,075 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 37 tokens in 1.07s (34.5 tok/s), prompt: 339, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:55,077 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:56,755 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.0ms/130
+2026-09-08 08:47:56,758 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 179 tokens in 2.76s (64.9 tok/s), prompt: 295, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:58,260 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.0ms/131
+2026-09-08 08:47:58,262 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:47:58,365 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 86 tokens in 1.60s (53.6 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:58,488 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.0ms/132
+2026-09-08 08:47:58,488 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 104 tokens in 1.73s (60.2 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:59,694 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.1ms/133
+2026-09-08 08:47:59,695 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.20s (30.0 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:47:59,697 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:02,176 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.1ms/134
+2026-09-08 08:48:02,177 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 227 tokens in 3.68s (61.6 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:03,641 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.1ms/135
+2026-09-08 08:48:03,642 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:03,742 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 58 tokens in 1.56s (37.2 tok/s), prompt: 433, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:04,087 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.1ms/136
+2026-09-08 08:48:04,088 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 95 tokens in 1.91s (49.8 tok/s), prompt: 426, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:05,304 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.1ms/137
+2026-09-08 08:48:05,304 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.21s (29.7 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:05,306 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:08,574 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.2ms/138
+2026-09-08 08:48:08,575 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 232 tokens in 4.48s (51.8 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:13,567 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.2ms/139
+2026-09-08 08:48:13,567 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 378 tokens in 4.99s (75.8 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:13,569 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:14,965 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.2ms/140
+2026-09-08 08:48:14,965 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 492 tokens in 6.39s (77.1 tok/s), prompt: 235, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:16,712 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.2ms/141
+2026-09-08 08:48:16,717 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 88 tokens in 1.75s (50.4 tok/s), prompt: 388, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:16,719 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:20,689 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.3ms/142
+2026-09-08 08:48:20,690 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 407 tokens in 5.72s (71.2 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:22,125 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.3ms/143
+2026-09-08 08:48:22,126 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 56 tokens in 1.43s (39.1 tok/s), prompt: 427, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:22,127 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:24,380 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.3ms/144
+2026-09-08 08:48:24,380 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 239 tokens in 3.69s (64.8 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:27,152 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.4ms/145
+2026-09-08 08:48:27,153 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 174 tokens in 2.77s (62.9 tok/s), prompt: 459, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:27,155 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:30,781 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.4ms/146
+2026-09-08 08:48:30,782 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 390 tokens in 6.40s (61.0 tok/s), prompt: 458, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:33,169 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.4ms/147
+2026-09-08 08:48:33,171 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:33,185 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 138 tokens in 2.40s (57.5 tok/s), prompt: 232, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:42,267 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.4ms/148
+2026-09-08 08:48:42,267 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 848 tokens in 11.48s (73.9 tok/s), prompt: 225, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:44,604 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.4ms/149
+2026-09-08 08:48:44,606 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:44,620 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 162 tokens in 2.35s (69.0 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:45,410 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.5ms/150
+2026-09-08 08:48:45,411 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 228 tokens in 3.14s (72.6 tok/s), prompt: 236, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:47,998 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.5ms/151
+2026-09-08 08:48:47,998 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:48,108 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 195 tokens in 2.69s (72.4 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:48,271 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.5ms/152
+2026-09-08 08:48:48,271 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 218 tokens in 2.86s (76.3 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:50,877 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.5ms/153
+2026-09-08 08:48:50,877 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 158 tokens in 2.60s (60.8 tok/s), prompt: 613, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:50,879 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:48:52,820 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.6ms/154
+2026-09-08 08:48:52,821 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 318 tokens in 4.54s (70.0 tok/s), prompt: 553, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:57,496 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.6ms/155
+2026-09-08 08:48:57,496 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 393 tokens in 4.67s (84.1 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:48:57,498 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:01,488 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.6ms/156
+2026-09-08 08:49:01,488 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 710 tokens in 8.66s (82.0 tok/s), prompt: 235, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:02,591 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.6ms/157
+2026-09-08 08:49:02,591 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:02,693 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 42 tokens in 1.20s (35.0 tok/s), prompt: 238, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:08,504 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.6ms/158
+2026-09-08 08:49:08,505 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 508 tokens in 7.01s (72.5 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:09,533 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.7ms/159
+2026-09-08 08:49:09,534 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:09,548 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.04s (39.4 tok/s), prompt: 242, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:10,681 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.7ms/160
+2026-09-08 08:49:10,681 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 135 tokens in 2.17s (62.1 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:13,701 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.7ms/161
+2026-09-08 08:49:13,701 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 237 tokens in 3.02s (78.6 tok/s), prompt: 232, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:13,702 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:19,619 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.7ms/162
+2026-09-08 08:49:19,620 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 700 tokens in 8.93s (78.4 tok/s), prompt: 225, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:20,619 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.8ms/163
+2026-09-08 08:49:20,619 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:20,633 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 30 tokens in 1.01s (29.8 tok/s), prompt: 246, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:22,538 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.8ms/164
+2026-09-08 08:49:22,538 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 192 tokens in 2.91s (65.9 tok/s), prompt: 273, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:24,106 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.8ms/165
+2026-09-08 08:49:24,106 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 71 tokens in 1.56s (45.4 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:24,108 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:24,907 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.8ms/166
+2026-09-08 08:49:24,908 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 136 tokens in 2.37s (57.5 tok/s), prompt: 425, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:26,258 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.9ms/167
+2026-09-08 08:49:26,260 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:26,366 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 56 tokens in 1.45s (38.5 tok/s), prompt: 415, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:28,361 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.9ms/168
+2026-09-08 08:49:28,362 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 223 tokens in 3.45s (64.6 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:29,871 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.9ms/169
+2026-09-08 08:49:29,872 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.51s (42.5 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:29,874 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:31,212 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=3.9ms/170
+2026-09-08 08:49:31,212 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 176 tokens in 2.85s (61.8 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:33,112 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.0ms/171
+2026-09-08 08:49:33,112 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 116 tokens in 1.90s (61.2 tok/s), prompt: 335, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:33,114 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:34,993 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.0ms/172
+2026-09-08 08:49:34,994 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 271 tokens in 3.78s (71.7 tok/s), prompt: 283, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:36,447 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.0ms/173
+2026-09-08 08:49:36,449 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:36,462 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 77 tokens in 1.46s (52.6 tok/s), prompt: 291, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:39,220 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.0ms/174
+2026-09-08 08:49:39,221 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 301 tokens in 4.22s (71.3 tok/s), prompt: 215, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:40,790 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.0ms/175
+2026-09-08 08:49:40,790 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 83 tokens in 1.57s (53.0 tok/s), prompt: 347, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:40,792 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:41,733 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.1ms/176
+2026-09-08 08:49:41,734 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 160 tokens in 2.51s (63.8 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:46,607 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.1ms/177
+2026-09-08 08:49:46,609 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 415 tokens in 4.87s (85.2 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:46,611 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:52,569 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.1ms/178
+2026-09-08 08:49:52,570 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 880 tokens in 10.83s (81.2 tok/s), prompt: 229, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:54,026 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.1ms/179
+2026-09-08 08:49:54,026 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:54,041 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 79 tokens in 1.47s (53.9 tok/s), prompt: 223, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:54,585 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.1ms/180
+2026-09-08 08:49:54,586 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 125 tokens in 2.01s (62.1 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:56,072 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.2ms/181
+2026-09-08 08:49:56,073 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 86 tokens in 1.48s (58.0 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:56,074 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:56,341 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.2ms/182
+2026-09-08 08:49:56,341 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 107 tokens in 1.75s (61.1 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:57,305 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.2ms/183
+2026-09-08 08:49:57,305 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:49:57,411 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.2ms/184
+2026-09-08 08:49:57,412 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 33 tokens in 1.07s (30.9 tok/s), prompt: 211, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:49:57,412 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.07s (37.5 tok/s), prompt: 237, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:00,495 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.3ms/185
+2026-09-08 08:50:00,495 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 236 tokens in 3.08s (76.6 tok/s), prompt: 240, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:00,495 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:03,214 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.3ms/186
+2026-09-08 08:50:03,214 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 453 tokens in 5.80s (78.1 tok/s), prompt: 255, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:04,543 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.3ms/187
+2026-09-08 08:50:04,544 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 53 tokens in 1.32s (40.0 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:04,546 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:09,642 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.3ms/188
+2026-09-08 08:50:09,643 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 457 tokens in 6.42s (71.1 tok/s), prompt: 341, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:10,642 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.4ms/189
+2026-09-08 08:50:10,642 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.00s (32.1 tok/s), prompt: 245, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:10,643 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:12,899 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.4ms/190
+2026-09-08 08:50:12,899 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 219 tokens in 3.25s (67.3 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:14,083 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.4ms/191
+2026-09-08 08:50:14,083 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.18s (30.5 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:14,085 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:14,940 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.4ms/192
+2026-09-08 08:50:14,941 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 108 tokens in 2.04s (53.0 tok/s), prompt: 403, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:17,631 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.4ms/193
+2026-09-08 08:50:17,632 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 167 tokens in 2.69s (62.2 tok/s), prompt: 584, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:17,634 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:18,800 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.5ms/194
+2026-09-08 08:50:18,800 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 263 tokens in 3.85s (68.2 tok/s), prompt: 522, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:24,304 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.5ms/195
+2026-09-08 08:50:24,306 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:24,407 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 480 tokens in 5.60s (85.7 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:24,548 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.5ms/196
+2026-09-08 08:50:24,548 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 500 tokens in 5.74s (87.1 tok/s), prompt: 235, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:27,285 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.5ms/197
+2026-09-08 08:50:27,285 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:27,397 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 214 tokens in 2.84s (75.2 tok/s), prompt: 204, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:32,886 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.5ms/198
+2026-09-08 08:50:32,886 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 669 tokens in 8.33s (80.3 tok/s), prompt: 249, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:34,265 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.6ms/199
+2026-09-08 08:50:34,265 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 55 tokens in 1.37s (40.0 tok/s), prompt: 415, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:34,267 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:36,074 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.6ms/200
+2026-09-08 08:50:36,074 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 208 tokens in 3.18s (65.3 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:37,139 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.6ms/201
+2026-09-08 08:50:37,139 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 37 tokens in 1.06s (34.9 tok/s), prompt: 339, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:37,141 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:38,808 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.6ms/202
+2026-09-08 08:50:38,808 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 180 tokens in 2.73s (65.9 tok/s), prompt: 295, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:40,953 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.7ms/203
+2026-09-08 08:50:40,955 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:40,968 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 139 tokens in 2.16s (64.5 tok/s), prompt: 329, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:41,837 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.7ms/204
+2026-09-08 08:50:41,837 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 212 tokens in 3.02s (70.1 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:43,862 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.7ms/205
+2026-09-08 08:50:43,863 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:43,962 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 134 tokens in 2.12s (63.2 tok/s), prompt: 329, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:44,724 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.7ms/206
+2026-09-08 08:50:44,725 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 204 tokens in 2.88s (70.8 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:46,534 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.7ms/207
+2026-09-08 08:50:46,536 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:46,629 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.8ms/208
+2026-09-08 08:50:46,630 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 101 tokens in 1.90s (53.2 tok/s), prompt: 434, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:46,630 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 109 tokens in 1.90s (57.4 tok/s), prompt: 402, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:47,999 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.8ms/209
+2026-09-08 08:50:48,001 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:48,014 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 58 tokens in 1.38s (42.0 tok/s), prompt: 415, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:49,779 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.8ms/210
+2026-09-08 08:50:49,779 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 208 tokens in 3.14s (66.1 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:50,913 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.8ms/211
+2026-09-08 08:50:50,913 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 42 tokens in 1.13s (37.2 tok/s), prompt: 238, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:50,913 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:55,611 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.8ms/212
+2026-09-08 08:50:55,612 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 435 tokens in 5.83s (74.6 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:50:56,620 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.9ms/213
+2026-09-08 08:50:56,621 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:50:56,635 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.02s (39.3 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:04,768 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.9ms/214
+2026-09-08 08:51:04,768 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 701 tokens in 9.15s (76.6 tok/s), prompt: 226, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:06,221 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.9ms/215
+2026-09-08 08:51:06,221 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 49 tokens in 1.45s (33.8 tok/s), prompt: 438, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:06,221 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:06,266 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=4.9ms/216
+2026-09-08 08:51:06,266 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 53 tokens in 1.49s (35.5 tok/s), prompt: 451, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:09,001 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.0ms/217
+2026-09-08 08:51:09,002 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:09,016 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 167 tokens in 2.74s (60.8 tok/s), prompt: 584, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:11,247 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.0ms/218
+2026-09-08 08:51:11,248 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 350 tokens in 4.98s (70.3 tok/s), prompt: 522, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:12,556 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.0ms/219
+2026-09-08 08:51:12,557 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 49 tokens in 1.30s (37.6 tok/s), prompt: 438, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:12,557 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:12,627 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.0ms/220
+2026-09-08 08:51:12,627 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 53 tokens in 1.38s (38.5 tok/s), prompt: 451, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:13,958 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.0ms/221
+2026-09-08 08:51:13,960 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:13,973 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.34s (44.0 tok/s), prompt: 364, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:17,216 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.1ms/222
+2026-09-08 08:51:17,217 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 332 tokens in 4.58s (72.4 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:21,962 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.1ms/223
+2026-09-08 08:51:21,964 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:21,981 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 408 tokens in 4.76s (85.7 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:22,530 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.1ms/224
+2026-09-08 08:51:22,531 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 454 tokens in 5.31s (85.5 tok/s), prompt: 229, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:25,031 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.1ms/225
+2026-09-08 08:51:25,033 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:25,047 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 166 tokens in 2.51s (66.1 tok/s), prompt: 480, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:28,114 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.1ms/226
+2026-09-08 08:51:28,114 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 422 tokens in 5.58s (75.6 tok/s), prompt: 432, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:31,973 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.2ms/227
+2026-09-08 08:51:31,974 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 313 tokens in 3.86s (81.2 tok/s), prompt: 240, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:31,974 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:39,753 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.2ms/228
+2026-09-08 08:51:39,754 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 952 tokens in 11.64s (81.8 tok/s), prompt: 255, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:40,830 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.2ms/229
+2026-09-08 08:51:40,831 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:40,940 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 44 tokens in 1.17s (37.4 tok/s), prompt: 230, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:46,448 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.2ms/230
+2026-09-08 08:51:46,448 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 511 tokens in 6.68s (76.5 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:47,781 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.3ms/231
+2026-09-08 08:51:47,781 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:47,882 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 52 tokens in 1.43s (36.4 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:47,914 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.3ms/232
+2026-09-08 08:51:47,914 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 63 tokens in 1.46s (43.1 tok/s), prompt: 413, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:49,314 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.3ms/233
+2026-09-08 08:51:49,315 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 77 tokens in 1.40s (55.1 tok/s), prompt: 291, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:49,317 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:52,913 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.3ms/234
+2026-09-08 08:51:52,913 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 381 tokens in 5.00s (76.3 tok/s), prompt: 215, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:53,936 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.4ms/235
+2026-09-08 08:51:53,938 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:53,951 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.03s (38.7 tok/s), prompt: 237, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:54,650 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.4ms/236
+2026-09-08 08:51:54,651 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 102 tokens in 1.73s (58.9 tok/s), prompt: 211, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:55,807 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.4ms/237
+2026-09-08 08:51:55,809 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:55,910 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.25s (28.7 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:56,551 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.4ms/238
+2026-09-08 08:51:56,551 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 100 tokens in 1.90s (52.7 tok/s), prompt: 403, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:51:58,823 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.4ms/239
+2026-09-08 08:51:58,825 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:51:58,839 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 132 tokens in 2.28s (57.8 tok/s), prompt: 613, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:00,680 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.5ms/240
+2026-09-08 08:52:00,680 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 277 tokens in 4.12s (67.2 tok/s), prompt: 553, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:03,202 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.5ms/241
+2026-09-08 08:52:03,202 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 154 tokens in 2.52s (61.2 tok/s), prompt: 581, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:03,204 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:04,145 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.5ms/242
+2026-09-08 08:52:04,145 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 233 tokens in 3.46s (67.3 tok/s), prompt: 509, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:05,653 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.5ms/243
+2026-09-08 08:52:05,655 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:05,668 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 77 tokens in 1.52s (50.7 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:09,799 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.5ms/244
+2026-09-08 08:52:09,800 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 419 tokens in 5.65s (74.2 tok/s), prompt: 341, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:10,911 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.6ms/245
+2026-09-08 08:52:10,913 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:11,012 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 37 tokens in 1.21s (30.6 tok/s), prompt: 339, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:12,660 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.6ms/246
+2026-09-08 08:52:12,661 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 182 tokens in 2.86s (63.7 tok/s), prompt: 295, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:16,566 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.6ms/247
+2026-09-08 08:52:16,566 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:16,584 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 331 tokens in 3.92s (84.5 tok/s), prompt: 204, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:17,796 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.6ms/248
+2026-09-08 08:52:17,796 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 432 tokens in 5.13s (84.2 tok/s), prompt: 249, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:23,304 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.7ms/249
+2026-09-08 08:52:23,305 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 480 tokens in 5.50s (87.2 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:23,305 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:23,363 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.7ms/250
+2026-09-08 08:52:23,364 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 483 tokens in 5.56s (86.8 tok/s), prompt: 247, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:25,566 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.7ms/251
+2026-09-08 08:52:25,568 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:25,582 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 138 tokens in 2.21s (62.3 tok/s), prompt: 459, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:28,831 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.8ms/252
+2026-09-08 08:52:28,831 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 406 tokens in 5.46s (74.3 tok/s), prompt: 458, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:33,494 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.8ms/253
+2026-09-08 08:52:33,494 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 402 tokens in 4.66s (86.3 tok/s), prompt: 247, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:33,496 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:40,810 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.8ms/254
+2026-09-08 08:52:40,811 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 989 tokens in 11.98s (82.6 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:42,311 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.8ms/255
+2026-09-08 08:52:42,313 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:42,423 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.61s (39.9 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:44,729 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.9ms/256
+2026-09-08 08:52:44,730 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 264 tokens in 3.91s (67.5 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:47,340 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.9ms/257
+2026-09-08 08:52:47,340 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 170 tokens in 2.61s (65.3 tok/s), prompt: 459, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:47,340 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:49,887 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.9ms/258
+2026-09-08 08:52:49,887 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 378 tokens in 5.15s (73.4 tok/s), prompt: 458, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:52,400 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.9ms/259
+2026-09-08 08:52:52,400 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 157 tokens in 2.51s (62.6 tok/s), prompt: 581, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:52,402 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:54,357 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=5.9ms/260
+2026-09-08 08:52:54,358 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 315 tokens in 4.47s (70.5 tok/s), prompt: 509, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:55,281 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.0ms/261
+2026-09-08 08:52:55,281 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 29 tokens in 0.92s (31.5 tok/s), prompt: 245, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:52:55,281 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:52:57,560 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.0ms/262
+2026-09-08 08:52:57,560 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 219 tokens in 3.20s (68.5 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:00,270 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.0ms/263
+2026-09-08 08:53:00,271 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:00,378 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 169 tokens in 2.81s (60.1 tok/s), prompt: 613, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:03,956 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.0ms/264
+2026-09-08 08:53:03,957 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 472 tokens in 6.39s (73.9 tok/s), prompt: 553, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:05,605 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.1ms/265
+2026-09-08 08:53:05,605 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 85 tokens in 1.64s (51.7 tok/s), prompt: 388, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:05,607 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:09,015 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.1ms/266
+2026-09-08 08:53:09,015 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 367 tokens in 5.05s (72.6 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:11,337 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.1ms/267
+2026-09-08 08:53:11,339 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:11,448 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 165 tokens in 2.43s (67.9 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:12,437 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.1ms/268
+2026-09-08 08:53:12,437 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 256 tokens in 3.42s (74.9 tok/s), prompt: 236, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:15,645 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.2ms/269
+2026-09-08 08:53:15,645 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 252 tokens in 3.20s (78.7 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:15,647 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:15,877 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.2ms/270
+2026-09-08 08:53:15,877 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 271 tokens in 3.44s (78.9 tok/s), prompt: 212, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:18,032 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.2ms/271
+2026-09-08 08:53:18,033 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 149 tokens in 2.15s (69.3 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:18,034 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:19,141 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.2ms/272
+2026-09-08 08:53:19,142 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 242 tokens in 3.26s (74.2 tok/s), prompt: 236, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:20,307 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.2ms/273
+2026-09-08 08:53:20,308 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.16s (31.0 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:20,310 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:22,230 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.3ms/274
+2026-09-08 08:53:22,230 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 199 tokens in 3.08s (64.5 tok/s), prompt: 418, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:23,120 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.3ms/275
+2026-09-08 08:53:23,122 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:23,231 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 18 tokens in 1.00s (18.1 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:23,823 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.3ms/276
+2026-09-08 08:53:23,824 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 76 tokens in 1.59s (47.8 tok/s), prompt: 223, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:25,832 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.3ms/277
+2026-09-08 08:53:25,833 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 138 tokens in 2.01s (68.8 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:25,833 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:27,220 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.4ms/278
+2026-09-08 08:53:27,220 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 256 tokens in 3.39s (75.5 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:28,572 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.4ms/279
+2026-09-08 08:53:28,574 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:28,588 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.36s (43.3 tok/s), prompt: 364, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:31,961 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.4ms/280
+2026-09-08 08:53:31,961 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 337 tokens in 4.74s (71.2 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:33,163 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.4ms/281
+2026-09-08 08:53:33,164 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.20s (30.1 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:33,166 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:35,216 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.5ms/282
+2026-09-08 08:53:35,217 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 210 tokens in 3.25s (64.6 tok/s), prompt: 418, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:36,310 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.5ms/283
+2026-09-08 08:53:36,312 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:36,325 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.11s (37.1 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:38,125 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.5ms/284
+2026-09-08 08:53:38,125 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 194 tokens in 2.91s (66.7 tok/s), prompt: 294, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:39,514 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.5ms/285
+2026-09-08 08:53:39,514 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 77 tokens in 1.39s (55.5 tok/s), prompt: 291, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:39,516 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:41,993 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.6ms/286
+2026-09-08 08:53:41,993 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 285 tokens in 3.87s (73.6 tok/s), prompt: 215, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:44,844 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.6ms/287
+2026-09-08 08:53:44,844 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 220 tokens in 2.85s (77.1 tok/s), prompt: 262, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:44,844 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:47,071 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.6ms/288
+2026-09-08 08:53:47,072 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 401 tokens in 5.08s (78.9 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:49,897 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.6ms/289
+2026-09-08 08:53:49,898 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:49,911 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 223 tokens in 2.84s (78.5 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:50,465 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.6ms/290
+2026-09-08 08:53:50,466 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 271 tokens in 3.39s (79.8 tok/s), prompt: 212, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:51,807 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.7ms/291
+2026-09-08 08:53:51,807 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.34s (44.1 tok/s), prompt: 364, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:53:51,809 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:53:55,680 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.7ms/292
+2026-09-08 08:53:55,680 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 382 tokens in 5.22s (73.2 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:00,402 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.7ms/293
+2026-09-08 08:54:00,404 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:00,505 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 403 tokens in 4.82s (83.5 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:05,401 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.7ms/294
+2026-09-08 08:54:05,401 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 791 tokens in 9.72s (81.4 tok/s), prompt: 229, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:06,871 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.7ms/295
+2026-09-08 08:54:06,871 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.47s (43.7 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:06,873 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:08,241 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.8ms/296
+2026-09-08 08:54:08,241 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 176 tokens in 2.84s (62.1 tok/s), prompt: 423, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:11,029 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.8ms/297
+2026-09-08 08:54:11,029 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 167 tokens in 2.78s (60.0 tok/s), prompt: 584, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:11,031 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:16,123 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.8ms/298
+2026-09-08 08:54:16,123 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 590 tokens in 7.88s (74.9 tok/s), prompt: 522, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:17,200 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.8ms/299
+2026-09-08 08:54:17,200 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:17,310 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.18s (27.1 tok/s), prompt: 362, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:21,519 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.8ms/300
+2026-09-08 08:54:21,519 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 393 tokens in 5.39s (72.9 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:24,046 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.9ms/301
+2026-09-08 08:54:24,048 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:24,061 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 170 tokens in 2.54s (67.0 tok/s), prompt: 459, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:26,267 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.9ms/302
+2026-09-08 08:54:26,267 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 356 tokens in 4.74s (75.1 tok/s), prompt: 458, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:27,239 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.9ms/303
+2026-09-08 08:54:27,239 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:27,253 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 34 tokens in 0.98s (34.6 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:27,321 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=6.9ms/304
+2026-09-08 08:54:27,321 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.05s (39.0 tok/s), prompt: 242, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:29,133 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.0ms/305
+2026-09-08 08:54:29,133 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 103 tokens in 1.81s (56.9 tok/s), prompt: 434, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:29,135 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:33,660 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.0ms/306
+2026-09-08 08:54:33,660 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 464 tokens in 6.33s (73.2 tok/s), prompt: 402, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:36,480 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.0ms/307
+2026-09-08 08:54:36,480 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 218 tokens in 2.82s (77.4 tok/s), prompt: 262, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:36,480 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:38,507 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.0ms/308
+2026-09-08 08:54:38,508 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 389 tokens in 4.84s (80.3 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:47,859 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.0ms/309
+2026-09-08 08:54:47,859 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 863 tokens in 9.35s (92.3 tok/s), prompt: 249, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:47,861 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:48,914 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.1ms/310
+2026-09-08 08:54:48,914 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 949 tokens in 10.40s (91.2 tok/s), prompt: 204, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:49,882 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.1ms/311
+2026-09-08 08:54:49,883 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:49,896 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 30 tokens in 0.98s (30.7 tok/s), prompt: 246, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:51,742 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.1ms/312
+2026-09-08 08:54:51,742 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 184 tokens in 2.82s (65.2 tok/s), prompt: 273, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:52,833 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.1ms/313
+2026-09-08 08:54:52,833 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 29 tokens in 1.09s (26.7 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:52,834 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:53,231 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.2ms/314
+2026-09-08 08:54:53,231 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 63 tokens in 1.48s (42.4 tok/s), prompt: 413, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:55,833 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.2ms/315
+2026-09-08 08:54:55,833 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 166 tokens in 2.60s (63.9 tok/s), prompt: 581, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:55,835 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:56,754 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.2ms/316
+2026-09-08 08:54:56,754 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 244 tokens in 3.52s (69.4 tok/s), prompt: 509, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:54:58,519 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.2ms/317
+2026-09-08 08:54:58,521 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:54:58,534 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 109 tokens in 1.78s (61.3 tok/s), prompt: 335, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:00,875 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.2ms/318
+2026-09-08 08:55:00,875 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 296 tokens in 4.12s (71.9 tok/s), prompt: 283, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:02,723 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.3ms/319
+2026-09-08 08:55:02,725 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:02,740 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 101 tokens in 1.86s (54.3 tok/s), prompt: 434, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:07,701 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.3ms/320
+2026-09-08 08:55:07,701 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 502 tokens in 6.82s (73.6 tok/s), prompt: 402, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:09,051 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.3ms/321
+2026-09-08 08:55:09,051 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 59 tokens in 1.35s (43.9 tok/s), prompt: 364, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:09,053 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:11,862 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.3ms/322
+2026-09-08 08:55:11,863 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 297 tokens in 4.16s (71.5 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:13,408 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.3ms/323
+2026-09-08 08:55:13,410 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:13,519 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 83 tokens in 1.65s (50.2 tok/s), prompt: 347, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:14,160 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.4ms/324
+2026-09-08 08:55:14,160 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 147 tokens in 2.29s (64.1 tok/s), prompt: 278, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:15,247 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.4ms/325
+2026-09-08 08:55:15,249 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:15,263 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 41 tokens in 1.10s (37.3 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:17,045 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.4ms/326
+2026-09-08 08:55:17,045 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 194 tokens in 2.88s (67.3 tok/s), prompt: 294, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:18,086 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.4ms/327
+2026-09-08 08:55:18,088 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:18,101 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 44 tokens in 1.05s (41.8 tok/s), prompt: 230, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:23,325 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.5ms/328
+2026-09-08 08:55:23,325 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 486 tokens in 6.28s (77.4 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:26,201 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.5ms/329
+2026-09-08 08:55:26,201 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 218 tokens in 2.87s (75.9 tok/s), prompt: 262, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:26,201 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:28,009 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.5ms/330
+2026-09-08 08:55:28,010 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 370 tokens in 4.68s (79.1 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:29,425 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.5ms/331
+2026-09-08 08:55:29,427 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:29,536 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 58 tokens in 1.52s (38.1 tok/s), prompt: 433, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:29,715 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.5ms/332
+2026-09-08 08:55:29,716 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 82 tokens in 1.70s (48.2 tok/s), prompt: 426, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:33,339 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.6ms/333
+2026-09-08 08:55:33,339 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:33,354 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 309 tokens in 3.63s (85.0 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:48,865 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.6ms/334
+2026-09-08 08:55:48,866 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1565 tokens in 19.15s (81.7 tok/s), prompt: 219, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:49,803 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.6ms/335
+2026-09-08 08:55:49,804 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 33 tokens in 0.93s (35.3 tok/s), prompt: 211, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:49,804 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:49,917 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.6ms/336
+2026-09-08 08:55:49,917 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.05s (38.2 tok/s), prompt: 237, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:51,074 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.7ms/337
+2026-09-08 08:55:51,074 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 36 tokens in 1.15s (31.2 tok/s), prompt: 424, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:51,076 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:52,974 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.7ms/338
+2026-09-08 08:55:52,975 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 198 tokens in 3.05s (64.9 tok/s), prompt: 418, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:54,530 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.7ms/339
+2026-09-08 08:55:54,530 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.55s (41.3 tok/s), prompt: 487, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:54,532 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:56,406 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.7ms/340
+2026-09-08 08:55:56,406 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 217 tokens in 3.43s (63.3 tok/s), prompt: 484, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:55:57,895 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.7ms/341
+2026-09-08 08:55:57,897 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:55:57,998 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 64 tokens in 1.59s (40.3 tok/s), prompt: 487, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:02,215 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.8ms/342
+2026-09-08 08:56:02,215 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 407 tokens in 5.80s (70.1 tok/s), prompt: 484, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:03,634 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.8ms/343
+2026-09-08 08:56:03,636 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:03,650 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 61 tokens in 1.43s (42.7 tok/s), prompt: 431, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:07,031 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.8ms/344
+2026-09-08 08:56:07,032 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 338 tokens in 4.81s (70.2 tok/s), prompt: 425, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:09,022 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.8ms/345
+2026-09-08 08:56:09,022 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 137 tokens in 1.99s (69.0 tok/s), prompt: 248, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:09,022 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:10,414 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.8ms/346
+2026-09-08 08:56:10,414 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 257 tokens in 3.38s (76.1 tok/s), prompt: 256, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:11,722 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.9ms/347
+2026-09-08 08:56:11,722 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 52 tokens in 1.30s (39.9 tok/s), prompt: 411, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:11,722 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:11,855 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.9ms/348
+2026-09-08 08:56:11,855 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 63 tokens in 1.44s (43.9 tok/s), prompt: 413, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:14,601 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.9ms/349
+2026-09-08 08:56:14,601 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 216 tokens in 2.74s (78.8 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:14,603 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:14,866 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=7.9ms/350
+2026-09-08 08:56:14,867 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 238 tokens in 3.01s (79.1 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:19,311 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.0ms/351
+2026-09-08 08:56:19,311 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 383 tokens in 4.44s (86.3 tok/s), prompt: 258, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:19,313 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:22,559 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.0ms/352
+2026-09-08 08:56:22,559 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 642 tokens in 7.69s (83.5 tok/s), prompt: 235, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:24,317 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.0ms/353
+2026-09-08 08:56:24,317 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:24,428 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 111 tokens in 1.86s (59.5 tok/s), prompt: 262, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:29,281 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.0ms/354
+2026-09-08 08:56:29,281 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 523 tokens in 6.72s (77.8 tok/s), prompt: 265, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:30,294 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.0ms/355
+2026-09-08 08:56:30,295 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:30,308 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 40 tokens in 1.02s (39.1 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:38,541 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.1ms/356
+2026-09-08 08:56:38,542 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 723 tokens in 9.26s (78.1 tok/s), prompt: 226, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:41,248 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.1ms/357
+2026-09-08 08:56:41,250 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:41,264 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 187 tokens in 2.72s (68.8 tok/s), prompt: 480, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:42,856 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.1ms/358
+2026-09-08 08:56:42,856 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 321 tokens in 4.31s (74.5 tok/s), prompt: 432, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:44,280 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.1ms/359
+2026-09-08 08:56:44,280 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 77 tokens in 1.42s (54.2 tok/s), prompt: 291, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:44,282 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:47,420 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.2ms/360
+2026-09-08 08:56:47,420 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 341 tokens in 4.56s (74.8 tok/s), prompt: 215, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:50,155 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.2ms/361
+2026-09-08 08:56:50,157 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:50,266 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 216 tokens in 2.84s (76.0 tok/s), prompt: 217, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:50,577 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.2ms/362
+2026-09-08 08:56:50,577 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 250 tokens in 3.15s (79.3 tok/s), prompt: 213, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:51,618 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.2ms/363
+2026-09-08 08:56:51,618 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:51,632 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 32 tokens in 1.05s (30.5 tok/s), prompt: 362, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:55,250 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.3ms/364
+2026-09-08 08:56:55,250 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 336 tokens in 4.67s (72.0 tok/s), prompt: 361, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:56:56,313 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.3ms/365
+2026-09-08 08:56:56,313 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:56:56,327 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 42 tokens in 1.07s (39.1 tok/s), prompt: 238, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:58:44,000 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.3ms/366
+2026-09-08 08:58:44,001 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 8192 tokens in 108.75s (75.3 tok/s), prompt: 258, finish_reason=length, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:58:47,562 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.3ms/367
+2026-09-08 08:58:47,562 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:58:47,671 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 290 tokens in 3.66s (79.1 tok/s), prompt: 218, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:04,150 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.4ms/368
+2026-09-08 08:59:04,151 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 1629 tokens in 20.14s (80.9 tok/s), prompt: 219, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:06,350 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.4ms/369
+2026-09-08 08:59:06,352 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:59:06,365 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 149 tokens in 2.21s (67.4 tok/s), prompt: 313, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:07,399 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.4ms/370
+2026-09-08 08:59:07,399 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 237 tokens in 3.24s (73.1 tok/s), prompt: 236, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:08,440 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.4ms/371
+2026-09-08 08:59:08,440 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 44 tokens in 1.04s (42.4 tok/s), prompt: 230, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:08,442 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:59:13,131 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.4ms/372
+2026-09-08 08:59:13,132 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 436 tokens in 5.73s (76.1 tok/s), prompt: 220, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:14,733 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.5ms/373
+2026-09-08 08:59:14,733 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 84 tokens in 1.60s (52.6 tok/s), prompt: 388, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:14,735 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:59:18,263 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.5ms/374
+2026-09-08 08:59:18,263 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 370 tokens in 5.13s (72.2 tok/s), prompt: 383, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:21,011 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.5ms/375
+2026-09-08 08:59:21,013 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
+2026-09-08 08:59:21,027 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 183 tokens in 2.76s (66.3 tok/s), prompt: 581, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+2026-09-08 08:59:22,918 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=8.5ms/376
+2026-09-08 08:59:22,918 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 339 tokens in 4.65s (72.9 tok/s), prompt: 509, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-09-08 09:01:14,935 - omlx.process_memory_enforcer - INFO - Process memory enforcer stopped
+2026-09-08 09:01:14,936 - omlx.server - INFO - Process memory enforcer stopped
+2026-09-08 09:01:14,936 - omlx.admin.hf_downloader - INFO - HF Downloader shut down
+2026-09-08 09:01:14,936 - omlx.server - INFO - HF Downloader stopped
+2026-09-08 09:01:14,936 - omlx.admin.ms_downloader - INFO - MS Downloader shut down
+2026-09-08 09:01:14,936 - omlx.server - INFO - MS Downloader stopped
+2026-09-08 09:01:14,936 - omlx.engine_pool - INFO - Unloading model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit (immediate abort)
+2026-09-08 09:01:14,936 - omlx.engine_core - INFO - Engine stopped
+2026-09-08 09:01:14,959 - omlx.scheduler - INFO - Scheduler shutdown initiated...
+2026-09-08 09:01:14,959 - omlx.scheduler - INFO - Scheduler shutdown completed
+2026-09-08 09:01:15,041 - omlx.scheduler - INFO - Deep reset completed - all caches cleared
+2026-09-08 09:01:16,162 - omlx.utils.compile_cache - INFO - MLX compile-cache clear resolved (_ZN3mlx4core6detail19compile_clear_cacheEv)
+2026-09-08 09:01:16,163 - omlx.engine.vlm - INFO - VLMBatchedEngine stopped
+2026-09-08 09:01:16,179 - omlx.engine_pool - INFO - Unloaded model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, freed=19.40GB (expected>=17.95GB), active_memory: 2.75KB (settled)
+2026-09-08 09:01:16,180 - omlx.engine_pool - INFO - Engine pool shutdown complete
+2026-09-08 09:01:16,180 - omlx.server - INFO - Engine pool shutdown
+INFO:     Application shutdown complete.
+INFO:     Finished server process [46875]

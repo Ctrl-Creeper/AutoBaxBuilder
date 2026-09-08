@@ -1,0 +1,919 @@
+{
+  "schema": "study4b-execution-readiness-v1",
+  "study_relation": {
+    "fresh_sample_study4": "completed NO-GO at 0/160 validated pairs",
+    "study4b": "conditional behavioral follow-up on frozen Study-3 DS47",
+    "not_a_continuation_or_replacement": true
+  },
+  "stimuli_sha256": "909e6caba86177269c81f6bcc6b362d5332d43400d12e2584a1fee681b2d4e61",
+  "n_pairs": 47,
+  "conditions": [
+    "S",
+    "Sprime"
+  ],
+  "repeats_per_condition": 4,
+  "planned_requests": 376,
+  "model": {
+    "id": "Ornith-1.5-35B-A3B-Abliterated-MLX-4bit",
+    "directory": "/Users/lewiswu/.omlx/models/PocketAiHub/Ornith-1.5-35B-A3B-Abliterated-MLX-4bit",
+    "fingerprint_sha256": "3fe867b89aa52259573e963d121e8974128d5665367b30781d4419b71ef538de",
+    "tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+  },
+  "omlx": {
+    "endpoint": "http://127.0.0.1:8000",
+    "version": "0.6.4",
+    "build": "2529",
+    "source_commit": null,
+    "app_binary": "/Applications/omlx.app/Contents/MacOS/omlx",
+    "app_binary_sha256": "59a18f09b7b628fbd2e0bd5eebc0a516e2900a4ae0513798461592eff63a3183"
+  },
+  "runtime": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "machine": "arm64",
+    "hardware_model": "Mac16,9",
+    "cpu_brand": "Apple M4 Max",
+    "memory_bytes": "68719476736",
+    "gpu_backend": "MLX on Apple Silicon unified-memory GPU"
+  },
+  "generation": {
+    "system_prompt": null,
+    "temperature": 0.2,
+    "top_p": 1.0,
+    "max_tokens": 8192,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    },
+    "fresh_request_per_completion": true,
+    "conversation_state": null,
+    "max_client_concurrency": 2
+  },
+  "context": {
+    "native_limit": 262144,
+    "wrapper_reserve": 128,
+    "rule": "prompt_tokens + 8192 + 128 <= 262144",
+    "n_prompts": 94,
+    "over_limit_count": 0,
+    "max_prompt_tokens": 601,
+    "max_required_context_tokens": 8921,
+    "rows": [
+      {
+        "ds_task_id": "Q01",
+        "source_index": 144,
+        "condition": "S",
+        "prompt_sha256": "373bfaa3b1ff23e3fd840927ec125ef7c6d52f9dd723e8dfe9a53ffcd0cff975",
+        "prompt_tokens": 420,
+        "required_context_tokens": 8740,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q01",
+        "source_index": 144,
+        "condition": "Sprime",
+        "prompt_sha256": "1c45bbe036dd138567a1d6a8840e5bec88de8ee10e7f858bffc58be1bb0dd412",
+        "prompt_tokens": 468,
+        "required_context_tokens": 8788,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q02",
+        "source_index": 1101,
+        "condition": "S",
+        "prompt_sha256": "0289ed07206c187a5923f7c29862e1a436d471ded540b66e1f67138fd9d21651",
+        "prompt_tokens": 253,
+        "required_context_tokens": 8573,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q02",
+        "source_index": 1101,
+        "condition": "Sprime",
+        "prompt_sha256": "38470e90ab063c348c55e92e3d01641f2b02aa9011d20b6ef70f837b9e504d01",
+        "prompt_tokens": 250,
+        "required_context_tokens": 8570,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q03",
+        "source_index": 1118,
+        "condition": "S",
+        "prompt_sha256": "408f0d02741dcf451aa6c06e605394dff6ca3ae5f375a6c6d5573fc2cdd22a33",
+        "prompt_tokens": 371,
+        "required_context_tokens": 8691,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q03",
+        "source_index": 1118,
+        "condition": "Sprime",
+        "prompt_sha256": "057f6d216172631cf13abcfb22ea3e5cfd9560833e3617415f56aec9dfae259f",
+        "prompt_tokens": 376,
+        "required_context_tokens": 8696,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q04",
+        "source_index": 1027,
+        "condition": "S",
+        "prompt_sha256": "7f7cbede7f790f931e0e4ac6bfaf608def19664d19e43a73617b343b33c97cc6",
+        "prompt_tokens": 446,
+        "required_context_tokens": 8766,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q04",
+        "source_index": 1027,
+        "condition": "Sprime",
+        "prompt_sha256": "d0f5e246153369ed7ca3bbf7876cdc0fb1e7a3cac03b76415335c3d0428b045b",
+        "prompt_tokens": 447,
+        "required_context_tokens": 8767,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q05",
+        "source_index": 485,
+        "condition": "S",
+        "prompt_sha256": "90da255a1ad29388923a334b1878391a076c2b1e394b9ce5a620bd43630630b2",
+        "prompt_tokens": 271,
+        "required_context_tokens": 8591,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q05",
+        "source_index": 485,
+        "condition": "Sprime",
+        "prompt_sha256": "d6194ae2e50f2104d7405d66d113e26f71a9d34e6ddcd5ac217b4b603242ad46",
+        "prompt_tokens": 323,
+        "required_context_tokens": 8643,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q06",
+        "source_index": 447,
+        "condition": "S",
+        "prompt_sha256": "51d3ac1240404eebbbf6c45b28dc0135656bcb3b6722d8c0e4383b755d211d43",
+        "prompt_tokens": 426,
+        "required_context_tokens": 8746,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q06",
+        "source_index": 447,
+        "condition": "Sprime",
+        "prompt_sha256": "5e18a638bb0ff4d51506875c54c3edb865e31f70f61fffb3f1fdabebe26e30fd",
+        "prompt_tokens": 439,
+        "required_context_tokens": 8759,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q07",
+        "source_index": 356,
+        "condition": "S",
+        "prompt_sha256": "52a941d3e82097f981b8c8765db1f701edbb3a051b7dcec073f873180c6f54b4",
+        "prompt_tokens": 349,
+        "required_context_tokens": 8669,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q07",
+        "source_index": 356,
+        "condition": "Sprime",
+        "prompt_sha256": "6d9d31af19dcfa49fb396422941bba434e19cfed55611d63a1dcf5507b99fb3c",
+        "prompt_tokens": 350,
+        "required_context_tokens": 8670,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q08",
+        "source_index": 433,
+        "condition": "S",
+        "prompt_sha256": "57df961417738dbfa22146503b25cb6c0d5278d0c3b9fc6e296e93a320ec5b54",
+        "prompt_tokens": 411,
+        "required_context_tokens": 8731,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q08",
+        "source_index": 433,
+        "condition": "Sprime",
+        "prompt_sha256": "7999b73da5d6420fce7a891a141bf3252c8312a5e15cf401d712afdf59c69c65",
+        "prompt_tokens": 415,
+        "required_context_tokens": 8735,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q09",
+        "source_index": 1080,
+        "condition": "S",
+        "prompt_sha256": "b949ee6295fe6966320e0dfe27d2f3f989f034704b15228812dae9e3c48800b3",
+        "prompt_tokens": 201,
+        "required_context_tokens": 8521,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q09",
+        "source_index": 1080,
+        "condition": "Sprime",
+        "prompt_sha256": "4b695dfa002b68eb8704f8f2b4f62b951e344ff05ebda73a0f652cac8ad5f3d9",
+        "prompt_tokens": 205,
+        "required_context_tokens": 8525,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q10",
+        "source_index": 1405,
+        "condition": "S",
+        "prompt_sha256": "141bac54b1bf054787c4e1bc35e89877ed0f1da24f758ff5dff69f7e8f62a713",
+        "prompt_tokens": 211,
+        "required_context_tokens": 8531,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q10",
+        "source_index": 1405,
+        "condition": "Sprime",
+        "prompt_sha256": "bd8aba155f4cf0bffb468896685aea5427487d118bca55329160d85ca4cc09b4",
+        "prompt_tokens": 266,
+        "required_context_tokens": 8586,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q11",
+        "source_index": 660,
+        "condition": "S",
+        "prompt_sha256": "c2c82ac1b47e9f2d7c363766d9434ed7270cc83146263d4a9182274436b88a49",
+        "prompt_tokens": 283,
+        "required_context_tokens": 8603,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q11",
+        "source_index": 660,
+        "condition": "Sprime",
+        "prompt_sha256": "3a56456d714d3d1d5a570253a6a8062defd84762b6707aebc3056207530d6043",
+        "prompt_tokens": 327,
+        "required_context_tokens": 8647,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q12",
+        "source_index": 775,
+        "condition": "S",
+        "prompt_sha256": "ac0dc44d90b9c649559e13efd8e3b5e70e0811b9faabb6937fffa2c4020543cb",
+        "prompt_tokens": 199,
+        "required_context_tokens": 8519,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q12",
+        "source_index": 775,
+        "condition": "Sprime",
+        "prompt_sha256": "c17969059376dc377137821059f717dd3b39a80371a65c96b2bb54ed4f7f53ab",
+        "prompt_tokens": 225,
+        "required_context_tokens": 8545,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q13",
+        "source_index": 1206,
+        "condition": "S",
+        "prompt_sha256": "31812fb0f213cb98fc6074281d6ac829d029d5a222e5b3ac3c199937dc5ed076",
+        "prompt_tokens": 214,
+        "required_context_tokens": 8534,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q13",
+        "source_index": 1206,
+        "condition": "Sprime",
+        "prompt_sha256": "c1395e1d90a9b4b6d0c46804037c03c5a98b0ed40f71e33fe2367c1ecaf796d2",
+        "prompt_tokens": 206,
+        "required_context_tokens": 8526,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q14",
+        "source_index": 1089,
+        "condition": "S",
+        "prompt_sha256": "a593207a4f198a3ff3707607e945e117b5c48eb41c3f4397a7f89c361b427763",
+        "prompt_tokens": 244,
+        "required_context_tokens": 8564,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q14",
+        "source_index": 1089,
+        "condition": "Sprime",
+        "prompt_sha256": "9b51fc2b7be2f6e1e3523a9472b31cdd262f32acc4830da85b63c00e9e3c054f",
+        "prompt_tokens": 236,
+        "required_context_tokens": 8556,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q15",
+        "source_index": 1136,
+        "condition": "S",
+        "prompt_sha256": "901eb10c035c65d6a605f5e9ea5c6f2775fe8a8f2bb5d704fcd7cbb9895baa3b",
+        "prompt_tokens": 208,
+        "required_context_tokens": 8528,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q15",
+        "source_index": 1136,
+        "condition": "Sprime",
+        "prompt_sha256": "fbfd83ca1c764339ce675a69927eb04e58f355cecc0b05d8e5dc6a9f5ee205d9",
+        "prompt_tokens": 235,
+        "required_context_tokens": 8555,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q16",
+        "source_index": 137,
+        "condition": "S",
+        "prompt_sha256": "b73b30251899bb09b8d7f2407fb560e62893cbede9efa707e7f2b83996352f37",
+        "prompt_tokens": 390,
+        "required_context_tokens": 8710,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q16",
+        "source_index": 137,
+        "condition": "Sprime",
+        "prompt_sha256": "95e002567351d376c2723f53021a483ae55491e9555e0a5e698511761d1ea1b4",
+        "prompt_tokens": 422,
+        "required_context_tokens": 8742,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q17",
+        "source_index": 1166,
+        "condition": "S",
+        "prompt_sha256": "262cb01cad524ea07bcaf3eebc22bfc84751d0dd960ba898d8e3eb615d8365cb",
+        "prompt_tokens": 223,
+        "required_context_tokens": 8543,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q17",
+        "source_index": 1166,
+        "condition": "Sprime",
+        "prompt_sha256": "1c141b5eec52a71a5976df174e6f33269cdde8080bd13620212195c8d220e803",
+        "prompt_tokens": 246,
+        "required_context_tokens": 8566,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q19",
+        "source_index": 1377,
+        "condition": "S",
+        "prompt_sha256": "81d3f5fce9d8143c22e887378f85c9d9a6cf2d667be41a0d3f766894135afb04",
+        "prompt_tokens": 192,
+        "required_context_tokens": 8512,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q19",
+        "source_index": 1377,
+        "condition": "Sprime",
+        "prompt_sha256": "09ada9ec813a40c84a0048df7f9ced1bb8d673ced50d78b99ab215bec3f9e432",
+        "prompt_tokens": 237,
+        "required_context_tokens": 8557,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q20",
+        "source_index": 1009,
+        "condition": "S",
+        "prompt_sha256": "4499ab18fee7aa5ea8692b1a70326a150d130806054ffbd279a7bb898f6981f9",
+        "prompt_tokens": 401,
+        "required_context_tokens": 8721,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q20",
+        "source_index": 1009,
+        "condition": "Sprime",
+        "prompt_sha256": "9764131d7debd1bdb9bd3018d8eb941da252fff86926f6a40ce5773174409b94",
+        "prompt_tokens": 399,
+        "required_context_tokens": 8719,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q21",
+        "source_index": 177,
+        "condition": "S",
+        "prompt_sha256": "2b1907cd8831506a8e4712a5c8d69c094c683a7fc01a817694adef37fc4351f1",
+        "prompt_tokens": 472,
+        "required_context_tokens": 8792,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q21",
+        "source_index": 177,
+        "condition": "Sprime",
+        "prompt_sha256": "3bf813b741eb72f044fdde4e9ab0515bf37864ccef407657fe229953312a56ca",
+        "prompt_tokens": 475,
+        "required_context_tokens": 8795,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q22",
+        "source_index": 1133,
+        "condition": "S",
+        "prompt_sha256": "b0bcf7b2788a01c60f1d377c85faae6ad03abf90bc85019965d8620368aacb15",
+        "prompt_tokens": 213,
+        "required_context_tokens": 8533,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q22",
+        "source_index": 1133,
+        "condition": "Sprime",
+        "prompt_sha256": "691b1e2bd9f49faf3965cf5f3c136bdeab638aa77aa051a6e8914cf87a2e270c",
+        "prompt_tokens": 220,
+        "required_context_tokens": 8540,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q23",
+        "source_index": 164,
+        "condition": "S",
+        "prompt_sha256": "6d830c316f552ef91850ac20693ae5fc018ed54af08a9279c81e19603927122e",
+        "prompt_tokens": 510,
+        "required_context_tokens": 8830,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q23",
+        "source_index": 164,
+        "condition": "Sprime",
+        "prompt_sha256": "515417d142f3bfd5c43917877e52968f6ed2daa79c9cad658fd0a3c0e5efa86e",
+        "prompt_tokens": 572,
+        "required_context_tokens": 8892,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q24",
+        "source_index": 113,
+        "condition": "S",
+        "prompt_sha256": "14b7213562464d21a0364da038a10c7997b8e20dad8e68813e90e710a28cd212",
+        "prompt_tokens": 261,
+        "required_context_tokens": 8581,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q24",
+        "source_index": 113,
+        "condition": "Sprime",
+        "prompt_sha256": "ecb272cd46fde7193b352095e8c10b2d096b0a7430f81434acefb6ca4af97c0a",
+        "prompt_tokens": 234,
+        "required_context_tokens": 8554,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q25",
+        "source_index": 652,
+        "condition": "S",
+        "prompt_sha256": "3561ba7e77356c9301f87ffe6b534854efb03eb4e7dff7c0471a3ebbe33e0f04",
+        "prompt_tokens": 282,
+        "required_context_tokens": 8602,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q25",
+        "source_index": 652,
+        "condition": "Sprime",
+        "prompt_sha256": "b2da6002b50753c8f22f7fe4e37afae7dcf3585833f6ef4304ad48aba06a1d88",
+        "prompt_tokens": 301,
+        "required_context_tokens": 8621,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q26",
+        "source_index": 454,
+        "condition": "S",
+        "prompt_sha256": "ea961822f4af524750847c88ba73456bddc6258d804928d8fe463becc8a801c5",
+        "prompt_tokens": 391,
+        "required_context_tokens": 8711,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q26",
+        "source_index": 454,
+        "condition": "Sprime",
+        "prompt_sha256": "e66c099ad25f3895b1a970ea500cd13a205f668ece5afa5aa855da04c009c1cd",
+        "prompt_tokens": 412,
+        "required_context_tokens": 8732,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q29",
+        "source_index": 600,
+        "condition": "S",
+        "prompt_sha256": "ea0352ff85441928852633d0676733fa883b31a1522da6be897a71657e1f938e",
+        "prompt_tokens": 224,
+        "required_context_tokens": 8544,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q29",
+        "source_index": 600,
+        "condition": "Sprime",
+        "prompt_sha256": "fea3fdfb273fe4c638eb1fae08f2b84837d4ea1550be8d2c5f6ba725eb4d3c06",
+        "prompt_tokens": 301,
+        "required_context_tokens": 8621,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q30",
+        "source_index": 1148,
+        "condition": "S",
+        "prompt_sha256": "74d3e2bac5e870271699a080174fff80e5b03f23d6e98e593664e36bfa785497",
+        "prompt_tokens": 207,
+        "required_context_tokens": 8527,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q30",
+        "source_index": 1148,
+        "condition": "Sprime",
+        "prompt_sha256": "ab5fa4a6a17d68615bf6397fdcde187149476a5d6d14d641250018e8292525cc",
+        "prompt_tokens": 206,
+        "required_context_tokens": 8526,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q31",
+        "source_index": 1219,
+        "condition": "S",
+        "prompt_sha256": "18148ee966f5363f045fe23078add218e38e68df59a45e59ddbcd0e568f69729",
+        "prompt_tokens": 414,
+        "required_context_tokens": 8734,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q31",
+        "source_index": 1219,
+        "condition": "Sprime",
+        "prompt_sha256": "49e5b89272ee4441d9fa0f733ba8bab1a1476ff92608b182f7130e366ddfc76f",
+        "prompt_tokens": 421,
+        "required_context_tokens": 8741,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q32",
+        "source_index": 1410,
+        "condition": "S",
+        "prompt_sha256": "4bfd4a865d077f9e30e148d064933ef9a42503d45ac9c7bb8c7ce3cf4ff33a9d",
+        "prompt_tokens": 208,
+        "required_context_tokens": 8528,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q32",
+        "source_index": 1410,
+        "condition": "Sprime",
+        "prompt_sha256": "1e3c76a869358b3f80529dd722ee4ee838a4f490dc48016e85be959f566c507d",
+        "prompt_tokens": 218,
+        "required_context_tokens": 8538,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q33",
+        "source_index": 1305,
+        "condition": "S",
+        "prompt_sha256": "35f3101649f1345ce1466a1ea2e921dad2a4271213529fc79ea40bdf7aadb1d5",
+        "prompt_tokens": 266,
+        "required_context_tokens": 8586,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q33",
+        "source_index": 1305,
+        "condition": "Sprime",
+        "prompt_sha256": "bdfd75132b69ee19adf6d96ba84b43906355041a1d0ad56e3d7bd5287bf19671",
+        "prompt_tokens": 335,
+        "required_context_tokens": 8655,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q35",
+        "source_index": 457,
+        "condition": "S",
+        "prompt_sha256": "be153a24808ea713eb65e8d0fa447148c13c5529bb99921515feb9b7a08fc700",
+        "prompt_tokens": 399,
+        "required_context_tokens": 8719,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q35",
+        "source_index": 457,
+        "condition": "Sprime",
+        "prompt_sha256": "841ca6efcbb7a793262da77d5580ba9daeaad52b83c41ca3c52c16259f4504b4",
+        "prompt_tokens": 411,
+        "required_context_tokens": 8731,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q36",
+        "source_index": 1163,
+        "condition": "S",
+        "prompt_sha256": "980f20e5da5ec280639ae8e22846ad3657afb33a65af0f8f392512b026525634",
+        "prompt_tokens": 217,
+        "required_context_tokens": 8537,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q36",
+        "source_index": 1163,
+        "condition": "Sprime",
+        "prompt_sha256": "44ca8bb0154325475db4fb6700e045fbb5687ab5adacb0fbff36df1ed97fd175",
+        "prompt_tokens": 244,
+        "required_context_tokens": 8564,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q37",
+        "source_index": 675,
+        "condition": "S",
+        "prompt_sha256": "88acfd4dec070f312dfc144e58c012cce462ec00b3d81cc19f04e62d7070abd1",
+        "prompt_tokens": 329,
+        "required_context_tokens": 8649,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q37",
+        "source_index": 675,
+        "condition": "Sprime",
+        "prompt_sha256": "662b892de4b6a36b0f6aaabcb6e4b5f6f8e02d5151bef726a97f328577f53373",
+        "prompt_tokens": 371,
+        "required_context_tokens": 8691,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q38",
+        "source_index": 503,
+        "condition": "S",
+        "prompt_sha256": "8011b96a81dda3ddd4a119beae368617eebe74489ec7238b1d75173d57e41079",
+        "prompt_tokens": 203,
+        "required_context_tokens": 8523,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q38",
+        "source_index": 503,
+        "condition": "Sprime",
+        "prompt_sha256": "464bd1386ab0bb3afc6d37bf77e3ffa99fd3202baaf54757da6aa0ba6af85c73",
+        "prompt_tokens": 279,
+        "required_context_tokens": 8599,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q39",
+        "source_index": 102,
+        "condition": "S",
+        "prompt_sha256": "048b027908be652b918656c3395362e980b58253519e2e9e9c888da514f4e18b",
+        "prompt_tokens": 236,
+        "required_context_tokens": 8556,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q39",
+        "source_index": 102,
+        "condition": "Sprime",
+        "prompt_sha256": "1258c4bf672aec3c745f5e569ab4861c25df9ed6304f3db2d2ad362cad282e87",
+        "prompt_tokens": 233,
+        "required_context_tokens": 8553,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q40",
+        "source_index": 1082,
+        "condition": "S",
+        "prompt_sha256": "2d4316c5f38147ad9c094b6af82b00ddb91e54ed93e79d7528009d4d7f47c485",
+        "prompt_tokens": 200,
+        "required_context_tokens": 8520,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q40",
+        "source_index": 1082,
+        "condition": "Sprime",
+        "prompt_sha256": "dcc4d72413d7282c878b000b7f5c613b576fe29e39de83b50797bb5544cfaf8d",
+        "prompt_tokens": 205,
+        "required_context_tokens": 8525,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q41",
+        "source_index": 1170,
+        "condition": "S",
+        "prompt_sha256": "018d835a166145a63cf122e9ab5cb17eee669d9776d508081dafa05d21e2ed21",
+        "prompt_tokens": 246,
+        "required_context_tokens": 8566,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q41",
+        "source_index": 1170,
+        "condition": "Sprime",
+        "prompt_sha256": "c4cfb5a90df1175d24c7ee2413fca522ca32cbb4bd393906e9e69b6b5d204073",
+        "prompt_tokens": 226,
+        "required_context_tokens": 8546,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q42",
+        "source_index": 473,
+        "condition": "S",
+        "prompt_sha256": "2d467fd6159d94a9278191c92d50a1401c3c79f1a54a8f000012ff212163b3cf",
+        "prompt_tokens": 253,
+        "required_context_tokens": 8573,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q42",
+        "source_index": 473,
+        "condition": "Sprime",
+        "prompt_sha256": "74ebed7dcfc8f8b1bb65b7e242c3b1312d5023652c4e90fbb5bc4d5c95ee3e17",
+        "prompt_tokens": 317,
+        "required_context_tokens": 8637,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q43",
+        "source_index": 165,
+        "condition": "S",
+        "prompt_sha256": "a3dec3a041d20d09b40e2505e5e8cfc7b1dfc5c6d487b60f241d58ebbf8dd423",
+        "prompt_tokens": 497,
+        "required_context_tokens": 8817,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q43",
+        "source_index": 165,
+        "condition": "Sprime",
+        "prompt_sha256": "659d83b4208504e151b830868a6d3f1a3a2ea28e2d178e5213c58c4f9b17093d",
+        "prompt_tokens": 569,
+        "required_context_tokens": 8889,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q44",
+        "source_index": 435,
+        "condition": "S",
+        "prompt_sha256": "3207b23127fbb2c105d58557a3ceeb56e680cfa0949364edec7ba809a19550f0",
+        "prompt_tokens": 411,
+        "required_context_tokens": 8731,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q44",
+        "source_index": 435,
+        "condition": "Sprime",
+        "prompt_sha256": "7926ded38bd3ca0dbde973ff71bf4f40a0460088dd078eebfe8643137f802329",
+        "prompt_tokens": 419,
+        "required_context_tokens": 8739,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q45",
+        "source_index": 780,
+        "condition": "S",
+        "prompt_sha256": "0f000f4f9d164569cf4396cd7b305ed98c90c27df00f6aba18426262be7d3225",
+        "prompt_tokens": 201,
+        "required_context_tokens": 8521,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q45",
+        "source_index": 780,
+        "condition": "Sprime",
+        "prompt_sha256": "778f4768913f913ba17da6d6f31d071005735ab85b2ad70420bed328b544e555",
+        "prompt_tokens": 230,
+        "required_context_tokens": 8550,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q46",
+        "source_index": 168,
+        "condition": "S",
+        "prompt_sha256": "8ab3559f222e3995e8476013cd6effb21fba1c5c91d9c45c860bf4e9be05e573",
+        "prompt_tokens": 541,
+        "required_context_tokens": 8861,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q46",
+        "source_index": 168,
+        "condition": "Sprime",
+        "prompt_sha256": "ed0a8dfb92978e80a417e4811b2d38dc18b99b02a3de7b3c96e849c64afb7f5a",
+        "prompt_tokens": 601,
+        "required_context_tokens": 8921,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q47",
+        "source_index": 1218,
+        "condition": "S",
+        "prompt_sha256": "f472d3e2320045ae847a2dbaeb4a411bd6e35764bb885a5272fd8579c5b3a1d1",
+        "prompt_tokens": 413,
+        "required_context_tokens": 8733,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q47",
+        "source_index": 1218,
+        "condition": "Sprime",
+        "prompt_sha256": "75bb607e624f6b2d04d3fab7f85821cab42b4fb1d989d4fd827a05b772df78fd",
+        "prompt_tokens": 419,
+        "required_context_tokens": 8739,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q49",
+        "source_index": 1302,
+        "condition": "S",
+        "prompt_sha256": "301d22088f23bed023cc76eb9921c2427a458771e1ac919b8863b59c2a2c4a7f",
+        "prompt_tokens": 399,
+        "required_context_tokens": 8719,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q49",
+        "source_index": 1302,
+        "condition": "Sprime",
+        "prompt_sha256": "08f2af5fe6b235a0f8fed7d601795d8e96be8c56712385440039f391d5b2b3a0",
+        "prompt_tokens": 403,
+        "required_context_tokens": 8723,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q50",
+        "source_index": 452,
+        "condition": "S",
+        "prompt_sha256": "9ae690ee750306b2c189739db0207a23b23562a983efa34e95cf511373d00e4c",
+        "prompt_tokens": 406,
+        "required_context_tokens": 8726,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q50",
+        "source_index": 452,
+        "condition": "Sprime",
+        "prompt_sha256": "d9d63c55c571c7e4d5d739f1c73a1ac205de3130f65c322e5b744559c6489243",
+        "prompt_tokens": 412,
+        "required_context_tokens": 8732,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q51",
+        "source_index": 1020,
+        "condition": "S",
+        "prompt_sha256": "e774a60ac82ccd3356ff862334ebb10ddafc87ee544b8f1cc2bbe1ae4b0093e2",
+        "prompt_tokens": 349,
+        "required_context_tokens": 8669,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q51",
+        "source_index": 1020,
+        "condition": "Sprime",
+        "prompt_sha256": "2037636114b4a2e0dde15741bc32bdc0047647eb25c6bbc6f10538d6f221c5f8",
+        "prompt_tokens": 352,
+        "required_context_tokens": 8672,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q52",
+        "source_index": 1189,
+        "condition": "S",
+        "prompt_sha256": "6f1d9d2328ea8d16f7d2f632b34564f36306c5c36cf054039afadf8a2d8cb1f9",
+        "prompt_tokens": 243,
+        "required_context_tokens": 8563,
+        "fits_context": true
+      },
+      {
+        "ds_task_id": "Q52",
+        "source_index": 1189,
+        "condition": "Sprime",
+        "prompt_sha256": "9fd2ebab6e81ed0af1a4fda4b1fb1e2c98ad10d15a69f92dcc86ef94673746db",
+        "prompt_tokens": 228,
+        "required_context_tokens": 8548,
+        "fits_context": true
+      }
+    ]
+  },
+  "analysis": {
+    "task_difference": "d_t = mean_r(Y_sec[t,S,r]) - mean_r(Y_sec[t,Sprime,r])",
+    "headline": "Delta_hat = sum_t(d_t) / 47",
+    "ci": "paired t interval: Delta_hat +/- t_(0.975,46)*sd(d_t)/sqrt(47)",
+    "test": "exact two-sided task-level sign-flip randomization test on d_t",
+    "capability_guardrail": "same task-equal-weighted estimator using CapabilityPass",
+    "joint_secondary": "same task-equal-weighted estimator using SecurityPass AND CapabilityPass",
+    "completion_pooled_headline_forbidden": true
+  },
+  "interpretation_boundary": "Conditional effect on the Study-3 demonstrated-separable subset only; not a SeCodePLT-wide or fresh-sample effect.",
+  "go": true,
+  "stimuli_file_sha256": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef"
+}
