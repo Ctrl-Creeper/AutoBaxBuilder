@@ -1,0 +1,425 @@
+{
+  "base_commit": "00009ac3d5af33d08db18748533dc270c5b84ad4",
+  "checks": [
+    {
+      "detail": "docs/paper_synthesis/paper_claim_evidence_matrix.md",
+      "name": "document_exists:matrix",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/provenance, not preregistration",
+      "name": "non_preregistration_status:matrix",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/paper_architecture_v1.md",
+      "name": "document_exists:architecture",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/provenance, not preregistration",
+      "name": "non_preregistration_status:architecture",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/reviewer_attack_audit.md",
+      "name": "document_exists:review",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/provenance, not preregistration",
+      "name": "non_preregistration_status:review",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/study4_decision_memo.md",
+      "name": "document_exists:decision",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/provenance, not preregistration",
+      "name": "non_preregistration_status:decision",
+      "pass": true
+    },
+    {
+      "detail": "docs/paper_synthesis/SYNTHESIS_REVISION_2_STUDY4.md",
+      "name": "document_exists:revision",
+      "pass": true
+    },
+    {
+      "detail": "document explicitly marked synthesis/provenance, not preregistration",
+      "name": "non_preregistration_status:revision",
+      "pass": true
+    },
+    {
+      "detail": "e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b == e4e0833079e68bbb6d4ae14787e38a98d8363518675c5890ec4c7d235f2c5c2b",
+      "name": "frozen_source_hash:study1_protocol",
+      "pass": true
+    },
+    {
+      "detail": "dd13be72a3a4e750032d63cef96d3ab68ab1371e2c665d94a442ccc572e81cfe == dd13be72a3a4e750032d63cef96d3ab68ab1371e2c665d94a442ccc572e81cfe",
+      "name": "frozen_source_hash:study1_results",
+      "pass": true
+    },
+    {
+      "detail": "4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da == 4ca61b25973be20beec9cad085a7da503d600fdb7f427eb0e4251c3e02eb45da",
+      "name": "frozen_source_hash:study2_protocol_v2",
+      "pass": true
+    },
+    {
+      "detail": "17300bb140cdce38a1d2e38f06adef57775ce7a172f88b5acfef55c18a68427a == 17300bb140cdce38a1d2e38f06adef57775ce7a172f88b5acfef55c18a68427a",
+      "name": "frozen_source_hash:study2_results",
+      "pass": true
+    },
+    {
+      "detail": "8aef7785f7a484279111eaf87e957dbffa242574a87eeb8d43543701a0339c3c == 8aef7785f7a484279111eaf87e957dbffa242574a87eeb8d43543701a0339c3c",
+      "name": "frozen_source_hash:study2_interpretation",
+      "pass": true
+    },
+    {
+      "detail": "548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7 == 548addbd9277dbe901b8e1e599fdf3a6d4ef97e286610dbecc40bf1f5f5f81d7",
+      "name": "frozen_source_hash:study3_protocol",
+      "pass": true
+    },
+    {
+      "detail": "affc40415afc43246d5c3036e36d1faa03a87fe9ade59b9952c34e375a2b6234 == affc40415afc43246d5c3036e36d1faa03a87fe9ade59b9952c34e375a2b6234",
+      "name": "frozen_source_hash:study3_final_summary",
+      "pass": true
+    },
+    {
+      "detail": "fec1aa081de064074c46ef113b4a2c1325970ae3c673e11d0fa1bc5911a30cdc == fec1aa081de064074c46ef113b4a2c1325970ae3c673e11d0fa1bc5911a30cdc",
+      "name": "frozen_source_hash:cweval_termination",
+      "pass": true
+    },
+    {
+      "detail": "4f274f2d5de96ff489010d6f158a6bbed7c3e13f57dc533a6e4cdd0834dc9a3f == 4f274f2d5de96ff489010d6f158a6bbed7c3e13f57dc533a6e4cdd0834dc9a3f",
+      "name": "frozen_source_hash:study4_fresh_hard_stop",
+      "pass": true
+    },
+    {
+      "detail": "769e1077d1e0f78b97235c0c4c0c7d5a36a9edfc17990b556dc934ed5d3f8162 == 769e1077d1e0f78b97235c0c4c0c7d5a36a9edfc17990b556dc934ed5d3f8162",
+      "name": "frozen_source_hash:study4b_closure",
+      "pass": true
+    },
+    {
+      "detail": "5fd37dd6ec0e35370090f8ecb42a955e0fb3e33872356e3b9ef085c42b546cdd == 5fd37dd6ec0e35370090f8ecb42a955e0fb3e33872356e3b9ef085c42b546cdd",
+      "name": "frozen_source_hash:study4b_analysis",
+      "pass": true
+    },
+    {
+      "detail": "3a5f130d7dceab2e36b6f0c5ef1d7d98174132621144bc9f6bb721ee8e3c8b04 == 3a5f130d7dceab2e36b6f0c5ef1d7d98174132621144bc9f6bb721ee8e3c8b04",
+      "name": "frozen_source_hash:study4c_results",
+      "pass": true
+    },
+    {
+      "detail": "48778c565b521485f99e4a81f9a45d07a811f903d0f8aef28b76d84a41d47203 == 48778c565b521485f99e4a81f9a45d07a811f903d0f8aef28b76d84a41d47203",
+      "name": "frozen_source_hash:study4c_analysis",
+      "pass": true
+    },
+    {
+      "detail": "5dfc0b08146803aa2a959c87fb5ba36eed04ae42ffaa4c91720253f7c719efa7 == 5dfc0b08146803aa2a959c87fb5ba36eed04ae42ffaa4c91720253f7c719efa7",
+      "name": "frozen_source_hash:study4c_closure_manifest",
+      "pass": true
+    },
+    {
+      "detail": "C1-C16 present",
+      "name": "matrix_required_claims",
+      "pass": true
+    },
+    {
+      "detail": "eight numbered paper sections after adding the behavioural section",
+      "name": "architecture_sections",
+      "pass": true
+    },
+    {
+      "detail": "fourteen numbered reviewer objections",
+      "name": "review_objections",
+      "pass": true
+    },
+    {
+      "detail": "Versions A, B, and C preserved",
+      "name": "decision_three_versions",
+      "pass": true
+    },
+    {
+      "detail": "the ex ante recommendation is preserved verbatim",
+      "name": "decision_recommends_stop",
+      "pass": true
+    },
+    {
+      "detail": "post-decision record confirms the recommendation after execution",
+      "name": "decision_version_a_stands",
+      "pass": true
+    },
+    {
+      "detail": "0.7805",
+      "name": "aggregate_token:study1_theta_saf",
+      "pass": true
+    },
+    {
+      "detail": "0.6899",
+      "name": "aggregate_token:study1_theta_cap",
+      "pass": true
+    },
+    {
+      "detail": "[0.7707, 0.7902]",
+      "name": "aggregate_token:study1_measurement_interval",
+      "pass": true
+    },
+    {
+      "detail": "0.804",
+      "name": "aggregate_token:study2_cluster_kappa",
+      "pass": true
+    },
+    {
+      "detail": "[0.708, 0.893]",
+      "name": "aggregate_token:study2_cluster_kappa_interval",
+      "pass": true
+    },
+    {
+      "detail": "DS = 47",
+      "name": "aggregate_token:study3_counts",
+      "pass": true
+    },
+    {
+      "detail": "VO = 0",
+      "name": "aggregate_token:study3_vo",
+      "pass": true
+    },
+    {
+      "detail": "UR = 6",
+      "name": "aggregate_token:study3_ur",
+      "pass": true
+    },
+    {
+      "detail": "[47/53, 1]",
+      "name": "aggregate_token:study3_l0",
+      "pass": true
+    },
+    {
+      "detail": "+0.5053",
+      "name": "aggregate_token:study4b_security_delta",
+      "pass": true
+    },
+    {
+      "detail": "[0.3741, 0.6365]",
+      "name": "aggregate_token:study4b_security_ci",
+      "pass": true
+    },
+    {
+      "detail": "-0.3511",
+      "name": "aggregate_token:study4b_capability_delta",
+      "pass": true
+    },
+    {
+      "detail": "[-0.4683, -0.2338]",
+      "name": "aggregate_token:study4b_capability_ci",
+      "pass": true
+    },
+    {
+      "detail": "-0.0053",
+      "name": "aggregate_token:study4c_mech",
+      "pass": true
+    },
+    {
+      "detail": "[-0.0939, +0.0833]",
+      "name": "aggregate_token:study4c_mech_ci",
+      "pass": true
+    },
+    {
+      "detail": "-0.0798",
+      "name": "aggregate_token:study4c_repair",
+      "pass": true
+    },
+    {
+      "detail": "[-0.1743, +0.0147]",
+      "name": "aggregate_token:study4c_repair_ci",
+      "pass": true
+    },
+    {
+      "detail": "-0.1702",
+      "name": "aggregate_token:study4c_preserve",
+      "pass": true
+    },
+    {
+      "detail": "[-0.2695, -0.0709]",
+      "name": "aggregate_token:study4c_preserve_ci",
+      "pass": true
+    },
+    {
+      "detail": "-0.0957",
+      "name": "aggregate_token:study4c_generic",
+      "pass": true
+    },
+    {
+      "detail": "[-0.1580, -0.0335]",
+      "name": "aggregate_token:study4c_generic_ci",
+      "pass": true
+    },
+    {
+      "detail": "0/160",
+      "name": "aggregate_token:fresh_study4_nogo",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C1",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C2",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C3",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C4",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C5",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C7",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C8",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C10",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C11",
+      "pass": true
+    },
+    {
+      "detail": "byte-identical to the revision-1 freeze",
+      "name": "studies123_claim_unchanged:C12",
+      "pass": true
+    },
+    {
+      "detail": "revision record pins the revision-1 commit and document hashes",
+      "name": "revision_records_v1_hashes",
+      "pass": true
+    },
+    {
+      "detail": "47/53 remains conditional on measured eligibility",
+      "name": "study3_population_scope",
+      "pass": true
+    },
+    {
+      "detail": "VO=0 is certificate failure, not nonexistence",
+      "name": "vo_zero_interpretation",
+      "pass": true
+    },
+    {
+      "detail": "terminated arm contributes structural portability only",
+      "name": "cweval_no_prevalence",
+      "pass": true
+    },
+    {
+      "detail": "run-level reliability is not represented as human-coder validation",
+      "name": "coding_run_scope",
+      "pass": true
+    },
+    {
+      "detail": "the ex ante memo still initiates no protocol",
+      "name": "study4_no_protocol",
+      "pass": true
+    },
+    {
+      "detail": "C9 was not upgraded to supported by the behavioural line",
+      "name": "matrix_c9_still_unsupported",
+      "pass": true
+    },
+    {
+      "detail": "Study-4B allowed wording",
+      "name": "study4b_allowed_claim_present",
+      "pass": true
+    },
+    {
+      "detail": "mandatory qualifier",
+      "name": "study4b_qualifier_present",
+      "pass": true
+    },
+    {
+      "detail": "Study-4C allowed wording",
+      "name": "study4c_allowed_claim_present",
+      "pass": true
+    },
+    {
+      "detail": "placebo statement",
+      "name": "study4c_placebo_claim_present",
+      "pass": true
+    },
+    {
+      "detail": "binding narrowed consequence statement",
+      "name": "study4c_narrowed_statement_present",
+      "pass": true
+    },
+    {
+      "detail": "Study-3 vs Study-4B construct distinction",
+      "name": "preserved_distinction_present",
+      "pass": true
+    },
+    {
+      "detail": "unqualified occurrences in: none",
+      "name": "study4b_qualifier_adjacent",
+      "pass": true
+    },
+    {
+      "detail": "the failed capability guardrail is stated, not softened",
+      "name": "study4b_guardrail_failure_disclosed",
+      "pass": true
+    },
+    {
+      "detail": "Study 4C is labelled post-4B with its placebo-authoring limitation",
+      "name": "study4c_exploratory_grade_disclosed",
+      "pass": true
+    },
+    {
+      "detail": "fresh Study 4 NO-GO preserved and kept separate from 4B/4C",
+      "name": "fresh_study4_kept_separate",
+      "pass": true
+    },
+    {
+      "detail": "the nonspecific share is explicitly declared unidentified",
+      "name": "no_share_of_effect_attributed",
+      "pass": true
+    },
+    {
+      "detail": "the behavioural experiment line is recorded as closed",
+      "name": "behavioural_line_closed",
+      "pass": true
+    },
+    {
+      "detail": "0 assertive occurrence(s)",
+      "name": "no_prohibited_overclaim_asserted",
+      "pass": true
+    }
+  ],
+  "checks_passed": 82,
+  "checks_total": 82,
+  "document_type": "non-preregistration synthesis audit, revision 2",
+  "failures": [],
+  "generated_at_utc": "2026-09-08T06:10:55.482700+00:00",
+  "prohibited_overclaim_assertions": [],
+  "revision_1_commit": "1dda9cf5b3abdca8930900fdc8ac0d92234bb3b8",
+  "schema_version": "paper-synthesis-consistency-v2",
+  "status": "PASS",
+  "task_level_sources_parsed": false
+}

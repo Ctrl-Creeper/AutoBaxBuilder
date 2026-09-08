@@ -2255,3 +2255,28 @@ INFO:     Application startup complete.
 2026-09-08 11:55:17,206 - omlx.patches.mlx_lm_mtp.batch_generator - INFO - MTP singleton recovery: multirow marker cleared (compact cache)
 2026-09-08 11:55:25,841 - omlx.scheduler - INFO - Cache phase timings: cleanup_finished_sync=17.6ms/751
 2026-09-08 11:55:25,842 - omlx.server - INFO - Chat completion: model=Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, 893 tokens in 11.15s (80.1 tok/s), prompt: 384, finish_reason=stop, max_tokens=8192, request_max_tokens=8192
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-09-08 13:59:58,243 - omlx.process_memory_enforcer - INFO - Process memory enforcer stopped
+2026-09-08 13:59:58,243 - omlx.server - INFO - Process memory enforcer stopped
+2026-09-08 13:59:58,243 - omlx.admin.hf_downloader - INFO - HF Downloader shut down
+2026-09-08 13:59:58,244 - omlx.server - INFO - HF Downloader stopped
+2026-09-08 13:59:58,244 - omlx.admin.ms_downloader - INFO - MS Downloader shut down
+2026-09-08 13:59:58,244 - omlx.server - INFO - MS Downloader stopped
+2026-09-08 13:59:58,244 - omlx.engine_pool - INFO - Unloading model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit (immediate abort)
+2026-09-08 13:59:58,244 - omlx.engine_core - INFO - Engine stopped
+2026-09-08 13:59:58,264 - omlx.scheduler - INFO - Scheduler shutdown initiated...
+2026-09-08 13:59:58,265 - omlx.scheduler - INFO - Scheduler shutdown completed
+2026-09-08 13:59:58,353 - omlx.scheduler - INFO - Deep reset completed - all caches cleared
+2026-09-08 13:59:59,522 - omlx.utils.compile_cache - INFO - MLX compile-cache clear resolved (_ZN3mlx4core6detail19compile_clear_cacheEv)
+2026-09-08 13:59:59,524 - omlx.engine.vlm - INFO - VLMBatchedEngine stopped
+2026-09-08 13:59:59,540 - omlx.engine_pool - INFO - Unloaded model: Ornith-1.5-35B-A3B-Abliterated-MLX-4bit, freed=19.40GB (expected>=17.95GB), active_memory: 3.51KB (settled)
+2026-09-08 13:59:59,540 - omlx.engine_pool - INFO - Engine pool shutdown complete
+2026-09-08 13:59:59,540 - omlx.server - INFO - Engine pool shutdown
+INFO:     Application shutdown complete.
+INFO:     Finished server process [54102]
+
+=== 2026-09-08T06:00:02Z normal shutdown ===
+omlx server pid 54102 on 127.0.0.1:8001 stopped with SIGTERM after Study 4C-EX
+closure. No generation was issued after study4c_generation_completion_FROZEN.json
+was written; 752/752 requests were already complete and frozen. Shutdown only.

@@ -1,8 +1,11 @@
 # Paper architecture v1
 
 **Document type:** frozen-artifact synthesis, not a preregistration.  
-**Evidence cutoff:** Study 3 final freeze `8c39ad48f90f1369bf8729b3585cb17079349042`.  
-**Scope:** no new data, no task-level reanalysis, and no Study-4 result.
+**Revision:** 2. Revision 1 was frozen at commit `1dda9cf5b3abdca8930900fdc8ac0d92234bb3b8`.  
+**Evidence cutoff:** Study 3 final freeze `8c39ad48f90f1369bf8729b3585cb17079349042`, extended by
+the frozen Study-4B closure and the frozen Study-4C-EX closure.  
+**Scope:** no new data, no task-level reanalysis. Sections 1-5 are unchanged in substance from
+revision 1; the behavioural line is confined to the new section 6.
 
 ## Central thesis and claim boundary
 
@@ -16,6 +19,12 @@ estimate of score inflation.
 
 The paper does **not** claim that all security benchmarks have this prevalence, that every task is
 separable, that no obstruction exists, or that models actually exploit the determining information.
+
+A behavioural follow-up line was executed after the Studies 1-3 freeze and is reported in section 6.
+It changes the claim boundary in one direction only: it shows that the specification condition
+matters to one frozen model's behaviour on a selected subset, and it still supplies **no**
+score-inflation magnitude and **no** identified mechanism. Nothing in section 6 revises the
+central thesis or any Studies 1-3 claim.
 
 ## 1. Motivation and construct problem
 
@@ -144,7 +153,118 @@ lower bound rather than an exhaustive search.
 Put detailed CWEval exposure ledgers, frame construction, termination gates, and other benchmarks'
 structural tables in the appendix.
 
-## 6. Discussion and implications
+## 6. Behavioural follow-up on a selected subset
+
+This section reports the behavioural line and must be read as a corroborating follow-up, not as the
+paper's identification strategy. It has three parts, in this order.
+
+### 6.1 Fresh-sample Study 4: preregistered, stopped at its yield gate
+
+Report first, so that the selected-subset work is not mistaken for it. A fresh-sample behavioural
+study was preregistered and stopped at its frozen pipeline-yield gate with `0/160` validated
+original/blinded specification pairs, before any behavioural evaluation. Frozen decision: `NO-GO`.
+It is a separate, separately closed study. Studies 4B and 4C are neither its continuation nor its
+replacement, and no fresh-sample behavioural estimate exists.
+
+### 6.2 Study 4B: selected-subset behavioural follow-up
+
+Population: the frozen Study-3 demonstrated-separable subset, `DS = 47`, entered in full with no
+outcome-based selection. Design: paired `S` versus `S'`, 4 repeats per condition, 376 generations,
+one frozen local model and decoding policy, randomized condition-to-seed-arm assignment, ITT-style
+scoring with non-runnable completions scored zero. Execution: 376/376, zero retries, zero hard
+stops, 47/47 oracle preflight.
+
+| Endpoint | S | S' | Delta (S - S') | 95% CI | p |
+|---|---:|---:|---:|---:|---:|
+| SecurityPass (primary) | `0.8723` | `0.3670` | `+0.5053` | `[0.3741, 0.6365]` | `4.07e-09` |
+| CapabilityPass (guardrail) | `0.6011` | `0.9521` | `-0.3511` | `[-0.4683, -0.2338]` | `1.34e-07` |
+| Joint (secondary) | `0.5957` | `0.3298` | `+0.2660` | `[0.1051, 0.4268]` | `0.00234` |
+
+The preregistered capability guardrail, an equivalence margin of +/-5 pp, **FAILED**. Report it as a
+failure in the main text, in the same table, not in a footnote.
+
+The allowed reading and its mandatory qualifier must appear together, in this order and in the same
+paragraph:
+
+> On the frozen 47 demonstrated-separable tasks, model behavior was strongly sensitive to the S
+> versus S' specification condition: the determining S condition substantially increased
+> SecurityPass while substantially reducing CapabilityPass.
+
+> Because CapabilityPass also changed substantially, the SecurityPass contrast cannot be interpreted
+> as the isolated causal effect of safety-determining information while functional performance is
+> held constant.
+
+Never print the first sentence without the second.
+
+### 6.3 Study 4C-EX: post-4B exploratory mechanism experiment
+
+Label its grade explicitly wherever it appears. Study 4C was designed **after** Study 4B and after a
+20-task exploratory audit of Study-4B completions, and its placebo authoring was negatively
+conditioned on that audit: candidate style rules were rejected when they could plausibly repair
+previously observed defect modes. It must not be described as outcome-naive independent
+confirmation.
+
+Design: the same 47 tasks under four arms - `S'`, `S`, `S_controlled` (`S` plus a constant
+interface-contract block at a single verified anchor), `S_placebo` (`S` plus a length-, structure-,
+and salience-matched source-layout block carrying no interface, security, or adherence content) - 4
+repeats each, 752 fresh generations, no Study-4B completion reused, 36/36 pre-generation
+manipulation-validation gates passed before any generation.
+
+| Arm | SecurityPass | CapabilityPass |
+|---|---:|---:|
+| `S'` | `0.4096` | `0.9415` |
+| `S` | `0.9362` | `0.6383` |
+| `S_controlled` | `0.7660` | `0.5585` |
+| `S_placebo` | `0.8404` | `0.5638` |
+
+| Contrast | Delta | 95% CI |
+|---|---:|---|
+| `Delta_C,mech` (primary) | `-0.0053` | `[-0.0939, +0.0833]` |
+| `Delta_C,repair` | `-0.0798` | `[-0.1743, +0.0147]` |
+| `Delta_S,preserve` (manipulation integrity) | `-0.1702` | `[-0.2695, -0.0709]` |
+| `Delta_S,generic` | `-0.0957` | `[-0.1580, -0.0335]` |
+
+Frozen verdict: `MIXED_OR_INCONCLUSIVE`. The allowed reading:
+
+> A matched-control follow-up did not isolate the mechanism underlying the capability shift.
+> Explicit interface-contract reinforcement produced no capability recovery relative to a length-
+> and structure-matched placebo, while both added-instruction conditions reduced SecurityPass
+> relative to S.
+
+> The placebo demonstrates that a substantial nonspecific added-instruction effect was present.
+
+State the consequence in exactly this narrowed form:
+
+> The matched placebo demonstrates a substantial nonspecific added-instruction effect on
+> SecurityPass, so the S_controlled security loss cannot be interpreted as wholly
+> contract-content-specific.
+
+Do not estimate what share of the effect is nonspecific. That quantity is not identified by this
+design and must not appear as a fraction, a percentage, or the words "mostly" or "largely".
+
+### 6.4 Preserved construct distinction
+
+Keep this distinction in the main text wherever the capability guardrail failure is mentioned:
+
+> Study-3 capability-determination preservation is a specification-level construct; Study-4B
+> CapabilityPass is a model-performance outcome. A change in the latter does not imply the former
+> was validated incorrectly.
+
+The two are measured on different objects by different instruments: blinded Definition-D coding of
+specification text versus a model's pass rate on the frozen capability unit tests. The guardrail
+failure therefore does not invalidate Study 3 or specification-level separability, and neither does
+Study 4C.
+
+### 6.5 Behavioural-line limitations
+
+Add to the limitations in section 5: the behavioural line covers one model, one decoding policy, and
+a subset selected on Study-3 separability; its single confirmatory contrast moved two endpoints at
+once, so no isolated causal effect is identified; the mechanism experiment is exploratory, was
+designed after the result it investigates, failed its own manipulation-integrity criterion, and left
+an unexplained nonspecific added-instruction effect; and the behavioural experiment line is closed
+without a fresh-sample estimate.
+
+## 7. Discussion and implications
 
 The defensible implication is methodological: benchmark designers should state whether security
 tests are intended to measure compliance with disclosed requirements, spontaneous security
@@ -153,9 +273,35 @@ second, model-visible oracle-determining text is a source of construct contamina
 audits and constructively blinded specifications provide concrete diagnostics and repair artifacts.
 
 Close by separating the unanswered behavioral question: Studies 1-3 do not estimate how much
-model security-pass rates change when determination is removed. That causal estimand is a possible
-Study 4 and an important enhancement, but it is not necessary for the scoped measurement-validity
-claim established here.
+model security-pass rates change when determination is removed, and the behavioural line in section
+6 did not supply that estimate either. A fresh-sample study stopped at its yield gate; the
+selected-subset follow-up moved two endpoints at once; and the mechanism experiment was
+inconclusive. The isolated causal estimand therefore remains the highest-priority future test, and
+it is still not necessary for the scoped measurement-validity claim established here.
+
+## 8. Abstract and conclusion claim wording (draft)
+
+The strongest wording the frozen evidence permits, for the abstract and the conclusion:
+
+> Model-visible task specifications in SeCodePLT frequently determine the behaviour that the
+> benchmark's security cases score: on a frozen outcome-blind random sample the case-weighted
+> safety-case determination rate was 78.0% (task-cluster bootstrap 95% CI [70.4%, 84.9%]) under a
+> prospectively frozen, quotation-grounded instrument whose labels were reproducible across
+> independent blinded coding runs (cluster-aware kappa 0.804, 95% CI [0.708, 0.893]). For 47 of the
+> 53 tasks in the realized measured-eligible confirmatory sample, that safety determination was
+> constructively removed while every frozen capability case remained determined, giving a sample
+> identification region of [47/53, 1]. A security score on such cases therefore cannot by itself
+> distinguish compliance with a disclosed requirement from security behaviour supplied without one.
+> In a behavioural follow-up on those 47 tasks, one frozen model's pass behaviour was strongly
+> sensitive to the specification condition, substantially increasing SecurityPass and substantially
+> reducing CapabilityPass; because both endpoints moved, that contrast does not identify the
+> isolated causal effect of safety-determining information, and a matched-control follow-up did not
+> isolate the mechanism. We therefore report a construct-validity threat with a demonstrated
+> behavioural sensitivity, not an estimate of score inflation.
+
+Every clause above is traceable to a frozen aggregate. Do not add a magnitude for score inflation,
+a mechanism attribution, a cross-benchmark prevalence, or a claim that the model exploits the
+determining text.
 
 ## Evidence anchors
 
@@ -167,4 +313,7 @@ claim established here.
 - `docs/preregistration/2026-08-28_study3_execution/GAP6_REPAIR_RECORD.md`
 - `docs/preregistration/2026-08-28_study3_execution/VO_STRUCT_EXECUTABILITY_AUDIT.md`
 - `docs/preregistration/2026-08-28_cweval_replication/AMENDMENT_1_gap2_termination.md`
+- `docs/preregistration/2026-09-07_study4_calibration_execution/CALIBRATION_HARD_STOP.json`
+- `docs/preregistration/2026-09-08_study4b_execution/STUDY4B_CLOSURE.md`
+- `docs/preregistration/2026-09-08_study4c_execution/STUDY4C_RESULTS.md`
 

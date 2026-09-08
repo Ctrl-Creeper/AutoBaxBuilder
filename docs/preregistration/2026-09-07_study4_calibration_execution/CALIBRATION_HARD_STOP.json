@@ -1,0 +1,8 @@
+{
+  "decision": "NO-GO",
+  "stage": "transformation_yield",
+  "reason": "fewer than 40 validated pairs",
+  "validated_n": 0,
+  "transformation_manifest_sha256": "f7898c1932024d7849df7e569fba551746d649723258ab5e67378a8826afd92c",
+  "amendment1_manifest_sha256": "5072ee2d5b89339d94706485daf7359267266ec4ed479a9d8cac4d3ee38267f5"
+}
