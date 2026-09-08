@@ -1,0 +1,11 @@
+{
+  "schema": "study4b-hard-stop-v1",
+  "stage": "study4c:freeze",
+  "error_type": "ValueError",
+  "reason": "'/Users/lewiswu/网络安全/AutoBaxBuilder/docs/preregistration/2026-09-08_study4c_execution/study4c_validation_FROZEN.json' is not in the subpath of '/Users/lewiswu/网络安全/AutoBaxBuilder/docs/preregistration/2026-09-08_study4b_execution' OR one path is relative and the other is absolute.",
+  "generation_requests_written": 376,
+  "generation_responses_frozen": 376,
+  "stimuli_file_sha256_observed": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef",
+  "note": "Pre-generation tooling failure in the freeze stage: the shared Study-4B hashfile writer resolves paths relative to the Study-4B directory. Zero model calls were made. The counts below were read from the Study-4B call directory by the shared recorder and do not refer to Study 4C. Partial Study-4C freeze artifacts were deleted and the freeze re-run after the writer was localised.",
+  "study4c_model_calls_at_abort": 0
+}

@@ -1,0 +1,1171 @@
+{
+  "schema": "study4c-validation-v1",
+  "stage": "pre-generation manipulation validation",
+  "outcome": "GO",
+  "blocks": {
+    "S_controlled": {
+      "sha256": "43d721af6d4e6efda4d483d1ce19a775cb5ff59eb116edfe9b4f7b78da67e0ab",
+      "bytes": 844,
+      "pinned_tokenizer_tokens": 163
+    },
+    "S_placebo": {
+      "sha256": "45fe8319bad04b70e8d72060f9129b13fffb05bf00d09caea25562e6da38c997",
+      "bytes": 792,
+      "pinned_tokenizer_tokens": 164
+    }
+  },
+  "design_memo_sha256": "7b9766a7768eeee658746b66599cd6a0db301fc09de0ae388064200f96e09f70",
+  "permanent_disclosure": "S_placebo candidate authoring was negatively conditioned on knowledge from the prior 20-task exploratory mechanism audit because several candidate style rules were rejected when they could plausibly repair previously observed defect modes. Study 4C is therefore a mechanism experiment designed after Study 4B and must not be described as outcome-naive independent confirmation.",
+  "gate_A_execution_note": "The frozen Study-3 determination instrument is a human coding instrument and was not re-run with human coders. Gate A is discharged structurally: S is preserved byte-exact as a contiguous additive subsequence of both derived arms (no field removed, reordered, or rewritten), all eight determination-bearing fields are present in all 47 prompts, and the inserted blocks introduce no task-specific or oracle-specific token (gates B/P7) and no new functional content (gate C). Recorded as a deviation from the literal wording of validation A/G5.",
+  "gates": {
+    "inputs.stimuli_sha": {
+      "pass": true,
+      "detail": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef"
+    },
+    "inputs.block_controlled_sha": {
+      "pass": true,
+      "detail": "43d721af6d4e6efda4d483d1ce19a775cb5ff59eb116edfe9b4f7b78da67e0ab"
+    },
+    "inputs.block_placebo_sha": {
+      "pass": true,
+      "detail": "45fe8319bad04b70e8d72060f9129b13fffb05bf00d09caea25562e6da38c997"
+    },
+    "inputs.design_memo_sha": {
+      "pass": true,
+      "detail": "7b9766a7768eeee658746b66599cd6a0db301fc09de0ae388064200f96e09f70"
+    },
+    "inputs.ds47": {
+      "pass": true,
+      "detail": 47
+    },
+    "G1.uniform_diff_hash_controlled": {
+      "pass": true,
+      "detail": [
+        "baa2f478d1ab4f4a52e0ca8dbee1f3c366f01989cb0f20435f47547fdef954f9"
+      ]
+    },
+    "P2.uniform_diff_hash_placebo": {
+      "pass": true,
+      "detail": [
+        "37d6bfaa2ec20e3411399e7bb34dc1602f4f36c1002344197cabaf1869410207"
+      ]
+    },
+    "G1.uniform_diff_length_controlled": {
+      "pass": true,
+      "detail": [
+        845
+      ]
+    },
+    "P2.uniform_diff_length_placebo": {
+      "pass": true,
+      "detail": [
+        793
+      ]
+    },
+    "P1.anchor_exactly_once": {
+      "pass": true,
+      "detail": [
+        1
+      ]
+    },
+    "P1.same_anchor_both_arms": {
+      "pass": true,
+      "detail": "single ANCHOR constant used for both blocks"
+    },
+    "G2.invertible_controlled": {
+      "pass": true,
+      "detail": null
+    },
+    "G2.invertible_placebo": {
+      "pass": true,
+      "detail": null
+    },
+    "G2.additive_controlled": {
+      "pass": true,
+      "detail": null
+    },
+    "G2.additive_placebo": {
+      "pass": true,
+      "detail": null
+    },
+    "A.determination_fields_present_47": {
+      "pass": true,
+      "detail": 47
+    },
+    "A.determination_head_byte_identical": {
+      "pass": true,
+      "detail": null
+    },
+    "A.no_removal": {
+      "pass": true,
+      "detail": null
+    },
+    "B.no_oracle_leakage_controlled": {
+      "pass": true,
+      "detail": {
+        "residual": {},
+        "declared_prose_collisions": {
+          "remove": [
+            "Q04"
+          ],
+          "name": [
+            "Q20",
+            "Q49"
+          ],
+          "value": [
+            "Q29",
+            "Q38"
+          ],
+          "signature": [
+            "Q49"
+          ]
+        }
+      }
+    },
+    "P7.no_oracle_leakage_placebo": {
+      "pass": true,
+      "detail": {
+        "residual": {},
+        "declared_prose_collisions": {}
+      }
+    },
+    "C.every_clause_backreferential": {
+      "pass": true,
+      "detail": []
+    },
+    "C.contract_bullet_count": {
+      "pass": true,
+      "detail": 6
+    },
+    "P4.no_capability_interface_terms": {
+      "pass": true,
+      "detail": []
+    },
+    "P5.no_security_terms": {
+      "pass": true,
+      "detail": []
+    },
+    "P6.no_adherence_boosters": {
+      "pass": true,
+      "detail": []
+    },
+    "P4.declared_exceptions": {
+      "pass": true,
+      "detail": {
+        "function_occurrences": 1,
+        "exactly_occurrences": 1
+      }
+    },
+    "P9.placebo_adds_no_substantive_requirement": {
+      "pass": true,
+      "detail": "placebo constrains only lexical/layout properties of the source text"
+    },
+    "P8.token_match_within_5pct": {
+      "pass": true,
+      "detail": {
+        "controlled": 163,
+        "placebo": 164,
+        "delta": 1
+      }
+    },
+    "P8.byte_match_within_10pct": {
+      "pass": true,
+      "detail": {
+        "controlled": 844,
+        "placebo": 792,
+        "delta": -52
+      }
+    },
+    "G7.model_fingerprint": {
+      "pass": true,
+      "detail": "3fe867b89aa52259573e963d121e8974128d5665367b30781d4419b71ef538de"
+    },
+    "G7.tokenizer_fingerprint": {
+      "pass": true,
+      "detail": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+    },
+    "G7.served_model": {
+      "pass": true,
+      "detail": {
+        "id": "Ornith-1.5-35B-A3B-Abliterated-MLX-4bit",
+        "object": "model",
+        "created": 1788838079,
+        "owned_by": "omlx",
+        "max_model_len": 262144
+      }
+    },
+    "G7.generation_config": {
+      "pass": true,
+      "detail": {
+        "temperature": 0.2,
+        "top_p": 1.0,
+        "max_tokens": 8192,
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        }
+      }
+    },
+    "G7.concurrency": {
+      "pass": true,
+      "detail": 2
+    },
+    "G7.oracle_provenance": {
+      "pass": true,
+      "detail": "Study-3 frozen source hashes verified"
+    },
+    "G7.context_limit": {
+      "pass": true,
+      "detail": {
+        "over_limit_count": 0
+      }
+    },
+    "prompt_token_means": {
+      "Sprime": 333.74468085106383,
+      "S": 312.8510638297872,
+      "S_controlled": 475.8510638297872,
+      "S_placebo": 476.8510638297872
+    }
+  },
+  "prompt_tokens": [
+    {
+      "ds_task_id": "Q01",
+      "condition": "Sprime",
+      "prompt_tokens": 468
+    },
+    {
+      "ds_task_id": "Q01",
+      "condition": "S",
+      "prompt_tokens": 420
+    },
+    {
+      "ds_task_id": "Q01",
+      "condition": "S_controlled",
+      "prompt_tokens": 583
+    },
+    {
+      "ds_task_id": "Q01",
+      "condition": "S_placebo",
+      "prompt_tokens": 584
+    },
+    {
+      "ds_task_id": "Q02",
+      "condition": "Sprime",
+      "prompt_tokens": 250
+    },
+    {
+      "ds_task_id": "Q02",
+      "condition": "S",
+      "prompt_tokens": 253
+    },
+    {
+      "ds_task_id": "Q02",
+      "condition": "S_controlled",
+      "prompt_tokens": 416
+    },
+    {
+      "ds_task_id": "Q02",
+      "condition": "S_placebo",
+      "prompt_tokens": 417
+    },
+    {
+      "ds_task_id": "Q03",
+      "condition": "Sprime",
+      "prompt_tokens": 376
+    },
+    {
+      "ds_task_id": "Q03",
+      "condition": "S",
+      "prompt_tokens": 371
+    },
+    {
+      "ds_task_id": "Q03",
+      "condition": "S_controlled",
+      "prompt_tokens": 534
+    },
+    {
+      "ds_task_id": "Q03",
+      "condition": "S_placebo",
+      "prompt_tokens": 535
+    },
+    {
+      "ds_task_id": "Q04",
+      "condition": "Sprime",
+      "prompt_tokens": 447
+    },
+    {
+      "ds_task_id": "Q04",
+      "condition": "S",
+      "prompt_tokens": 446
+    },
+    {
+      "ds_task_id": "Q04",
+      "condition": "S_controlled",
+      "prompt_tokens": 609
+    },
+    {
+      "ds_task_id": "Q04",
+      "condition": "S_placebo",
+      "prompt_tokens": 610
+    },
+    {
+      "ds_task_id": "Q05",
+      "condition": "Sprime",
+      "prompt_tokens": 323
+    },
+    {
+      "ds_task_id": "Q05",
+      "condition": "S",
+      "prompt_tokens": 271
+    },
+    {
+      "ds_task_id": "Q05",
+      "condition": "S_controlled",
+      "prompt_tokens": 434
+    },
+    {
+      "ds_task_id": "Q05",
+      "condition": "S_placebo",
+      "prompt_tokens": 435
+    },
+    {
+      "ds_task_id": "Q06",
+      "condition": "Sprime",
+      "prompt_tokens": 439
+    },
+    {
+      "ds_task_id": "Q06",
+      "condition": "S",
+      "prompt_tokens": 426
+    },
+    {
+      "ds_task_id": "Q06",
+      "condition": "S_controlled",
+      "prompt_tokens": 589
+    },
+    {
+      "ds_task_id": "Q06",
+      "condition": "S_placebo",
+      "prompt_tokens": 590
+    },
+    {
+      "ds_task_id": "Q07",
+      "condition": "Sprime",
+      "prompt_tokens": 350
+    },
+    {
+      "ds_task_id": "Q07",
+      "condition": "S",
+      "prompt_tokens": 349
+    },
+    {
+      "ds_task_id": "Q07",
+      "condition": "S_controlled",
+      "prompt_tokens": 512
+    },
+    {
+      "ds_task_id": "Q07",
+      "condition": "S_placebo",
+      "prompt_tokens": 513
+    },
+    {
+      "ds_task_id": "Q08",
+      "condition": "Sprime",
+      "prompt_tokens": 415
+    },
+    {
+      "ds_task_id": "Q08",
+      "condition": "S",
+      "prompt_tokens": 411
+    },
+    {
+      "ds_task_id": "Q08",
+      "condition": "S_controlled",
+      "prompt_tokens": 574
+    },
+    {
+      "ds_task_id": "Q08",
+      "condition": "S_placebo",
+      "prompt_tokens": 575
+    },
+    {
+      "ds_task_id": "Q09",
+      "condition": "Sprime",
+      "prompt_tokens": 205
+    },
+    {
+      "ds_task_id": "Q09",
+      "condition": "S",
+      "prompt_tokens": 201
+    },
+    {
+      "ds_task_id": "Q09",
+      "condition": "S_controlled",
+      "prompt_tokens": 364
+    },
+    {
+      "ds_task_id": "Q09",
+      "condition": "S_placebo",
+      "prompt_tokens": 365
+    },
+    {
+      "ds_task_id": "Q10",
+      "condition": "Sprime",
+      "prompt_tokens": 266
+    },
+    {
+      "ds_task_id": "Q10",
+      "condition": "S",
+      "prompt_tokens": 211
+    },
+    {
+      "ds_task_id": "Q10",
+      "condition": "S_controlled",
+      "prompt_tokens": 374
+    },
+    {
+      "ds_task_id": "Q10",
+      "condition": "S_placebo",
+      "prompt_tokens": 375
+    },
+    {
+      "ds_task_id": "Q11",
+      "condition": "Sprime",
+      "prompt_tokens": 327
+    },
+    {
+      "ds_task_id": "Q11",
+      "condition": "S",
+      "prompt_tokens": 283
+    },
+    {
+      "ds_task_id": "Q11",
+      "condition": "S_controlled",
+      "prompt_tokens": 446
+    },
+    {
+      "ds_task_id": "Q11",
+      "condition": "S_placebo",
+      "prompt_tokens": 447
+    },
+    {
+      "ds_task_id": "Q12",
+      "condition": "Sprime",
+      "prompt_tokens": 225
+    },
+    {
+      "ds_task_id": "Q12",
+      "condition": "S",
+      "prompt_tokens": 199
+    },
+    {
+      "ds_task_id": "Q12",
+      "condition": "S_controlled",
+      "prompt_tokens": 362
+    },
+    {
+      "ds_task_id": "Q12",
+      "condition": "S_placebo",
+      "prompt_tokens": 363
+    },
+    {
+      "ds_task_id": "Q13",
+      "condition": "Sprime",
+      "prompt_tokens": 206
+    },
+    {
+      "ds_task_id": "Q13",
+      "condition": "S",
+      "prompt_tokens": 214
+    },
+    {
+      "ds_task_id": "Q13",
+      "condition": "S_controlled",
+      "prompt_tokens": 377
+    },
+    {
+      "ds_task_id": "Q13",
+      "condition": "S_placebo",
+      "prompt_tokens": 378
+    },
+    {
+      "ds_task_id": "Q14",
+      "condition": "Sprime",
+      "prompt_tokens": 236
+    },
+    {
+      "ds_task_id": "Q14",
+      "condition": "S",
+      "prompt_tokens": 244
+    },
+    {
+      "ds_task_id": "Q14",
+      "condition": "S_controlled",
+      "prompt_tokens": 407
+    },
+    {
+      "ds_task_id": "Q14",
+      "condition": "S_placebo",
+      "prompt_tokens": 408
+    },
+    {
+      "ds_task_id": "Q15",
+      "condition": "Sprime",
+      "prompt_tokens": 235
+    },
+    {
+      "ds_task_id": "Q15",
+      "condition": "S",
+      "prompt_tokens": 208
+    },
+    {
+      "ds_task_id": "Q15",
+      "condition": "S_controlled",
+      "prompt_tokens": 371
+    },
+    {
+      "ds_task_id": "Q15",
+      "condition": "S_placebo",
+      "prompt_tokens": 372
+    },
+    {
+      "ds_task_id": "Q16",
+      "condition": "Sprime",
+      "prompt_tokens": 422
+    },
+    {
+      "ds_task_id": "Q16",
+      "condition": "S",
+      "prompt_tokens": 390
+    },
+    {
+      "ds_task_id": "Q16",
+      "condition": "S_controlled",
+      "prompt_tokens": 553
+    },
+    {
+      "ds_task_id": "Q16",
+      "condition": "S_placebo",
+      "prompt_tokens": 554
+    },
+    {
+      "ds_task_id": "Q17",
+      "condition": "Sprime",
+      "prompt_tokens": 246
+    },
+    {
+      "ds_task_id": "Q17",
+      "condition": "S",
+      "prompt_tokens": 223
+    },
+    {
+      "ds_task_id": "Q17",
+      "condition": "S_controlled",
+      "prompt_tokens": 386
+    },
+    {
+      "ds_task_id": "Q17",
+      "condition": "S_placebo",
+      "prompt_tokens": 387
+    },
+    {
+      "ds_task_id": "Q19",
+      "condition": "Sprime",
+      "prompt_tokens": 237
+    },
+    {
+      "ds_task_id": "Q19",
+      "condition": "S",
+      "prompt_tokens": 192
+    },
+    {
+      "ds_task_id": "Q19",
+      "condition": "S_controlled",
+      "prompt_tokens": 355
+    },
+    {
+      "ds_task_id": "Q19",
+      "condition": "S_placebo",
+      "prompt_tokens": 356
+    },
+    {
+      "ds_task_id": "Q20",
+      "condition": "Sprime",
+      "prompt_tokens": 399
+    },
+    {
+      "ds_task_id": "Q20",
+      "condition": "S",
+      "prompt_tokens": 401
+    },
+    {
+      "ds_task_id": "Q20",
+      "condition": "S_controlled",
+      "prompt_tokens": 564
+    },
+    {
+      "ds_task_id": "Q20",
+      "condition": "S_placebo",
+      "prompt_tokens": 565
+    },
+    {
+      "ds_task_id": "Q21",
+      "condition": "Sprime",
+      "prompt_tokens": 475
+    },
+    {
+      "ds_task_id": "Q21",
+      "condition": "S",
+      "prompt_tokens": 472
+    },
+    {
+      "ds_task_id": "Q21",
+      "condition": "S_controlled",
+      "prompt_tokens": 635
+    },
+    {
+      "ds_task_id": "Q21",
+      "condition": "S_placebo",
+      "prompt_tokens": 636
+    },
+    {
+      "ds_task_id": "Q22",
+      "condition": "Sprime",
+      "prompt_tokens": 220
+    },
+    {
+      "ds_task_id": "Q22",
+      "condition": "S",
+      "prompt_tokens": 213
+    },
+    {
+      "ds_task_id": "Q22",
+      "condition": "S_controlled",
+      "prompt_tokens": 376
+    },
+    {
+      "ds_task_id": "Q22",
+      "condition": "S_placebo",
+      "prompt_tokens": 377
+    },
+    {
+      "ds_task_id": "Q23",
+      "condition": "Sprime",
+      "prompt_tokens": 572
+    },
+    {
+      "ds_task_id": "Q23",
+      "condition": "S",
+      "prompt_tokens": 510
+    },
+    {
+      "ds_task_id": "Q23",
+      "condition": "S_controlled",
+      "prompt_tokens": 673
+    },
+    {
+      "ds_task_id": "Q23",
+      "condition": "S_placebo",
+      "prompt_tokens": 674
+    },
+    {
+      "ds_task_id": "Q24",
+      "condition": "Sprime",
+      "prompt_tokens": 234
+    },
+    {
+      "ds_task_id": "Q24",
+      "condition": "S",
+      "prompt_tokens": 261
+    },
+    {
+      "ds_task_id": "Q24",
+      "condition": "S_controlled",
+      "prompt_tokens": 424
+    },
+    {
+      "ds_task_id": "Q24",
+      "condition": "S_placebo",
+      "prompt_tokens": 425
+    },
+    {
+      "ds_task_id": "Q25",
+      "condition": "Sprime",
+      "prompt_tokens": 301
+    },
+    {
+      "ds_task_id": "Q25",
+      "condition": "S",
+      "prompt_tokens": 282
+    },
+    {
+      "ds_task_id": "Q25",
+      "condition": "S_controlled",
+      "prompt_tokens": 445
+    },
+    {
+      "ds_task_id": "Q25",
+      "condition": "S_placebo",
+      "prompt_tokens": 446
+    },
+    {
+      "ds_task_id": "Q26",
+      "condition": "Sprime",
+      "prompt_tokens": 412
+    },
+    {
+      "ds_task_id": "Q26",
+      "condition": "S",
+      "prompt_tokens": 391
+    },
+    {
+      "ds_task_id": "Q26",
+      "condition": "S_controlled",
+      "prompt_tokens": 554
+    },
+    {
+      "ds_task_id": "Q26",
+      "condition": "S_placebo",
+      "prompt_tokens": 555
+    },
+    {
+      "ds_task_id": "Q29",
+      "condition": "Sprime",
+      "prompt_tokens": 301
+    },
+    {
+      "ds_task_id": "Q29",
+      "condition": "S",
+      "prompt_tokens": 224
+    },
+    {
+      "ds_task_id": "Q29",
+      "condition": "S_controlled",
+      "prompt_tokens": 387
+    },
+    {
+      "ds_task_id": "Q29",
+      "condition": "S_placebo",
+      "prompt_tokens": 388
+    },
+    {
+      "ds_task_id": "Q30",
+      "condition": "Sprime",
+      "prompt_tokens": 206
+    },
+    {
+      "ds_task_id": "Q30",
+      "condition": "S",
+      "prompt_tokens": 207
+    },
+    {
+      "ds_task_id": "Q30",
+      "condition": "S_controlled",
+      "prompt_tokens": 370
+    },
+    {
+      "ds_task_id": "Q30",
+      "condition": "S_placebo",
+      "prompt_tokens": 371
+    },
+    {
+      "ds_task_id": "Q31",
+      "condition": "Sprime",
+      "prompt_tokens": 421
+    },
+    {
+      "ds_task_id": "Q31",
+      "condition": "S",
+      "prompt_tokens": 414
+    },
+    {
+      "ds_task_id": "Q31",
+      "condition": "S_controlled",
+      "prompt_tokens": 577
+    },
+    {
+      "ds_task_id": "Q31",
+      "condition": "S_placebo",
+      "prompt_tokens": 578
+    },
+    {
+      "ds_task_id": "Q32",
+      "condition": "Sprime",
+      "prompt_tokens": 218
+    },
+    {
+      "ds_task_id": "Q32",
+      "condition": "S",
+      "prompt_tokens": 208
+    },
+    {
+      "ds_task_id": "Q32",
+      "condition": "S_controlled",
+      "prompt_tokens": 371
+    },
+    {
+      "ds_task_id": "Q32",
+      "condition": "S_placebo",
+      "prompt_tokens": 372
+    },
+    {
+      "ds_task_id": "Q33",
+      "condition": "Sprime",
+      "prompt_tokens": 335
+    },
+    {
+      "ds_task_id": "Q33",
+      "condition": "S",
+      "prompt_tokens": 266
+    },
+    {
+      "ds_task_id": "Q33",
+      "condition": "S_controlled",
+      "prompt_tokens": 429
+    },
+    {
+      "ds_task_id": "Q33",
+      "condition": "S_placebo",
+      "prompt_tokens": 430
+    },
+    {
+      "ds_task_id": "Q35",
+      "condition": "Sprime",
+      "prompt_tokens": 411
+    },
+    {
+      "ds_task_id": "Q35",
+      "condition": "S",
+      "prompt_tokens": 399
+    },
+    {
+      "ds_task_id": "Q35",
+      "condition": "S_controlled",
+      "prompt_tokens": 562
+    },
+    {
+      "ds_task_id": "Q35",
+      "condition": "S_placebo",
+      "prompt_tokens": 563
+    },
+    {
+      "ds_task_id": "Q36",
+      "condition": "Sprime",
+      "prompt_tokens": 244
+    },
+    {
+      "ds_task_id": "Q36",
+      "condition": "S",
+      "prompt_tokens": 217
+    },
+    {
+      "ds_task_id": "Q36",
+      "condition": "S_controlled",
+      "prompt_tokens": 380
+    },
+    {
+      "ds_task_id": "Q36",
+      "condition": "S_placebo",
+      "prompt_tokens": 381
+    },
+    {
+      "ds_task_id": "Q37",
+      "condition": "Sprime",
+      "prompt_tokens": 371
+    },
+    {
+      "ds_task_id": "Q37",
+      "condition": "S",
+      "prompt_tokens": 329
+    },
+    {
+      "ds_task_id": "Q37",
+      "condition": "S_controlled",
+      "prompt_tokens": 492
+    },
+    {
+      "ds_task_id": "Q37",
+      "condition": "S_placebo",
+      "prompt_tokens": 493
+    },
+    {
+      "ds_task_id": "Q38",
+      "condition": "Sprime",
+      "prompt_tokens": 279
+    },
+    {
+      "ds_task_id": "Q38",
+      "condition": "S",
+      "prompt_tokens": 203
+    },
+    {
+      "ds_task_id": "Q38",
+      "condition": "S_controlled",
+      "prompt_tokens": 366
+    },
+    {
+      "ds_task_id": "Q38",
+      "condition": "S_placebo",
+      "prompt_tokens": 367
+    },
+    {
+      "ds_task_id": "Q39",
+      "condition": "Sprime",
+      "prompt_tokens": 233
+    },
+    {
+      "ds_task_id": "Q39",
+      "condition": "S",
+      "prompt_tokens": 236
+    },
+    {
+      "ds_task_id": "Q39",
+      "condition": "S_controlled",
+      "prompt_tokens": 399
+    },
+    {
+      "ds_task_id": "Q39",
+      "condition": "S_placebo",
+      "prompt_tokens": 400
+    },
+    {
+      "ds_task_id": "Q40",
+      "condition": "Sprime",
+      "prompt_tokens": 205
+    },
+    {
+      "ds_task_id": "Q40",
+      "condition": "S",
+      "prompt_tokens": 200
+    },
+    {
+      "ds_task_id": "Q40",
+      "condition": "S_controlled",
+      "prompt_tokens": 363
+    },
+    {
+      "ds_task_id": "Q40",
+      "condition": "S_placebo",
+      "prompt_tokens": 364
+    },
+    {
+      "ds_task_id": "Q41",
+      "condition": "Sprime",
+      "prompt_tokens": 226
+    },
+    {
+      "ds_task_id": "Q41",
+      "condition": "S",
+      "prompt_tokens": 246
+    },
+    {
+      "ds_task_id": "Q41",
+      "condition": "S_controlled",
+      "prompt_tokens": 409
+    },
+    {
+      "ds_task_id": "Q41",
+      "condition": "S_placebo",
+      "prompt_tokens": 410
+    },
+    {
+      "ds_task_id": "Q42",
+      "condition": "Sprime",
+      "prompt_tokens": 317
+    },
+    {
+      "ds_task_id": "Q42",
+      "condition": "S",
+      "prompt_tokens": 253
+    },
+    {
+      "ds_task_id": "Q42",
+      "condition": "S_controlled",
+      "prompt_tokens": 416
+    },
+    {
+      "ds_task_id": "Q42",
+      "condition": "S_placebo",
+      "prompt_tokens": 417
+    },
+    {
+      "ds_task_id": "Q43",
+      "condition": "Sprime",
+      "prompt_tokens": 569
+    },
+    {
+      "ds_task_id": "Q43",
+      "condition": "S",
+      "prompt_tokens": 497
+    },
+    {
+      "ds_task_id": "Q43",
+      "condition": "S_controlled",
+      "prompt_tokens": 660
+    },
+    {
+      "ds_task_id": "Q43",
+      "condition": "S_placebo",
+      "prompt_tokens": 661
+    },
+    {
+      "ds_task_id": "Q44",
+      "condition": "Sprime",
+      "prompt_tokens": 419
+    },
+    {
+      "ds_task_id": "Q44",
+      "condition": "S",
+      "prompt_tokens": 411
+    },
+    {
+      "ds_task_id": "Q44",
+      "condition": "S_controlled",
+      "prompt_tokens": 574
+    },
+    {
+      "ds_task_id": "Q44",
+      "condition": "S_placebo",
+      "prompt_tokens": 575
+    },
+    {
+      "ds_task_id": "Q45",
+      "condition": "Sprime",
+      "prompt_tokens": 230
+    },
+    {
+      "ds_task_id": "Q45",
+      "condition": "S",
+      "prompt_tokens": 201
+    },
+    {
+      "ds_task_id": "Q45",
+      "condition": "S_controlled",
+      "prompt_tokens": 364
+    },
+    {
+      "ds_task_id": "Q45",
+      "condition": "S_placebo",
+      "prompt_tokens": 365
+    },
+    {
+      "ds_task_id": "Q46",
+      "condition": "Sprime",
+      "prompt_tokens": 601
+    },
+    {
+      "ds_task_id": "Q46",
+      "condition": "S",
+      "prompt_tokens": 541
+    },
+    {
+      "ds_task_id": "Q46",
+      "condition": "S_controlled",
+      "prompt_tokens": 704
+    },
+    {
+      "ds_task_id": "Q46",
+      "condition": "S_placebo",
+      "prompt_tokens": 705
+    },
+    {
+      "ds_task_id": "Q47",
+      "condition": "Sprime",
+      "prompt_tokens": 419
+    },
+    {
+      "ds_task_id": "Q47",
+      "condition": "S",
+      "prompt_tokens": 413
+    },
+    {
+      "ds_task_id": "Q47",
+      "condition": "S_controlled",
+      "prompt_tokens": 576
+    },
+    {
+      "ds_task_id": "Q47",
+      "condition": "S_placebo",
+      "prompt_tokens": 577
+    },
+    {
+      "ds_task_id": "Q49",
+      "condition": "Sprime",
+      "prompt_tokens": 403
+    },
+    {
+      "ds_task_id": "Q49",
+      "condition": "S",
+      "prompt_tokens": 399
+    },
+    {
+      "ds_task_id": "Q49",
+      "condition": "S_controlled",
+      "prompt_tokens": 562
+    },
+    {
+      "ds_task_id": "Q49",
+      "condition": "S_placebo",
+      "prompt_tokens": 563
+    },
+    {
+      "ds_task_id": "Q50",
+      "condition": "Sprime",
+      "prompt_tokens": 412
+    },
+    {
+      "ds_task_id": "Q50",
+      "condition": "S",
+      "prompt_tokens": 406
+    },
+    {
+      "ds_task_id": "Q50",
+      "condition": "S_controlled",
+      "prompt_tokens": 569
+    },
+    {
+      "ds_task_id": "Q50",
+      "condition": "S_placebo",
+      "prompt_tokens": 570
+    },
+    {
+      "ds_task_id": "Q51",
+      "condition": "Sprime",
+      "prompt_tokens": 352
+    },
+    {
+      "ds_task_id": "Q51",
+      "condition": "S",
+      "prompt_tokens": 349
+    },
+    {
+      "ds_task_id": "Q51",
+      "condition": "S_controlled",
+      "prompt_tokens": 512
+    },
+    {
+      "ds_task_id": "Q51",
+      "condition": "S_placebo",
+      "prompt_tokens": 513
+    },
+    {
+      "ds_task_id": "Q52",
+      "condition": "Sprime",
+      "prompt_tokens": 228
+    },
+    {
+      "ds_task_id": "Q52",
+      "condition": "S",
+      "prompt_tokens": 243
+    },
+    {
+      "ds_task_id": "Q52",
+      "condition": "S_controlled",
+      "prompt_tokens": 406
+    },
+    {
+      "ds_task_id": "Q52",
+      "condition": "S_placebo",
+      "prompt_tokens": 407
+    }
+  ]
+}

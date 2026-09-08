@@ -1,0 +1,175 @@
+{
+  "schema": "study4c-execution-freeze-v1",
+  "study": "Study 4C-EX mechanism confirmation (four arms)",
+  "not_a_study4b_analysis": true,
+  "inputs": {
+    "stimuli_file_sha256": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef",
+    "block_controlled_sha256": "43d721af6d4e6efda4d483d1ce19a775cb5ff59eb116edfe9b4f7b78da67e0ab",
+    "block_placebo_sha256": "45fe8319bad04b70e8d72060f9129b13fffb05bf00d09caea25562e6da38c997",
+    "design_memo_sha256": "7b9766a7768eeee658746b66599cd6a0db301fc09de0ae388064200f96e09f70",
+    "validation_sha256": "8e136ae8d7c8c4081f3ccb99912c6ec52c0b6bd5c93ea5a2f21c60e1883b36e7",
+    "generation_stimuli_sha256": "f0268033011ef143fa4ed3238bfe5c9b07475cbe271050e085a36d0ad0185698",
+    "schedule_sha256": "eb3ab7e7e6c628643e773e80e686682641c2ac0a6c88ca2869725fa306ba8d54"
+  },
+  "model": {
+    "id": "Ornith-1.5-35B-A3B-Abliterated-MLX-4bit",
+    "fingerprint_sha256": "3fe867b89aa52259573e963d121e8974128d5665367b30781d4419b71ef538de",
+    "tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+    "files": [
+      {
+        "name": "README.md",
+        "bytes": 4918,
+        "sha256": "fc3cc1cab7c09e6d3918400f071db6f85665722961f499fda64d52a490bda896"
+      },
+      {
+        "name": "abliteration-manifest.json",
+        "bytes": 1550,
+        "sha256": "82d49e30e1d0eca38c23e3b748f6e923562ee3ee7803ecfa5b07558c88caf224"
+      },
+      {
+        "name": "artifact-manifest.json",
+        "bytes": 3325,
+        "sha256": "976292a0eeb6555c97893370c0c4a070b156ef43fa339edc8c850fa4e9125c5a"
+      },
+      {
+        "name": "chat_template.jinja",
+        "bytes": 7536,
+        "sha256": "182e77dd83bd8e9ca818b240b82e28f243762cd5dda32e6eef327df7b1cd107e"
+      },
+      {
+        "name": "config.json",
+        "bytes": 24086,
+        "sha256": "a31b9165854d78fda080b4115d584af9924571458c8f89110f70fbf40cf1878f"
+      },
+      {
+        "name": "configuration.json",
+        "bytes": 58,
+        "sha256": "c1b09db419119513247e9b8b912c4b9897106c9b20c6cada7e107d993c5435eb"
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 202,
+        "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e"
+      },
+      {
+        "name": "model-00001-of-00004.safetensors",
+        "bytes": 5288196062,
+        "sha256": "ad2a4e532a2d4785f3f31c594ff39c99200a230a2889b20998d45c10ae66d169"
+      },
+      {
+        "name": "model-00002-of-00004.safetensors",
+        "bytes": 5368472657,
+        "sha256": "cea3387a2e2863c6d9444a14b7ab6d89f321edcf63f02e699de6dde4e866e160"
+      },
+      {
+        "name": "model-00003-of-00004.safetensors",
+        "bytes": 5368324255,
+        "sha256": "85a877f211adad37e9db68bcd692faa16f9996424521ec8b731cd1114916fb64"
+      },
+      {
+        "name": "model-00004-of-00004.safetensors",
+        "bytes": 4377211327,
+        "sha256": "9daf1fb8f47f0bbef6dabe657700e404ee0ccda30037dda91204543ebf20a6e4"
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "bytes": 215755,
+        "sha256": "0b28df60e33753a14e816d3b31577ae2c93884c58430a4a6de6ae9ea483842ea"
+      },
+      {
+        "name": "preprocessor_config.json",
+        "bytes": 390,
+        "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+      },
+      {
+        "name": "processor_config.json",
+        "bytes": 991,
+        "sha256": "45fc17c8dd2474af6b493b52483c26c0584b0082d368c480f9fa611e73070040"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 676,
+        "sha256": "b15629084ebe73afd5a00e4f1802953e30f95f4339f1b4d0f7ad13230680bbd0"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 19989325,
+        "sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1165,
+        "sha256": "792fa3f0cb88b111e54ef3134c873531008c4df471d108da17903426e308aa7b"
+      },
+      {
+        "name": "validation-summary.json",
+        "bytes": 6573,
+        "sha256": "4a4d9b642926f21685d47607cba54a717787992cab2f93f34c517d23c0fdf692"
+      },
+      {
+        "name": "video_preprocessor_config.json",
+        "bytes": 385,
+        "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+      },
+      {
+        "name": "vocab.json",
+        "bytes": 6722759,
+        "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    ]
+  },
+  "generation_config": {
+    "temperature": 0.2,
+    "top_p": 1.0,
+    "max_tokens": 8192,
+    "chat_template_kwargs": {
+      "enable_thinking": false
+    }
+  },
+  "conditions": [
+    "Sprime",
+    "S",
+    "S_controlled",
+    "S_placebo"
+  ],
+  "n_tasks": 47,
+  "repeats": 4,
+  "n_requests": 752,
+  "max_concurrency": 2,
+  "runtime": {
+    "omlx": {
+      "version": "0.6.4",
+      "bundle_version": "0.6.4",
+      "bundle_build": "2529",
+      "app_binary": "/Applications/oMLX.app/Contents/MacOS/omlx",
+      "app_binary_sha256": "59a18f09b7b628fbd2e0bd5eebc0a516e2900a4ae0513798461592eff63a3183",
+      "cli_binary": "/Applications/oMLX.app/Contents/MacOS/omlx-cli",
+      "cli_binary_sha256": "e18341d8330e3804970db1cf92b20e9c850fae9043af9d0fe43e3e107e011584",
+      "endpoint": "http://127.0.0.1:8001",
+      "server_launch": {
+        "host": "127.0.0.1",
+        "port": 8001,
+        "model_dir": "/Users/lewiswu/.omlx/models/PocketAiHub",
+        "base_path": "/private/tmp/study4c-omlx-runtime-20260908",
+        "max_concurrent_requests": 2,
+        "memory_guard": "aggressive",
+        "cache": "disabled",
+        "api_key": "process-local; not persisted in Study-4B artifacts"
+      }
+    },
+    "hardware": {
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "machine": "arm64",
+      "hardware_model": "Mac16,9",
+      "cpu_brand": "Apple M4 Max",
+      "memory_bytes": "68719476736",
+      "gpu_backend": "MLX on Apple Silicon unified-memory GPU"
+    },
+    "python": {
+      "version": "3.11.9 (v3.11.9:de54cf5be3, Apr  2 2024, 07:12:50) [Clang 13.0.0 (clang-1300.0.29.30)]",
+      "executable": "/Library/Frameworks/Python.framework/Versions/3.11/bin/python3",
+      "numpy": "1.26.4",
+      "scipy": "1.16.0"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "study": "4C-EX",
+  "title": "Four-arm mechanism experiment: interface-contract block vs matched active placebo",
+  "status": "CLOSED",
+  "closed_utc": "2026-09-08T04:02:03+00:00",
+  "kind": "exploratory mechanism experiment designed after Study 4B",
+  "not_a_confirmatory_analysis_of": "Study 4B",
+  "permanent_design_limitation": "S_placebo candidate authoring was negatively conditioned on knowledge from the prior 20-task exploratory mechanism audit because several candidate style rules were rejected when they could plausibly repair previously observed defect modes. Study 4C is therefore a mechanism experiment designed after Study 4B and must not be described as outcome-naive independent confirmation.",
+  "design": {
+    "arms": [
+      "Sprime",
+      "S",
+      "S_controlled",
+      "S_placebo"
+    ],
+    "tasks": 47,
+    "repeats": 4,
+    "generations": 752,
+    "reused_study4b_completions": false,
+    "model": "Ornith-1.5-35B-A3B-Abliterated-MLX-4bit",
+    "root_seed": 11683815625601713154,
+    "concurrency": 2,
+    "dispatch": "FIFO",
+    "blocks": 4
+  },
+  "gates": {
+    "total": 36,
+    "passed": 36,
+    "outcome": "GO",
+    "deviations": [
+      "gate_A_discharged_structurally",
+      "gate_B_declared_prose_collisions: remove,name,value,signature"
+    ]
+  },
+  "generation_integrity": {
+    "completed": 752,
+    "expected": 752,
+    "retries": 0,
+    "model_drift": 0,
+    "truncated": 3,
+    "manual_repair": 0,
+    "completion_tokens": 224024
+  },
+  "evaluation_integrity": {
+    "oracle_preflight_ok": 47,
+    "evaluated": 752,
+    "non_runnable_scored_zero": {
+      "S_controlled": 6,
+      "S_placebo": 5,
+      "S": 1,
+      "Sprime": 0
+    }
+  },
+  "headline": {
+    "arm_rates": {
+      "Sprime": {
+        "security": 0.4095744680851064,
+        "capability": 0.9414893617021277,
+        "joint": 0.39361702127659576
+      },
+      "S": {
+        "security": 0.9361702127659575,
+        "capability": 0.6382978723404256,
+        "joint": 0.6329787234042553
+      },
+      "S_controlled": {
+        "security": 0.7659574468085106,
+        "capability": 0.5585106382978723,
+        "joint": 0.5212765957446809
+      },
+      "S_placebo": {
+        "security": 0.8404255319148937,
+        "capability": 0.5638297872340425,
+        "joint": 0.5531914893617021
+      }
+    },
+    "primary": {
+      "delta_C_mech": -0.005319,
+      "delta_C_mech_ci": [
+        -0.09389,
+        0.08325
+      ],
+      "delta_S_mech": -0.074468,
+      "delta_S_mech_ci": [
+        -0.1909,
+        0.042
+      ]
+    },
+    "security_preservation": {
+      "delta_S_preserve": -0.170213,
+      "ci": [
+        -0.2695,
+        -0.0709
+      ],
+      "noninferiority_margin": -0.05,
+      "result": "FAILED"
+    },
+    "secondary": {
+      "delta_C_repair": -0.079787,
+      "delta_C_generic": -0.074468,
+      "delta_S_generic": -0.095745
+    },
+    "identity_residual": -1.39e-17,
+    "verdict": "MIXED_OR_INCONCLUSIVE"
+  },
+  "hashes": {
+    "BLOCK_S_CONTROLLED.txt": "43d721af6d4e6efda4d483d1ce19a775cb5ff59eb116edfe9b4f7b78da67e0ab",
+    "BLOCK_S_PLACEBO.txt": "45fe8319bad04b70e8d72060f9129b13fffb05bf00d09caea25562e6da38c997",
+    "STUDY4C_RESULTS.md": "3a5f130d7dceab2e36b6f0c5ef1d7d98174132621144bc9f6bb721ee8e3c8b04",
+    "study4c_execute.py": "5594f93ca16af3d278f5c9a4ad313eb7c7afad03fa09d2cad1cbaed33c07c04d",
+    "study4c_validation_FROZEN.json": "8e136ae8d7c8c4081f3ccb99912c6ec52c0b6bd5c93ea5a2f21c60e1883b36e7",
+    "study4c_request_schedule_FROZEN.json": "eb3ab7e7e6c628643e773e80e686682641c2ac0a6c88ca2869725fa306ba8d54",
+    "study4c_execution_manifest_FROZEN.json": "ed725a2685960bd5d205aefac0d4cbe07f6093bb18c8212a8dcd09ee1c1c6c0d",
+    "study4c_generation_completion_FROZEN.json": "e56d1820b95bbea015c14c526e873609bb7af30e7bc5e6352cda97a4ac8efdbd",
+    "study4c_evaluation_FROZEN.json": "ba8d6a89b92f9fd232bb2eb6b93f96809e8fae8febffa02ea7bbeba5ca6c0bbf",
+    "study4c_analysis_FROZEN.json": "48778c565b521485f99e4a81f9a45d07a811f903d0f8aef28b76d84a41d47203",
+    "STUDY4C_FREEZE_ABORT_1.json": "ea4ceca7683b175572b1638be3bdbd74c5c9017d9032e9b15e7f74dba05c3308",
+    "SHA256SUMS_VALIDATION": "28f4bccd17e4afbe725cc0e01244caafe2c7148e3130b0c68b4293a851da0efe",
+    "SHA256SUMS_EXECUTION_FREEZE": "080f86f2688d795f9b034b3df48e45a7253432cf59c215c375d94a5711c58d28",
+    "SHA256SUMS_RESPONSES": "0ec4936337e25236ea9246af0b7c1677dd2dcf1fd73cfee11e052c090fc9f327",
+    "SHA256SUMS_EVALUATION": "a44db331d2cfefd3f0ebb7e41e2be1a87fad451be9e4773a1cdf9886e8653d6a",
+    "SHA256SUMS_ANALYSIS": "a0776d3e3d0587093af39d561bf42e791c51d4112f1b91b0f7e44f2f273ce214"
+  },
+  "quarantined_not_in_git": {
+    "study4c_generation_stimuli_FROZEN.json": "f0268033011ef143fa4ed3238bfe5c9b07475cbe271050e085a36d0ad0185698"
+  },
+  "hard_stops_during_execution": 0,
+  "aborted_freeze_attempts_before_any_model_call": 1,
+  "post_hoc_mining_performed": false,
+  "scope_unchanged": [
+    "Study-4B confirmatory result and its FAILED capability guardrail are unchanged",
+    "Fresh-sample Study 4 remains closed at 0/160 -> NO-GO",
+    "Paper synthesis freeze 1dda9cf5b3abdca8930900fdc8ac0d92234bb3b8 untouched"
+  ],
+  "top_level_index": "SHA256SUMS_STUDY4C (lists every tracked artifact incl. this manifest)"
+}

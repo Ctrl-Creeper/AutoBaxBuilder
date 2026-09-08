@@ -1,0 +1,13 @@
+Source Layout (applies in addition to everything above):
+- Use four spaces for each level of indentation, and keep every line of the
+  implementation at or under 88 characters.
+- Use double quotation marks around string literals, except within strings that
+  already contain double quotation marks.
+- Place every comment on its own line, immediately above the line that it
+  describes, rather than at the end of a line of code.
+- Separate consecutive top-level definitions by exactly one blank line, without
+  any additional vertical whitespace.
+- Define the implementation at the top level of the code block, rather than
+  nesting it inside a class definition or inside a conditional statement.
+- Apply these layout constraints to any helper definitions as well as to the
+  target function.

@@ -1,0 +1,13 @@
+Interface Contract (applies in addition to everything above):
+- Implement exactly the function name and signature documented above, using the
+  documented argument names with their documented meanings.
+- Return the documented return type and value semantics. Do not normalise,
+  reformat, coerce, or substitute the value that is documented above.
+- Raise exactly the exceptions documented above, in the circumstances documented
+  above, and no others.
+- Any input that the description above requires to be handled normally must still
+  receive the behaviour documented above.
+- Security or validation logic must not otherwise change the documented behaviour
+  for inputs that the description above requires to be handled normally.
+- Do not relax, weaken, or remove any security requirement stated above in order
+  to satisfy these constraints.
