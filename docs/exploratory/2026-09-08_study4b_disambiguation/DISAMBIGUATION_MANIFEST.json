@@ -1,0 +1,72 @@
+{
+ "closure_manifest_sha256": "f1a330a1edd1fcadafd84e83c23f8dd166b4ebfedc3c51a468a064920c1eed88",
+ "confirmatory_result_unchanged": true,
+ "counts": {
+  "category": {
+   "GENERAL_IMPLEMENTATION_DIVERGENCE": 2,
+   "NONEXECUTION_OR_TRUNCATION": 3,
+   "ORACLE_INTERFACE_CONFLICT": 8,
+   "OVER_RESTRICTION": 7
+  },
+  "defect_in_added_safety_machinery": {
+   "no": 9,
+   "yes": 11
+  },
+  "failure_form": {
+   "altered_return": 7,
+   "input_filtering_or_sanitization": 1,
+   "nonexecution": 3,
+   "reject_instead_of_process": 7,
+   "unrelated_implementation_change": 2
+  },
+  "guard_causally_proximate": {
+   "no": 10,
+   "unclear": 3,
+   "yes": 7
+  },
+  "policy_intent_would_accept_required_input": {
+   "na": 3,
+   "no": 3,
+   "yes": 14
+  },
+  "spec_decides_over_restriction": {
+   "no": 16,
+   "yes": 4
+  }
+ },
+ "decision_gate": {
+  "ambiguous": 0,
+  "experiment_designed_or_started": false,
+  "largest_of_two": 8,
+  "result": "NEW EXPERIMENT NEEDED",
+  "rule": "dominant of OVER_RESTRICTION/ORACLE_INTERFACE_CONFLICT >= 14/20 and AMBIGUOUS <= 4/20"
+ },
+ "files": {
+  "CODING_KEY_SEALED.json": "c03eaa66e04e91942d529015521d300badaa89de3bf19277b6065b89280810d8",
+  "CODING_PACKET_BLINDED.md": "ae5f42980d61dbf4c0c2e60a3786ca8f8094bcb8c05688781eb8a5cdf0b4e906",
+  "CODING_RESULTS.json": "49ffa8453c5958d711b04b1a791c85850f7c85af50998f587ab2312db07a6595",
+  "MECHANISM_DISAMBIGUATION_MEMO.md": "0290e4e5b62c7bb28bee205777c0f16fff89a0e42e65aed170e566361275b2a7",
+  "RUBRIC_FROZEN.md": "6b76bbadd6769f1a51467e982c2354765918ef9bd514a47c2a8cf0e6d925e69a",
+  "build_packet.py": "cbd6a6e25739fe6812713b36382d48e50a34b6404bf21bd67d9a393c71908cbb"
+ },
+ "line": "POST-HOC EXPLORATORY \u2014 Mechanism Disambiguation",
+ "mediation_claim_made": false,
+ "modified_confirmatory_artifacts": false,
+ "new_completions": 0,
+ "new_model_runs": 0,
+ "new_p_values": 0,
+ "rubric_frozen_before_inspection": true,
+ "sampling": {
+  "fallback_selections": 0,
+  "frame": "DS47 tasks with lower CapabilityPass under S than S'",
+  "frame_size": 26,
+  "sample_size": 20,
+  "seed": 3753517553150288121,
+  "seed_inputs": [
+   "stimuli_sha256",
+   "evaluation_sha256",
+   "rubric_sha256"
+  ]
+ },
+ "schema": "study4b-mechanism-disambiguation-v1"
+}

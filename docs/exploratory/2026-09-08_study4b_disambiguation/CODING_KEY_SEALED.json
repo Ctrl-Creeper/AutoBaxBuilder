@@ -1,0 +1,230 @@
+{
+ "evaluation_sha256": "fba90188d0a10424bf60da8706717cd825f972708c18e6dc04c8cc222310a10b",
+ "frame_size": 26,
+ "key": [
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0226",
+   "Sprime_repeat": 1,
+   "Sprime_request_id": "S4B-G0051",
+   "ds_task_id": "Q01",
+   "fallback_selection": false,
+   "packet_id": "T01"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 1,
+   "S_request_id": "S4B-G0373",
+   "Sprime_repeat": 3,
+   "Sprime_request_id": "S4B-G0036",
+   "ds_task_id": "Q03",
+   "fallback_selection": false,
+   "packet_id": "T02"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 4,
+   "S_request_id": "S4B-G0060",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0059",
+   "ds_task_id": "Q05",
+   "fallback_selection": false,
+   "packet_id": "T03"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0127",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0112",
+   "ds_task_id": "Q07",
+   "fallback_selection": false,
+   "packet_id": "T04"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0103",
+   "Sprime_repeat": 3,
+   "Sprime_request_id": "S4B-G0104",
+   "ds_task_id": "Q08",
+   "fallback_selection": false,
+   "packet_id": "T05"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 1,
+   "S_request_id": "S4B-G0047",
+   "Sprime_repeat": 1,
+   "Sprime_request_id": "S4B-G0048",
+   "ds_task_id": "Q10",
+   "fallback_selection": false,
+   "packet_id": "T06"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 1,
+   "S_request_id": "S4B-G0214",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0011",
+   "ds_task_id": "Q13",
+   "fallback_selection": false,
+   "packet_id": "T07"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0197",
+   "Sprime_repeat": 2,
+   "Sprime_request_id": "S4B-G0309",
+   "ds_task_id": "Q19",
+   "fallback_selection": false,
+   "packet_id": "T08"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 4,
+   "S_request_id": "S4B-G0340",
+   "Sprime_repeat": 2,
+   "Sprime_request_id": "S4B-G0037",
+   "ds_task_id": "Q21",
+   "fallback_selection": false,
+   "packet_id": "T09"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 4,
+   "S_request_id": "S4B-G0217",
+   "Sprime_repeat": 3,
+   "Sprime_request_id": "S4B-G0298",
+   "ds_task_id": "Q23",
+   "fallback_selection": false,
+   "packet_id": "T10"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 4,
+   "S_request_id": "S4B-G0091",
+   "Sprime_repeat": 1,
+   "Sprime_request_id": "S4B-G0325",
+   "ds_task_id": "Q25",
+   "fallback_selection": false,
+   "packet_id": "T11"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 2,
+   "S_request_id": "S4B-G0268",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0272",
+   "ds_task_id": "Q29",
+   "fallback_selection": false,
+   "packet_id": "T12"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0367",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0333",
+   "ds_task_id": "Q30",
+   "fallback_selection": false,
+   "packet_id": "T13"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 1,
+   "S_request_id": "S4B-G0372",
+   "Sprime_repeat": 2,
+   "Sprime_request_id": "S4B-G0328",
+   "ds_task_id": "Q32",
+   "fallback_selection": false,
+   "packet_id": "T14"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 1,
+   "S_request_id": "S4B-G0030",
+   "Sprime_repeat": 3,
+   "Sprime_request_id": "S4B-G0293",
+   "ds_task_id": "Q36",
+   "fallback_selection": false,
+   "packet_id": "T15"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0285",
+   "Sprime_repeat": 3,
+   "Sprime_request_id": "S4B-G0286",
+   "ds_task_id": "Q38",
+   "fallback_selection": false,
+   "packet_id": "T16"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0054",
+   "Sprime_repeat": 1,
+   "Sprime_request_id": "S4B-G0270",
+   "ds_task_id": "Q40",
+   "fallback_selection": false,
+   "packet_id": "T17"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 3,
+   "S_request_id": "S4B-G0365",
+   "Sprime_repeat": 4,
+   "Sprime_request_id": "S4B-G0157",
+   "ds_task_id": "Q41",
+   "fallback_selection": false,
+   "packet_id": "T18"
+  },
+  {
+   "A": "S",
+   "B": "Sprime",
+   "S_repeat": 2,
+   "S_request_id": "S4B-G0296",
+   "Sprime_repeat": 2,
+   "Sprime_request_id": "S4B-G0295",
+   "ds_task_id": "Q44",
+   "fallback_selection": false,
+   "packet_id": "T19"
+  },
+  {
+   "A": "Sprime",
+   "B": "S",
+   "S_repeat": 4,
+   "S_request_id": "S4B-G0263",
+   "Sprime_repeat": 2,
+   "Sprime_request_id": "S4B-G0154",
+   "ds_task_id": "Q46",
+   "fallback_selection": false,
+   "packet_id": "T20"
+  }
+ ],
+ "rubric_sha256": "6b76bbadd6769f1a51467e982c2354765918ef9bd514a47c2a8cf0e6d925e69a",
+ "sample_size": 20,
+ "seed": 3753517553150288121,
+ "stimuli_sha256": "81ac8389d213998b95ad71fbfa431f3d6863a8371b9f04af0ebb5e790d7c84ef"
+}

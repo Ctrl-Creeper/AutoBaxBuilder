@@ -24,3 +24,7 @@ docs/preregistration/2026-09-08_study4b_execution/study4b_ds47_stimuli_SEALED.js
 docs/preregistration/2026-09-08_study4b_execution/study4b_generation_stimuli_FROZEN.json
 docs/preregistration/2026-09-08_study4b_execution/generation_calls/
 docs/preregistration/2026-09-08_study4b_execution/.ruff_cache/
+
+# Study-4B disambiguation: the blinded packet reproduces the frozen capability
+# oracle cases and full completions; hashes go in git, oracle content does not
+docs/exploratory/2026-09-08_study4b_disambiguation/CODING_PACKET_BLINDED.md
