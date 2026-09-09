@@ -1,0 +1,5 @@
+{
+  "stage": "hashes",
+  "error": "refusing to overwrite frozen artifact: /Users/lewiswu/网络安全/AutoBaxBuilder/docs/exploratory/2026-09-09_study4x_crossmodel/SHA256SUMS_RESPONSES",
+  "type": "HardStop"
+}
