@@ -1,0 +1,1925 @@
+{
+  "schema": "study4x-r2r3-gate-report-v1",
+  "confirmatory": false,
+  "amendment_sha256": "ece341398a06f7f20afc0aa834730ddb90e41502f889fc152984a8bd310617f0",
+  "design_sha256": "6632c086578660f80ced3caa09b3e745ae3e8a74d97ddc0f15650f2a4d85552d",
+  "gates": {
+    "amendment_frozen": "PASS",
+    "prompt_projection_hash": "PASS",
+    "prompt_completeness_and_per_prompt_hashes": "PASS",
+    "prompt_projection_oracle_free": "PASS",
+    "evaluation_oracle_hash": "PASS",
+    "study3_oracle_provenance": "PASS",
+    "model_served": "PASS",
+    "smoke_call_with_generation_config": "PASS",
+    "api_key_process_local_only": "PASS",
+    "repeat1_artifacts_intact": "PASS",
+    "no_request_id_or_seed_collision": "PASS"
+  },
+  "repeat1_hashes": {
+    "study4x_generation_completion_FROZEN.json": "b3ca02adee17b125eed4f8e22456bf3e34de8f3c6169041fc8550a7c80afb22d",
+    "study4x_evaluation_FROZEN.json": "4e88e5b726c11a1df0f1ec09c3f3f552c484624c9b8c016bcf4a738f064fc657",
+    "study4x_analysis_FROZEN.json": "722827be103a58cd74217d5853c5a8e06708b137046113e4a0a08430c8bb4eeb"
+  },
+  "served_model_ids": [
+    "codex-auto-review",
+    "gpt-5.2",
+    "gpt-5.3-codex-spark",
+    "gpt-5.4",
+    "gpt-5.4-mini",
+    "gpt-5.5",
+    "gpt-5.6",
+    "gpt-5.6-luna",
+    "gpt-5.6-sol",
+    "gpt-5.6-terra",
+    "gpt-6",
+    "gpt-6-astra",
+    "gpt-image-1",
+    "gpt-image-1.5",
+    "gpt-image-2"
+  ],
+  "smoke_system_fingerprint": null,
+  "n_requests_planned": 188,
+  "schedule": [
+    {
+      "request_id": "Q31-Sprime-R3",
+      "ds_task_id": "Q31",
+      "source_index": 1219,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "49e5b89272ee4441d9fa0f733ba8bab1a1476ff92608b182f7130e366ddfc76f",
+      "seed": 573047647,
+      "position": 1
+    },
+    {
+      "request_id": "Q14-S-R3",
+      "ds_task_id": "Q14",
+      "source_index": 1089,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "a593207a4f198a3ff3707607e945e117b5c48eb41c3f4397a7f89c361b427763",
+      "seed": 3705337035,
+      "position": 2
+    },
+    {
+      "request_id": "Q32-S-R3",
+      "ds_task_id": "Q32",
+      "source_index": 1410,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "4bfd4a865d077f9e30e148d064933ef9a42503d45ac9c7bb8c7ce3cf4ff33a9d",
+      "seed": 2562261823,
+      "position": 3
+    },
+    {
+      "request_id": "Q06-Sprime-R2",
+      "ds_task_id": "Q06",
+      "source_index": 447,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "5e18a638bb0ff4d51506875c54c3edb865e31f70f61fffb3f1fdabebe26e30fd",
+      "seed": 2221636078,
+      "position": 4
+    },
+    {
+      "request_id": "Q35-Sprime-R3",
+      "ds_task_id": "Q35",
+      "source_index": 457,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "841ca6efcbb7a793262da77d5580ba9daeaad52b83c41ca3c52c16259f4504b4",
+      "seed": 3469579269,
+      "position": 5
+    },
+    {
+      "request_id": "Q17-Sprime-R2",
+      "ds_task_id": "Q17",
+      "source_index": 1166,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "1c141b5eec52a71a5976df174e6f33269cdde8080bd13620212195c8d220e803",
+      "seed": 2333649765,
+      "position": 6
+    },
+    {
+      "request_id": "Q44-S-R2",
+      "ds_task_id": "Q44",
+      "source_index": 435,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "3207b23127fbb2c105d58557a3ceeb56e680cfa0949364edec7ba809a19550f0",
+      "seed": 55408134,
+      "position": 7
+    },
+    {
+      "request_id": "Q47-S-R3",
+      "ds_task_id": "Q47",
+      "source_index": 1218,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "f472d3e2320045ae847a2dbaeb4a411bd6e35764bb885a5272fd8579c5b3a1d1",
+      "seed": 2100976980,
+      "position": 8
+    },
+    {
+      "request_id": "Q45-Sprime-R3",
+      "ds_task_id": "Q45",
+      "source_index": 780,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "778f4768913f913ba17da6d6f31d071005735ab85b2ad70420bed328b544e555",
+      "seed": 483322834,
+      "position": 9
+    },
+    {
+      "request_id": "Q25-S-R3",
+      "ds_task_id": "Q25",
+      "source_index": 652,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "3561ba7e77356c9301f87ffe6b534854efb03eb4e7dff7c0471a3ebbe33e0f04",
+      "seed": 2354465307,
+      "position": 10
+    },
+    {
+      "request_id": "Q09-S-R3",
+      "ds_task_id": "Q09",
+      "source_index": 1080,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "b949ee6295fe6966320e0dfe27d2f3f989f034704b15228812dae9e3c48800b3",
+      "seed": 2283417010,
+      "position": 11
+    },
+    {
+      "request_id": "Q49-Sprime-R2",
+      "ds_task_id": "Q49",
+      "source_index": 1302,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "08f2af5fe6b235a0f8fed7d601795d8e96be8c56712385440039f391d5b2b3a0",
+      "seed": 3842024050,
+      "position": 12
+    },
+    {
+      "request_id": "Q46-Sprime-R3",
+      "ds_task_id": "Q46",
+      "source_index": 168,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "ed0a8dfb92978e80a417e4811b2d38dc18b99b02a3de7b3c96e849c64afb7f5a",
+      "seed": 3306989558,
+      "position": 13
+    },
+    {
+      "request_id": "Q19-S-R3",
+      "ds_task_id": "Q19",
+      "source_index": 1377,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "81d3f5fce9d8143c22e887378f85c9d9a6cf2d667be41a0d3f766894135afb04",
+      "seed": 2884165711,
+      "position": 14
+    },
+    {
+      "request_id": "Q16-Sprime-R2",
+      "ds_task_id": "Q16",
+      "source_index": 137,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "95e002567351d376c2723f53021a483ae55491e9555e0a5e698511761d1ea1b4",
+      "seed": 23837508,
+      "position": 15
+    },
+    {
+      "request_id": "Q05-S-R3",
+      "ds_task_id": "Q05",
+      "source_index": 485,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "90da255a1ad29388923a334b1878391a076c2b1e394b9ce5a620bd43630630b2",
+      "seed": 1996548060,
+      "position": 16
+    },
+    {
+      "request_id": "Q32-Sprime-R3",
+      "ds_task_id": "Q32",
+      "source_index": 1410,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "1e3c76a869358b3f80529dd722ee4ee838a4f490dc48016e85be959f566c507d",
+      "seed": 3927839347,
+      "position": 17
+    },
+    {
+      "request_id": "Q08-S-R2",
+      "ds_task_id": "Q08",
+      "source_index": 433,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "57df961417738dbfa22146503b25cb6c0d5278d0c3b9fc6e296e93a320ec5b54",
+      "seed": 397820322,
+      "position": 18
+    },
+    {
+      "request_id": "Q41-Sprime-R3",
+      "ds_task_id": "Q41",
+      "source_index": 1170,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "c4cfb5a90df1175d24c7ee2413fca522ca32cbb4bd393906e9e69b6b5d204073",
+      "seed": 4061848016,
+      "position": 19
+    },
+    {
+      "request_id": "Q29-Sprime-R2",
+      "ds_task_id": "Q29",
+      "source_index": 600,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "fea3fdfb273fe4c638eb1fae08f2b84837d4ea1550be8d2c5f6ba725eb4d3c06",
+      "seed": 3237864565,
+      "position": 20
+    },
+    {
+      "request_id": "Q33-Sprime-R3",
+      "ds_task_id": "Q33",
+      "source_index": 1305,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "bdfd75132b69ee19adf6d96ba84b43906355041a1d0ad56e3d7bd5287bf19671",
+      "seed": 2824278089,
+      "position": 21
+    },
+    {
+      "request_id": "Q12-S-R2",
+      "ds_task_id": "Q12",
+      "source_index": 775,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "ac0dc44d90b9c649559e13efd8e3b5e70e0811b9faabb6937fffa2c4020543cb",
+      "seed": 2597033000,
+      "position": 22
+    },
+    {
+      "request_id": "Q30-S-R3",
+      "ds_task_id": "Q30",
+      "source_index": 1148,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "74d3e2bac5e870271699a080174fff80e5b03f23d6e98e593664e36bfa785497",
+      "seed": 3535736450,
+      "position": 23
+    },
+    {
+      "request_id": "Q22-S-R2",
+      "ds_task_id": "Q22",
+      "source_index": 1133,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "b0bcf7b2788a01c60f1d377c85faae6ad03abf90bc85019965d8620368aacb15",
+      "seed": 1772379127,
+      "position": 24
+    },
+    {
+      "request_id": "Q14-Sprime-R2",
+      "ds_task_id": "Q14",
+      "source_index": 1089,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "9b51fc2b7be2f6e1e3523a9472b31cdd262f32acc4830da85b63c00e9e3c054f",
+      "seed": 1858622394,
+      "position": 25
+    },
+    {
+      "request_id": "Q49-S-R2",
+      "ds_task_id": "Q49",
+      "source_index": 1302,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "301d22088f23bed023cc76eb9921c2427a458771e1ac919b8863b59c2a2c4a7f",
+      "seed": 2407007987,
+      "position": 26
+    },
+    {
+      "request_id": "Q09-S-R2",
+      "ds_task_id": "Q09",
+      "source_index": 1080,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "b949ee6295fe6966320e0dfe27d2f3f989f034704b15228812dae9e3c48800b3",
+      "seed": 2182757474,
+      "position": 27
+    },
+    {
+      "request_id": "Q39-S-R2",
+      "ds_task_id": "Q39",
+      "source_index": 102,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "048b027908be652b918656c3395362e980b58253519e2e9e9c888da514f4e18b",
+      "seed": 3635844288,
+      "position": 28
+    },
+    {
+      "request_id": "Q29-Sprime-R3",
+      "ds_task_id": "Q29",
+      "source_index": 600,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "fea3fdfb273fe4c638eb1fae08f2b84837d4ea1550be8d2c5f6ba725eb4d3c06",
+      "seed": 1277306970,
+      "position": 29
+    },
+    {
+      "request_id": "Q47-Sprime-R2",
+      "ds_task_id": "Q47",
+      "source_index": 1218,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "75bb607e624f6b2d04d3fab7f85821cab42b4fb1d989d4fd827a05b772df78fd",
+      "seed": 4223323458,
+      "position": 30
+    },
+    {
+      "request_id": "Q44-Sprime-R2",
+      "ds_task_id": "Q44",
+      "source_index": 435,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "7926ded38bd3ca0dbde973ff71bf4f40a0460088dd078eebfe8643137f802329",
+      "seed": 2858065213,
+      "position": 31
+    },
+    {
+      "request_id": "Q43-Sprime-R3",
+      "ds_task_id": "Q43",
+      "source_index": 165,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "659d83b4208504e151b830868a6d3f1a3a2ea28e2d178e5213c58c4f9b17093d",
+      "seed": 4190838788,
+      "position": 32
+    },
+    {
+      "request_id": "Q35-Sprime-R2",
+      "ds_task_id": "Q35",
+      "source_index": 457,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "841ca6efcbb7a793262da77d5580ba9daeaad52b83c41ca3c52c16259f4504b4",
+      "seed": 1305377721,
+      "position": 33
+    },
+    {
+      "request_id": "Q15-S-R3",
+      "ds_task_id": "Q15",
+      "source_index": 1136,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "901eb10c035c65d6a605f5e9ea5c6f2775fe8a8f2bb5d704fcd7cbb9895baa3b",
+      "seed": 315780660,
+      "position": 34
+    },
+    {
+      "request_id": "Q38-Sprime-R3",
+      "ds_task_id": "Q38",
+      "source_index": 503,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "464bd1386ab0bb3afc6d37bf77e3ffa99fd3202baaf54757da6aa0ba6af85c73",
+      "seed": 2243425376,
+      "position": 35
+    },
+    {
+      "request_id": "Q06-Sprime-R3",
+      "ds_task_id": "Q06",
+      "source_index": 447,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "5e18a638bb0ff4d51506875c54c3edb865e31f70f61fffb3f1fdabebe26e30fd",
+      "seed": 2534010824,
+      "position": 36
+    },
+    {
+      "request_id": "Q22-Sprime-R2",
+      "ds_task_id": "Q22",
+      "source_index": 1133,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "691b1e2bd9f49faf3965cf5f3c136bdeab638aa77aa051a6e8914cf87a2e270c",
+      "seed": 694390696,
+      "position": 37
+    },
+    {
+      "request_id": "Q08-Sprime-R2",
+      "ds_task_id": "Q08",
+      "source_index": 433,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "7999b73da5d6420fce7a891a141bf3252c8312a5e15cf401d712afdf59c69c65",
+      "seed": 3756843110,
+      "position": 38
+    },
+    {
+      "request_id": "Q52-S-R2",
+      "ds_task_id": "Q52",
+      "source_index": 1189,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "6f1d9d2328ea8d16f7d2f632b34564f36306c5c36cf054039afadf8a2d8cb1f9",
+      "seed": 4089568145,
+      "position": 39
+    },
+    {
+      "request_id": "Q16-Sprime-R3",
+      "ds_task_id": "Q16",
+      "source_index": 137,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "95e002567351d376c2723f53021a483ae55491e9555e0a5e698511761d1ea1b4",
+      "seed": 3643645626,
+      "position": 40
+    },
+    {
+      "request_id": "Q26-Sprime-R3",
+      "ds_task_id": "Q26",
+      "source_index": 454,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "e66c099ad25f3895b1a970ea500cd13a205f668ece5afa5aa855da04c009c1cd",
+      "seed": 2052186813,
+      "position": 41
+    },
+    {
+      "request_id": "Q04-S-R2",
+      "ds_task_id": "Q04",
+      "source_index": 1027,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "7f7cbede7f790f931e0e4ac6bfaf608def19664d19e43a73617b343b33c97cc6",
+      "seed": 3695014786,
+      "position": 42
+    },
+    {
+      "request_id": "Q15-S-R2",
+      "ds_task_id": "Q15",
+      "source_index": 1136,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "901eb10c035c65d6a605f5e9ea5c6f2775fe8a8f2bb5d704fcd7cbb9895baa3b",
+      "seed": 2791785394,
+      "position": 43
+    },
+    {
+      "request_id": "Q45-S-R2",
+      "ds_task_id": "Q45",
+      "source_index": 780,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "0f000f4f9d164569cf4396cd7b305ed98c90c27df00f6aba18426262be7d3225",
+      "seed": 723591168,
+      "position": 44
+    },
+    {
+      "request_id": "Q08-S-R3",
+      "ds_task_id": "Q08",
+      "source_index": 433,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "57df961417738dbfa22146503b25cb6c0d5278d0c3b9fc6e296e93a320ec5b54",
+      "seed": 3362803401,
+      "position": 45
+    },
+    {
+      "request_id": "Q11-S-R3",
+      "ds_task_id": "Q11",
+      "source_index": 660,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "c2c82ac1b47e9f2d7c363766d9434ed7270cc83146263d4a9182274436b88a49",
+      "seed": 3496148925,
+      "position": 46
+    },
+    {
+      "request_id": "Q25-Sprime-R3",
+      "ds_task_id": "Q25",
+      "source_index": 652,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "b2da6002b50753c8f22f7fe4e37afae7dcf3585833f6ef4304ad48aba06a1d88",
+      "seed": 164945981,
+      "position": 47
+    },
+    {
+      "request_id": "Q40-Sprime-R2",
+      "ds_task_id": "Q40",
+      "source_index": 1082,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "dcc4d72413d7282c878b000b7f5c613b576fe29e39de83b50797bb5544cfaf8d",
+      "seed": 2060956658,
+      "position": 48
+    },
+    {
+      "request_id": "Q43-S-R2",
+      "ds_task_id": "Q43",
+      "source_index": 165,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "a3dec3a041d20d09b40e2505e5e8cfc7b1dfc5c6d487b60f241d58ebbf8dd423",
+      "seed": 3874961683,
+      "position": 49
+    },
+    {
+      "request_id": "Q02-S-R2",
+      "ds_task_id": "Q02",
+      "source_index": 1101,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "0289ed07206c187a5923f7c29862e1a436d471ded540b66e1f67138fd9d21651",
+      "seed": 1202615933,
+      "position": 50
+    },
+    {
+      "request_id": "Q13-S-R3",
+      "ds_task_id": "Q13",
+      "source_index": 1206,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "31812fb0f213cb98fc6074281d6ac829d029d5a222e5b3ac3c199937dc5ed076",
+      "seed": 1636082852,
+      "position": 51
+    },
+    {
+      "request_id": "Q52-Sprime-R2",
+      "ds_task_id": "Q52",
+      "source_index": 1189,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "9fd2ebab6e81ed0af1a4fda4b1fb1e2c98ad10d15a69f92dcc86ef94673746db",
+      "seed": 1152284714,
+      "position": 52
+    },
+    {
+      "request_id": "Q17-Sprime-R3",
+      "ds_task_id": "Q17",
+      "source_index": 1166,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "1c141b5eec52a71a5976df174e6f33269cdde8080bd13620212195c8d220e803",
+      "seed": 3448778574,
+      "position": 53
+    },
+    {
+      "request_id": "Q17-S-R2",
+      "ds_task_id": "Q17",
+      "source_index": 1166,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "262cb01cad524ea07bcaf3eebc22bfc84751d0dd960ba898d8e3eb615d8365cb",
+      "seed": 2387540705,
+      "position": 54
+    },
+    {
+      "request_id": "Q51-Sprime-R2",
+      "ds_task_id": "Q51",
+      "source_index": 1020,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "2037636114b4a2e0dde15741bc32bdc0047647eb25c6bbc6f10538d6f221c5f8",
+      "seed": 3368729034,
+      "position": 55
+    },
+    {
+      "request_id": "Q40-Sprime-R3",
+      "ds_task_id": "Q40",
+      "source_index": 1082,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "dcc4d72413d7282c878b000b7f5c613b576fe29e39de83b50797bb5544cfaf8d",
+      "seed": 732535170,
+      "position": 56
+    },
+    {
+      "request_id": "Q51-S-R2",
+      "ds_task_id": "Q51",
+      "source_index": 1020,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "e774a60ac82ccd3356ff862334ebb10ddafc87ee544b8f1cc2bbe1ae4b0093e2",
+      "seed": 3276746295,
+      "position": 57
+    },
+    {
+      "request_id": "Q10-Sprime-R2",
+      "ds_task_id": "Q10",
+      "source_index": 1405,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "bd8aba155f4cf0bffb468896685aea5427487d118bca55329160d85ca4cc09b4",
+      "seed": 2885286913,
+      "position": 58
+    },
+    {
+      "request_id": "Q16-S-R3",
+      "ds_task_id": "Q16",
+      "source_index": 137,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "b73b30251899bb09b8d7f2407fb560e62893cbede9efa707e7f2b83996352f37",
+      "seed": 3586895902,
+      "position": 59
+    },
+    {
+      "request_id": "Q52-S-R3",
+      "ds_task_id": "Q52",
+      "source_index": 1189,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "6f1d9d2328ea8d16f7d2f632b34564f36306c5c36cf054039afadf8a2d8cb1f9",
+      "seed": 994746373,
+      "position": 60
+    },
+    {
+      "request_id": "Q33-S-R2",
+      "ds_task_id": "Q33",
+      "source_index": 1305,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "35f3101649f1345ce1466a1ea2e921dad2a4271213529fc79ea40bdf7aadb1d5",
+      "seed": 2115966004,
+      "position": 61
+    },
+    {
+      "request_id": "Q49-S-R3",
+      "ds_task_id": "Q49",
+      "source_index": 1302,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "301d22088f23bed023cc76eb9921c2427a458771e1ac919b8863b59c2a2c4a7f",
+      "seed": 2645160295,
+      "position": 62
+    },
+    {
+      "request_id": "Q37-S-R3",
+      "ds_task_id": "Q37",
+      "source_index": 675,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "88acfd4dec070f312dfc144e58c012cce462ec00b3d81cc19f04e62d7070abd1",
+      "seed": 4098832820,
+      "position": 63
+    },
+    {
+      "request_id": "Q15-Sprime-R2",
+      "ds_task_id": "Q15",
+      "source_index": 1136,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "fbfd83ca1c764339ce675a69927eb04e58f355cecc0b05d8e5dc6a9f5ee205d9",
+      "seed": 3299020421,
+      "position": 64
+    },
+    {
+      "request_id": "Q32-Sprime-R2",
+      "ds_task_id": "Q32",
+      "source_index": 1410,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "1e3c76a869358b3f80529dd722ee4ee838a4f490dc48016e85be959f566c507d",
+      "seed": 98550798,
+      "position": 65
+    },
+    {
+      "request_id": "Q30-Sprime-R2",
+      "ds_task_id": "Q30",
+      "source_index": 1148,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "ab5fa4a6a17d68615bf6397fdcde187149476a5d6d14d641250018e8292525cc",
+      "seed": 2452771797,
+      "position": 66
+    },
+    {
+      "request_id": "Q40-S-R3",
+      "ds_task_id": "Q40",
+      "source_index": 1082,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "2d4316c5f38147ad9c094b6af82b00ddb91e54ed93e79d7528009d4d7f47c485",
+      "seed": 2523381719,
+      "position": 67
+    },
+    {
+      "request_id": "Q37-Sprime-R3",
+      "ds_task_id": "Q37",
+      "source_index": 675,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "662b892de4b6a36b0f6aaabcb6e4b5f6f8e02d5151bef726a97f328577f53373",
+      "seed": 3668843524,
+      "position": 68
+    },
+    {
+      "request_id": "Q41-S-R2",
+      "ds_task_id": "Q41",
+      "source_index": 1170,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "018d835a166145a63cf122e9ab5cb17eee669d9776d508081dafa05d21e2ed21",
+      "seed": 707141855,
+      "position": 69
+    },
+    {
+      "request_id": "Q14-S-R2",
+      "ds_task_id": "Q14",
+      "source_index": 1089,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "a593207a4f198a3ff3707607e945e117b5c48eb41c3f4397a7f89c361b427763",
+      "seed": 3939911470,
+      "position": 70
+    },
+    {
+      "request_id": "Q36-Sprime-R2",
+      "ds_task_id": "Q36",
+      "source_index": 1163,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "44ca8bb0154325475db4fb6700e045fbb5687ab5adacb0fbff36df1ed97fd175",
+      "seed": 546468021,
+      "position": 71
+    },
+    {
+      "request_id": "Q36-Sprime-R3",
+      "ds_task_id": "Q36",
+      "source_index": 1163,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "44ca8bb0154325475db4fb6700e045fbb5687ab5adacb0fbff36df1ed97fd175",
+      "seed": 84256284,
+      "position": 72
+    },
+    {
+      "request_id": "Q31-S-R3",
+      "ds_task_id": "Q31",
+      "source_index": 1219,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "18148ee966f5363f045fe23078add218e38e68df59a45e59ddbcd0e568f69729",
+      "seed": 3186328013,
+      "position": 73
+    },
+    {
+      "request_id": "Q19-Sprime-R3",
+      "ds_task_id": "Q19",
+      "source_index": 1377,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "09ada9ec813a40c84a0048df7f9ced1bb8d673ced50d78b99ab215bec3f9e432",
+      "seed": 2717446046,
+      "position": 74
+    },
+    {
+      "request_id": "Q42-Sprime-R3",
+      "ds_task_id": "Q42",
+      "source_index": 473,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "74ebed7dcfc8f8b1bb65b7e242c3b1312d5023652c4e90fbb5bc4d5c95ee3e17",
+      "seed": 673018127,
+      "position": 75
+    },
+    {
+      "request_id": "Q24-S-R3",
+      "ds_task_id": "Q24",
+      "source_index": 113,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "14b7213562464d21a0364da038a10c7997b8e20dad8e68813e90e710a28cd212",
+      "seed": 402754870,
+      "position": 76
+    },
+    {
+      "request_id": "Q03-S-R3",
+      "ds_task_id": "Q03",
+      "source_index": 1118,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "408f0d02741dcf451aa6c06e605394dff6ca3ae5f375a6c6d5573fc2cdd22a33",
+      "seed": 4108294109,
+      "position": 77
+    },
+    {
+      "request_id": "Q12-Sprime-R2",
+      "ds_task_id": "Q12",
+      "source_index": 775,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "c17969059376dc377137821059f717dd3b39a80371a65c96b2bb54ed4f7f53ab",
+      "seed": 3615699149,
+      "position": 78
+    },
+    {
+      "request_id": "Q19-S-R2",
+      "ds_task_id": "Q19",
+      "source_index": 1377,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "81d3f5fce9d8143c22e887378f85c9d9a6cf2d667be41a0d3f766894135afb04",
+      "seed": 2531534490,
+      "position": 79
+    },
+    {
+      "request_id": "Q05-S-R2",
+      "ds_task_id": "Q05",
+      "source_index": 485,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "90da255a1ad29388923a334b1878391a076c2b1e394b9ce5a620bd43630630b2",
+      "seed": 347284638,
+      "position": 80
+    },
+    {
+      "request_id": "Q07-S-R2",
+      "ds_task_id": "Q07",
+      "source_index": 356,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "52a941d3e82097f981b8c8765db1f701edbb3a051b7dcec073f873180c6f54b4",
+      "seed": 340038891,
+      "position": 81
+    },
+    {
+      "request_id": "Q19-Sprime-R2",
+      "ds_task_id": "Q19",
+      "source_index": 1377,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "09ada9ec813a40c84a0048df7f9ced1bb8d673ced50d78b99ab215bec3f9e432",
+      "seed": 4182278025,
+      "position": 82
+    },
+    {
+      "request_id": "Q23-Sprime-R2",
+      "ds_task_id": "Q23",
+      "source_index": 164,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "515417d142f3bfd5c43917877e52968f6ed2daa79c9cad658fd0a3c0e5efa86e",
+      "seed": 919614532,
+      "position": 83
+    },
+    {
+      "request_id": "Q03-Sprime-R3",
+      "ds_task_id": "Q03",
+      "source_index": 1118,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "057f6d216172631cf13abcfb22ea3e5cfd9560833e3617415f56aec9dfae259f",
+      "seed": 2925974339,
+      "position": 84
+    },
+    {
+      "request_id": "Q51-Sprime-R3",
+      "ds_task_id": "Q51",
+      "source_index": 1020,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "2037636114b4a2e0dde15741bc32bdc0047647eb25c6bbc6f10538d6f221c5f8",
+      "seed": 2989297179,
+      "position": 85
+    },
+    {
+      "request_id": "Q26-S-R2",
+      "ds_task_id": "Q26",
+      "source_index": 454,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "ea961822f4af524750847c88ba73456bddc6258d804928d8fe463becc8a801c5",
+      "seed": 2284618435,
+      "position": 86
+    },
+    {
+      "request_id": "Q23-S-R3",
+      "ds_task_id": "Q23",
+      "source_index": 164,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "6d830c316f552ef91850ac20693ae5fc018ed54af08a9279c81e19603927122e",
+      "seed": 2891194083,
+      "position": 87
+    },
+    {
+      "request_id": "Q44-Sprime-R3",
+      "ds_task_id": "Q44",
+      "source_index": 435,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "7926ded38bd3ca0dbde973ff71bf4f40a0460088dd078eebfe8643137f802329",
+      "seed": 1007187589,
+      "position": 88
+    },
+    {
+      "request_id": "Q13-S-R2",
+      "ds_task_id": "Q13",
+      "source_index": 1206,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "31812fb0f213cb98fc6074281d6ac829d029d5a222e5b3ac3c199937dc5ed076",
+      "seed": 3649823457,
+      "position": 89
+    },
+    {
+      "request_id": "Q43-S-R3",
+      "ds_task_id": "Q43",
+      "source_index": 165,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "a3dec3a041d20d09b40e2505e5e8cfc7b1dfc5c6d487b60f241d58ebbf8dd423",
+      "seed": 3557324070,
+      "position": 90
+    },
+    {
+      "request_id": "Q07-S-R3",
+      "ds_task_id": "Q07",
+      "source_index": 356,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "52a941d3e82097f981b8c8765db1f701edbb3a051b7dcec073f873180c6f54b4",
+      "seed": 1502283971,
+      "position": 91
+    },
+    {
+      "request_id": "Q11-S-R2",
+      "ds_task_id": "Q11",
+      "source_index": 660,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "c2c82ac1b47e9f2d7c363766d9434ed7270cc83146263d4a9182274436b88a49",
+      "seed": 4267051344,
+      "position": 92
+    },
+    {
+      "request_id": "Q01-S-R3",
+      "ds_task_id": "Q01",
+      "source_index": 144,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "373bfaa3b1ff23e3fd840927ec125ef7c6d52f9dd723e8dfe9a53ffcd0cff975",
+      "seed": 471473286,
+      "position": 93
+    },
+    {
+      "request_id": "Q09-Sprime-R2",
+      "ds_task_id": "Q09",
+      "source_index": 1080,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "4b695dfa002b68eb8704f8f2b4f62b951e344ff05ebda73a0f652cac8ad5f3d9",
+      "seed": 2608746355,
+      "position": 94
+    },
+    {
+      "request_id": "Q44-S-R3",
+      "ds_task_id": "Q44",
+      "source_index": 435,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "3207b23127fbb2c105d58557a3ceeb56e680cfa0949364edec7ba809a19550f0",
+      "seed": 2245678304,
+      "position": 95
+    },
+    {
+      "request_id": "Q13-Sprime-R3",
+      "ds_task_id": "Q13",
+      "source_index": 1206,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "c1395e1d90a9b4b6d0c46804037c03c5a98b0ed40f71e33fe2367c1ecaf796d2",
+      "seed": 982163317,
+      "position": 96
+    },
+    {
+      "request_id": "Q20-Sprime-R3",
+      "ds_task_id": "Q20",
+      "source_index": 1009,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "9764131d7debd1bdb9bd3018d8eb941da252fff86926f6a40ce5773174409b94",
+      "seed": 2084994822,
+      "position": 97
+    },
+    {
+      "request_id": "Q31-Sprime-R2",
+      "ds_task_id": "Q31",
+      "source_index": 1219,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "49e5b89272ee4441d9fa0f733ba8bab1a1476ff92608b182f7130e366ddfc76f",
+      "seed": 2695404645,
+      "position": 98
+    },
+    {
+      "request_id": "Q10-S-R3",
+      "ds_task_id": "Q10",
+      "source_index": 1405,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "141bac54b1bf054787c4e1bc35e89877ed0f1da24f758ff5dff69f7e8f62a713",
+      "seed": 3856463687,
+      "position": 99
+    },
+    {
+      "request_id": "Q04-Sprime-R3",
+      "ds_task_id": "Q04",
+      "source_index": 1027,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "d0f5e246153369ed7ca3bbf7876cdc0fb1e7a3cac03b76415335c3d0428b045b",
+      "seed": 4001161629,
+      "position": 100
+    },
+    {
+      "request_id": "Q47-Sprime-R3",
+      "ds_task_id": "Q47",
+      "source_index": 1218,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "75bb607e624f6b2d04d3fab7f85821cab42b4fb1d989d4fd827a05b772df78fd",
+      "seed": 2025825941,
+      "position": 101
+    },
+    {
+      "request_id": "Q10-S-R2",
+      "ds_task_id": "Q10",
+      "source_index": 1405,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "141bac54b1bf054787c4e1bc35e89877ed0f1da24f758ff5dff69f7e8f62a713",
+      "seed": 1356872846,
+      "position": 102
+    },
+    {
+      "request_id": "Q07-Sprime-R2",
+      "ds_task_id": "Q07",
+      "source_index": 356,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "6d9d31af19dcfa49fb396422941bba434e19cfed55611d63a1dcf5507b99fb3c",
+      "seed": 2180350783,
+      "position": 103
+    },
+    {
+      "request_id": "Q37-S-R2",
+      "ds_task_id": "Q37",
+      "source_index": 675,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "88acfd4dec070f312dfc144e58c012cce462ec00b3d81cc19f04e62d7070abd1",
+      "seed": 341873602,
+      "position": 104
+    },
+    {
+      "request_id": "Q01-Sprime-R2",
+      "ds_task_id": "Q01",
+      "source_index": 144,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "1c45bbe036dd138567a1d6a8840e5bec88de8ee10e7f858bffc58be1bb0dd412",
+      "seed": 1946754959,
+      "position": 105
+    },
+    {
+      "request_id": "Q49-Sprime-R3",
+      "ds_task_id": "Q49",
+      "source_index": 1302,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "08f2af5fe6b235a0f8fed7d601795d8e96be8c56712385440039f391d5b2b3a0",
+      "seed": 3665593896,
+      "position": 106
+    },
+    {
+      "request_id": "Q06-S-R2",
+      "ds_task_id": "Q06",
+      "source_index": 447,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "51d3ac1240404eebbbf6c45b28dc0135656bcb3b6722d8c0e4383b755d211d43",
+      "seed": 849822021,
+      "position": 107
+    },
+    {
+      "request_id": "Q12-Sprime-R3",
+      "ds_task_id": "Q12",
+      "source_index": 775,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "c17969059376dc377137821059f717dd3b39a80371a65c96b2bb54ed4f7f53ab",
+      "seed": 1616363011,
+      "position": 108
+    },
+    {
+      "request_id": "Q09-Sprime-R3",
+      "ds_task_id": "Q09",
+      "source_index": 1080,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "4b695dfa002b68eb8704f8f2b4f62b951e344ff05ebda73a0f652cac8ad5f3d9",
+      "seed": 1285045265,
+      "position": 109
+    },
+    {
+      "request_id": "Q29-S-R2",
+      "ds_task_id": "Q29",
+      "source_index": 600,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "ea0352ff85441928852633d0676733fa883b31a1522da6be897a71657e1f938e",
+      "seed": 326638635,
+      "position": 110
+    },
+    {
+      "request_id": "Q35-S-R2",
+      "ds_task_id": "Q35",
+      "source_index": 457,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "be153a24808ea713eb65e8d0fa447148c13c5529bb99921515feb9b7a08fc700",
+      "seed": 1674608210,
+      "position": 111
+    },
+    {
+      "request_id": "Q39-Sprime-R2",
+      "ds_task_id": "Q39",
+      "source_index": 102,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "1258c4bf672aec3c745f5e569ab4861c25df9ed6304f3db2d2ad362cad282e87",
+      "seed": 3702160603,
+      "position": 112
+    },
+    {
+      "request_id": "Q46-Sprime-R2",
+      "ds_task_id": "Q46",
+      "source_index": 168,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "ed0a8dfb92978e80a417e4811b2d38dc18b99b02a3de7b3c96e849c64afb7f5a",
+      "seed": 2746682451,
+      "position": 113
+    },
+    {
+      "request_id": "Q21-Sprime-R2",
+      "ds_task_id": "Q21",
+      "source_index": 177,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "3bf813b741eb72f044fdde4e9ab0515bf37864ccef407657fe229953312a56ca",
+      "seed": 1167368458,
+      "position": 114
+    },
+    {
+      "request_id": "Q23-Sprime-R3",
+      "ds_task_id": "Q23",
+      "source_index": 164,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "515417d142f3bfd5c43917877e52968f6ed2daa79c9cad658fd0a3c0e5efa86e",
+      "seed": 51782711,
+      "position": 115
+    },
+    {
+      "request_id": "Q17-S-R3",
+      "ds_task_id": "Q17",
+      "source_index": 1166,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "262cb01cad524ea07bcaf3eebc22bfc84751d0dd960ba898d8e3eb615d8365cb",
+      "seed": 1548926310,
+      "position": 116
+    },
+    {
+      "request_id": "Q42-S-R3",
+      "ds_task_id": "Q42",
+      "source_index": 473,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "2d467fd6159d94a9278191c92d50a1401c3c79f1a54a8f000012ff212163b3cf",
+      "seed": 4180422524,
+      "position": 117
+    },
+    {
+      "request_id": "Q39-S-R3",
+      "ds_task_id": "Q39",
+      "source_index": 102,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "048b027908be652b918656c3395362e980b58253519e2e9e9c888da514f4e18b",
+      "seed": 1337055476,
+      "position": 118
+    },
+    {
+      "request_id": "Q01-S-R2",
+      "ds_task_id": "Q01",
+      "source_index": 144,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "373bfaa3b1ff23e3fd840927ec125ef7c6d52f9dd723e8dfe9a53ffcd0cff975",
+      "seed": 2122605151,
+      "position": 119
+    },
+    {
+      "request_id": "Q05-Sprime-R3",
+      "ds_task_id": "Q05",
+      "source_index": 485,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "d6194ae2e50f2104d7405d66d113e26f71a9d34e6ddcd5ac217b4b603242ad46",
+      "seed": 1526295473,
+      "position": 120
+    },
+    {
+      "request_id": "Q04-S-R3",
+      "ds_task_id": "Q04",
+      "source_index": 1027,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "7f7cbede7f790f931e0e4ac6bfaf608def19664d19e43a73617b343b33c97cc6",
+      "seed": 1651369039,
+      "position": 121
+    },
+    {
+      "request_id": "Q38-Sprime-R2",
+      "ds_task_id": "Q38",
+      "source_index": 503,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "464bd1386ab0bb3afc6d37bf77e3ffa99fd3202baaf54757da6aa0ba6af85c73",
+      "seed": 295853977,
+      "position": 122
+    },
+    {
+      "request_id": "Q04-Sprime-R2",
+      "ds_task_id": "Q04",
+      "source_index": 1027,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "d0f5e246153369ed7ca3bbf7876cdc0fb1e7a3cac03b76415335c3d0428b045b",
+      "seed": 2464391566,
+      "position": 123
+    },
+    {
+      "request_id": "Q16-S-R2",
+      "ds_task_id": "Q16",
+      "source_index": 137,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "b73b30251899bb09b8d7f2407fb560e62893cbede9efa707e7f2b83996352f37",
+      "seed": 2523165519,
+      "position": 124
+    },
+    {
+      "request_id": "Q23-S-R2",
+      "ds_task_id": "Q23",
+      "source_index": 164,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "6d830c316f552ef91850ac20693ae5fc018ed54af08a9279c81e19603927122e",
+      "seed": 788468894,
+      "position": 125
+    },
+    {
+      "request_id": "Q21-Sprime-R3",
+      "ds_task_id": "Q21",
+      "source_index": 177,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "3bf813b741eb72f044fdde4e9ab0515bf37864ccef407657fe229953312a56ca",
+      "seed": 3857451051,
+      "position": 126
+    },
+    {
+      "request_id": "Q26-S-R3",
+      "ds_task_id": "Q26",
+      "source_index": 454,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "ea961822f4af524750847c88ba73456bddc6258d804928d8fe463becc8a801c5",
+      "seed": 1581143153,
+      "position": 127
+    },
+    {
+      "request_id": "Q42-Sprime-R2",
+      "ds_task_id": "Q42",
+      "source_index": 473,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "74ebed7dcfc8f8b1bb65b7e242c3b1312d5023652c4e90fbb5bc4d5c95ee3e17",
+      "seed": 2659326448,
+      "position": 128
+    },
+    {
+      "request_id": "Q37-Sprime-R2",
+      "ds_task_id": "Q37",
+      "source_index": 675,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "662b892de4b6a36b0f6aaabcb6e4b5f6f8e02d5151bef726a97f328577f53373",
+      "seed": 3350055689,
+      "position": 129
+    },
+    {
+      "request_id": "Q24-S-R2",
+      "ds_task_id": "Q24",
+      "source_index": 113,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "14b7213562464d21a0364da038a10c7997b8e20dad8e68813e90e710a28cd212",
+      "seed": 3809304500,
+      "position": 130
+    },
+    {
+      "request_id": "Q42-S-R2",
+      "ds_task_id": "Q42",
+      "source_index": 473,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "2d467fd6159d94a9278191c92d50a1401c3c79f1a54a8f000012ff212163b3cf",
+      "seed": 4066128842,
+      "position": 131
+    },
+    {
+      "request_id": "Q11-Sprime-R2",
+      "ds_task_id": "Q11",
+      "source_index": 660,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "3a56456d714d3d1d5a570253a6a8062defd84762b6707aebc3056207530d6043",
+      "seed": 2789002478,
+      "position": 132
+    },
+    {
+      "request_id": "Q01-Sprime-R3",
+      "ds_task_id": "Q01",
+      "source_index": 144,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "1c45bbe036dd138567a1d6a8840e5bec88de8ee10e7f858bffc58be1bb0dd412",
+      "seed": 1432017848,
+      "position": 133
+    },
+    {
+      "request_id": "Q50-Sprime-R2",
+      "ds_task_id": "Q50",
+      "source_index": 452,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "d9d63c55c571c7e4d5d739f1c73a1ac205de3130f65c322e5b744559c6489243",
+      "seed": 199894364,
+      "position": 134
+    },
+    {
+      "request_id": "Q22-S-R3",
+      "ds_task_id": "Q22",
+      "source_index": 1133,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "b0bcf7b2788a01c60f1d377c85faae6ad03abf90bc85019965d8620368aacb15",
+      "seed": 573737361,
+      "position": 135
+    },
+    {
+      "request_id": "Q50-S-R3",
+      "ds_task_id": "Q50",
+      "source_index": 452,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "9ae690ee750306b2c189739db0207a23b23562a983efa34e95cf511373d00e4c",
+      "seed": 1037493678,
+      "position": 136
+    },
+    {
+      "request_id": "Q38-S-R2",
+      "ds_task_id": "Q38",
+      "source_index": 503,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "8011b96a81dda3ddd4a119beae368617eebe74489ec7238b1d75173d57e41079",
+      "seed": 850050675,
+      "position": 137
+    },
+    {
+      "request_id": "Q43-Sprime-R2",
+      "ds_task_id": "Q43",
+      "source_index": 165,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "659d83b4208504e151b830868a6d3f1a3a2ea28e2d178e5213c58c4f9b17093d",
+      "seed": 3648812822,
+      "position": 138
+    },
+    {
+      "request_id": "Q51-S-R3",
+      "ds_task_id": "Q51",
+      "source_index": 1020,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "e774a60ac82ccd3356ff862334ebb10ddafc87ee544b8f1cc2bbe1ae4b0093e2",
+      "seed": 62136582,
+      "position": 139
+    },
+    {
+      "request_id": "Q20-S-R3",
+      "ds_task_id": "Q20",
+      "source_index": 1009,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "4499ab18fee7aa5ea8692b1a70326a150d130806054ffbd279a7bb898f6981f9",
+      "seed": 2943496865,
+      "position": 140
+    },
+    {
+      "request_id": "Q02-S-R3",
+      "ds_task_id": "Q02",
+      "source_index": 1101,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "0289ed07206c187a5923f7c29862e1a436d471ded540b66e1f67138fd9d21651",
+      "seed": 2458659923,
+      "position": 141
+    },
+    {
+      "request_id": "Q12-S-R3",
+      "ds_task_id": "Q12",
+      "source_index": 775,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "ac0dc44d90b9c649559e13efd8e3b5e70e0811b9faabb6937fffa2c4020543cb",
+      "seed": 2255409812,
+      "position": 142
+    },
+    {
+      "request_id": "Q45-Sprime-R2",
+      "ds_task_id": "Q45",
+      "source_index": 780,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "778f4768913f913ba17da6d6f31d071005735ab85b2ad70420bed328b544e555",
+      "seed": 980611079,
+      "position": 143
+    },
+    {
+      "request_id": "Q50-Sprime-R3",
+      "ds_task_id": "Q50",
+      "source_index": 452,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "d9d63c55c571c7e4d5d739f1c73a1ac205de3130f65c322e5b744559c6489243",
+      "seed": 3160865694,
+      "position": 144
+    },
+    {
+      "request_id": "Q45-S-R3",
+      "ds_task_id": "Q45",
+      "source_index": 780,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "0f000f4f9d164569cf4396cd7b305ed98c90c27df00f6aba18426262be7d3225",
+      "seed": 3541308247,
+      "position": 145
+    },
+    {
+      "request_id": "Q38-S-R3",
+      "ds_task_id": "Q38",
+      "source_index": 503,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "8011b96a81dda3ddd4a119beae368617eebe74489ec7238b1d75173d57e41079",
+      "seed": 3386738985,
+      "position": 146
+    },
+    {
+      "request_id": "Q36-S-R2",
+      "ds_task_id": "Q36",
+      "source_index": 1163,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "980f20e5da5ec280639ae8e22846ad3657afb33a65af0f8f392512b026525634",
+      "seed": 378657348,
+      "position": 147
+    },
+    {
+      "request_id": "Q36-S-R3",
+      "ds_task_id": "Q36",
+      "source_index": 1163,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "980f20e5da5ec280639ae8e22846ad3657afb33a65af0f8f392512b026525634",
+      "seed": 648737059,
+      "position": 148
+    },
+    {
+      "request_id": "Q50-S-R2",
+      "ds_task_id": "Q50",
+      "source_index": 452,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "9ae690ee750306b2c189739db0207a23b23562a983efa34e95cf511373d00e4c",
+      "seed": 2518221837,
+      "position": 149
+    },
+    {
+      "request_id": "Q46-S-R2",
+      "ds_task_id": "Q46",
+      "source_index": 168,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "8ab3559f222e3995e8476013cd6effb21fba1c5c91d9c45c860bf4e9be05e573",
+      "seed": 2813948355,
+      "position": 150
+    },
+    {
+      "request_id": "Q08-Sprime-R3",
+      "ds_task_id": "Q08",
+      "source_index": 433,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "7999b73da5d6420fce7a891a141bf3252c8312a5e15cf401d712afdf59c69c65",
+      "seed": 126704808,
+      "position": 151
+    },
+    {
+      "request_id": "Q07-Sprime-R3",
+      "ds_task_id": "Q07",
+      "source_index": 356,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "6d9d31af19dcfa49fb396422941bba434e19cfed55611d63a1dcf5507b99fb3c",
+      "seed": 3961440357,
+      "position": 152
+    },
+    {
+      "request_id": "Q21-S-R2",
+      "ds_task_id": "Q21",
+      "source_index": 177,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "2b1907cd8831506a8e4712a5c8d69c094c683a7fc01a817694adef37fc4351f1",
+      "seed": 1726985418,
+      "position": 153
+    },
+    {
+      "request_id": "Q30-Sprime-R3",
+      "ds_task_id": "Q30",
+      "source_index": 1148,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "ab5fa4a6a17d68615bf6397fdcde187149476a5d6d14d641250018e8292525cc",
+      "seed": 3588767360,
+      "position": 154
+    },
+    {
+      "request_id": "Q35-S-R3",
+      "ds_task_id": "Q35",
+      "source_index": 457,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "be153a24808ea713eb65e8d0fa447148c13c5529bb99921515feb9b7a08fc700",
+      "seed": 2974093856,
+      "position": 155
+    },
+    {
+      "request_id": "Q13-Sprime-R2",
+      "ds_task_id": "Q13",
+      "source_index": 1206,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "c1395e1d90a9b4b6d0c46804037c03c5a98b0ed40f71e33fe2367c1ecaf796d2",
+      "seed": 74439591,
+      "position": 156
+    },
+    {
+      "request_id": "Q24-Sprime-R2",
+      "ds_task_id": "Q24",
+      "source_index": 113,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "ecb272cd46fde7193b352095e8c10b2d096b0a7430f81434acefb6ca4af97c0a",
+      "seed": 3845855943,
+      "position": 157
+    },
+    {
+      "request_id": "Q29-S-R3",
+      "ds_task_id": "Q29",
+      "source_index": 600,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "ea0352ff85441928852633d0676733fa883b31a1522da6be897a71657e1f938e",
+      "seed": 1929863424,
+      "position": 158
+    },
+    {
+      "request_id": "Q03-S-R2",
+      "ds_task_id": "Q03",
+      "source_index": 1118,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "408f0d02741dcf451aa6c06e605394dff6ca3ae5f375a6c6d5573fc2cdd22a33",
+      "seed": 196862314,
+      "position": 159
+    },
+    {
+      "request_id": "Q25-Sprime-R2",
+      "ds_task_id": "Q25",
+      "source_index": 652,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "b2da6002b50753c8f22f7fe4e37afae7dcf3585833f6ef4304ad48aba06a1d88",
+      "seed": 2813034014,
+      "position": 160
+    },
+    {
+      "request_id": "Q05-Sprime-R2",
+      "ds_task_id": "Q05",
+      "source_index": 485,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "d6194ae2e50f2104d7405d66d113e26f71a9d34e6ddcd5ac217b4b603242ad46",
+      "seed": 3654201274,
+      "position": 161
+    },
+    {
+      "request_id": "Q21-S-R3",
+      "ds_task_id": "Q21",
+      "source_index": 177,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "2b1907cd8831506a8e4712a5c8d69c094c683a7fc01a817694adef37fc4351f1",
+      "seed": 2546652806,
+      "position": 162
+    },
+    {
+      "request_id": "Q52-Sprime-R3",
+      "ds_task_id": "Q52",
+      "source_index": 1189,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "9fd2ebab6e81ed0af1a4fda4b1fb1e2c98ad10d15a69f92dcc86ef94673746db",
+      "seed": 142289275,
+      "position": 163
+    },
+    {
+      "request_id": "Q06-S-R3",
+      "ds_task_id": "Q06",
+      "source_index": 447,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "51d3ac1240404eebbbf6c45b28dc0135656bcb3b6722d8c0e4383b755d211d43",
+      "seed": 3573568858,
+      "position": 164
+    },
+    {
+      "request_id": "Q30-S-R2",
+      "ds_task_id": "Q30",
+      "source_index": 1148,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "74d3e2bac5e870271699a080174fff80e5b03f23d6e98e593664e36bfa785497",
+      "seed": 3622693470,
+      "position": 165
+    },
+    {
+      "request_id": "Q02-Sprime-R3",
+      "ds_task_id": "Q02",
+      "source_index": 1101,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "38470e90ab063c348c55e92e3d01641f2b02aa9011d20b6ef70f837b9e504d01",
+      "seed": 1617357368,
+      "position": 166
+    },
+    {
+      "request_id": "Q47-S-R2",
+      "ds_task_id": "Q47",
+      "source_index": 1218,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "f472d3e2320045ae847a2dbaeb4a411bd6e35764bb885a5272fd8579c5b3a1d1",
+      "seed": 4276391356,
+      "position": 167
+    },
+    {
+      "request_id": "Q33-S-R3",
+      "ds_task_id": "Q33",
+      "source_index": 1305,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "35f3101649f1345ce1466a1ea2e921dad2a4271213529fc79ea40bdf7aadb1d5",
+      "seed": 3386603756,
+      "position": 168
+    },
+    {
+      "request_id": "Q03-Sprime-R2",
+      "ds_task_id": "Q03",
+      "source_index": 1118,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "057f6d216172631cf13abcfb22ea3e5cfd9560833e3617415f56aec9dfae259f",
+      "seed": 266421186,
+      "position": 169
+    },
+    {
+      "request_id": "Q25-S-R2",
+      "ds_task_id": "Q25",
+      "source_index": 652,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "3561ba7e77356c9301f87ffe6b534854efb03eb4e7dff7c0471a3ebbe33e0f04",
+      "seed": 3919170516,
+      "position": 170
+    },
+    {
+      "request_id": "Q02-Sprime-R2",
+      "ds_task_id": "Q02",
+      "source_index": 1101,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "38470e90ab063c348c55e92e3d01641f2b02aa9011d20b6ef70f837b9e504d01",
+      "seed": 789125236,
+      "position": 171
+    },
+    {
+      "request_id": "Q11-Sprime-R3",
+      "ds_task_id": "Q11",
+      "source_index": 660,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "3a56456d714d3d1d5a570253a6a8062defd84762b6707aebc3056207530d6043",
+      "seed": 947381010,
+      "position": 172
+    },
+    {
+      "request_id": "Q39-Sprime-R3",
+      "ds_task_id": "Q39",
+      "source_index": 102,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "1258c4bf672aec3c745f5e569ab4861c25df9ed6304f3db2d2ad362cad282e87",
+      "seed": 1196783026,
+      "position": 173
+    },
+    {
+      "request_id": "Q20-S-R2",
+      "ds_task_id": "Q20",
+      "source_index": 1009,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "4499ab18fee7aa5ea8692b1a70326a150d130806054ffbd279a7bb898f6981f9",
+      "seed": 2786165097,
+      "position": 174
+    },
+    {
+      "request_id": "Q32-S-R2",
+      "ds_task_id": "Q32",
+      "source_index": 1410,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "4bfd4a865d077f9e30e148d064933ef9a42503d45ac9c7bb8c7ce3cf4ff33a9d",
+      "seed": 2414226731,
+      "position": 175
+    },
+    {
+      "request_id": "Q15-Sprime-R3",
+      "ds_task_id": "Q15",
+      "source_index": 1136,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "fbfd83ca1c764339ce675a69927eb04e58f355cecc0b05d8e5dc6a9f5ee205d9",
+      "seed": 2308040397,
+      "position": 176
+    },
+    {
+      "request_id": "Q33-Sprime-R2",
+      "ds_task_id": "Q33",
+      "source_index": 1305,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "bdfd75132b69ee19adf6d96ba84b43906355041a1d0ad56e3d7bd5287bf19671",
+      "seed": 615116319,
+      "position": 177
+    },
+    {
+      "request_id": "Q26-Sprime-R2",
+      "ds_task_id": "Q26",
+      "source_index": 454,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "e66c099ad25f3895b1a970ea500cd13a205f668ece5afa5aa855da04c009c1cd",
+      "seed": 1676082379,
+      "position": 178
+    },
+    {
+      "request_id": "Q40-S-R2",
+      "ds_task_id": "Q40",
+      "source_index": 1082,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "2d4316c5f38147ad9c094b6af82b00ddb91e54ed93e79d7528009d4d7f47c485",
+      "seed": 2027607978,
+      "position": 179
+    },
+    {
+      "request_id": "Q20-Sprime-R2",
+      "ds_task_id": "Q20",
+      "source_index": 1009,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "9764131d7debd1bdb9bd3018d8eb941da252fff86926f6a40ce5773174409b94",
+      "seed": 1637140041,
+      "position": 180
+    },
+    {
+      "request_id": "Q14-Sprime-R3",
+      "ds_task_id": "Q14",
+      "source_index": 1089,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "9b51fc2b7be2f6e1e3523a9472b31cdd262f32acc4830da85b63c00e9e3c054f",
+      "seed": 2129798625,
+      "position": 181
+    },
+    {
+      "request_id": "Q10-Sprime-R3",
+      "ds_task_id": "Q10",
+      "source_index": 1405,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "bd8aba155f4cf0bffb468896685aea5427487d118bca55329160d85ca4cc09b4",
+      "seed": 1656190514,
+      "position": 182
+    },
+    {
+      "request_id": "Q24-Sprime-R3",
+      "ds_task_id": "Q24",
+      "source_index": 113,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "ecb272cd46fde7193b352095e8c10b2d096b0a7430f81434acefb6ca4af97c0a",
+      "seed": 972429274,
+      "position": 183
+    },
+    {
+      "request_id": "Q31-S-R2",
+      "ds_task_id": "Q31",
+      "source_index": 1219,
+      "condition": "S",
+      "repeat": 2,
+      "prompt_sha256": "18148ee966f5363f045fe23078add218e38e68df59a45e59ddbcd0e568f69729",
+      "seed": 4088234046,
+      "position": 184
+    },
+    {
+      "request_id": "Q41-Sprime-R2",
+      "ds_task_id": "Q41",
+      "source_index": 1170,
+      "condition": "Sprime",
+      "repeat": 2,
+      "prompt_sha256": "c4cfb5a90df1175d24c7ee2413fca522ca32cbb4bd393906e9e69b6b5d204073",
+      "seed": 2830323878,
+      "position": 185
+    },
+    {
+      "request_id": "Q41-S-R3",
+      "ds_task_id": "Q41",
+      "source_index": 1170,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "018d835a166145a63cf122e9ab5cb17eee669d9776d508081dafa05d21e2ed21",
+      "seed": 1857831907,
+      "position": 186
+    },
+    {
+      "request_id": "Q46-S-R3",
+      "ds_task_id": "Q46",
+      "source_index": 168,
+      "condition": "S",
+      "repeat": 3,
+      "prompt_sha256": "8ab3559f222e3995e8476013cd6effb21fba1c5c91d9c45c860bf4e9be05e573",
+      "seed": 898981445,
+      "position": 187
+    },
+    {
+      "request_id": "Q22-Sprime-R3",
+      "ds_task_id": "Q22",
+      "source_index": 1133,
+      "condition": "Sprime",
+      "repeat": 3,
+      "prompt_sha256": "691b1e2bd9f49faf3965cf5f3c136bdeab638aa77aa051a6e8914cf87a2e270c",
+      "seed": 1021136248,
+      "position": 188
+    }
+  ]
+}
